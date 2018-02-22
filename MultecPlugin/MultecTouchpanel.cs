@@ -85,6 +85,22 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G90");
         }
 
+        private void but_Zplus_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+                host.Connection.injectManualCommand("G1 Z" + step_dist);
+                host.Connection.injectManualCommand("G90");
+        }
+
+        private void but_Zminus_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+                host.Connection.injectManualCommand("G1 Z" + -step_dist);
+                host.Connection.injectManualCommand("G90");
+        }
+
         private void buttonHome_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -109,7 +125,6 @@ namespace MultecPlugin
         {
             step_dist = 1;
         }
-
 
     }
 }

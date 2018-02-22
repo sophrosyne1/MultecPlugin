@@ -37,6 +37,8 @@
             this.but_Yplus = new System.Windows.Forms.Button();
             this.but_Yminus = new System.Windows.Forms.Button();
             this.but_Xminus = new System.Windows.Forms.Button();
+            this.but_Zplus = new System.Windows.Forms.Button();
+            this.but_Zminus = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,13 +135,38 @@
             this.but_Xminus.Name = "but_Xminus";
             this.but_Xminus.Size = new System.Drawing.Size(112, 82);
             this.but_Xminus.TabIndex = 4;
-            this.but_Xminus.Text = "Y-";
+            this.but_Xminus.Text = "X-";
             this.but_Xminus.UseVisualStyleBackColor = true;
+            this.but_Xminus.Click += new System.EventHandler(this.but_Xminus_Click);
+            // 
+            // but_Zplus
+            // 
+            this.but_Zplus.Location = new System.Drawing.Point(473, 22);
+            this.but_Zplus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.but_Zplus.Name = "but_Zplus";
+            this.but_Zplus.Size = new System.Drawing.Size(112, 82);
+            this.but_Zplus.TabIndex = 5;
+            this.but_Zplus.Text = "Z+";
+            this.but_Zplus.UseVisualStyleBackColor = true;
+            this.but_Zplus.Click += new System.EventHandler(this.but_Zplus_Click);
+            // 
+            // but_Zminus
+            // 
+            this.but_Zminus.Location = new System.Drawing.Point(473, 140);
+            this.but_Zminus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.but_Zminus.Name = "but_Zminus";
+            this.but_Zminus.Size = new System.Drawing.Size(112, 82);
+            this.but_Zminus.TabIndex = 6;
+            this.but_Zminus.Text = "Z-";
+            this.but_Zminus.UseVisualStyleBackColor = true;
+            this.but_Zminus.Click += new System.EventHandler(this.but_Zminus_Click);
             // 
             // MultecTouchpanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.but_Zminus);
+            this.Controls.Add(this.but_Zplus);
             this.Controls.Add(this.but_Xminus);
             this.Controls.Add(this.but_Yminus);
             this.Controls.Add(this.but_Yplus);
@@ -164,5 +191,7 @@
         private System.Windows.Forms.Button but_Yplus;
         private System.Windows.Forms.Button but_Yminus;
         private System.Windows.Forms.Button but_Xminus;
+        private System.Windows.Forms.Button but_Zplus;
+        private System.Windows.Forms.Button but_Zminus;
     }
 }
