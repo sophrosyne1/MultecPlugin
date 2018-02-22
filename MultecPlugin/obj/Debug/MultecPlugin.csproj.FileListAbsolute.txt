@@ -1,0 +1,8 @@
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.MultecTouchpanel.resources
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csproj.GenerateResource.Cache
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.Properties.Resources.resources
+C:\Users\Patrick\Desktop\Build\MultecPlugin.dll
+C:\Users\Patrick\Desktop\Build\MultecPlugin.pdb
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.dll
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.pdb
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csprojResolveAssemblyReference.cache

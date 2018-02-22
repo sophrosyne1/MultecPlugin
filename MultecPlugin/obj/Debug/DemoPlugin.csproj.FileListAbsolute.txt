@@ -1,0 +1,7 @@
+Z:\Users\littwin\Documents\Projekte\repetier\Repetier-Host\demoplugin\DemoPlugin\DemoPlugin\obj\Debug\DemoPlugin.csprojResolveAssemblyReference.cache
+Z:\Users\littwin\Documents\Projekte\repetier\Repetier-Host\demoplugin\DemoPlugin\DemoPlugin\obj\Debug\DemoPlugin.dll
+Z:\Users\littwin\Documents\Projekte\repetier\Repetier-Host\demoplugin\DemoPlugin\DemoPlugin\obj\Debug\DemoPlugin.pdb
+C:\Program Files\Repetier-Host\plugins\DemoPlugin\DemoPlugin.dll
+C:\Program Files\Repetier-Host\plugins\DemoPlugin\DemoPlugin.pdb
+Z:\Users\littwin\Documents\Projekte\repetier\Repetier-Host\demoplugin\DemoPlugin\DemoPlugin\obj\Debug\DemoPlugin.CoolControl.resources
+Z:\Users\littwin\Documents\Projekte\repetier\Repetier-Host\demoplugin\DemoPlugin\DemoPlugin\obj\Debug\DemoPlugin.csproj.GenerateResource.Cache
