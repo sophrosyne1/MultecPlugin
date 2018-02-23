@@ -29,6 +29,14 @@ namespace MultecPlugin
         {
             host = _host;
         }
+
+
+        private void UpdateTempUI()
+        {
+
+        }
+
+
         #region IHostComponent implementation
 
         // Name inside component repository
@@ -101,6 +109,24 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G90");
         }
 
+        private void but_Retract_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+                host.Connection.injectManualCommand("G1 E" + -step_dist + "F500");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G90");
+        }
+
+        private void but_Extrude_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+                host.Connection.injectManualCommand("G1 E" + -step_dist + "F500");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G90");
+        }
+
         private void buttonHome_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -110,6 +136,7 @@ namespace MultecPlugin
         #endregion
 
         private double step_dist;
+        private double temp_Zeil;
 
         private void but_step_50_Click(object sender, EventArgs e)
         {
@@ -126,5 +153,89 @@ namespace MultecPlugin
             step_dist = 1;
         }
 
+        private void but_T0_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("T0");
+        }
+
+        private void but_T1_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("T1");
+        }
+
+        private void but_T2_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("T2");
+        }
+
+        private void but_T3_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("T3");
+        }
+
+        private void but_MOVE_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("T4");
+        }
+
+        private void but_G222_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G222");
+        }
+
+        private void but_G224_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G224");
+        }
+
+        private void but_MotorAus_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("M18");
+        }
+
+        private void but_T0_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("M104 S" + temp_Zeil + "T0");
+        }
+
+        private void but_T1_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("M104 S" + temp_Zeil + "T1");
+        }
+
+        private void but_T2_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("M104 S" + temp_Zeil + "T2");
+        }
+
+        private void but_T3_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("M104 S" + temp_Zeil + "T3");
+        }
+
+        private void but_NozzlePlus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar_NozzleTemp_Scroll(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                host.Connection.injectManualCommand(temp_Zeil = trackBar_NozzleTemp.Value.ToString());
+            }
+        }
     }
 }
