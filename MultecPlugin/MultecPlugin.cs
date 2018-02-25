@@ -25,13 +25,13 @@ namespace MultecPlugin
         /// </summary>
         public void PostInitialize()
         {
-            // Add the CoolControl to the right tab
-            MultecTouchpanel cool = new MultecTouchpanel();
-            cool.Connect(host);
-            host.RegisterHostComponent(cool);
+            // Add the Multec Control to the right tab
+            MultecTouchpanel TouchControl = new MultecTouchpanel();
+            TouchControl.Connect(host);
+            host.RegisterHostComponent(TouchControl);
 
             // Add some text in the about dialog
-            host.AboutDialog.RegisterThirdParty("DemoPlugin", "\r\n\r\nDemoPlugin written by Repetier\r\nUse it like you want.");
+            host.AboutDialog.RegisterThirdParty("MultecPlugin", "\r\n\r\nMultecPlugin written by Multec GmbH\r\n3D Druck 4.0");
         }
         /// <summary>
         /// Last round of plugin calls. All controls exist, so now you may modify them to your wishes.
