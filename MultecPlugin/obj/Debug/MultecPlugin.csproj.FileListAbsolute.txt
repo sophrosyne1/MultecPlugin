@@ -6,3 +6,4 @@ C:\Users\Patrick\Desktop\Build\MultecPlugin.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csprojResolveAssemblyReference.cache
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csproj.CoreCompileInputs.cache

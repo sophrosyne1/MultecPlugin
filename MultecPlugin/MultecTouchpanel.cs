@@ -126,7 +126,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + "F500");
+                host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G90");
         }
@@ -135,7 +135,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + "F500");
+                host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G90");
         }
