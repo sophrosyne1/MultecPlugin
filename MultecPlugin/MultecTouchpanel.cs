@@ -34,6 +34,11 @@ namespace MultecPlugin
             T3_On = false;
             Bed_On = false;
             trackBar_NozzleTemp.Value = 205;
+            trackBar_BedTemp.Value = 60;
+           
+            
+               
+
         }
 
 
@@ -233,38 +238,47 @@ namespace MultecPlugin
         private void but_T0_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
+            {
+
                 T0_On = !T0_On;
 
-            if (T0_On == true)
-            {
-                host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
-                but_T0_OnOff.Text = "Ein";
-                host.LogInfo("M104 S" + temp_Zeil + " T0");
-                host.LogInfo(T0_On.ToString());
-                
-            }
-            else
-            {
-                host.Connection.injectManualCommand("M104 S0 T0");
-                but_T0_OnOff.Text = "Aus";
-                host.LogInfo("T0_ON"+T0_On.ToString());
+                if (T0_On == true)
+                {
+                   
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    but_T0_OnOff.Text = "Ein";
+                    host.LogInfo("M104 S" + temp_Zeil + " T0");
+                    host.LogInfo(T0_On.ToString());
+
+
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("M104 S0 T0");
+                    but_T0_OnOff.Text = "Aus";
+                    host.LogInfo("T0_ON" + T0_On.ToString());
+                   
+                }
             }
         }
 
         private void but_T1_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
+            {
                 T1_On = !T1_On;
 
-            if (T1_On == true)
-            {
-                host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
-                but_T1_OnOff.Text = "Ein";
-            }
-            else
-            {
-                host.Connection.injectManualCommand("M104 S0 T1");
-                but_T1_OnOff.Text = "Aus";
+                if (T1_On == true)
+                {
+                   host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    but_T1_OnOff.Text = "Ein";
+                }
+                else
+                {
+
+                    host.Connection.injectManualCommand("M104 S0 T1");
+                    but_T1_OnOff.Text = "Aus";
+                }
             }
         }
 
@@ -275,11 +289,13 @@ namespace MultecPlugin
 
             if (T2_On == true)
             {
+               
                 host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
                 but_T2_OnOff.Text = "Ein";
             }
             else
             {
+               
                 host.Connection.injectManualCommand("M104 S0 T2");
                 but_T2_OnOff.Text = "Aus";
             }
@@ -292,11 +308,13 @@ namespace MultecPlugin
 
             if (T3_On == true)
             {
+                
                 host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
                 but_T3_OnOff.Text = "Ein";
             }
             else
             {
+                
                 host.Connection.injectManualCommand("M104 S0 T3");
                 but_T3_OnOff.Text = "Aus";
             }
@@ -304,12 +322,39 @@ namespace MultecPlugin
 
         private void but_NozzleMinus_Click(object sender, EventArgs e)
         {
-            trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value - 5;
+            try
+            {
+                if (trackBar_NozzleTemp.Value > 170)
+                {
+                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value - 5;
+                }
+                else
+                {
+                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature less than 170.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Ocurred! " + ex);
+            }
         }
-
         private void but_NozzlePlus_Click(object sender, EventArgs e)
         {
-            trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value + 5;
+            try
+            {
+                if (trackBar_NozzleTemp.Value < 270)
+                {
+                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value + 5;
+                }
+                else
+                {
+                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature greater than 270.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Ocurred! " + ex);
+            }
         }
 
         private void trackBar_NozzleTemp_ValueChanged(object sender, EventArgs e)
@@ -380,12 +425,40 @@ namespace MultecPlugin
 
         private void but_BedMinus_Click(object sender, EventArgs e)
         {
-            trackBar_BedTemp.Value = trackBar_BedTemp.Value - 5;
+            try
+            {
+                if (trackBar_BedTemp.Value > 0)
+                {
+                    trackBar_BedTemp.Value = trackBar_BedTemp.Value - 5;
+                }
+                else
+                {
+                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature less than 0.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Ocurred! " + ex);
+            }
         }
 
         private void but_BedPlus_Click(object sender, EventArgs e)
         {
-            trackBar_BedTemp.Value = trackBar_BedTemp.Value + 5;
+            try
+            {
+                if (trackBar_BedTemp.Value < 100)
+                {
+                    trackBar_BedTemp.Value = trackBar_BedTemp.Value + 5;
+                }
+                else
+                {
+                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature greater than 100.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Ocurred! " + ex);
+            }
         }
 
         private void trackBar_BedTemp_ValueChanged(object sender, EventArgs e)
@@ -452,5 +525,60 @@ namespace MultecPlugin
         {
 
         }
+
+        
+
+       
+
+        
+        private void timer_temp_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (worker.IsBusy != true)
+                {
+                    worker.RunWorkerAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Ocurred! " + ex + " Temperature not updating!");
+            }
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                DoTheLoop();
+            }
+            else
+            {
+                remove_tempReading();
+            }
+        }
+
+        //function to remove temperature readings from textboxes
+        private void remove_tempReading()
+        {
+            text_T0_Aktuell.Text = String.Empty;
+            text_T1_Aktuell.Text = String.Empty;
+            text_T2_Aktuell.Text = String.Empty;
+            text_T3_Aktuell.Text = String.Empty;
+            text_Bed_Aktuell.Text = String.Empty;
+
+        }
+
+        //function to add temperature readings to the textboxes
+        private void DoTheLoop()
+        {
+            text_T0_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(0));
+            text_T1_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(1));
+            text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
+            text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
+            text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(5));
+
+        }
+
     }
 }

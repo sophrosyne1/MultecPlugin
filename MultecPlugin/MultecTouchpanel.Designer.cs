@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage Kalibrierung;
             this.but_tester = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -124,6 +125,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.timer_temp = new System.Windows.Forms.Timer(this.components);
+            this.worker = new System.ComponentModel.BackgroundWorker();
             Kalibrierung = new System.Windows.Forms.TabPage();
             Kalibrierung.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -153,10 +156,10 @@
             Kalibrierung.Controls.Add(this.button1);
             Kalibrierung.Controls.Add(this.button2);
             Kalibrierung.Location = new System.Drawing.Point(4, 4);
-            Kalibrierung.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            Kalibrierung.Margin = new System.Windows.Forms.Padding(2);
             Kalibrierung.Name = "Kalibrierung";
-            Kalibrierung.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            Kalibrierung.Size = new System.Drawing.Size(554, 415);
+            Kalibrierung.Padding = new System.Windows.Forms.Padding(2);
+            Kalibrierung.Size = new System.Drawing.Size(554, 451);
             Kalibrierung.TabIndex = 1;
             Kalibrierung.Text = "Kalibrierung";
             // 
@@ -177,9 +180,9 @@
             this.groupBox3.Controls.Add(this.but_M218_T2);
             this.groupBox3.Controls.Add(this.but_M218_T3);
             this.groupBox3.Location = new System.Drawing.Point(175, 18);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(201, 65);
             this.groupBox3.TabIndex = 47;
             this.groupBox3.TabStop = false;
@@ -243,7 +246,7 @@
             // text_M218_Y
             // 
             this.text_M218_Y.Location = new System.Drawing.Point(245, 135);
-            this.text_M218_Y.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_M218_Y.Margin = new System.Windows.Forms.Padding(2);
             this.text_M218_Y.Name = "text_M218_Y";
             this.text_M218_Y.Size = new System.Drawing.Size(61, 20);
             this.text_M218_Y.TabIndex = 41;
@@ -251,7 +254,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(245, 170);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(61, 20);
             this.textBox2.TabIndex = 40;
@@ -259,7 +262,7 @@
             // text_M218_X
             // 
             this.text_M218_X.Location = new System.Drawing.Point(245, 101);
-            this.text_M218_X.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_M218_X.Margin = new System.Windows.Forms.Padding(2);
             this.text_M218_X.Name = "text_M218_X";
             this.text_M218_X.Size = new System.Drawing.Size(61, 20);
             this.text_M218_X.TabIndex = 39;
@@ -352,9 +355,9 @@
             this.groupBox1.Controls.Add(this.but_step_10);
             this.groupBox1.Controls.Add(this.but_step_50);
             this.groupBox1.Location = new System.Drawing.Point(5, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(70, 150);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -364,7 +367,7 @@
             // 
             this.but_step_1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_step_1.Location = new System.Drawing.Point(4, 104);
-            this.but_step_1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.but_step_1.Margin = new System.Windows.Forms.Padding(2);
             this.but_step_1.Name = "but_step_1";
             this.but_step_1.Size = new System.Drawing.Size(60, 40);
             this.but_step_1.TabIndex = 2;
@@ -376,7 +379,7 @@
             // 
             this.but_step_10.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_step_10.Location = new System.Drawing.Point(4, 60);
-            this.but_step_10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.but_step_10.Margin = new System.Windows.Forms.Padding(2);
             this.but_step_10.Name = "but_step_10";
             this.but_step_10.Size = new System.Drawing.Size(60, 40);
             this.but_step_10.TabIndex = 1;
@@ -388,7 +391,7 @@
             // 
             this.but_step_50.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_step_50.Location = new System.Drawing.Point(4, 16);
-            this.but_step_50.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.but_step_50.Margin = new System.Windows.Forms.Padding(2);
             this.but_step_50.Name = "but_step_50";
             this.but_step_50.Size = new System.Drawing.Size(60, 40);
             this.but_step_50.TabIndex = 0;
@@ -643,7 +646,7 @@
             // text_T0_ziel
             // 
             this.text_T0_ziel.Location = new System.Drawing.Point(137, 302);
-            this.text_T0_ziel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T0_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T0_ziel.Name = "text_T0_ziel";
             this.text_T0_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T0_ziel.TabIndex = 19;
@@ -652,7 +655,7 @@
             // text_T1_ziel
             // 
             this.text_T1_ziel.Location = new System.Drawing.Point(202, 302);
-            this.text_T1_ziel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T1_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T1_ziel.Name = "text_T1_ziel";
             this.text_T1_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T1_ziel.TabIndex = 20;
@@ -661,7 +664,7 @@
             // text_T2_ziel
             // 
             this.text_T2_ziel.Location = new System.Drawing.Point(268, 302);
-            this.text_T2_ziel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T2_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T2_ziel.Name = "text_T2_ziel";
             this.text_T2_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T2_ziel.TabIndex = 21;
@@ -670,7 +673,7 @@
             // text_T3_ziel
             // 
             this.text_T3_ziel.Location = new System.Drawing.Point(333, 302);
-            this.text_T3_ziel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T3_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T3_ziel.Name = "text_T3_ziel";
             this.text_T3_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T3_ziel.TabIndex = 22;
@@ -679,7 +682,7 @@
             // text_T0_Aktuell
             // 
             this.text_T0_Aktuell.Location = new System.Drawing.Point(137, 322);
-            this.text_T0_Aktuell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T0_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T0_Aktuell.Name = "text_T0_Aktuell";
             this.text_T0_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T0_Aktuell.TabIndex = 23;
@@ -688,7 +691,7 @@
             // text_T1_Aktuell
             // 
             this.text_T1_Aktuell.Location = new System.Drawing.Point(201, 323);
-            this.text_T1_Aktuell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T1_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T1_Aktuell.Name = "text_T1_Aktuell";
             this.text_T1_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T1_Aktuell.TabIndex = 24;
@@ -696,7 +699,7 @@
             // text_T2_Aktuell
             // 
             this.text_T2_Aktuell.Location = new System.Drawing.Point(268, 322);
-            this.text_T2_Aktuell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T2_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T2_Aktuell.Name = "text_T2_Aktuell";
             this.text_T2_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T2_Aktuell.TabIndex = 25;
@@ -704,7 +707,7 @@
             // text_T3_Aktuell
             // 
             this.text_T3_Aktuell.Location = new System.Drawing.Point(333, 323);
-            this.text_T3_Aktuell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_T3_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T3_Aktuell.Name = "text_T3_Aktuell";
             this.text_T3_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T3_Aktuell.TabIndex = 26;
@@ -720,7 +723,7 @@
             this.trackBar_BedTemp.TabIndex = 27;
             this.trackBar_BedTemp.TickFrequency = 5;
             this.trackBar_BedTemp.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBar_BedTemp.Value = 100;
+            this.trackBar_BedTemp.Value = 50;
             this.trackBar_BedTemp.ValueChanged += new System.EventHandler(this.trackBar_BedTemp_ValueChanged);
             // 
             // but_bed_OnOff
@@ -756,7 +759,7 @@
             // text_Bed_ziel
             // 
             this.text_Bed_ziel.Location = new System.Drawing.Point(400, 302);
-            this.text_Bed_ziel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_Bed_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_Bed_ziel.Name = "text_Bed_ziel";
             this.text_Bed_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_Bed_ziel.TabIndex = 31;
@@ -765,7 +768,7 @@
             // text_Bed_Aktuell
             // 
             this.text_Bed_Aktuell.Location = new System.Drawing.Point(400, 322);
-            this.text_Bed_Aktuell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_Bed_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_Bed_Aktuell.Name = "text_Bed_Aktuell";
             this.text_Bed_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_Bed_Aktuell.TabIndex = 32;
@@ -906,12 +909,12 @@
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.tabControl1.ItemSize = new System.Drawing.Size(150, 100);
             this.tabControl1.Location = new System.Drawing.Point(2, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(562, 556);
+            this.tabControl1.Size = new System.Drawing.Size(562, 559);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
             // 
@@ -966,8 +969,8 @@
             this.TouchControl.Controls.Add(this.text_T2_ziel);
             this.TouchControl.Location = new System.Drawing.Point(4, 4);
             this.TouchControl.Name = "TouchControl";
-            this.TouchControl.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.TouchControl.Size = new System.Drawing.Size(554, 448);
+            this.TouchControl.Padding = new System.Windows.Forms.Padding(3);
+            this.TouchControl.Size = new System.Drawing.Size(554, 451);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
             // 
@@ -998,8 +1001,8 @@
             this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(515, 455);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(554, 451);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
             // 
@@ -1267,6 +1270,16 @@
             this.label16.TabIndex = 37;
             this.label16.Text = "Firmware Version";
             // 
+            // timer_temp
+            // 
+            this.timer_temp.Enabled = true;
+            this.timer_temp.Interval = 3000;
+            this.timer_temp.Tick += new System.EventHandler(this.timer_temp_Tick);
+            // 
+            // worker
+            // 
+            this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -1301,7 +1314,6 @@
         private System.Windows.Forms.Button but_step_50;
         private System.Windows.Forms.Button but_Yplus;
         private System.Windows.Forms.Button but_Yminus;
-        private System.Windows.Forms.Button but_Xminus;
         private System.Windows.Forms.Button but_Zplus;
         private System.Windows.Forms.Button but_Zminus;
         private System.Windows.Forms.Button but_Extrude;
@@ -1388,5 +1400,8 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Timer timer_temp;
+        private System.ComponentModel.BackgroundWorker worker;
+        private System.Windows.Forms.Button but_Xminus;
     }
 }
