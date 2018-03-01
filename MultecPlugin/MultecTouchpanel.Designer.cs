@@ -127,6 +127,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             Kalibrierung = new System.Windows.Forms.TabPage();
             Kalibrierung.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -648,6 +649,7 @@
             this.text_T0_ziel.Location = new System.Drawing.Point(137, 302);
             this.text_T0_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T0_ziel.Name = "text_T0_ziel";
+            this.text_T0_ziel.ReadOnly = true;
             this.text_T0_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T0_ziel.TabIndex = 19;
             this.text_T0_ziel.Text = "205";
@@ -657,6 +659,7 @@
             this.text_T1_ziel.Location = new System.Drawing.Point(202, 302);
             this.text_T1_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T1_ziel.Name = "text_T1_ziel";
+            this.text_T1_ziel.ReadOnly = true;
             this.text_T1_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T1_ziel.TabIndex = 20;
             this.text_T1_ziel.Text = "205";
@@ -666,6 +669,7 @@
             this.text_T2_ziel.Location = new System.Drawing.Point(268, 302);
             this.text_T2_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T2_ziel.Name = "text_T2_ziel";
+            this.text_T2_ziel.ReadOnly = true;
             this.text_T2_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T2_ziel.TabIndex = 21;
             this.text_T2_ziel.Text = "205";
@@ -675,6 +679,7 @@
             this.text_T3_ziel.Location = new System.Drawing.Point(333, 302);
             this.text_T3_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_T3_ziel.Name = "text_T3_ziel";
+            this.text_T3_ziel.ReadOnly = true;
             this.text_T3_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_T3_ziel.TabIndex = 22;
             this.text_T3_ziel.Text = "205";
@@ -684,6 +689,7 @@
             this.text_T0_Aktuell.Location = new System.Drawing.Point(137, 322);
             this.text_T0_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T0_Aktuell.Name = "text_T0_Aktuell";
+            this.text_T0_Aktuell.ReadOnly = true;
             this.text_T0_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T0_Aktuell.TabIndex = 23;
             this.text_T0_Aktuell.TextChanged += new System.EventHandler(this.text_T0_Aktuell_TextChanged);
@@ -693,6 +699,7 @@
             this.text_T1_Aktuell.Location = new System.Drawing.Point(201, 323);
             this.text_T1_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T1_Aktuell.Name = "text_T1_Aktuell";
+            this.text_T1_Aktuell.ReadOnly = true;
             this.text_T1_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T1_Aktuell.TabIndex = 24;
             // 
@@ -701,6 +708,7 @@
             this.text_T2_Aktuell.Location = new System.Drawing.Point(268, 322);
             this.text_T2_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T2_Aktuell.Name = "text_T2_Aktuell";
+            this.text_T2_Aktuell.ReadOnly = true;
             this.text_T2_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T2_Aktuell.TabIndex = 25;
             // 
@@ -709,6 +717,7 @@
             this.text_T3_Aktuell.Location = new System.Drawing.Point(333, 323);
             this.text_T3_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_T3_Aktuell.Name = "text_T3_Aktuell";
+            this.text_T3_Aktuell.ReadOnly = true;
             this.text_T3_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T3_Aktuell.TabIndex = 26;
             // 
@@ -761,6 +770,7 @@
             this.text_Bed_ziel.Location = new System.Drawing.Point(400, 302);
             this.text_Bed_ziel.Margin = new System.Windows.Forms.Padding(2);
             this.text_Bed_ziel.Name = "text_Bed_ziel";
+            this.text_Bed_ziel.ReadOnly = true;
             this.text_Bed_ziel.Size = new System.Drawing.Size(61, 20);
             this.text_Bed_ziel.TabIndex = 31;
             this.text_Bed_ziel.Text = "60";
@@ -770,6 +780,7 @@
             this.text_Bed_Aktuell.Location = new System.Drawing.Point(400, 322);
             this.text_Bed_Aktuell.Margin = new System.Windows.Forms.Padding(2);
             this.text_Bed_Aktuell.Name = "text_Bed_Aktuell";
+            this.text_Bed_Aktuell.ReadOnly = true;
             this.text_Bed_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_Bed_Aktuell.TabIndex = 32;
             // 
@@ -917,6 +928,7 @@
             this.tabControl1.Size = new System.Drawing.Size(562, 559);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // TouchControl
             // 
@@ -977,6 +989,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.label37);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.label35);
@@ -1280,6 +1293,16 @@
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(170, 6);
+            this.listBox1.MultiColumn = true;
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBox1.Size = new System.Drawing.Size(367, 368);
+            this.listBox1.TabIndex = 59;
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -1403,5 +1426,6 @@
         private System.Windows.Forms.Timer timer_temp;
         private System.ComponentModel.BackgroundWorker worker;
         private System.Windows.Forms.Button but_Xminus;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

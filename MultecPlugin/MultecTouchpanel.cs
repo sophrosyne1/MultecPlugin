@@ -20,6 +20,7 @@ namespace MultecPlugin
         public MultecTouchpanel()
         {
             InitializeComponent();
+           
         }
         /// <summary>
         /// Store reference to host for later use
@@ -33,15 +34,12 @@ namespace MultecPlugin
             T2_On = false;
             T3_On = false;
             Bed_On = false;
-            trackBar_NozzleTemp.Value = 205;
-            trackBar_BedTemp.Value = 60;
-           
-            
-               
+
+            reset_parameters(); //function to reset all parameters and text boxes
 
         }
-
-
+        //resets all parameters and textboxes to default
+       
 
         #region IHostComponent implementation
 
@@ -203,8 +201,11 @@ namespace MultecPlugin
         private void but_T0_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
+            {
                 host.Connection.injectManualCommand("T0");
-            selected_nozzle = "T0";
+                selected_nozzle = "T0";
+                trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
+            }
         }
 
         private void but_T1_Click(object sender, EventArgs e)
@@ -212,6 +213,7 @@ namespace MultecPlugin
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("T1");
             selected_nozzle = "T1";
+            trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
         }
 
         private void but_T2_Click(object sender, EventArgs e)
@@ -219,6 +221,7 @@ namespace MultecPlugin
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("T2");
             selected_nozzle = "T2";
+            trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
         }
 
         private void but_T3_Click(object sender, EventArgs e)
@@ -226,6 +229,7 @@ namespace MultecPlugin
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("T3");
             selected_nozzle = "T3";
+            trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
         }
 
         private void but_MOVE_Click(object sender, EventArgs e)
@@ -473,6 +477,7 @@ namespace MultecPlugin
                 temp_Zeil_bed = trackBar_BedTemp.Value.ToString();
                 if (Bed_On == true)
                 {
+                    text_Bed_ziel.Text = temp_Zeil_bed;
                     host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
                 }
             }
@@ -554,21 +559,12 @@ namespace MultecPlugin
             }
             else
             {
-                remove_tempReading();
+                reset_parameters();
             }
         }
 
         //function to remove temperature readings from textboxes
-        private void remove_tempReading()
-        {
-            text_T0_Aktuell.Text = String.Empty;
-            text_T1_Aktuell.Text = String.Empty;
-            text_T2_Aktuell.Text = String.Empty;
-            text_T3_Aktuell.Text = String.Empty;
-            text_Bed_Aktuell.Text = String.Empty;
-
-        }
-
+       
         //function to add temperature readings to the textboxes
         private void DoTheLoop()
         {
@@ -576,9 +572,46 @@ namespace MultecPlugin
             text_T1_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(1));
             text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
             text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
-            text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(5));
+            text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
 
         }
 
+        public void reset_parameters()
+        {
+            text_T0_Aktuell.Text = String.Empty;
+            text_T1_Aktuell.Text = String.Empty;
+            text_T2_Aktuell.Text = String.Empty;
+            text_T3_Aktuell.Text = String.Empty;
+            text_Bed_Aktuell.Text = String.Empty;
+            trackBar_NozzleTemp.Value = 205;
+            trackBar_BedTemp.Value = 60;
+            temp_Zeil = trackBar_NozzleTemp.Value.ToString();
+            temp_Zeil_bed = trackBar_BedTemp.Value.ToString();
+            text_T0_ziel.Text = "205";
+            text_T1_ziel.Text = "205";
+            text_T2_ziel.Text = "205";
+            text_T3_ziel.Text = "205";
+            text_Bed_ziel.Text = "60";
+            selected_nozzle = "T0";
+            but_T0_OnOff.Text = "Aus";
+            but_T1_OnOff.Text = "Aus";
+            but_T2_OnOff.Text = "Aus";
+            but_T3_OnOff.Text = "Aus";
+            but_bed_OnOff.Text = "Aus";
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            try
+            {
+                RepetierHostExtender.basic.LogLine.EnableLogFile("M119");
+                listBox1.Items.Add(host.Connection.extract("M119", ""));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("There was an Error" + ex.ToString());
+                
+            }
+        }
     }
 }
