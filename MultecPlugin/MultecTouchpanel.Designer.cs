@@ -30,6 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage Kalibrierung;
+            this.btn_yOffset_send = new System.Windows.Forms.Button();
+            this.btn_xOffset_send = new System.Windows.Forms.Button();
+            this.lbl_mm = new System.Windows.Forms.Label();
+            this.lbl_zOffset = new System.Windows.Forms.Label();
+            this.btn_yOffset_plus = new System.Windows.Forms.Button();
+            this.btn_zOffset_plus = new System.Windows.Forms.Button();
+            this.btn_zOffset_minus = new System.Windows.Forms.Button();
+            this.btn_yOffset_minus = new System.Windows.Forms.Button();
+            this.btn_xOffset_minus = new System.Windows.Forms.Button();
+            this.btn_xOffset_plus = new System.Windows.Forms.Button();
             this.but_tester = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.but_M218_T1 = new System.Windows.Forms.Button();
@@ -38,7 +48,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.text_M218_Y = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.text_M218_X = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -54,7 +63,6 @@
             this.but_step_50 = new System.Windows.Forms.Button();
             this.but_Yplus = new System.Windows.Forms.Button();
             this.but_Yminus = new System.Windows.Forms.Button();
-            this.but_Xminus = new System.Windows.Forms.Button();
             this.but_Zplus = new System.Windows.Forms.Button();
             this.but_Zminus = new System.Windows.Forms.Button();
             this.but_Extrude = new System.Windows.Forms.Button();
@@ -102,7 +110,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.but_Xminus = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -127,7 +137,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             Kalibrierung = new System.Windows.Forms.TabPage();
             Kalibrierung.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -143,12 +152,21 @@
             // Kalibrierung
             // 
             Kalibrierung.BackColor = System.Drawing.SystemColors.Control;
+            Kalibrierung.Controls.Add(this.btn_yOffset_send);
+            Kalibrierung.Controls.Add(this.btn_xOffset_send);
+            Kalibrierung.Controls.Add(this.lbl_mm);
+            Kalibrierung.Controls.Add(this.lbl_zOffset);
+            Kalibrierung.Controls.Add(this.btn_yOffset_plus);
+            Kalibrierung.Controls.Add(this.btn_zOffset_plus);
+            Kalibrierung.Controls.Add(this.btn_zOffset_minus);
+            Kalibrierung.Controls.Add(this.btn_yOffset_minus);
+            Kalibrierung.Controls.Add(this.btn_xOffset_minus);
+            Kalibrierung.Controls.Add(this.btn_xOffset_plus);
             Kalibrierung.Controls.Add(this.but_tester);
             Kalibrierung.Controls.Add(this.groupBox3);
             Kalibrierung.Controls.Add(this.label15);
             Kalibrierung.Controls.Add(this.label14);
             Kalibrierung.Controls.Add(this.text_M218_Y);
-            Kalibrierung.Controls.Add(this.textBox2);
             Kalibrierung.Controls.Add(this.text_M218_X);
             Kalibrierung.Controls.Add(this.label13);
             Kalibrierung.Controls.Add(this.label12);
@@ -164,10 +182,105 @@
             Kalibrierung.TabIndex = 1;
             Kalibrierung.Text = "Kalibrierung";
             // 
+            // btn_yOffset_send
+            // 
+            this.btn_yOffset_send.Enabled = false;
+            this.btn_yOffset_send.Location = new System.Drawing.Point(364, 147);
+            this.btn_yOffset_send.Name = "btn_yOffset_send";
+            this.btn_yOffset_send.Size = new System.Drawing.Size(88, 33);
+            this.btn_yOffset_send.TabIndex = 57;
+            this.btn_yOffset_send.Text = "Schicken";
+            this.btn_yOffset_send.UseVisualStyleBackColor = true;
+            // 
+            // btn_xOffset_send
+            // 
+            this.btn_xOffset_send.Enabled = false;
+            this.btn_xOffset_send.Location = new System.Drawing.Point(364, 98);
+            this.btn_xOffset_send.Name = "btn_xOffset_send";
+            this.btn_xOffset_send.Size = new System.Drawing.Size(88, 33);
+            this.btn_xOffset_send.TabIndex = 56;
+            this.btn_xOffset_send.Text = "Schicken";
+            this.btn_xOffset_send.UseVisualStyleBackColor = true;
+            this.btn_xOffset_send.Click += new System.EventHandler(this.btn_xOffset_send_Click);
+            // 
+            // lbl_mm
+            // 
+            this.lbl_mm.AutoSize = true;
+            this.lbl_mm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_mm.Location = new System.Drawing.Point(52, 212);
+            this.lbl_mm.Name = "lbl_mm";
+            this.lbl_mm.Size = new System.Drawing.Size(34, 18);
+            this.lbl_mm.TabIndex = 55;
+            this.lbl_mm.Text = "mm";
+            // 
+            // lbl_zOffset
+            // 
+            this.lbl_zOffset.AutoSize = true;
+            this.lbl_zOffset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_zOffset.Location = new System.Drawing.Point(50, 194);
+            this.lbl_zOffset.Name = "lbl_zOffset";
+            this.lbl_zOffset.Size = new System.Drawing.Size(36, 18);
+            this.lbl_zOffset.TabIndex = 54;
+            this.lbl_zOffset.Text = "0.05";
+            // 
+            // btn_yOffset_plus
+            // 
+            this.btn_yOffset_plus.Location = new System.Drawing.Point(311, 147);
+            this.btn_yOffset_plus.Name = "btn_yOffset_plus";
+            this.btn_yOffset_plus.Size = new System.Drawing.Size(37, 33);
+            this.btn_yOffset_plus.TabIndex = 53;
+            this.btn_yOffset_plus.Text = "+";
+            this.btn_yOffset_plus.UseVisualStyleBackColor = true;
+            // 
+            // btn_zOffset_plus
+            // 
+            this.btn_zOffset_plus.Location = new System.Drawing.Point(92, 194);
+            this.btn_zOffset_plus.Name = "btn_zOffset_plus";
+            this.btn_zOffset_plus.Size = new System.Drawing.Size(37, 36);
+            this.btn_zOffset_plus.TabIndex = 52;
+            this.btn_zOffset_plus.Text = "Z+";
+            this.btn_zOffset_plus.UseVisualStyleBackColor = true;
+            // 
+            // btn_zOffset_minus
+            // 
+            this.btn_zOffset_minus.Location = new System.Drawing.Point(7, 194);
+            this.btn_zOffset_minus.Name = "btn_zOffset_minus";
+            this.btn_zOffset_minus.Size = new System.Drawing.Size(37, 36);
+            this.btn_zOffset_minus.TabIndex = 51;
+            this.btn_zOffset_minus.Text = "Z-";
+            this.btn_zOffset_minus.UseVisualStyleBackColor = true;
+            // 
+            // btn_yOffset_minus
+            // 
+            this.btn_yOffset_minus.Location = new System.Drawing.Point(203, 147);
+            this.btn_yOffset_minus.Name = "btn_yOffset_minus";
+            this.btn_yOffset_minus.Size = new System.Drawing.Size(37, 33);
+            this.btn_yOffset_minus.TabIndex = 50;
+            this.btn_yOffset_minus.Text = "-";
+            this.btn_yOffset_minus.UseVisualStyleBackColor = true;
+            // 
+            // btn_xOffset_minus
+            // 
+            this.btn_xOffset_minus.Location = new System.Drawing.Point(204, 98);
+            this.btn_xOffset_minus.Name = "btn_xOffset_minus";
+            this.btn_xOffset_minus.Size = new System.Drawing.Size(36, 33);
+            this.btn_xOffset_minus.TabIndex = 49;
+            this.btn_xOffset_minus.Text = "-";
+            this.btn_xOffset_minus.UseVisualStyleBackColor = true;
+            // 
+            // btn_xOffset_plus
+            // 
+            this.btn_xOffset_plus.Location = new System.Drawing.Point(311, 98);
+            this.btn_xOffset_plus.Name = "btn_xOffset_plus";
+            this.btn_xOffset_plus.Size = new System.Drawing.Size(37, 33);
+            this.btn_xOffset_plus.TabIndex = 48;
+            this.btn_xOffset_plus.Text = "+";
+            this.btn_xOffset_plus.UseVisualStyleBackColor = true;
+            // 
             // but_tester
             // 
             this.but_tester.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_tester.Location = new System.Drawing.Point(180, 235);
+            this.but_tester.Location = new System.Drawing.Point(340, 373);
             this.but_tester.Name = "but_tester";
             this.but_tester.Size = new System.Drawing.Size(60, 40);
             this.but_tester.TabIndex = 45;
@@ -226,7 +339,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label15.Location = new System.Drawing.Point(269, 122);
+            this.label15.Location = new System.Drawing.Point(269, 141);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 13);
@@ -237,7 +350,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(269, 88);
+            this.label14.Location = new System.Drawing.Point(269, 92);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(14, 13);
@@ -246,23 +359,15 @@
             // 
             // text_M218_Y
             // 
-            this.text_M218_Y.Location = new System.Drawing.Point(245, 135);
+            this.text_M218_Y.Location = new System.Drawing.Point(245, 154);
             this.text_M218_Y.Margin = new System.Windows.Forms.Padding(2);
             this.text_M218_Y.Name = "text_M218_Y";
             this.text_M218_Y.Size = new System.Drawing.Size(61, 20);
             this.text_M218_Y.TabIndex = 41;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(245, 170);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(61, 20);
-            this.textBox2.TabIndex = 40;
-            // 
             // text_M218_X
             // 
-            this.text_M218_X.Location = new System.Drawing.Point(245, 101);
+            this.text_M218_X.Location = new System.Drawing.Point(245, 105);
             this.text_M218_X.Margin = new System.Windows.Forms.Padding(2);
             this.text_M218_X.Name = "text_M218_X";
             this.text_M218_X.Size = new System.Drawing.Size(61, 20);
@@ -420,16 +525,6 @@
             this.but_Yminus.UseVisualStyleBackColor = true;
             this.but_Yminus.Click += new System.EventHandler(this.but_Yminus_Click);
             // 
-            // but_Xminus
-            // 
-            this.but_Xminus.Location = new System.Drawing.Point(86, 60);
-            this.but_Xminus.Name = "but_Xminus";
-            this.but_Xminus.Size = new System.Drawing.Size(70, 70);
-            this.but_Xminus.TabIndex = 4;
-            this.but_Xminus.Text = "X-";
-            this.but_Xminus.UseVisualStyleBackColor = true;
-            this.but_Xminus.Click += new System.EventHandler(this.but_Xminus_Click);
-            // 
             // but_Zplus
             // 
             this.but_Zplus.Location = new System.Drawing.Point(318, 14);
@@ -486,6 +581,7 @@
             // 
             // but_MOVE
             // 
+            this.but_MOVE.Enabled = false;
             this.but_MOVE.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_MOVE.Location = new System.Drawing.Point(270, 19);
             this.but_MOVE.Name = "but_MOVE";
@@ -497,6 +593,7 @@
             // 
             // but_T3
             // 
+            this.but_T3.Enabled = false;
             this.but_T3.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_T3.Location = new System.Drawing.Point(204, 19);
             this.but_T3.Name = "but_T3";
@@ -508,6 +605,7 @@
             // 
             // but_T2
             // 
+            this.but_T2.Enabled = false;
             this.but_T2.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_T2.Location = new System.Drawing.Point(138, 19);
             this.but_T2.Name = "but_T2";
@@ -519,6 +617,7 @@
             // 
             // but_T1
             // 
+            this.but_T1.Enabled = false;
             this.but_T1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_T1.Location = new System.Drawing.Point(72, 19);
             this.but_T1.Name = "but_T1";
@@ -530,6 +629,7 @@
             // 
             // but_T0
             // 
+            this.but_T0.Enabled = false;
             this.but_T0.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_T0.Location = new System.Drawing.Point(6, 19);
             this.but_T0.Name = "but_T0";
@@ -571,6 +671,7 @@
             // 
             // but_T0_OnOff
             // 
+            this.but_T0_OnOff.Enabled = false;
             this.but_T0_OnOff.Location = new System.Drawing.Point(137, 266);
             this.but_T0_OnOff.Name = "but_T0_OnOff";
             this.but_T0_OnOff.Size = new System.Drawing.Size(60, 30);
@@ -581,6 +682,7 @@
             // 
             // but_T1_OnOff
             // 
+            this.but_T1_OnOff.Enabled = false;
             this.but_T1_OnOff.Location = new System.Drawing.Point(201, 267);
             this.but_T1_OnOff.Name = "but_T1_OnOff";
             this.but_T1_OnOff.Size = new System.Drawing.Size(60, 30);
@@ -591,6 +693,7 @@
             // 
             // but_T2_OnOff
             // 
+            this.but_T2_OnOff.Enabled = false;
             this.but_T2_OnOff.Location = new System.Drawing.Point(268, 267);
             this.but_T2_OnOff.Name = "but_T2_OnOff";
             this.but_T2_OnOff.Size = new System.Drawing.Size(60, 30);
@@ -601,6 +704,7 @@
             // 
             // but_T3_OnOff
             // 
+            this.but_T3_OnOff.Enabled = false;
             this.but_T3_OnOff.Location = new System.Drawing.Point(333, 267);
             this.but_T3_OnOff.Name = "but_T3_OnOff";
             this.but_T3_OnOff.Size = new System.Drawing.Size(60, 30);
@@ -612,6 +716,7 @@
             // trackBar_NozzleTemp
             // 
             this.trackBar_NozzleTemp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.trackBar_NozzleTemp.Enabled = false;
             this.trackBar_NozzleTemp.Location = new System.Drawing.Point(201, 344);
             this.trackBar_NozzleTemp.Maximum = 270;
             this.trackBar_NozzleTemp.Minimum = 170;
@@ -626,6 +731,7 @@
             // 
             // but_NozzleMinus
             // 
+            this.but_NozzleMinus.Enabled = false;
             this.but_NozzleMinus.Location = new System.Drawing.Point(137, 344);
             this.but_NozzleMinus.Name = "but_NozzleMinus";
             this.but_NozzleMinus.Size = new System.Drawing.Size(60, 45);
@@ -636,6 +742,7 @@
             // 
             // but_NozzlePlus
             // 
+            this.but_NozzlePlus.Enabled = false;
             this.but_NozzlePlus.Location = new System.Drawing.Point(400, 344);
             this.but_NozzlePlus.Name = "but_NozzlePlus";
             this.but_NozzlePlus.Size = new System.Drawing.Size(60, 45);
@@ -724,6 +831,7 @@
             // trackBar_BedTemp
             // 
             this.trackBar_BedTemp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.trackBar_BedTemp.Enabled = false;
             this.trackBar_BedTemp.Location = new System.Drawing.Point(201, 402);
             this.trackBar_BedTemp.Maximum = 100;
             this.trackBar_BedTemp.Name = "trackBar_BedTemp";
@@ -737,6 +845,7 @@
             // 
             // but_bed_OnOff
             // 
+            this.but_bed_OnOff.Enabled = false;
             this.but_bed_OnOff.Location = new System.Drawing.Point(399, 267);
             this.but_bed_OnOff.Name = "but_bed_OnOff";
             this.but_bed_OnOff.Size = new System.Drawing.Size(60, 30);
@@ -747,6 +856,7 @@
             // 
             // but_BedMinus
             // 
+            this.but_BedMinus.Enabled = false;
             this.but_BedMinus.Location = new System.Drawing.Point(137, 396);
             this.but_BedMinus.Name = "but_BedMinus";
             this.but_BedMinus.Size = new System.Drawing.Size(60, 45);
@@ -757,6 +867,7 @@
             // 
             // but_BedPlus
             // 
+            this.but_BedPlus.Enabled = false;
             this.but_BedPlus.Location = new System.Drawing.Point(400, 396);
             this.but_BedPlus.Name = "but_BedPlus";
             this.but_BedPlus.Size = new System.Drawing.Size(60, 45);
@@ -928,7 +1039,7 @@
             this.tabControl1.Size = new System.Drawing.Size(562, 559);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             // 
             // TouchControl
             // 
@@ -986,6 +1097,21 @@
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
             // 
+            // but_Xminus
+            // 
+            this.but_Xminus.BackColor = System.Drawing.Color.Transparent;
+            this.but_Xminus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.but_Xminus.Cursor = System.Windows.Forms.Cursors.Default;
+            this.but_Xminus.Location = new System.Drawing.Point(86, 60);
+            this.but_Xminus.Margin = new System.Windows.Forms.Padding(0);
+            this.but_Xminus.Name = "but_Xminus";
+            this.but_Xminus.Size = new System.Drawing.Size(70, 70);
+            this.but_Xminus.TabIndex = 4;
+            this.but_Xminus.Text = "-X";
+            this.but_Xminus.UseVisualStyleBackColor = false;
+            this.but_Xminus.Click += new System.EventHandler(this.but_Xminus_Click);
+            this.but_Xminus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.but_Xminus_MouseDown);
+            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
@@ -1018,6 +1144,16 @@
             this.tabPage1.Size = new System.Drawing.Size(554, 451);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(187, 6);
+            this.listBox1.MultiColumn = true;
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBox1.Size = new System.Drawing.Size(367, 368);
+            this.listBox1.TabIndex = 59;
             // 
             // label37
             // 
@@ -1293,16 +1429,6 @@
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(170, 6);
-            this.listBox1.MultiColumn = true;
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(367, 368);
-            this.listBox1.TabIndex = 59;
-            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -1395,7 +1521,6 @@
         private System.Windows.Forms.Button but_M218_T2;
         private System.Windows.Forms.Button but_M218_T1;
         private System.Windows.Forms.TextBox text_M218_Y;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox text_M218_X;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label15;
@@ -1426,6 +1551,16 @@
         private System.Windows.Forms.Timer timer_temp;
         private System.ComponentModel.BackgroundWorker worker;
         private System.Windows.Forms.Button but_Xminus;
+        private System.Windows.Forms.Label lbl_mm;
+        private System.Windows.Forms.Label lbl_zOffset;
+        private System.Windows.Forms.Button btn_yOffset_plus;
+        private System.Windows.Forms.Button btn_zOffset_plus;
+        private System.Windows.Forms.Button btn_zOffset_minus;
+        private System.Windows.Forms.Button btn_yOffset_minus;
+        private System.Windows.Forms.Button btn_xOffset_minus;
+        private System.Windows.Forms.Button btn_xOffset_plus;
+        private System.Windows.Forms.Button btn_yOffset_send;
+        private System.Windows.Forms.Button btn_xOffset_send;
         private System.Windows.Forms.ListBox listBox1;
     }
 }

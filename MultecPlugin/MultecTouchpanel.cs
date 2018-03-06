@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RepetierHostExtender.interfaces;
 using RepetierHostExtender.geom;
+using RepetierHost.view;
+using RepetierHostExtender.basic;
+using RepetierHostExtender.utils;
+using Microsoft.Win32;
 
 
 namespace MultecPlugin
@@ -17,6 +21,8 @@ namespace MultecPlugin
     {
 
         private IHost host;
+        RegistryKey key;
+        private RepetierHostExtender.basic.ExtruderDefinition extruderData;
         public MultecTouchpanel()
         {
             InitializeComponent();
@@ -474,10 +480,12 @@ namespace MultecPlugin
             }
             if (host.Connection.connector.IsConnected())
             {
+               
                 temp_Zeil_bed = trackBar_BedTemp.Value.ToString();
+                text_Bed_ziel.Text = temp_Zeil_bed;
                 if (Bed_On == true)
                 {
-                    text_Bed_ziel.Text = temp_Zeil_bed;
+                    
                     host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
                 }
             }
@@ -492,27 +500,69 @@ namespace MultecPlugin
             text_T2_Aktuell.Text = host.Connection.Analyzer.GetTemperature(2).ToString();
             text_T3_Aktuell.Text = host.Connection.Analyzer.GetTemperature(3).ToString();
             text_Bed_Aktuell.Text = host.Connection.Analyzer.GetTemperature(5).ToString();
+            /*
+            if (!host.Connection.connector.IsConnected())
+            {
+                but_BedMinus.Enabled = false;
+
+            }
+            else but_BedMinus.Enabled = true; */
         }
 
         //////////Kalibrierung//////////
 
-        private string tool_M218;
+        private string tool_M218 = string.Empty;
 
 
         private void but_M218_T1_Click(object sender, EventArgs e)
         {
-            tool_M218 = "T1";
+            if (host.Connection.connector.IsConnected())
+            {
+                try
+                {
+                    //host.Connection.analyzeResponse(, );
+                    /*tool_M218 = "T1";
+                    host.Connection.numExtruder = 1;
+                    host.Connection.numberExtruder = 1;
+                    double xoffset_value = 0;
+                    
+                    extruderData.ExtruderId = 1;
+                    xoffset_value = extruderData.OffsetX;
+                    text_M218_Y.Text = xoffset_value.ToString();
+                     */   
             
+                    //text_M218_X.Text = string.Format("{0:N2}", host.Connection.x);
+                    //text_M218_Y.Text = string.Format("{0:N2}", host.Connection.disposeX); 
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("There was an error!! " + ex);
+                }
+               
+            }
         }
 
         private void but_M218_T2_Click(object sender, EventArgs e)
         {
-            tool_M218 = "T2";
+            if (host.Connection.connector.IsConnected())
+            {
+                tool_M218 = "T2";
+                host.Connection.numExtruder = 2;
+                text_M218_X.Text = string.Format("{0:N2}", host.Connection.x);
+                text_M218_Y.Text = string.Format("{0:N2}", host.Connection.y);
+            }
         }
 
         private void but_M218_T3_Click(object sender, EventArgs e)
         {
-            tool_M218 = "T3";
+            if (host.Connection.connector.IsConnected())
+            {
+                tool_M218 = "T3";
+                host.Connection.numExtruder = 3;
+                //text_M218_X.Text = string.Format("{0:N2}", host.Connection.x);
+                //text_M218_Y.Text = string.Format("{0:N2}", host.Connection.y);
+                text_M218_Y.Text = string.Format("{0:N2}", host.Connection.disposeX);
+            }
         }
 
         private void text_T0_Aktuell_TextChanged(object sender, EventArgs e)
@@ -573,6 +623,20 @@ namespace MultecPlugin
             text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
             text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
             text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
+            but_BedMinus.Enabled = true;
+            but_BedPlus.Enabled = true;
+            but_bed_OnOff.Enabled = true;
+            but_NozzleMinus.Enabled = true;
+            but_NozzlePlus.Enabled = true;
+            but_T0.Enabled = true;
+            but_T0_OnOff.Enabled = true;
+            but_T1.Enabled = true;
+            but_T1_OnOff.Enabled = true;
+            but_T2.Enabled = true;
+            but_T2_OnOff.Enabled = true;
+            but_T3.Enabled = true;
+            but_T3_OnOff.Enabled = true;
+            but_MOVE.Enabled = true;
 
         }
 
@@ -598,14 +662,31 @@ namespace MultecPlugin
             but_T2_OnOff.Text = "Aus";
             but_T3_OnOff.Text = "Aus";
             but_bed_OnOff.Text = "Aus";
+            but_BedMinus.Enabled = false;
+            but_BedPlus.Enabled = false;
+            but_bed_OnOff.Enabled = false;
+            but_NozzleMinus.Enabled = false;
+            but_NozzlePlus.Enabled = false;
+            but_T0.Enabled = false;
+            but_T0_OnOff.Enabled = false;
+            but_T1.Enabled = false;
+            but_T1_OnOff.Enabled = false;
+            but_T2.Enabled = false;
+            but_T2_OnOff.Enabled = false;
+            but_T3.Enabled = false;
+            but_T3_OnOff.Enabled = false;
+            but_MOVE.Enabled = false;
         }
 
-        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        private void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
             try
             {
-                RepetierHostExtender.basic.LogLine.EnableLogFile("M119");
-                listBox1.Items.Add(host.Connection.extract("M119", ""));
+                //RepetierHostExtender.basic.LogLine.EnableLogFile("M104");
+                //RepetierHostExtender.basic.LogLine.EnableLogFile("M104 S205 T0"); 
+                //listBox1.Items.Add(host.Connection.extract("M104 S205 T0", ""));
+                //host.LogInfo("M119");
+                listBox1.Items.Add(RepetierHostExtender.basic.LogLine.logList);
             }
             catch(Exception ex)
             {
@@ -613,5 +694,19 @@ namespace MultecPlugin
                 
             }
         }
+
+
+
+        private void but_Xminus_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btn_xOffset_send_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
