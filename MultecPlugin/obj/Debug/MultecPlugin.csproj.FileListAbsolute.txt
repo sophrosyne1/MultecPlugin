@@ -36,3 +36,6 @@ C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Mul
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.pdb
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Build\RepetierHostExtender.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csproj.CopyComplete
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Build\RepetierServerConnector.dll
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Build\Newtonsoft.Json.dll
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Build\websocket-sharp.dll

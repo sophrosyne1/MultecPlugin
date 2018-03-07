@@ -13,6 +13,11 @@ using RepetierHost.view;
 using RepetierHostExtender.basic;
 using RepetierHostExtender.utils;
 using Microsoft.Win32;
+using System.IO.Ports;
+using System.IO;
+using System.Timers;
+using System.Threading;
+using System.Globalization;
 
 
 namespace MultecPlugin
@@ -21,12 +26,16 @@ namespace MultecPlugin
     {
 
         private IHost host;
-        RegistryKey key;
-        private RepetierHostExtender.basic.ExtruderDefinition extruderData;
+        event OnResponse eventResponse;
+        //ExtruderDefinition extruderdata = new ExtruderDefinition(
+    
+
         public MultecTouchpanel()
         {
+            
+            staticListBox = this.listBox1;
             InitializeComponent();
-           
+            eventResponse = AddtoListBox;
         }
         /// <summary>
         /// Store reference to host for later use
@@ -43,9 +52,10 @@ namespace MultecPlugin
 
             reset_parameters(); //function to reset all parameters and text boxes
 
+
         }
         //resets all parameters and textboxes to default
-       
+
 
         #region IHostComponent implementation
 
@@ -71,7 +81,7 @@ namespace MultecPlugin
 
         #region Button functions
 
-//////////Movement Controls//////////
+        //////////Movement Controls//////////
 
         private double step_dist;
         private string temp_Zeil;
@@ -85,68 +95,68 @@ namespace MultecPlugin
 
         private void but_Xminus_Click(object sender, EventArgs e)
         {
-            if(host.Connection.connector.IsConnected())
+            if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 X"+ -step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 X" + -step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Xplus_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 X" + step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 X" + step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Yplus_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Y" + step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 Y" + step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Yminus_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Y" + -step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 Y" + -step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Zplus_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Z" + step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 Z" + step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Zminus_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Z" + -step_dist);
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 Z" + -step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Retract_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+            host.Connection.injectManualCommand("G92 E0");
+            host.Connection.injectManualCommand("G90");
         }
 
         private void but_Extrude_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G90");
+            host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+            host.Connection.injectManualCommand("G92 E0");
+            host.Connection.injectManualCommand("G90");
         }
 
         private void buttonHome_Click(object sender, EventArgs e)
@@ -202,7 +212,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("M18");
         }
 
-//////////Nozzle Selection and Heating//////////
+        //////////Nozzle Selection and Heating//////////
 
         private void but_T0_Click(object sender, EventArgs e)
         {
@@ -254,7 +264,7 @@ namespace MultecPlugin
 
                 if (T0_On == true)
                 {
-                   
+
                     host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
                     but_T0_OnOff.Text = "Ein";
                     host.LogInfo("M104 S" + temp_Zeil + " T0");
@@ -267,7 +277,7 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("M104 S0 T0");
                     but_T0_OnOff.Text = "Aus";
                     host.LogInfo("T0_ON" + T0_On.ToString());
-                   
+
                 }
             }
         }
@@ -280,7 +290,7 @@ namespace MultecPlugin
 
                 if (T1_On == true)
                 {
-                   host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
                     but_T1_OnOff.Text = "Ein";
                 }
                 else
@@ -299,13 +309,13 @@ namespace MultecPlugin
 
             if (T2_On == true)
             {
-               
+
                 host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
                 but_T2_OnOff.Text = "Ein";
             }
             else
             {
-               
+
                 host.Connection.injectManualCommand("M104 S0 T2");
                 but_T2_OnOff.Text = "Aus";
             }
@@ -318,13 +328,13 @@ namespace MultecPlugin
 
             if (T3_On == true)
             {
-                
+
                 host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
                 but_T3_OnOff.Text = "Ein";
             }
             else
             {
-                
+
                 host.Connection.injectManualCommand("M104 S0 T3");
                 but_T3_OnOff.Text = "Aus";
             }
@@ -414,7 +424,7 @@ namespace MultecPlugin
             }
         }
 
-//////////Heated Bed//////////
+        //////////Heated Bed//////////
 
         private void but_bed_OnOff_Click(object sender, EventArgs e)
         {
@@ -480,12 +490,12 @@ namespace MultecPlugin
             }
             if (host.Connection.connector.IsConnected())
             {
-               
+
                 temp_Zeil_bed = trackBar_BedTemp.Value.ToString();
                 text_Bed_ziel.Text = temp_Zeil_bed;
                 if (Bed_On == true)
                 {
-                    
+
                     host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
                 }
             }
@@ -521,24 +531,24 @@ namespace MultecPlugin
                 try
                 {
                     //host.Connection.analyzeResponse(, );
-                    /*tool_M218 = "T1";
-                    host.Connection.numExtruder = 1;
-                    host.Connection.numberExtruder = 1;
-                    double xoffset_value = 0;
-                    
-                    extruderData.ExtruderId = 1;
-                    xoffset_value = extruderData.OffsetX;
-                    text_M218_Y.Text = xoffset_value.ToString();
-                     */   
-            
+                    tool_M218 = "T1";
+                    //host.Connection.numExtruder = 1;
+                    //host.Connection.numberExtruder = 1;
+
+                    //extruderData.Load();
+
+
+                    //text_M218_Y.Text =extruderData.OffsetX.ToString();
+
+
                     //text_M218_X.Text = string.Format("{0:N2}", host.Connection.x);
                     //text_M218_Y.Text = string.Format("{0:N2}", host.Connection.disposeX); 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("There was an error!! " + ex);
                 }
-               
+
             }
         }
 
@@ -581,11 +591,11 @@ namespace MultecPlugin
 
         }
 
-        
 
-       
 
-        
+
+
+
         private void timer_temp_Tick(object sender, EventArgs e)
         {
             try
@@ -600,11 +610,14 @@ namespace MultecPlugin
                 MessageBox.Show("Error Ocurred! " + ex + " Temperature not updating!");
             }
         }
+        
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             if (host.Connection.connector.IsConnected())
             {
+              
+                
                 DoTheLoop();
             }
             else
@@ -612,7 +625,12 @@ namespace MultecPlugin
                 reset_parameters();
             }
         }
+        public static void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
+        {
 
+            staticListBox.Items.Add(response);
+            staticListBox.Items.Add(level);
+        }
         //function to remove temperature readings from textboxes
        
         //function to add temperature readings to the textboxes
@@ -678,23 +696,12 @@ namespace MultecPlugin
             but_MOVE.Enabled = false;
         }
 
-        private void TabControl1_Selected(object sender, TabControlEventArgs e)
-        {
-            try
-            {
-                //RepetierHostExtender.basic.LogLine.EnableLogFile("M104");
-                //RepetierHostExtender.basic.LogLine.EnableLogFile("M104 S205 T0"); 
-                //listBox1.Items.Add(host.Connection.extract("M104 S205 T0", ""));
-                //host.LogInfo("M119");
-                listBox1.Items.Add(RepetierHostExtender.basic.LogLine.logList);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("There was an Error" + ex.ToString());
+        
+                //listBox1.Items.Add(analyzer.GetExtruderData(1).currentTemperature);
+               
                 
-            }
-        }
 
+        
 
 
         private void but_Xminus_MouseDown(object sender, MouseEventArgs e)

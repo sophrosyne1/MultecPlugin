@@ -1039,7 +1039,6 @@
             this.tabControl1.Size = new System.Drawing.Size(562, 559);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             // 
             // TouchControl
             // 
@@ -1562,5 +1561,6 @@
         private System.Windows.Forms.Button btn_yOffset_send;
         private System.Windows.Forms.Button btn_xOffset_send;
         private System.Windows.Forms.ListBox listBox1;
+        static System.Windows.Forms.ListBox staticListBox;
     }
 }
