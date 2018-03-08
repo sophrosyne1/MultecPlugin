@@ -77,10 +77,34 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minusX_pressed2.png" />
+    <ProjectReference Include="..\MyCustomButton\MyCustomButton.csproj">
+      <Project>{079884E9-C9EF-4BF0-8690-631964EB4A53}</Project>
+      <Name>MyCustomButton</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minusX_unpressed2.png" />
+    <None Include="Resources\down_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_pressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

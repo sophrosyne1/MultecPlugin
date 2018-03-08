@@ -63,9 +63,9 @@ namespace MultecPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minusX_pressed2 {
+        internal static System.Drawing.Bitmap down_normal {
             get {
-                object obj = ResourceManager.GetObject("minusX_pressed2", resourceCulture);
+                object obj = ResourceManager.GetObject("down_normal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,69 @@ namespace MultecPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minusX_unpressed2 {
+        internal static System.Drawing.Bitmap down_pressed {
             get {
-                object obj = ResourceManager.GetObject("minusX_unpressed2", resourceCulture);
+                object obj = ResourceManager.GetObject("down_pressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_normal {
+            get {
+                object obj = ResourceManager.GetObject("left_normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_pressed {
+            get {
+                object obj = ResourceManager.GetObject("left_pressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_normal {
+            get {
+                object obj = ResourceManager.GetObject("right_normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_pressed {
+            get {
+                object obj = ResourceManager.GetObject("right_pressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up_normal {
+            get {
+                object obj = ResourceManager.GetObject("up_normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up_pressed {
+            get {
+                object obj = ResourceManager.GetObject("up_pressed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

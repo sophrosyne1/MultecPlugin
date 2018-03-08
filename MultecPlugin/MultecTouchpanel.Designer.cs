@@ -1,4 +1,7 @@
-﻿namespace MultecPlugin
+﻿using System;
+using System.Windows.Forms;
+
+namespace MultecPlugin
 {
     partial class MultecTouchpanel
     {
@@ -55,14 +58,11 @@
             this.but_G295 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.but_Xplus = new System.Windows.Forms.Button();
             this.buttonHome = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.but_step_1 = new System.Windows.Forms.Button();
             this.but_step_10 = new System.Windows.Forms.Button();
             this.but_step_50 = new System.Windows.Forms.Button();
-            this.but_Yplus = new System.Windows.Forms.Button();
-            this.but_Yminus = new System.Windows.Forms.Button();
             this.but_Zplus = new System.Windows.Forms.Button();
             this.but_Zminus = new System.Windows.Forms.Button();
             this.but_Extrude = new System.Windows.Forms.Button();
@@ -110,7 +110,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
-            this.but_Xminus = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -137,6 +136,10 @@
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
+            this.myCustomButton2 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton1 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton4 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton3 = new MyCustomButton.MyCustomButton();
             Kalibrierung = new System.Windows.Forms.TabPage();
             Kalibrierung.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,6 +150,10 @@
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton3)).BeginInit();
             this.SuspendLayout();
             // 
             // Kalibrierung
@@ -201,7 +208,6 @@
             this.btn_xOffset_send.TabIndex = 56;
             this.btn_xOffset_send.Text = "Schicken";
             this.btn_xOffset_send.UseVisualStyleBackColor = true;
-            this.btn_xOffset_send.Click += new System.EventHandler(this.btn_xOffset_send_Click);
             // 
             // lbl_mm
             // 
@@ -435,16 +441,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.but_G224_Click);
             // 
-            // but_Xplus
-            // 
-            this.but_Xplus.Location = new System.Drawing.Point(233, 60);
-            this.but_Xplus.Name = "but_Xplus";
-            this.but_Xplus.Size = new System.Drawing.Size(70, 70);
-            this.but_Xplus.TabIndex = 0;
-            this.but_Xplus.Text = "X+";
-            this.but_Xplus.UseVisualStyleBackColor = true;
-            this.but_Xplus.Click += new System.EventHandler(this.but_Xplus_Click);
-            // 
             // buttonHome
             // 
             this.buttonHome.Location = new System.Drawing.Point(9, 157);
@@ -505,26 +501,6 @@
             this.but_step_50.UseVisualStyleBackColor = true;
             this.but_step_50.Click += new System.EventHandler(this.but_step_50_Click);
             // 
-            // but_Yplus
-            // 
-            this.but_Yplus.Location = new System.Drawing.Point(158, 14);
-            this.but_Yplus.Name = "but_Yplus";
-            this.but_Yplus.Size = new System.Drawing.Size(70, 70);
-            this.but_Yplus.TabIndex = 2;
-            this.but_Yplus.Text = "Y+";
-            this.but_Yplus.UseVisualStyleBackColor = true;
-            this.but_Yplus.Click += new System.EventHandler(this.but_Yplus_Click);
-            // 
-            // but_Yminus
-            // 
-            this.but_Yminus.Location = new System.Drawing.Point(158, 106);
-            this.but_Yminus.Name = "but_Yminus";
-            this.but_Yminus.Size = new System.Drawing.Size(70, 70);
-            this.but_Yminus.TabIndex = 3;
-            this.but_Yminus.Text = "Y-";
-            this.but_Yminus.UseVisualStyleBackColor = true;
-            this.but_Yminus.Click += new System.EventHandler(this.but_Yminus_Click);
-            // 
             // but_Zplus
             // 
             this.but_Zplus.Location = new System.Drawing.Point(318, 14);
@@ -572,7 +548,7 @@
             this.groupBox2.Controls.Add(this.but_T2);
             this.groupBox2.Controls.Add(this.but_T1);
             this.groupBox2.Controls.Add(this.but_T0);
-            this.groupBox2.Location = new System.Drawing.Point(130, 183);
+            this.groupBox2.Location = new System.Drawing.Point(130, 185);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(334, 66);
             this.groupBox2.TabIndex = 9;
@@ -1043,17 +1019,17 @@
             // TouchControl
             // 
             this.TouchControl.BackColor = System.Drawing.SystemColors.Control;
+            this.TouchControl.Controls.Add(this.myCustomButton2);
+            this.TouchControl.Controls.Add(this.myCustomButton1);
+            this.TouchControl.Controls.Add(this.myCustomButton4);
+            this.TouchControl.Controls.Add(this.myCustomButton3);
             this.TouchControl.Controls.Add(this.groupBox1);
             this.TouchControl.Controls.Add(this.label11);
-            this.TouchControl.Controls.Add(this.but_Xplus);
             this.TouchControl.Controls.Add(this.label10);
             this.TouchControl.Controls.Add(this.buttonHome);
             this.TouchControl.Controls.Add(this.label9);
-            this.TouchControl.Controls.Add(this.but_Yplus);
             this.TouchControl.Controls.Add(this.label8);
-            this.TouchControl.Controls.Add(this.but_Yminus);
             this.TouchControl.Controls.Add(this.label7);
-            this.TouchControl.Controls.Add(this.but_Xminus);
             this.TouchControl.Controls.Add(this.label5);
             this.TouchControl.Controls.Add(this.but_Zplus);
             this.TouchControl.Controls.Add(this.label6);
@@ -1095,21 +1071,6 @@
             this.TouchControl.Size = new System.Drawing.Size(554, 451);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
-            // 
-            // but_Xminus
-            // 
-            this.but_Xminus.BackColor = System.Drawing.Color.Transparent;
-            this.but_Xminus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.but_Xminus.Cursor = System.Windows.Forms.Cursors.Default;
-            this.but_Xminus.Location = new System.Drawing.Point(86, 60);
-            this.but_Xminus.Margin = new System.Windows.Forms.Padding(0);
-            this.but_Xminus.Name = "but_Xminus";
-            this.but_Xminus.Size = new System.Drawing.Size(70, 70);
-            this.but_Xminus.TabIndex = 4;
-            this.but_Xminus.Text = "-X";
-            this.but_Xminus.UseVisualStyleBackColor = false;
-            this.but_Xminus.Click += new System.EventHandler(this.but_Xminus_Click);
-            this.but_Xminus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.but_Xminus_MouseDown);
             // 
             // tabPage1
             // 
@@ -1428,6 +1389,62 @@
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
+            // myCustomButton2
+            // 
+            this.myCustomButton2.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton2.Image = global::MultecPlugin.Properties.Resources.up_normal;
+            this.myCustomButton2.ImageClicked = global::MultecPlugin.Properties.Resources.up_pressed;
+            this.myCustomButton2.ImangeNormal = global::MultecPlugin.Properties.Resources.up_normal;
+            this.myCustomButton2.Location = new System.Drawing.Point(134, 6);
+            this.myCustomButton2.Name = "myCustomButton2";
+            this.myCustomButton2.Size = new System.Drawing.Size(85, 58);
+            this.myCustomButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton2.TabIndex = 48;
+            this.myCustomButton2.TabStop = false;
+            this.myCustomButton2.Click += new System.EventHandler(this.myCustomButton2_Click);
+            // 
+            // myCustomButton1
+            // 
+            this.myCustomButton1.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton1.Image = global::MultecPlugin.Properties.Resources.left_normal;
+            this.myCustomButton1.ImageClicked = global::MultecPlugin.Properties.Resources.left_pressed;
+            this.myCustomButton1.ImangeNormal = global::MultecPlugin.Properties.Resources.left_normal;
+            this.myCustomButton1.Location = new System.Drawing.Point(79, 61);
+            this.myCustomButton1.Name = "myCustomButton1";
+            this.myCustomButton1.Size = new System.Drawing.Size(70, 74);
+            this.myCustomButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton1.TabIndex = 47;
+            this.myCustomButton1.TabStop = false;
+            this.myCustomButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
+            // 
+            // myCustomButton4
+            // 
+            this.myCustomButton4.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton4.Image = global::MultecPlugin.Properties.Resources.down_normal;
+            this.myCustomButton4.ImageClicked = global::MultecPlugin.Properties.Resources.down_pressed;
+            this.myCustomButton4.ImangeNormal = global::MultecPlugin.Properties.Resources.down_normal;
+            this.myCustomButton4.Location = new System.Drawing.Point(135, 132);
+            this.myCustomButton4.Name = "myCustomButton4";
+            this.myCustomButton4.Size = new System.Drawing.Size(83, 52);
+            this.myCustomButton4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton4.TabIndex = 50;
+            this.myCustomButton4.TabStop = false;
+            this.myCustomButton4.Click += new System.EventHandler(this.myCustomButton4_Click);
+            // 
+            // myCustomButton3
+            // 
+            this.myCustomButton3.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton3.Image = global::MultecPlugin.Properties.Resources.right_normal;
+            this.myCustomButton3.ImageClicked = global::MultecPlugin.Properties.Resources.right_pressed;
+            this.myCustomButton3.ImangeNormal = global::MultecPlugin.Properties.Resources.right_normal;
+            this.myCustomButton3.Location = new System.Drawing.Point(207, 62);
+            this.myCustomButton3.Name = "myCustomButton3";
+            this.myCustomButton3.Size = new System.Drawing.Size(61, 73);
+            this.myCustomButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton3.TabIndex = 49;
+            this.myCustomButton3.TabStop = false;
+            this.myCustomButton3.Click += new System.EventHandler(this.myCustomButton3_Click);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -1436,7 +1453,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tabControl1);
             this.Name = "MultecTouchpanel";
-            this.Size = new System.Drawing.Size(566, 558);
+            this.Size = new System.Drawing.Size(563, 558);
             Kalibrierung.ResumeLayout(false);
             Kalibrierung.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1449,19 +1466,25 @@
             this.TouchControl.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myCustomButton3)).EndInit();
             this.ResumeLayout(false);
 
         }
 
+        private MouseEventHandler myCustomButton1_Click()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
-        private System.Windows.Forms.Button but_Xplus;
         private System.Windows.Forms.Button buttonHome;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button but_step_1;
         private System.Windows.Forms.Button but_step_10;
         private System.Windows.Forms.Button but_step_50;
-        private System.Windows.Forms.Button but_Yplus;
-        private System.Windows.Forms.Button but_Yminus;
         private System.Windows.Forms.Button but_Zplus;
         private System.Windows.Forms.Button but_Zminus;
         private System.Windows.Forms.Button but_Extrude;
@@ -1549,7 +1572,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Timer timer_temp;
         private System.ComponentModel.BackgroundWorker worker;
-        private System.Windows.Forms.Button but_Xminus;
         private System.Windows.Forms.Label lbl_mm;
         private System.Windows.Forms.Label lbl_zOffset;
         private System.Windows.Forms.Button btn_yOffset_plus;
@@ -1562,5 +1584,9 @@
         private System.Windows.Forms.Button btn_xOffset_send;
         private System.Windows.Forms.ListBox listBox1;
         static System.Windows.Forms.ListBox staticListBox;
+        private MyCustomButton.MyCustomButton myCustomButton1;
+        private MyCustomButton.MyCustomButton myCustomButton4;
+        private MyCustomButton.MyCustomButton myCustomButton3;
+        private MyCustomButton.MyCustomButton myCustomButton2;
     }
 }

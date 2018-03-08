@@ -36,6 +36,7 @@ namespace MultecPlugin
             staticListBox = this.listBox1;
             InitializeComponent();
             eventResponse = AddtoListBox;
+           
         }
         /// <summary>
         /// Store reference to host for later use
@@ -54,7 +55,7 @@ namespace MultecPlugin
 
 
         }
-        //resets all parameters and textboxes to default
+        
 
 
         #region IHostComponent implementation
@@ -93,37 +94,7 @@ namespace MultecPlugin
         private bool Bed_On;
         private string selected_nozzle;
 
-        private void but_Xminus_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G91");
-            host.Connection.injectManualCommand("G1 X" + -step_dist);
-            host.Connection.injectManualCommand("G90");
-        }
-
-        private void but_Xplus_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G91");
-            host.Connection.injectManualCommand("G1 X" + step_dist);
-            host.Connection.injectManualCommand("G90");
-        }
-
-        private void but_Yplus_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G91");
-            host.Connection.injectManualCommand("G1 Y" + step_dist);
-            host.Connection.injectManualCommand("G90");
-        }
-
-        private void but_Yminus_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G91");
-            host.Connection.injectManualCommand("G1 Y" + -step_dist);
-            host.Connection.injectManualCommand("G90");
-        }
+      
 
         private void but_Zplus_Click(object sender, EventArgs e)
         {
@@ -657,7 +628,7 @@ namespace MultecPlugin
             but_MOVE.Enabled = true;
 
         }
-
+        //resets all parameters and textboxes to default
         public void reset_parameters()
         {
             text_T0_Aktuell.Text = String.Empty;
@@ -695,25 +666,85 @@ namespace MultecPlugin
             but_T3_OnOff.Enabled = false;
             but_MOVE.Enabled = false;
         }
-
-        
-                //listBox1.Items.Add(analyzer.GetExtruderData(1).currentTemperature);
-               
-                
-
-        
-
-
-        private void but_Xminus_MouseDown(object sender, MouseEventArgs e)
+        private void myCustomButton1_MouseClick(object sender, MouseEventArgs e)
         {
-
+            if (HitTest(myCustomButton1, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                    host.Connection.injectManualCommand("G91");
+                host.Connection.injectManualCommand("G1 X" + -step_dist);
+                host.Connection.injectManualCommand("G90");
+            }
         }
 
-        private void btn_xOffset_send_Click(object sender, EventArgs e)
+        private void myCustomButton3_Click(object sender, EventArgs e)
         {
-
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+            host.Connection.injectManualCommand("G1 X" + step_dist);
+            host.Connection.injectManualCommand("G90");
         }
 
-        
+      
+        private void myCustomButton2_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+            host.Connection.injectManualCommand("G1 Y" + step_dist);
+            host.Connection.injectManualCommand("G90");
+        }
+
+        private void myCustomButton4_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+            host.Connection.injectManualCommand("G1 Y" + -step_dist);
+            host.Connection.injectManualCommand("G90");
+        }
+
+
+
+        public static Bitmap CombineAndResizeTwoImages(Image image1, Image image2, int width, int height)
+        {
+            //a holder for the result
+            Bitmap result = new Bitmap(width, height);
+
+            //use a graphics object to draw the resized image into the bitmap
+            using (Graphics graphics = Graphics.FromImage(result))
+            {
+                //set the resize quality modes to high quality
+                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                //draw the images into the target bitmap
+                graphics.DrawImage(image1, 0, 0, result.Width, result.Height);
+                graphics.DrawImage(image2, 0, 0, result.Width, result.Height);
+
+            }
+
+            //return the resulting bitmap
+            return result;
+        }
+
+        public bool HitTest(PictureBox control, int x, int y)
+        {
+            var result = false;
+            if (control.Image == null)
+                return result;
+            var method = typeof(PictureBox).GetMethod("ImageRectangleFromSizeMode",
+              System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var r = (Rectangle)method.Invoke(control, new object[] { control.SizeMode });
+            using (var bm = new Bitmap(r.Width, r.Height))
+            {
+                using (var g = Graphics.FromImage(bm))
+                    g.DrawImage(control.Image, 0, 0, r.Width, r.Height);
+                if (r.Contains(x, y) && bm.GetPixel(x - r.X, y - r.Y).A != 0)
+                    result = true;
+            }
+            return result;
+        }
+
+
+
     }
 }
