@@ -110,6 +110,10 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.myCustomButton2 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton1 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton4 = new MyCustomButton.MyCustomButton();
+            this.myCustomButton3 = new MyCustomButton.MyCustomButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -136,10 +140,6 @@ namespace MultecPlugin
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
-            this.myCustomButton2 = new MyCustomButton.MyCustomButton();
-            this.myCustomButton1 = new MyCustomButton.MyCustomButton();
-            this.myCustomButton4 = new MyCustomButton.MyCustomButton();
-            this.myCustomButton3 = new MyCustomButton.MyCustomButton();
             Kalibrierung = new System.Windows.Forms.TabPage();
             Kalibrierung.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -149,11 +149,11 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton3)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Kalibrierung
@@ -1072,6 +1072,63 @@ namespace MultecPlugin
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
             // 
+            // myCustomButton2
+            // 
+            this.myCustomButton2.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton2.Image = global::MultecPlugin.Properties.Resources.up_normal;
+            this.myCustomButton2.ImageClicked = global::MultecPlugin.Properties.Resources.up_pressed;
+            this.myCustomButton2.ImangeNormal = global::MultecPlugin.Properties.Resources.up_normal;
+            this.myCustomButton2.Location = new System.Drawing.Point(134, 6);
+            this.myCustomButton2.Name = "myCustomButton2";
+            this.myCustomButton2.Size = new System.Drawing.Size(85, 58);
+            this.myCustomButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton2.TabIndex = 48;
+            this.myCustomButton2.TabStop = false;
+            this.myCustomButton2.Click += new System.EventHandler(this.myCustomButton2_Click);
+            // 
+            // myCustomButton1
+            // 
+            this.myCustomButton1.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton1.Image = global::MultecPlugin.Properties.Resources.left_normal;
+            this.myCustomButton1.ImageClicked = global::MultecPlugin.Properties.Resources.left_pressed;
+            this.myCustomButton1.ImangeNormal = global::MultecPlugin.Properties.Resources.left_normal;
+            this.myCustomButton1.Location = new System.Drawing.Point(79, 61);
+            this.myCustomButton1.Name = "myCustomButton1";
+            this.myCustomButton1.Size = new System.Drawing.Size(70, 74);
+            this.myCustomButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton1.TabIndex = 47;
+            this.myCustomButton1.TabStop = false;
+            this.myCustomButton1.Click += new System.EventHandler(this.myCustomButton1_Click);
+            this.myCustomButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
+            // 
+            // myCustomButton4
+            // 
+            this.myCustomButton4.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton4.Image = global::MultecPlugin.Properties.Resources.down_normal;
+            this.myCustomButton4.ImageClicked = global::MultecPlugin.Properties.Resources.down_pressed;
+            this.myCustomButton4.ImangeNormal = global::MultecPlugin.Properties.Resources.down_normal;
+            this.myCustomButton4.Location = new System.Drawing.Point(135, 132);
+            this.myCustomButton4.Name = "myCustomButton4";
+            this.myCustomButton4.Size = new System.Drawing.Size(83, 52);
+            this.myCustomButton4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton4.TabIndex = 50;
+            this.myCustomButton4.TabStop = false;
+            this.myCustomButton4.Click += new System.EventHandler(this.myCustomButton4_Click);
+            // 
+            // myCustomButton3
+            // 
+            this.myCustomButton3.BackColor = System.Drawing.Color.Transparent;
+            this.myCustomButton3.Image = global::MultecPlugin.Properties.Resources.right_normal;
+            this.myCustomButton3.ImageClicked = global::MultecPlugin.Properties.Resources.right_pressed;
+            this.myCustomButton3.ImangeNormal = global::MultecPlugin.Properties.Resources.right_normal;
+            this.myCustomButton3.Location = new System.Drawing.Point(207, 62);
+            this.myCustomButton3.Name = "myCustomButton3";
+            this.myCustomButton3.Size = new System.Drawing.Size(61, 73);
+            this.myCustomButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.myCustomButton3.TabIndex = 49;
+            this.myCustomButton3.TabStop = false;
+            this.myCustomButton3.Click += new System.EventHandler(this.myCustomButton3_Click);
+            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
@@ -1389,62 +1446,6 @@ namespace MultecPlugin
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
-            // myCustomButton2
-            // 
-            this.myCustomButton2.BackColor = System.Drawing.Color.Transparent;
-            this.myCustomButton2.Image = global::MultecPlugin.Properties.Resources.up_normal;
-            this.myCustomButton2.ImageClicked = global::MultecPlugin.Properties.Resources.up_pressed;
-            this.myCustomButton2.ImangeNormal = global::MultecPlugin.Properties.Resources.up_normal;
-            this.myCustomButton2.Location = new System.Drawing.Point(134, 6);
-            this.myCustomButton2.Name = "myCustomButton2";
-            this.myCustomButton2.Size = new System.Drawing.Size(85, 58);
-            this.myCustomButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.myCustomButton2.TabIndex = 48;
-            this.myCustomButton2.TabStop = false;
-            this.myCustomButton2.Click += new System.EventHandler(this.myCustomButton2_Click);
-            // 
-            // myCustomButton1
-            // 
-            this.myCustomButton1.BackColor = System.Drawing.Color.Transparent;
-            this.myCustomButton1.Image = global::MultecPlugin.Properties.Resources.left_normal;
-            this.myCustomButton1.ImageClicked = global::MultecPlugin.Properties.Resources.left_pressed;
-            this.myCustomButton1.ImangeNormal = global::MultecPlugin.Properties.Resources.left_normal;
-            this.myCustomButton1.Location = new System.Drawing.Point(79, 61);
-            this.myCustomButton1.Name = "myCustomButton1";
-            this.myCustomButton1.Size = new System.Drawing.Size(70, 74);
-            this.myCustomButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.myCustomButton1.TabIndex = 47;
-            this.myCustomButton1.TabStop = false;
-            this.myCustomButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
-            // 
-            // myCustomButton4
-            // 
-            this.myCustomButton4.BackColor = System.Drawing.Color.Transparent;
-            this.myCustomButton4.Image = global::MultecPlugin.Properties.Resources.down_normal;
-            this.myCustomButton4.ImageClicked = global::MultecPlugin.Properties.Resources.down_pressed;
-            this.myCustomButton4.ImangeNormal = global::MultecPlugin.Properties.Resources.down_normal;
-            this.myCustomButton4.Location = new System.Drawing.Point(135, 132);
-            this.myCustomButton4.Name = "myCustomButton4";
-            this.myCustomButton4.Size = new System.Drawing.Size(83, 52);
-            this.myCustomButton4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.myCustomButton4.TabIndex = 50;
-            this.myCustomButton4.TabStop = false;
-            this.myCustomButton4.Click += new System.EventHandler(this.myCustomButton4_Click);
-            // 
-            // myCustomButton3
-            // 
-            this.myCustomButton3.BackColor = System.Drawing.Color.Transparent;
-            this.myCustomButton3.Image = global::MultecPlugin.Properties.Resources.right_normal;
-            this.myCustomButton3.ImageClicked = global::MultecPlugin.Properties.Resources.right_pressed;
-            this.myCustomButton3.ImangeNormal = global::MultecPlugin.Properties.Resources.right_normal;
-            this.myCustomButton3.Location = new System.Drawing.Point(207, 62);
-            this.myCustomButton3.Name = "myCustomButton3";
-            this.myCustomButton3.Size = new System.Drawing.Size(61, 73);
-            this.myCustomButton3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.myCustomButton3.TabIndex = 49;
-            this.myCustomButton3.TabStop = false;
-            this.myCustomButton3.Click += new System.EventHandler(this.myCustomButton3_Click);
-            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -1464,12 +1465,12 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myCustomButton3)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1583,7 +1584,7 @@ namespace MultecPlugin
         private System.Windows.Forms.Button btn_yOffset_send;
         private System.Windows.Forms.Button btn_xOffset_send;
         private System.Windows.Forms.ListBox listBox1;
-        static System.Windows.Forms.ListBox staticListBox;
+       
         private MyCustomButton.MyCustomButton myCustomButton1;
         private MyCustomButton.MyCustomButton myCustomButton4;
         private MyCustomButton.MyCustomButton myCustomButton3;

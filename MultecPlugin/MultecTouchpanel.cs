@@ -26,16 +26,15 @@ namespace MultecPlugin
     {
 
         private IHost host;
-        event OnResponse eventResponse;
+        //event OnResponse eventResponse;
         //ExtruderDefinition extruderdata = new ExtruderDefinition(
     
 
         public MultecTouchpanel()
         {
             
-            staticListBox = this.listBox1;
             InitializeComponent();
-            eventResponse = AddtoListBox;
+            Trans.host.Connection.eventResponse += AddtoListBox;
            
         }
         /// <summary>
@@ -125,7 +124,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
                 host.Connection.injectManualCommand("G91");
-            host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+            host.Connection.injectManualCommand("G1 E" + step_dist + " F500");
             host.Connection.injectManualCommand("G92 E0");
             host.Connection.injectManualCommand("G90");
         }
@@ -596,11 +595,16 @@ namespace MultecPlugin
                 reset_parameters();
             }
         }
-        public static void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
+        public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-
-            staticListBox.Items.Add(response);
-            staticListBox.Items.Add(level);
+            if (level == LogLevel.DEFAULT)
+            {
+                listBox1.Items.Add(response);
+            }
+            else if (level== LogLevel.ERROR)
+            {
+                MessageBox.Show("ERROR: \n" + response, "ERROR!!");
+            }
         }
         //function to remove temperature readings from textboxes
        
@@ -744,7 +748,12 @@ namespace MultecPlugin
             return result;
         }
 
-
-
+        private void myCustomButton1_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G91");
+            host.Connection.injectManualCommand("G1 X" + -step_dist);
+            host.Connection.injectManualCommand("G90");
+        }
     }
 }
