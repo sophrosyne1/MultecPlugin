@@ -47,7 +47,7 @@ namespace MyCustomButton
 
         private void MyCustomButton_MouseUp(object sender, MouseEventArgs e)
         {
-            if (HitTest(this, e.X, e.Y))
+            
                 this.Image = NormalImage;
         }
 

@@ -83,28 +83,130 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down_normal.png" />
+    <None Include="Resources\aus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down_pressed.png" />
+    <None Include="Resources\blank.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\left_normal.png" />
+    <None Include="Resources\e_minus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\left_pressed.png" />
+    <None Include="Resources\e_plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right_normal.png" />
+    <None Include="Resources\ein.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right_pressed.png" />
+    <None Include="Resources\fifty_mm.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up_normal.png" />
+    <None Include="Resources\HOME Move.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up_pressed.png" />
+    <None Include="Resources\HOME.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_five.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOTOR_OFF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOVE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\one_mm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park Move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_five.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_one.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_three.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_two.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ten_mm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z_minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X-.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xPlus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xPlus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xPlus1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xMinus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zplus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlus1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
