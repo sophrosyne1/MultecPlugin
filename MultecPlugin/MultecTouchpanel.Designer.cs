@@ -110,39 +110,59 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.btnZPlus = new MyCustomButton.MyCustomButton();
+            this.btnYPlus = new MyCustomButton.MyCustomButton();
+            this.btnYMinus = new MyCustomButton.MyCustomButton();
+            this.btnXPlus = new MyCustomButton.MyCustomButton();
+            this.btnXMinus = new MyCustomButton.MyCustomButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
+            this.lblKgSrvcT3 = new System.Windows.Forms.Label();
+            this.lblKgSrvcT2 = new System.Windows.Forms.Label();
+            this.lblKgSrvcT1 = new System.Windows.Forms.Label();
+            this.lblKgSrvcT0 = new System.Windows.Forms.Label();
+            this.lblHeatedSrvcT3 = new System.Windows.Forms.Label();
+            this.lblHeatedSrvcT2 = new System.Windows.Forms.Label();
+            this.lblHeatedSrvcT1 = new System.Windows.Forms.Label();
+            this.lblHeatedSrvcT0 = new System.Windows.Forms.Label();
+            this.lblExtrudedSrvcT3 = new System.Windows.Forms.Label();
+            this.lblExtrudedSrvcT2 = new System.Windows.Forms.Label();
+            this.lblExtrudedSrvcT1 = new System.Windows.Forms.Label();
+            this.lblExtrudedSrvcT0 = new System.Windows.Forms.Label();
+            this.lblSrvcDistanceZ = new System.Windows.Forms.Label();
+            this.lblSrvcDistanceY = new System.Windows.Forms.Label();
+            this.lblSrvcDistanceX = new System.Windows.Forms.Label();
+            this.lblSrvcPrntLife = new System.Windows.Forms.Label();
+            this.lblSrvcPwrON = new System.Windows.Forms.Label();
+            this.lblSrvcPwrCycle = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
+            this.lblKgTotalT3 = new System.Windows.Forms.Label();
+            this.lblKgTotalT2 = new System.Windows.Forms.Label();
+            this.lblKgTotalT1 = new System.Windows.Forms.Label();
+            this.lblKgTotalT0 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
+            this.lblMoveFailure = new System.Windows.Forms.Label();
+            this.lblHeatedTotalT3 = new System.Windows.Forms.Label();
+            this.lblHeatedTotalT2 = new System.Windows.Forms.Label();
+            this.lblHeatedTotalT1 = new System.Windows.Forms.Label();
+            this.lblHeatedTotalT0 = new System.Windows.Forms.Label();
+            this.lblExtrudedTotalT3 = new System.Windows.Forms.Label();
+            this.lblExtrudedTotalT2 = new System.Windows.Forms.Label();
+            this.lblExtrudedTotalT1 = new System.Windows.Forms.Label();
+            this.lblExtrudedTotalT0 = new System.Windows.Forms.Label();
+            this.lblTotalDistanceZ = new System.Windows.Forms.Label();
+            this.lblTotalDistanceY = new System.Windows.Forms.Label();
+            this.lblTotalDistanceX = new System.Windows.Forms.Label();
+            this.lblTotalPrntLife = new System.Windows.Forms.Label();
+            this.lblTotalPwrON = new System.Windows.Forms.Label();
+            this.lblTotalPwrCycle = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
+            this.lblAbstandT3 = new System.Windows.Forms.Label();
+            this.lblAbstandT2 = new System.Windows.Forms.Label();
+            this.lblAbstandT1 = new System.Windows.Forms.Label();
+            this.lblAbstandT0 = new System.Windows.Forms.Label();
             this.lblFirmware = new System.Windows.Forms.Label();
             this.btnAktualise = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
@@ -169,11 +189,6 @@ namespace MultecPlugin
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
-            this.btnZPlus = new MyCustomButton.MyCustomButton();
-            this.btnYPlus = new MyCustomButton.MyCustomButton();
-            this.btnYMinus = new MyCustomButton.MyCustomButton();
-            this.btnXPlus = new MyCustomButton.MyCustomButton();
-            this.btnXMinus = new MyCustomButton.MyCustomButton();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -183,12 +198,12 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabpage2
@@ -221,7 +236,7 @@ namespace MultecPlugin
             tabpage2.Margin = new System.Windows.Forms.Padding(2);
             tabpage2.Name = "tabpage2";
             tabpage2.Padding = new System.Windows.Forms.Padding(2);
-            tabpage2.Size = new System.Drawing.Size(554, 499);
+            tabpage2.Size = new System.Drawing.Size(555, 499);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
             // 
@@ -839,7 +854,6 @@ namespace MultecPlugin
             this.text_T0_Aktuell.ReadOnly = true;
             this.text_T0_Aktuell.Size = new System.Drawing.Size(61, 20);
             this.text_T0_Aktuell.TabIndex = 23;
-            this.text_T0_Aktuell.TextChanged += new System.EventHandler(this.text_T0_Aktuell_TextChanged);
             // 
             // text_T1_Aktuell
             // 
@@ -1074,7 +1088,7 @@ namespace MultecPlugin
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(562, 557);
+            this.tabControl1.Size = new System.Drawing.Size(563, 557);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
@@ -1131,809 +1145,9 @@ namespace MultecPlugin
             this.TouchControl.Location = new System.Drawing.Point(4, 4);
             this.TouchControl.Name = "TouchControl";
             this.TouchControl.Padding = new System.Windows.Forms.Padding(3);
-            this.TouchControl.Size = new System.Drawing.Size(554, 499);
+            this.TouchControl.Size = new System.Drawing.Size(555, 499);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.label67);
-            this.tabPage1.Controls.Add(this.label68);
-            this.tabPage1.Controls.Add(this.label69);
-            this.tabPage1.Controls.Add(this.label70);
-            this.tabPage1.Controls.Add(this.label63);
-            this.tabPage1.Controls.Add(this.label64);
-            this.tabPage1.Controls.Add(this.label65);
-            this.tabPage1.Controls.Add(this.label66);
-            this.tabPage1.Controls.Add(this.label59);
-            this.tabPage1.Controls.Add(this.label60);
-            this.tabPage1.Controls.Add(this.label61);
-            this.tabPage1.Controls.Add(this.label62);
-            this.tabPage1.Controls.Add(this.label39);
-            this.tabPage1.Controls.Add(this.label40);
-            this.tabPage1.Controls.Add(this.label41);
-            this.tabPage1.Controls.Add(this.label42);
-            this.tabPage1.Controls.Add(this.label43);
-            this.tabPage1.Controls.Add(this.label44);
-            this.tabPage1.Controls.Add(this.label45);
-            this.tabPage1.Controls.Add(this.label46);
-            this.tabPage1.Controls.Add(this.label47);
-            this.tabPage1.Controls.Add(this.label48);
-            this.tabPage1.Controls.Add(this.label49);
-            this.tabPage1.Controls.Add(this.label50);
-            this.tabPage1.Controls.Add(this.label51);
-            this.tabPage1.Controls.Add(this.label52);
-            this.tabPage1.Controls.Add(this.label53);
-            this.tabPage1.Controls.Add(this.label54);
-            this.tabPage1.Controls.Add(this.label55);
-            this.tabPage1.Controls.Add(this.label56);
-            this.tabPage1.Controls.Add(this.label57);
-            this.tabPage1.Controls.Add(this.label58);
-            this.tabPage1.Controls.Add(this.lblFirmware);
-            this.tabPage1.Controls.Add(this.btnAktualise);
-            this.tabPage1.Controls.Add(this.label37);
-            this.tabPage1.Controls.Add(this.label36);
-            this.tabPage1.Controls.Add(this.label35);
-            this.tabPage1.Controls.Add(this.label34);
-            this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.label32);
-            this.tabPage1.Controls.Add(this.label31);
-            this.tabPage1.Controls.Add(this.label30);
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.label27);
-            this.tabPage1.Controls.Add(this.label26);
-            this.tabPage1.Controls.Add(this.label25);
-            this.tabPage1.Controls.Add(this.label24);
-            this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.label20);
-            this.tabPage1.Controls.Add(this.label19);
-            this.tabPage1.Controls.Add(this.label18);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Location = new System.Drawing.Point(4, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(554, 499);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Information";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.BackColor = System.Drawing.SystemColors.Control;
-            this.label67.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label67.Location = new System.Drawing.Point(383, 162);
-            this.label67.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(133, 15);
-            this.label67.TabIndex = 93;
-            this.label67.Text = "Print Life Minutes";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.BackColor = System.Drawing.SystemColors.Control;
-            this.label68.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label68.Location = new System.Drawing.Point(383, 147);
-            this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(98, 15);
-            this.label68.TabIndex = 92;
-            this.label68.Text = "Power On Time";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.BackColor = System.Drawing.SystemColors.Control;
-            this.label69.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label69.Location = new System.Drawing.Point(383, 132);
-            this.label69.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(91, 15);
-            this.label69.TabIndex = 91;
-            this.label69.Text = "Power Cycles";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.BackColor = System.Drawing.SystemColors.Control;
-            this.label70.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label70.Location = new System.Drawing.Point(383, 117);
-            this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(77, 15);
-            this.label70.TabIndex = 90;
-            this.label70.Text = "Lifetime (";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.BackColor = System.Drawing.SystemColors.Control;
-            this.label63.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label63.Location = new System.Drawing.Point(206, 339);
-            this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(182, 15);
-            this.label63.TabIndex = 89;
-            this.label63.Text = "T3 Extruded Filament (cm)";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.BackColor = System.Drawing.SystemColors.Control;
-            this.label64.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label64.Location = new System.Drawing.Point(206, 324);
-            this.label64.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(182, 15);
-            this.label64.TabIndex = 88;
-            this.label64.Text = "T2 Extruded Filament (cm)";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.BackColor = System.Drawing.SystemColors.Control;
-            this.label65.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label65.Location = new System.Drawing.Point(206, 309);
-            this.label65.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(182, 15);
-            this.label65.TabIndex = 87;
-            this.label65.Text = "T1 Extruded Filament (cm)";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.BackColor = System.Drawing.SystemColors.Control;
-            this.label66.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label66.Location = new System.Drawing.Point(206, 294);
-            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(182, 15);
-            this.label66.TabIndex = 86;
-            this.label66.Text = "T0 Extruded Filament (cm)";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label59.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label59.Location = new System.Drawing.Point(20, 339);
-            this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(182, 15);
-            this.label59.TabIndex = 85;
-            this.label59.Text = "T3 Extruded Filament (kg)";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label60.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label60.Location = new System.Drawing.Point(20, 324);
-            this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(182, 15);
-            this.label60.TabIndex = 84;
-            this.label60.Text = "T2 Extruded Filament (kg)";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label61.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label61.Location = new System.Drawing.Point(20, 309);
-            this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(182, 15);
-            this.label61.TabIndex = 83;
-            this.label61.Text = "T1 Extruded Filament (kg)";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label62.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label62.Location = new System.Drawing.Point(20, 294);
-            this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(182, 15);
-            this.label62.TabIndex = 82;
-            this.label62.Text = "T0 Extruded Filament (kg)";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.SystemColors.Control;
-            this.label39.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label39.Location = new System.Drawing.Point(206, 425);
-            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(161, 15);
-            this.label39.TabIndex = 81;
-            this.label39.Text = "MOVE Rotation Failures";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.BackColor = System.Drawing.SystemColors.Control;
-            this.label40.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label40.Location = new System.Drawing.Point(206, 403);
-            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(105, 15);
-            this.label40.TabIndex = 80;
-            this.label40.Text = "T3 Heated Time";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.SystemColors.Control;
-            this.label41.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label41.Location = new System.Drawing.Point(206, 388);
-            this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(105, 15);
-            this.label41.TabIndex = 79;
-            this.label41.Text = "T2 Heated Time";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.BackColor = System.Drawing.SystemColors.Control;
-            this.label42.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label42.Location = new System.Drawing.Point(206, 373);
-            this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(105, 15);
-            this.label42.TabIndex = 78;
-            this.label42.Text = "T1 Heated Time";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.SystemColors.Control;
-            this.label43.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label43.Location = new System.Drawing.Point(206, 358);
-            this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(105, 15);
-            this.label43.TabIndex = 77;
-            this.label43.Text = "T0 Heated Time";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.SystemColors.Control;
-            this.label44.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label44.Location = new System.Drawing.Point(206, 279);
-            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(182, 15);
-            this.label44.TabIndex = 76;
-            this.label44.Text = "T3 Extruded Filament (cm)";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.BackColor = System.Drawing.SystemColors.Control;
-            this.label45.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label45.Location = new System.Drawing.Point(206, 264);
-            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(182, 15);
-            this.label45.TabIndex = 75;
-            this.label45.Text = "T2 Extruded Filament (cm)";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.SystemColors.Control;
-            this.label46.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label46.Location = new System.Drawing.Point(206, 249);
-            this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(182, 15);
-            this.label46.TabIndex = 74;
-            this.label46.Text = "T1 Extruded Filament (cm)";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.BackColor = System.Drawing.SystemColors.Control;
-            this.label47.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label47.Location = new System.Drawing.Point(206, 234);
-            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(182, 15);
-            this.label47.TabIndex = 73;
-            this.label47.Text = "T0 Extruded Filament (cm)";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.BackColor = System.Drawing.SystemColors.Control;
-            this.label48.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label48.Location = new System.Drawing.Point(206, 213);
-            this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(161, 15);
-            this.label48.TabIndex = 72;
-            this.label48.Text = "Z Travel distance (cm)";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.SystemColors.Control;
-            this.label49.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label49.Location = new System.Drawing.Point(206, 199);
-            this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(161, 15);
-            this.label49.TabIndex = 71;
-            this.label49.Text = "Y Travel distance (cm)";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.BackColor = System.Drawing.SystemColors.Control;
-            this.label50.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label50.Location = new System.Drawing.Point(206, 184);
-            this.label50.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(161, 15);
-            this.label50.TabIndex = 70;
-            this.label50.Text = "X Travel distance (cm)";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.BackColor = System.Drawing.SystemColors.Control;
-            this.label51.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label51.Location = new System.Drawing.Point(206, 162);
-            this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(133, 15);
-            this.label51.TabIndex = 69;
-            this.label51.Text = "Print Life Minutes";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.BackColor = System.Drawing.SystemColors.Control;
-            this.label52.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label52.Location = new System.Drawing.Point(206, 147);
-            this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(98, 15);
-            this.label52.TabIndex = 68;
-            this.label52.Text = "Power On Time";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.BackColor = System.Drawing.SystemColors.Control;
-            this.label53.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label53.Location = new System.Drawing.Point(206, 132);
-            this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(91, 15);
-            this.label53.TabIndex = 67;
-            this.label53.Text = "Power Cycles";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.SystemColors.Control;
-            this.label54.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label54.Location = new System.Drawing.Point(206, 117);
-            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(119, 15);
-            this.label54.TabIndex = 66;
-            this.label54.Text = "Lifetime (TOTAL)";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.BackColor = System.Drawing.SystemColors.Control;
-            this.label55.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label55.Location = new System.Drawing.Point(69, 94);
-            this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(21, 15);
-            this.label55.TabIndex = 65;
-            this.label55.Text = "T3";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.SystemColors.Control;
-            this.label56.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label56.Location = new System.Drawing.Point(69, 79);
-            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(21, 15);
-            this.label56.TabIndex = 64;
-            this.label56.Text = "T2";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.BackColor = System.Drawing.SystemColors.Control;
-            this.label57.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label57.Location = new System.Drawing.Point(69, 64);
-            this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(21, 15);
-            this.label57.TabIndex = 63;
-            this.label57.Text = "T1";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.SystemColors.Control;
-            this.label58.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label58.Location = new System.Drawing.Point(69, 49);
-            this.label58.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(21, 15);
-            this.label58.TabIndex = 62;
-            this.label58.Text = "T0";
-            // 
-            // lblFirmware
-            // 
-            this.lblFirmware.AutoSize = true;
-            this.lblFirmware.BackColor = System.Drawing.SystemColors.Control;
-            this.lblFirmware.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFirmware.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblFirmware.Location = new System.Drawing.Point(206, 15);
-            this.lblFirmware.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFirmware.Name = "lblFirmware";
-            this.lblFirmware.Size = new System.Drawing.Size(119, 15);
-            this.lblFirmware.TabIndex = 60;
-            this.lblFirmware.Text = "Firmware Version";
-            // 
-            // btnAktualise
-            // 
-            this.btnAktualise.Location = new System.Drawing.Point(28, 448);
-            this.btnAktualise.Name = "btnAktualise";
-            this.btnAktualise.Size = new System.Drawing.Size(107, 36);
-            this.btnAktualise.TabIndex = 59;
-            this.btnAktualise.Text = "Aktualise";
-            this.btnAktualise.UseVisualStyleBackColor = true;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label37.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label37.Location = new System.Drawing.Point(20, 425);
-            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(161, 15);
-            this.label37.TabIndex = 58;
-            this.label37.Text = "MOVE Rotation Failures";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label36.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label36.Location = new System.Drawing.Point(20, 403);
-            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(105, 15);
-            this.label36.TabIndex = 57;
-            this.label36.Text = "T3 Heated Time";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label35.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label35.Location = new System.Drawing.Point(20, 388);
-            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(105, 15);
-            this.label35.TabIndex = 56;
-            this.label35.Text = "T2 Heated Time";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label34.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label34.Location = new System.Drawing.Point(20, 373);
-            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(105, 15);
-            this.label34.TabIndex = 55;
-            this.label34.Text = "T1 Heated Time";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label33.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label33.Location = new System.Drawing.Point(20, 358);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(105, 15);
-            this.label33.TabIndex = 54;
-            this.label33.Text = "T0 Heated Time";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label32.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label32.Location = new System.Drawing.Point(20, 279);
-            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(182, 15);
-            this.label32.TabIndex = 53;
-            this.label32.Text = "T3 Extruded Filament (cm)";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label31.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label31.Location = new System.Drawing.Point(20, 264);
-            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(182, 15);
-            this.label31.TabIndex = 52;
-            this.label31.Text = "T2 Extruded Filament (cm)";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label30.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label30.Location = new System.Drawing.Point(20, 249);
-            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(182, 15);
-            this.label30.TabIndex = 51;
-            this.label30.Text = "T1 Extruded Filament (cm)";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label29.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label29.Location = new System.Drawing.Point(20, 234);
-            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(182, 15);
-            this.label29.TabIndex = 50;
-            this.label29.Text = "T0 Extruded Filament (cm)";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label28.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label28.Location = new System.Drawing.Point(20, 213);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(161, 15);
-            this.label28.TabIndex = 49;
-            this.label28.Text = "Z Travel distance (cm)";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label27.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label27.Location = new System.Drawing.Point(20, 199);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(161, 15);
-            this.label27.TabIndex = 48;
-            this.label27.Text = "Y Travel distance (cm)";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label26.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label26.Location = new System.Drawing.Point(20, 184);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(161, 15);
-            this.label26.TabIndex = 47;
-            this.label26.Text = "X Travel distance (cm)";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label25.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label25.Location = new System.Drawing.Point(44, 162);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(77, 15);
-            this.label25.TabIndex = 46;
-            this.label25.Text = "Print Life";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label24.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label24.Location = new System.Drawing.Point(44, 147);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(98, 15);
-            this.label24.TabIndex = 45;
-            this.label24.Text = "Power On Time";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label23.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label23.Location = new System.Drawing.Point(44, 132);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(91, 15);
-            this.label23.TabIndex = 44;
-            this.label23.Text = "Power Cycles";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label22.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label22.Location = new System.Drawing.Point(20, 117);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(140, 15);
-            this.label22.TabIndex = 43;
-            this.label22.Text = "Lifetime Statistics";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label21.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label21.Location = new System.Drawing.Point(44, 94);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(21, 15);
-            this.label21.TabIndex = 42;
-            this.label21.Text = "T3";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label20.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label20.Location = new System.Drawing.Point(44, 79);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(21, 15);
-            this.label20.TabIndex = 41;
-            this.label20.Text = "T2";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label19.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label19.Location = new System.Drawing.Point(44, 64);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(21, 15);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "T1";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label18.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label18.Location = new System.Drawing.Point(44, 49);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(21, 15);
-            this.label18.TabIndex = 39;
-            this.label18.Text = "T0";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label17.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label17.Location = new System.Drawing.Point(20, 34);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 15);
-            this.label17.TabIndex = 38;
-            this.label17.Text = "Duese Abstand";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label16.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label16.Location = new System.Drawing.Point(20, 15);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(119, 15);
-            this.label16.TabIndex = 37;
-            this.label16.Text = "Firmware Version";
-            // 
-            // timer_temp
-            // 
-            this.timer_temp.Enabled = true;
-            this.timer_temp.Interval = 3000;
-            this.timer_temp.Tick += new System.EventHandler(this.timer_temp_Tick);
-            // 
-            // worker
-            // 
-            this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
             // btnZPlus
             // 
@@ -2010,6 +1224,1017 @@ namespace MultecPlugin
             this.btnXMinus.Click += new System.EventHandler(this.myCustomButton1_Click);
             this.btnXMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.lblKgSrvcT3);
+            this.tabPage1.Controls.Add(this.lblKgSrvcT2);
+            this.tabPage1.Controls.Add(this.lblKgSrvcT1);
+            this.tabPage1.Controls.Add(this.lblKgSrvcT0);
+            this.tabPage1.Controls.Add(this.lblHeatedSrvcT3);
+            this.tabPage1.Controls.Add(this.lblHeatedSrvcT2);
+            this.tabPage1.Controls.Add(this.lblHeatedSrvcT1);
+            this.tabPage1.Controls.Add(this.lblHeatedSrvcT0);
+            this.tabPage1.Controls.Add(this.lblExtrudedSrvcT3);
+            this.tabPage1.Controls.Add(this.lblExtrudedSrvcT2);
+            this.tabPage1.Controls.Add(this.lblExtrudedSrvcT1);
+            this.tabPage1.Controls.Add(this.lblExtrudedSrvcT0);
+            this.tabPage1.Controls.Add(this.lblSrvcDistanceZ);
+            this.tabPage1.Controls.Add(this.lblSrvcDistanceY);
+            this.tabPage1.Controls.Add(this.lblSrvcDistanceX);
+            this.tabPage1.Controls.Add(this.lblSrvcPrntLife);
+            this.tabPage1.Controls.Add(this.lblSrvcPwrON);
+            this.tabPage1.Controls.Add(this.lblSrvcPwrCycle);
+            this.tabPage1.Controls.Add(this.label70);
+            this.tabPage1.Controls.Add(this.lblKgTotalT3);
+            this.tabPage1.Controls.Add(this.lblKgTotalT2);
+            this.tabPage1.Controls.Add(this.lblKgTotalT1);
+            this.tabPage1.Controls.Add(this.lblKgTotalT0);
+            this.tabPage1.Controls.Add(this.label59);
+            this.tabPage1.Controls.Add(this.label60);
+            this.tabPage1.Controls.Add(this.label61);
+            this.tabPage1.Controls.Add(this.label62);
+            this.tabPage1.Controls.Add(this.lblMoveFailure);
+            this.tabPage1.Controls.Add(this.lblHeatedTotalT3);
+            this.tabPage1.Controls.Add(this.lblHeatedTotalT2);
+            this.tabPage1.Controls.Add(this.lblHeatedTotalT1);
+            this.tabPage1.Controls.Add(this.lblHeatedTotalT0);
+            this.tabPage1.Controls.Add(this.lblExtrudedTotalT3);
+            this.tabPage1.Controls.Add(this.lblExtrudedTotalT2);
+            this.tabPage1.Controls.Add(this.lblExtrudedTotalT1);
+            this.tabPage1.Controls.Add(this.lblExtrudedTotalT0);
+            this.tabPage1.Controls.Add(this.lblTotalDistanceZ);
+            this.tabPage1.Controls.Add(this.lblTotalDistanceY);
+            this.tabPage1.Controls.Add(this.lblTotalDistanceX);
+            this.tabPage1.Controls.Add(this.lblTotalPrntLife);
+            this.tabPage1.Controls.Add(this.lblTotalPwrON);
+            this.tabPage1.Controls.Add(this.lblTotalPwrCycle);
+            this.tabPage1.Controls.Add(this.label54);
+            this.tabPage1.Controls.Add(this.lblAbstandT3);
+            this.tabPage1.Controls.Add(this.lblAbstandT2);
+            this.tabPage1.Controls.Add(this.lblAbstandT1);
+            this.tabPage1.Controls.Add(this.lblAbstandT0);
+            this.tabPage1.Controls.Add(this.lblFirmware);
+            this.tabPage1.Controls.Add(this.btnAktualise);
+            this.tabPage1.Controls.Add(this.label37);
+            this.tabPage1.Controls.Add(this.label36);
+            this.tabPage1.Controls.Add(this.label35);
+            this.tabPage1.Controls.Add(this.label34);
+            this.tabPage1.Controls.Add(this.label33);
+            this.tabPage1.Controls.Add(this.label32);
+            this.tabPage1.Controls.Add(this.label31);
+            this.tabPage1.Controls.Add(this.label30);
+            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.label28);
+            this.tabPage1.Controls.Add(this.label27);
+            this.tabPage1.Controls.Add(this.label26);
+            this.tabPage1.Controls.Add(this.label25);
+            this.tabPage1.Controls.Add(this.label24);
+            this.tabPage1.Controls.Add(this.label23);
+            this.tabPage1.Controls.Add(this.label22);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Controls.Add(this.label20);
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Location = new System.Drawing.Point(4, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(555, 499);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Information";
+            // 
+            // lblKgSrvcT3
+            // 
+            this.lblKgSrvcT3.AutoSize = true;
+            this.lblKgSrvcT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgSrvcT3.Location = new System.Drawing.Point(379, 336);
+            this.lblKgSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgSrvcT3.Name = "lblKgSrvcT3";
+            this.lblKgSrvcT3.Size = new System.Drawing.Size(31, 13);
+            this.lblKgSrvcT3.TabIndex = 108;
+            this.lblKgSrvcT3.Text = "NULL";
+            // 
+            // lblKgSrvcT2
+            // 
+            this.lblKgSrvcT2.AutoSize = true;
+            this.lblKgSrvcT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgSrvcT2.Location = new System.Drawing.Point(379, 321);
+            this.lblKgSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgSrvcT2.Name = "lblKgSrvcT2";
+            this.lblKgSrvcT2.Size = new System.Drawing.Size(31, 13);
+            this.lblKgSrvcT2.TabIndex = 107;
+            this.lblKgSrvcT2.Text = "NULL";
+            // 
+            // lblKgSrvcT1
+            // 
+            this.lblKgSrvcT1.AutoSize = true;
+            this.lblKgSrvcT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgSrvcT1.Location = new System.Drawing.Point(379, 306);
+            this.lblKgSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgSrvcT1.Name = "lblKgSrvcT1";
+            this.lblKgSrvcT1.Size = new System.Drawing.Size(31, 13);
+            this.lblKgSrvcT1.TabIndex = 106;
+            this.lblKgSrvcT1.Text = "NULL";
+            // 
+            // lblKgSrvcT0
+            // 
+            this.lblKgSrvcT0.AutoSize = true;
+            this.lblKgSrvcT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgSrvcT0.Location = new System.Drawing.Point(379, 291);
+            this.lblKgSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgSrvcT0.Name = "lblKgSrvcT0";
+            this.lblKgSrvcT0.Size = new System.Drawing.Size(31, 13);
+            this.lblKgSrvcT0.TabIndex = 105;
+            this.lblKgSrvcT0.Text = "NULL";
+            // 
+            // lblHeatedSrvcT3
+            // 
+            this.lblHeatedSrvcT3.AutoSize = true;
+            this.lblHeatedSrvcT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedSrvcT3.Location = new System.Drawing.Point(379, 400);
+            this.lblHeatedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedSrvcT3.Name = "lblHeatedSrvcT3";
+            this.lblHeatedSrvcT3.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedSrvcT3.TabIndex = 104;
+            this.lblHeatedSrvcT3.Text = "NULL";
+            // 
+            // lblHeatedSrvcT2
+            // 
+            this.lblHeatedSrvcT2.AutoSize = true;
+            this.lblHeatedSrvcT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedSrvcT2.Location = new System.Drawing.Point(379, 385);
+            this.lblHeatedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedSrvcT2.Name = "lblHeatedSrvcT2";
+            this.lblHeatedSrvcT2.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedSrvcT2.TabIndex = 103;
+            this.lblHeatedSrvcT2.Text = "NULL";
+            // 
+            // lblHeatedSrvcT1
+            // 
+            this.lblHeatedSrvcT1.AutoSize = true;
+            this.lblHeatedSrvcT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedSrvcT1.Location = new System.Drawing.Point(379, 370);
+            this.lblHeatedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedSrvcT1.Name = "lblHeatedSrvcT1";
+            this.lblHeatedSrvcT1.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedSrvcT1.TabIndex = 102;
+            this.lblHeatedSrvcT1.Text = "NULL";
+            // 
+            // lblHeatedSrvcT0
+            // 
+            this.lblHeatedSrvcT0.AutoSize = true;
+            this.lblHeatedSrvcT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedSrvcT0.Location = new System.Drawing.Point(379, 355);
+            this.lblHeatedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedSrvcT0.Name = "lblHeatedSrvcT0";
+            this.lblHeatedSrvcT0.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedSrvcT0.TabIndex = 101;
+            this.lblHeatedSrvcT0.Text = "NULL";
+            // 
+            // lblExtrudedSrvcT3
+            // 
+            this.lblExtrudedSrvcT3.AutoSize = true;
+            this.lblExtrudedSrvcT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedSrvcT3.Location = new System.Drawing.Point(379, 276);
+            this.lblExtrudedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedSrvcT3.Name = "lblExtrudedSrvcT3";
+            this.lblExtrudedSrvcT3.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedSrvcT3.TabIndex = 100;
+            this.lblExtrudedSrvcT3.Text = "NULL";
+            // 
+            // lblExtrudedSrvcT2
+            // 
+            this.lblExtrudedSrvcT2.AutoSize = true;
+            this.lblExtrudedSrvcT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedSrvcT2.Location = new System.Drawing.Point(379, 261);
+            this.lblExtrudedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedSrvcT2.Name = "lblExtrudedSrvcT2";
+            this.lblExtrudedSrvcT2.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedSrvcT2.TabIndex = 99;
+            this.lblExtrudedSrvcT2.Text = "NULL";
+            // 
+            // lblExtrudedSrvcT1
+            // 
+            this.lblExtrudedSrvcT1.AutoSize = true;
+            this.lblExtrudedSrvcT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedSrvcT1.Location = new System.Drawing.Point(379, 246);
+            this.lblExtrudedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedSrvcT1.Name = "lblExtrudedSrvcT1";
+            this.lblExtrudedSrvcT1.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedSrvcT1.TabIndex = 98;
+            this.lblExtrudedSrvcT1.Text = "NULL";
+            // 
+            // lblExtrudedSrvcT0
+            // 
+            this.lblExtrudedSrvcT0.AutoSize = true;
+            this.lblExtrudedSrvcT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedSrvcT0.Location = new System.Drawing.Point(379, 231);
+            this.lblExtrudedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedSrvcT0.Name = "lblExtrudedSrvcT0";
+            this.lblExtrudedSrvcT0.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedSrvcT0.TabIndex = 97;
+            this.lblExtrudedSrvcT0.Text = "NULL";
+            // 
+            // lblSrvcDistanceZ
+            // 
+            this.lblSrvcDistanceZ.AutoSize = true;
+            this.lblSrvcDistanceZ.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcDistanceZ.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcDistanceZ.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcDistanceZ.Location = new System.Drawing.Point(379, 210);
+            this.lblSrvcDistanceZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcDistanceZ.Name = "lblSrvcDistanceZ";
+            this.lblSrvcDistanceZ.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcDistanceZ.TabIndex = 96;
+            this.lblSrvcDistanceZ.Text = "NULL";
+            // 
+            // lblSrvcDistanceY
+            // 
+            this.lblSrvcDistanceY.AutoSize = true;
+            this.lblSrvcDistanceY.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcDistanceY.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcDistanceY.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcDistanceY.Location = new System.Drawing.Point(379, 196);
+            this.lblSrvcDistanceY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcDistanceY.Name = "lblSrvcDistanceY";
+            this.lblSrvcDistanceY.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcDistanceY.TabIndex = 95;
+            this.lblSrvcDistanceY.Text = "NULL";
+            // 
+            // lblSrvcDistanceX
+            // 
+            this.lblSrvcDistanceX.AutoSize = true;
+            this.lblSrvcDistanceX.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcDistanceX.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcDistanceX.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcDistanceX.Location = new System.Drawing.Point(379, 181);
+            this.lblSrvcDistanceX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcDistanceX.Name = "lblSrvcDistanceX";
+            this.lblSrvcDistanceX.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcDistanceX.TabIndex = 94;
+            this.lblSrvcDistanceX.Text = "NULL";
+            // 
+            // lblSrvcPrntLife
+            // 
+            this.lblSrvcPrntLife.AutoSize = true;
+            this.lblSrvcPrntLife.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcPrntLife.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcPrntLife.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcPrntLife.Location = new System.Drawing.Point(379, 159);
+            this.lblSrvcPrntLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcPrntLife.Name = "lblSrvcPrntLife";
+            this.lblSrvcPrntLife.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcPrntLife.TabIndex = 93;
+            this.lblSrvcPrntLife.Text = "NULL";
+            // 
+            // lblSrvcPwrON
+            // 
+            this.lblSrvcPwrON.AutoSize = true;
+            this.lblSrvcPwrON.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcPwrON.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcPwrON.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcPwrON.Location = new System.Drawing.Point(379, 144);
+            this.lblSrvcPwrON.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcPwrON.Name = "lblSrvcPwrON";
+            this.lblSrvcPwrON.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcPwrON.TabIndex = 92;
+            this.lblSrvcPwrON.Text = "NULL";
+            // 
+            // lblSrvcPwrCycle
+            // 
+            this.lblSrvcPwrCycle.AutoSize = true;
+            this.lblSrvcPwrCycle.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSrvcPwrCycle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrvcPwrCycle.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblSrvcPwrCycle.Location = new System.Drawing.Point(379, 129);
+            this.lblSrvcPwrCycle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSrvcPwrCycle.Name = "lblSrvcPwrCycle";
+            this.lblSrvcPwrCycle.Size = new System.Drawing.Size(31, 13);
+            this.lblSrvcPwrCycle.TabIndex = 91;
+            this.lblSrvcPwrCycle.Text = "NULL";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label70.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.ForeColor = System.Drawing.Color.Maroon;
+            this.label70.Location = new System.Drawing.Point(338, 114);
+            this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(181, 13);
+            this.label70.TabIndex = 90;
+            this.label70.Text = "Lifetime (Since Last Service)";
+            // 
+            // lblKgTotalT3
+            // 
+            this.lblKgTotalT3.AutoSize = true;
+            this.lblKgTotalT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgTotalT3.Location = new System.Drawing.Point(182, 336);
+            this.lblKgTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgTotalT3.Name = "lblKgTotalT3";
+            this.lblKgTotalT3.Size = new System.Drawing.Size(31, 13);
+            this.lblKgTotalT3.TabIndex = 89;
+            this.lblKgTotalT3.Text = "NULL";
+            // 
+            // lblKgTotalT2
+            // 
+            this.lblKgTotalT2.AutoSize = true;
+            this.lblKgTotalT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgTotalT2.Location = new System.Drawing.Point(182, 321);
+            this.lblKgTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgTotalT2.Name = "lblKgTotalT2";
+            this.lblKgTotalT2.Size = new System.Drawing.Size(31, 13);
+            this.lblKgTotalT2.TabIndex = 88;
+            this.lblKgTotalT2.Text = "NULL";
+            // 
+            // lblKgTotalT1
+            // 
+            this.lblKgTotalT1.AutoSize = true;
+            this.lblKgTotalT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgTotalT1.Location = new System.Drawing.Point(182, 306);
+            this.lblKgTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgTotalT1.Name = "lblKgTotalT1";
+            this.lblKgTotalT1.Size = new System.Drawing.Size(31, 13);
+            this.lblKgTotalT1.TabIndex = 87;
+            this.lblKgTotalT1.Text = "NULL";
+            // 
+            // lblKgTotalT0
+            // 
+            this.lblKgTotalT0.AutoSize = true;
+            this.lblKgTotalT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblKgTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKgTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblKgTotalT0.Location = new System.Drawing.Point(182, 291);
+            this.lblKgTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKgTotalT0.Name = "lblKgTotalT0";
+            this.lblKgTotalT0.Size = new System.Drawing.Size(31, 13);
+            this.lblKgTotalT0.TabIndex = 86;
+            this.lblKgTotalT0.Text = "NULL";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label59.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label59.Location = new System.Drawing.Point(9, 336);
+            this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(157, 13);
+            this.label59.TabIndex = 85;
+            this.label59.Text = "T3 Extruded Filament (kg)";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label60.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label60.Location = new System.Drawing.Point(9, 321);
+            this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(157, 13);
+            this.label60.TabIndex = 84;
+            this.label60.Text = "T2 Extruded Filament (kg)";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label61.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label61.Location = new System.Drawing.Point(9, 306);
+            this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(157, 13);
+            this.label61.TabIndex = 83;
+            this.label61.Text = "T1 Extruded Filament (kg)";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label62.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label62.Location = new System.Drawing.Point(9, 291);
+            this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(157, 13);
+            this.label62.TabIndex = 82;
+            this.label62.Text = "T0 Extruded Filament (kg)";
+            // 
+            // lblMoveFailure
+            // 
+            this.lblMoveFailure.AutoSize = true;
+            this.lblMoveFailure.BackColor = System.Drawing.SystemColors.Control;
+            this.lblMoveFailure.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMoveFailure.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblMoveFailure.Location = new System.Drawing.Point(182, 422);
+            this.lblMoveFailure.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMoveFailure.Name = "lblMoveFailure";
+            this.lblMoveFailure.Size = new System.Drawing.Size(31, 13);
+            this.lblMoveFailure.TabIndex = 81;
+            this.lblMoveFailure.Text = "NULL";
+            // 
+            // lblHeatedTotalT3
+            // 
+            this.lblHeatedTotalT3.AutoSize = true;
+            this.lblHeatedTotalT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedTotalT3.Location = new System.Drawing.Point(182, 400);
+            this.lblHeatedTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedTotalT3.Name = "lblHeatedTotalT3";
+            this.lblHeatedTotalT3.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedTotalT3.TabIndex = 80;
+            this.lblHeatedTotalT3.Text = "NULL";
+            // 
+            // lblHeatedTotalT2
+            // 
+            this.lblHeatedTotalT2.AutoSize = true;
+            this.lblHeatedTotalT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedTotalT2.Location = new System.Drawing.Point(182, 385);
+            this.lblHeatedTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedTotalT2.Name = "lblHeatedTotalT2";
+            this.lblHeatedTotalT2.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedTotalT2.TabIndex = 79;
+            this.lblHeatedTotalT2.Text = "NULL";
+            // 
+            // lblHeatedTotalT1
+            // 
+            this.lblHeatedTotalT1.AutoSize = true;
+            this.lblHeatedTotalT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedTotalT1.Location = new System.Drawing.Point(182, 370);
+            this.lblHeatedTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedTotalT1.Name = "lblHeatedTotalT1";
+            this.lblHeatedTotalT1.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedTotalT1.TabIndex = 78;
+            this.lblHeatedTotalT1.Text = "NULL";
+            // 
+            // lblHeatedTotalT0
+            // 
+            this.lblHeatedTotalT0.AutoSize = true;
+            this.lblHeatedTotalT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeatedTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeatedTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblHeatedTotalT0.Location = new System.Drawing.Point(182, 355);
+            this.lblHeatedTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeatedTotalT0.Name = "lblHeatedTotalT0";
+            this.lblHeatedTotalT0.Size = new System.Drawing.Size(31, 13);
+            this.lblHeatedTotalT0.TabIndex = 77;
+            this.lblHeatedTotalT0.Text = "NULL";
+            // 
+            // lblExtrudedTotalT3
+            // 
+            this.lblExtrudedTotalT3.AutoSize = true;
+            this.lblExtrudedTotalT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedTotalT3.Location = new System.Drawing.Point(182, 276);
+            this.lblExtrudedTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedTotalT3.Name = "lblExtrudedTotalT3";
+            this.lblExtrudedTotalT3.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedTotalT3.TabIndex = 76;
+            this.lblExtrudedTotalT3.Text = "NULL";
+            // 
+            // lblExtrudedTotalT2
+            // 
+            this.lblExtrudedTotalT2.AutoSize = true;
+            this.lblExtrudedTotalT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedTotalT2.Location = new System.Drawing.Point(182, 261);
+            this.lblExtrudedTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedTotalT2.Name = "lblExtrudedTotalT2";
+            this.lblExtrudedTotalT2.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedTotalT2.TabIndex = 75;
+            this.lblExtrudedTotalT2.Text = "NULL";
+            // 
+            // lblExtrudedTotalT1
+            // 
+            this.lblExtrudedTotalT1.AutoSize = true;
+            this.lblExtrudedTotalT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedTotalT1.Location = new System.Drawing.Point(182, 246);
+            this.lblExtrudedTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedTotalT1.Name = "lblExtrudedTotalT1";
+            this.lblExtrudedTotalT1.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedTotalT1.TabIndex = 74;
+            this.lblExtrudedTotalT1.Text = "NULL";
+            // 
+            // lblExtrudedTotalT0
+            // 
+            this.lblExtrudedTotalT0.AutoSize = true;
+            this.lblExtrudedTotalT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblExtrudedTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtrudedTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblExtrudedTotalT0.Location = new System.Drawing.Point(182, 231);
+            this.lblExtrudedTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExtrudedTotalT0.Name = "lblExtrudedTotalT0";
+            this.lblExtrudedTotalT0.Size = new System.Drawing.Size(31, 13);
+            this.lblExtrudedTotalT0.TabIndex = 73;
+            this.lblExtrudedTotalT0.Text = "NULL";
+            // 
+            // lblTotalDistanceZ
+            // 
+            this.lblTotalDistanceZ.AutoSize = true;
+            this.lblTotalDistanceZ.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalDistanceZ.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDistanceZ.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalDistanceZ.Location = new System.Drawing.Point(182, 210);
+            this.lblTotalDistanceZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalDistanceZ.Name = "lblTotalDistanceZ";
+            this.lblTotalDistanceZ.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalDistanceZ.TabIndex = 72;
+            this.lblTotalDistanceZ.Text = "NULL";
+            // 
+            // lblTotalDistanceY
+            // 
+            this.lblTotalDistanceY.AutoSize = true;
+            this.lblTotalDistanceY.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalDistanceY.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDistanceY.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalDistanceY.Location = new System.Drawing.Point(182, 196);
+            this.lblTotalDistanceY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalDistanceY.Name = "lblTotalDistanceY";
+            this.lblTotalDistanceY.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalDistanceY.TabIndex = 71;
+            this.lblTotalDistanceY.Text = "NULL";
+            // 
+            // lblTotalDistanceX
+            // 
+            this.lblTotalDistanceX.AutoSize = true;
+            this.lblTotalDistanceX.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalDistanceX.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDistanceX.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalDistanceX.Location = new System.Drawing.Point(182, 181);
+            this.lblTotalDistanceX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalDistanceX.Name = "lblTotalDistanceX";
+            this.lblTotalDistanceX.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalDistanceX.TabIndex = 70;
+            this.lblTotalDistanceX.Text = "NULL";
+            // 
+            // lblTotalPrntLife
+            // 
+            this.lblTotalPrntLife.AutoSize = true;
+            this.lblTotalPrntLife.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalPrntLife.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrntLife.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalPrntLife.Location = new System.Drawing.Point(182, 159);
+            this.lblTotalPrntLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalPrntLife.Name = "lblTotalPrntLife";
+            this.lblTotalPrntLife.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalPrntLife.TabIndex = 69;
+            this.lblTotalPrntLife.Text = "NULL";
+            // 
+            // lblTotalPwrON
+            // 
+            this.lblTotalPwrON.AutoSize = true;
+            this.lblTotalPwrON.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalPwrON.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPwrON.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalPwrON.Location = new System.Drawing.Point(182, 144);
+            this.lblTotalPwrON.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalPwrON.Name = "lblTotalPwrON";
+            this.lblTotalPwrON.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalPwrON.TabIndex = 68;
+            this.lblTotalPwrON.Text = "NULL";
+            // 
+            // lblTotalPwrCycle
+            // 
+            this.lblTotalPwrCycle.AutoSize = true;
+            this.lblTotalPwrCycle.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalPwrCycle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPwrCycle.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblTotalPwrCycle.Location = new System.Drawing.Point(182, 129);
+            this.lblTotalPwrCycle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalPwrCycle.Name = "lblTotalPwrCycle";
+            this.lblTotalPwrCycle.Size = new System.Drawing.Size(31, 13);
+            this.lblTotalPwrCycle.TabIndex = 67;
+            this.lblTotalPwrCycle.Text = "NULL";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label54.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.ForeColor = System.Drawing.Color.Maroon;
+            this.label54.Location = new System.Drawing.Point(170, 114);
+            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(103, 13);
+            this.label54.TabIndex = 66;
+            this.label54.Text = "Lifetime (TOTAL)";
+            // 
+            // lblAbstandT3
+            // 
+            this.lblAbstandT3.AutoSize = true;
+            this.lblAbstandT3.BackColor = System.Drawing.SystemColors.Control;
+            this.lblAbstandT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbstandT3.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblAbstandT3.Location = new System.Drawing.Point(58, 91);
+            this.lblAbstandT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAbstandT3.Name = "lblAbstandT3";
+            this.lblAbstandT3.Size = new System.Drawing.Size(31, 13);
+            this.lblAbstandT3.TabIndex = 65;
+            this.lblAbstandT3.Text = "NULL";
+            // 
+            // lblAbstandT2
+            // 
+            this.lblAbstandT2.AutoSize = true;
+            this.lblAbstandT2.BackColor = System.Drawing.SystemColors.Control;
+            this.lblAbstandT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbstandT2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblAbstandT2.Location = new System.Drawing.Point(58, 76);
+            this.lblAbstandT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAbstandT2.Name = "lblAbstandT2";
+            this.lblAbstandT2.Size = new System.Drawing.Size(31, 13);
+            this.lblAbstandT2.TabIndex = 64;
+            this.lblAbstandT2.Text = "NULL";
+            // 
+            // lblAbstandT1
+            // 
+            this.lblAbstandT1.AutoSize = true;
+            this.lblAbstandT1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblAbstandT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbstandT1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblAbstandT1.Location = new System.Drawing.Point(58, 61);
+            this.lblAbstandT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAbstandT1.Name = "lblAbstandT1";
+            this.lblAbstandT1.Size = new System.Drawing.Size(31, 13);
+            this.lblAbstandT1.TabIndex = 63;
+            this.lblAbstandT1.Text = "NULL";
+            // 
+            // lblAbstandT0
+            // 
+            this.lblAbstandT0.AutoSize = true;
+            this.lblAbstandT0.BackColor = System.Drawing.SystemColors.Control;
+            this.lblAbstandT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbstandT0.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblAbstandT0.Location = new System.Drawing.Point(58, 46);
+            this.lblAbstandT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAbstandT0.Name = "lblAbstandT0";
+            this.lblAbstandT0.Size = new System.Drawing.Size(31, 13);
+            this.lblAbstandT0.TabIndex = 62;
+            this.lblAbstandT0.Text = "NULL";
+            // 
+            // lblFirmware
+            // 
+            this.lblFirmware.AutoSize = true;
+            this.lblFirmware.BackColor = System.Drawing.SystemColors.Control;
+            this.lblFirmware.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFirmware.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblFirmware.Location = new System.Drawing.Point(182, 12);
+            this.lblFirmware.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFirmware.Name = "lblFirmware";
+            this.lblFirmware.Size = new System.Drawing.Size(31, 13);
+            this.lblFirmware.TabIndex = 60;
+            this.lblFirmware.Text = "Null";
+            // 
+            // btnAktualise
+            // 
+            this.btnAktualise.Location = new System.Drawing.Point(28, 448);
+            this.btnAktualise.Name = "btnAktualise";
+            this.btnAktualise.Size = new System.Drawing.Size(107, 36);
+            this.btnAktualise.TabIndex = 59;
+            this.btnAktualise.Text = "Aktualise";
+            this.btnAktualise.UseVisualStyleBackColor = true;
+            this.btnAktualise.Click += new System.EventHandler(this.btnAktualise_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label37.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label37.Location = new System.Drawing.Point(9, 422);
+            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(139, 13);
+            this.label37.TabIndex = 58;
+            this.label37.Text = "MOVE Rotation Failures";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label36.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label36.Location = new System.Drawing.Point(9, 400);
+            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(91, 13);
+            this.label36.TabIndex = 57;
+            this.label36.Text = "T3 Heated Time";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label35.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label35.Location = new System.Drawing.Point(9, 385);
+            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(91, 13);
+            this.label35.TabIndex = 56;
+            this.label35.Text = "T2 Heated Time";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label34.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label34.Location = new System.Drawing.Point(9, 370);
+            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(91, 13);
+            this.label34.TabIndex = 55;
+            this.label34.Text = "T1 Heated Time";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label33.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label33.Location = new System.Drawing.Point(9, 355);
+            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(91, 13);
+            this.label33.TabIndex = 54;
+            this.label33.Text = "T0 Heated Time";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label32.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label32.Location = new System.Drawing.Point(9, 276);
+            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(151, 13);
+            this.label32.TabIndex = 53;
+            this.label32.Text = "T3 Extruded Filament (m)";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label31.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label31.Location = new System.Drawing.Point(9, 261);
+            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(151, 13);
+            this.label31.TabIndex = 52;
+            this.label31.Text = "T2 Extruded Filament (m)";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label30.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label30.Location = new System.Drawing.Point(9, 246);
+            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(151, 13);
+            this.label30.TabIndex = 51;
+            this.label30.Text = "T1 Extruded Filament (m)";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label29.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label29.Location = new System.Drawing.Point(9, 231);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(151, 13);
+            this.label29.TabIndex = 50;
+            this.label29.Text = "T0 Extruded Filament (m)";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label28.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label28.Location = new System.Drawing.Point(9, 210);
+            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(133, 13);
+            this.label28.TabIndex = 49;
+            this.label28.Text = "Z Travel distance (m)";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label27.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label27.Location = new System.Drawing.Point(9, 196);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(133, 13);
+            this.label27.TabIndex = 48;
+            this.label27.Text = "Y Travel distance (m)";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label26.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label26.Location = new System.Drawing.Point(9, 181);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(133, 13);
+            this.label26.TabIndex = 47;
+            this.label26.Text = "X Travel distance (m)";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label25.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label25.Location = new System.Drawing.Point(33, 159);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(67, 13);
+            this.label25.TabIndex = 46;
+            this.label25.Text = "Print Life";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label24.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label24.Location = new System.Drawing.Point(33, 144);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(85, 13);
+            this.label24.TabIndex = 45;
+            this.label24.Text = "Power On Time";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label23.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label23.Location = new System.Drawing.Point(33, 129);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(79, 13);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "Power Cycles";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label22.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label22.Location = new System.Drawing.Point(9, 114);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(121, 13);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "Lifetime Statistics";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label21.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label21.Location = new System.Drawing.Point(33, 91);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(19, 13);
+            this.label21.TabIndex = 42;
+            this.label21.Text = "T3";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label20.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label20.Location = new System.Drawing.Point(33, 76);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(19, 13);
+            this.label20.TabIndex = 41;
+            this.label20.Text = "T2";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label19.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label19.Location = new System.Drawing.Point(33, 61);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(19, 13);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "T1";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label18.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label18.Location = new System.Drawing.Point(33, 46);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 13);
+            this.label18.TabIndex = 39;
+            this.label18.Text = "T0";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label17.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label17.Location = new System.Drawing.Point(9, 31);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(85, 13);
+            this.label17.TabIndex = 38;
+            this.label17.Text = "Duese Abstand";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label16.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label16.Location = new System.Drawing.Point(9, 12);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(103, 13);
+            this.label16.TabIndex = 37;
+            this.label16.Text = "Firmware Version";
+            // 
+            // timer_temp
+            // 
+            this.timer_temp.Enabled = true;
+            this.timer_temp.Interval = 3000;
+            this.timer_temp.Tick += new System.EventHandler(this.timer_temp_Tick);
+            // 
+            // worker
+            // 
+            this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -2018,7 +2243,7 @@ namespace MultecPlugin
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tabControl1);
             this.Name = "MultecTouchpanel";
-            this.Size = new System.Drawing.Size(563, 554);
+            this.Size = new System.Drawing.Size(562, 554);
             tabpage2.ResumeLayout(false);
             tabpage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -2029,13 +2254,13 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2153,39 +2378,54 @@ namespace MultecPlugin
         private Button btnAktualise;
         private Button btnFeinadjustment;
         private Label label38;
-        private Label label39;
-        private Label label40;
-        private Label label41;
-        private Label label42;
-        private Label label43;
-        private Label label44;
-        private Label label45;
-        private Label label46;
-        private Label label47;
-        private Label label48;
-        private Label label49;
-        private Label label50;
-        private Label label51;
-        private Label label52;
-        private Label label53;
+        private Label lblMoveFailure;
+        private Label lblHeatedTotalT3;
+        private Label lblHeatedTotalT2;
+        private Label lblHeatedTotalT1;
+        private Label lblHeatedTotalT0;
+        private Label lblExtrudedTotalT3;
+        private Label lblExtrudedTotalT2;
+        private Label lblExtrudedTotalT1;
+        private Label lblExtrudedTotalT0;
+        private Label lblTotalDistanceZ;
+        private Label lblTotalDistanceY;
+        private Label lblTotalDistanceX;
+        private Label lblTotalPrntLife;
+        private Label lblTotalPwrON;
+        private Label lblTotalPwrCycle;
         private Label label54;
-        private Label label55;
-        private Label label56;
-        private Label label57;
-        private Label label58;
+        private Label lblAbstandT3;
+        private Label lblAbstandT2;
+        private Label lblAbstandT1;
+        private Label lblAbstandT0;
         private Label lblFirmware;
-        private Label label67;
-        private Label label68;
-        private Label label69;
+        private Label lblSrvcPrntLife;
+        private Label lblSrvcPwrON;
+        private Label lblSrvcPwrCycle;
         private Label label70;
-        private Label label63;
-        private Label label64;
-        private Label label65;
-        private Label label66;
+        private Label lblKgTotalT3;
+        private Label lblKgTotalT2;
+        private Label lblKgTotalT1;
+        private Label lblKgTotalT0;
         private Label label59;
         private Label label60;
         private Label label61;
         private Label label62;
         private MyCustomButton.MyCustomButton btnZPlus;
+        private Label lblSrvcDistanceZ;
+        private Label lblSrvcDistanceY;
+        private Label lblSrvcDistanceX;
+        private Label lblKgSrvcT3;
+        private Label lblKgSrvcT2;
+        private Label lblKgSrvcT1;
+        private Label lblKgSrvcT0;
+        private Label lblHeatedSrvcT3;
+        private Label lblHeatedSrvcT2;
+        private Label lblHeatedSrvcT1;
+        private Label lblHeatedSrvcT0;
+        private Label lblExtrudedSrvcT3;
+        private Label lblExtrudedSrvcT2;
+        private Label lblExtrudedSrvcT1;
+        private Label lblExtrudedSrvcT0;
     }
 }

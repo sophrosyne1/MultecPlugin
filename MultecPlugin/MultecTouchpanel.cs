@@ -97,6 +97,15 @@ namespace MultecPlugin
         private bool Bed_On;
         private string selected_nozzle;
         private int count = 0;
+        private string zOffset_T0;
+        private string zOffset_T1;
+        private string zOffset_T2;
+        private string zOffset_T3;
+        private string rotationOffset;
+        private string abstand;
+        private string optimal_Abstand;
+        private string zKorrektur;
+        private int lifetimeCheck = 0;
 
 
 
@@ -185,6 +194,23 @@ namespace MultecPlugin
             {
                 host.Connection.injectManualCommand("G295");
                 host.Connection.injectManualCommand("G296");
+                host.Connection.injectManualCommand("M503");
+
+                while (host.IsJobRunning)
+                {
+                    Thread.Sleep(1000);
+                    if (!host.IsJobRunning)
+                    {
+                        break;
+                    }
+                }
+                
+                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\tT0: " + zOffset_T0 + " mm"
+                        + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + "\t\tT3: "
+                        + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
+                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
+                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung");
+                
             }
         }
 
@@ -573,21 +599,9 @@ namespace MultecPlugin
             }
         }
 
-        private void text_T0_Aktuell_TextChanged(object sender, EventArgs e)
-        {
+       
 
-        }
-
-        private void but_tester_Click(object sender, EventArgs e)
-        {
-            text_T0_Aktuell.Text = host.Connection.ExtruderTemp.ToString();
-            //text_T0_Aktuell.Text = host.Connection.getTemperature(0).ToString;
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
 
 
@@ -638,6 +652,7 @@ namespace MultecPlugin
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
 
+                
                 if (tool_M218 == "T1")
                 {
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -683,13 +698,39 @@ namespace MultecPlugin
                         text_M218_Y.Text = yOffset;
                     }
                 }
+                if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T0 = response.Substring(startindex + 1);
+                    lblAbstandT0.Text = zOffset_T0;
+
+                }
+                if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T1 = response.Substring(startindex + 1);
+                    lblAbstandT1.Text = zOffset_T1;
+                }
+                if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T2 = response.Substring(startindex + 1);
+                    lblAbstandT2.Text = zOffset_T2;
+                }
+                if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T3 = response.Substring(startindex + 1);
+                    lblAbstandT3.Text = zOffset_T3;
+                }
             }
             if (response.IndexOf("dz_T0_MS_opt", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                    lbl_zOffset.Text = response.Substring(startindex + 4);
+                    optimal_Abstand = response.Substring(startindex + 4);
+                    lbl_zOffset.Text = optimal_Abstand;
                 }
                 else if (response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -699,7 +740,204 @@ namespace MultecPlugin
                 else startindex = 0;
                 lbl_zOffset.Text = response.Substring(startindex + 1);
             }
+            if (response.IndexOf("dz_T0_MS", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (response.IndexOf("opt", StringComparison.CurrentCultureIgnoreCase) == -1)
+                {
+                    if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    { 
+                        startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                        abstand = response.Substring(startindex + 4);
+                        
+                    }
+                }
+                
+            }
+            if (response.IndexOf("Z-Probe Offset", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                
+                if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                    zKorrektur = response.Substring(startindex + 4);
 
+                }
+
+            }
+            if (response.IndexOf("M701", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+                if (response.IndexOf("A", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("A", StringComparison.CurrentCultureIgnoreCase);
+                    rotationOffset = response.Substring(startindex + 1);
+
+                }
+
+            }
+            
+            if (response.IndexOf("Lifetime statisctics (Total)", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                lifetimeCheck = 1;
+            }
+            if (response.IndexOf("Lifetime statisctics (Since last Service)", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                lifetimeCheck = 2;
+            }
+            if (lifetimeCheck == 1)
+            {
+                if (response.IndexOf("powercycle count", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalPwrCycle.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("PowerON Life", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalPwrON.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Print Life", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalPrntLife.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Travelled Distance", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("X=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalDistanceX.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    startindex = response.IndexOf("Y=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalDistanceY.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    startindex = response.IndexOf("Z=", StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalDistanceZ.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
+                }
+                else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT3.Text = response.Substring(startindex + 3);
+                }
+                else if (response.IndexOf("T0 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedTotalT0.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T1 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedTotalT1.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T2 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedTotalT2.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T3 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedTotalT3.Text = response.Substring(startindex + 1);
+                }
+            }
+            if (lifetimeCheck == 2)
+            {
+                if (response.IndexOf("powercycle count", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcPwrCycle.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("PowerON Life", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcPwrON.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Print Life", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcPrntLife.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Travelled Distance", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("X=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcDistanceX.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    startindex = response.IndexOf("Y=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcDistanceY.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    startindex = response.IndexOf("Z=", StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcDistanceZ.Text = response.Substring(startindex + 2);
+                }
+                else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT3.Text = response.Substring(startindex + 3);
+                }
+                else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT3.Text = response.Substring(startindex + 3);
+                }
+                else if (response.IndexOf("T0 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedSrvcT0.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T1 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedSrvcT1.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T2 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedSrvcT2.Text = response.Substring(startindex + 1);
+                }
+                else if (response.IndexOf("T3 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                    lblHeatedSrvcT3.Text = response.Substring(startindex + 1);
+                }
+            }
         }
         //function to remove temperature readings from textboxes
 
@@ -731,16 +969,12 @@ namespace MultecPlugin
             {
 
                 enablDisablWhenPrinting(true);
-                if (text_M218_X.Text == string.Empty || text_M218_Y.Text == string.Empty)
-                {
-                    host.Connection.injectManualCommand("M503");
-                }
+                
             }
             if (host.IsJobRunning)
             {
                 enablDisablWhenPrinting(false);
-                text_M218_X.Text = string.Empty;
-                text_M218_Y.Text = string.Empty;
+                
             }
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
             {
@@ -949,8 +1183,17 @@ namespace MultecPlugin
             }
             if (tabControl1.SelectedIndex == 2)
             {
+                host.Connection.injectManualCommand("M503");
                 host.Connection.injectManualCommand("M513");
+                host.Connection.injectManualCommand("M514");
+
             }
+
+        }
+
+        private void informationUpdating ()
+        {
+
         }
 
         private void btn_xOffset_plus_Click(object sender, EventArgs e)
@@ -1055,5 +1298,13 @@ namespace MultecPlugin
 
 
         }
+
+        private void btnAktualise_Click(object sender, EventArgs e)
+        {
+            host.Connection.injectManualCommand("M513");
+            host.Connection.injectManualCommand("M514");
+        }
+
+  
     }
 }
