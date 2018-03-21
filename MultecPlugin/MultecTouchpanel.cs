@@ -36,7 +36,7 @@ namespace MultecPlugin
 
         public MultecTouchpanel()
         {
-
+            
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
 
@@ -374,7 +374,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature less than 170.");
+                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -392,7 +393,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature greater than 270.");
+                    MessageBox.Show("Maximales Temperaturlimit erreicht!! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -480,7 +482,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature less than 0.");
+                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -499,7 +502,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimum Temperature Limit reached!! Not possible to set temperature greater than 100.");
+                    MessageBox.Show("Maximales Temperaturlimit erreicht !! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -617,7 +621,7 @@ namespace MultecPlugin
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Ocurred! " + ex + " Temperature not updating!");
+                MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Temperatur wird nicht aktualisiert!");
             }
         }
 
@@ -639,14 +643,23 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-
+            if (response.IndexOf("Call G222 first", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (response.IndexOf("Cold extrusion prevented", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                MessageBox.Show("Düsentemperatur zu gering. Extrusion nicht verfügbar. Bitte Düse aufheizen.", "Warnung!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 + " mm"
-                       + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + "\t\tT3: "
-                       + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
+                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 + 
+                       " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + 
+                       "\t\tT3: "+ zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
-                       "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung");
+                       "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1363,24 +1376,38 @@ namespace MultecPlugin
         private void btn_zOffset_plus_Click(object sender, EventArgs e)
         {
             zOffsetMultiplyer = zOffsetMultiplyer + 1;
-            
+
             newOffset = double.Parse(lbl_zOffset.Text) + 0.05;
-            lbl_zOffset.Text = newOffset.ToString();
-           
+            if (newOffset < 7)
+            {
+                lbl_zOffset.Text = newOffset.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Der Z-Wert kann nicht größer als 7 mm sein.", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btn_zOffset_minus_Click(object sender, EventArgs e)
         {
             zOffsetMultiplyer = zOffsetMultiplyer - 1;
             newOffset = double.Parse(lbl_zOffset.Text) - 0.05;
-            lbl_zOffset.Text = newOffset.ToString();
-            
+            if (newOffset > -7)
+            {
+                lbl_zOffset.Text = newOffset.ToString();
+            }
+            else
+            { 
+                MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var ms = MessageBox.Show("Warning!! The printer will now execute a home all. Make sure the Bed is clear" + Environment.NewLine +
-                "Press Okay to continue", "WARNING!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            var ms = MessageBox.Show("Warnung!! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
+                "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (ms == DialogResult.OK)
             {
                 host.Connection.injectManualCommand("G222");
@@ -1462,8 +1489,8 @@ namespace MultecPlugin
 
             relativOffset = zOffsetMultiplyer * 0.05;
             zOffsetMultiplyer = 0;
-            var mbox = MessageBox.Show("Going to send" + relativOffset + "in M702." + Environment.NewLine +
-                "Press Okay to CONTINUE!! If this is the right value","Warning!!", MessageBoxButtons.OKCancel);
+            var mbox = MessageBox.Show("Going to send " + relativOffset + " in M702." + Environment.NewLine +
+                "Press Okay to CONTINUE!! If this is the right value","Warning!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (mbox == DialogResult.OK)
             {
@@ -1511,5 +1538,7 @@ namespace MultecPlugin
                 }
             }
         }
+
+        
     }
 }
