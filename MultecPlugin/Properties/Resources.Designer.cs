@@ -133,6 +133,26 @@ namespace MultecPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap extract {
+            get {
+                object obj = ResourceManager.GetObject("extract", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap extract_p {
+            get {
+                object obj = ResourceManager.GetObject("extract_p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fifty_mm {
             get {
                 object obj = ResourceManager.GetObject("fifty_mm", resourceCulture);
@@ -156,6 +176,16 @@ namespace MultecPlugin.Properties {
         internal static System.Drawing.Bitmap HOME_Move {
             get {
                 object obj = ResourceManager.GetObject("HOME_Move", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HOME_Move_p {
+            get {
+                object obj = ResourceManager.GetObject("HOME_Move_p", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,6 +283,26 @@ namespace MultecPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap retract {
+            get {
+                object obj = ResourceManager.GetObject("retract", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap retract_p {
+            get {
+                object obj = ResourceManager.GetObject("retract_p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap right_normal {
             get {
                 object obj = ResourceManager.GetObject("right_normal", resourceCulture);
@@ -276,6 +326,26 @@ namespace MultecPlugin.Properties {
         internal static System.Drawing.Bitmap T0 {
             get {
                 object obj = ResourceManager.GetObject("T0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T0_p {
+            get {
+                object obj = ResourceManager.GetObject("T0_p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T01 {
+            get {
+                object obj = ResourceManager.GetObject("T01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -426,6 +496,26 @@ namespace MultecPlugin.Properties {
         internal static System.Drawing.Bitmap z_plus {
             get {
                 object obj = ResourceManager.GetObject("z_plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zminus {
+            get {
+                object obj = ResourceManager.GetObject("Zminus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zminus_p {
+            get {
+                object obj = ResourceManager.GetObject("Zminus_p", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

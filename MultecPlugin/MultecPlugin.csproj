@@ -67,6 +67,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -99,9 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fifty_mm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HOME Move.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HOME.png" />
@@ -182,12 +180,6 @@
     <None Include="Resources\image008.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\X+.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\X-.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\xPlus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +199,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zPlus1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zminus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zminus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retract_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\extract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\extract_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_Move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_Move_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0_p.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

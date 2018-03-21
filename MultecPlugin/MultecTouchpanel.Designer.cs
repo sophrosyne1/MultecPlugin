@@ -33,6 +33,19 @@ namespace MultecPlugin
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabpage2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultecTouchpanel));
+            this.btn_zOffset_send = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.lblFilamentT3 = new System.Windows.Forms.Label();
+            this.lblFilamentT2 = new System.Windows.Forms.Label();
+            this.lblFilamentT0 = new System.Windows.Forms.Label();
+            this.lblFilamentT1 = new System.Windows.Forms.Label();
+            this.filamentAktualize = new System.Windows.Forms.Button();
+            this.lblFilamentStatus = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.btnFeinadjustment = new System.Windows.Forms.Button();
             this.btn_yOffset_send = new System.Windows.Forms.Button();
@@ -64,16 +77,11 @@ namespace MultecPlugin
             this.but_step_1 = new System.Windows.Forms.Button();
             this.but_step_10 = new System.Windows.Forms.Button();
             this.but_step_50 = new System.Windows.Forms.Button();
-            this.but_Zminus = new System.Windows.Forms.Button();
-            this.but_Extrude = new System.Windows.Forms.Button();
-            this.but_Retract = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.but_MOVE = new System.Windows.Forms.Button();
             this.but_T3 = new System.Windows.Forms.Button();
             this.but_T2 = new System.Windows.Forms.Button();
             this.but_T1 = new System.Windows.Forms.Button();
-            this.but_T0 = new System.Windows.Forms.Button();
-            this.but_G222 = new System.Windows.Forms.Button();
             this.but_G224 = new System.Windows.Forms.Button();
             this.but_MotorAus = new System.Windows.Forms.Button();
             this.but_T0_OnOff = new System.Windows.Forms.Button();
@@ -110,12 +118,15 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
-            this.btnZPlus = new MyCustomButton.MyCustomButton();
-            this.btnYPlus = new MyCustomButton.MyCustomButton();
-            this.btnYMinus = new MyCustomButton.MyCustomButton();
-            this.btnXPlus = new MyCustomButton.MyCustomButton();
-            this.btnXMinus = new MyCustomButton.MyCustomButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblZKorrektur = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.lblDisatance = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.lblOptimalDistance = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.lblRotationalOffset = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.lblKgSrvcT3 = new System.Windows.Forms.Label();
             this.lblKgSrvcT2 = new System.Windows.Forms.Label();
             this.lblKgSrvcT1 = new System.Windows.Forms.Label();
@@ -143,7 +154,6 @@ namespace MultecPlugin
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.lblMoveFailure = new System.Windows.Forms.Label();
             this.lblHeatedTotalT3 = new System.Windows.Forms.Label();
             this.lblHeatedTotalT2 = new System.Windows.Forms.Label();
             this.lblHeatedTotalT1 = new System.Windows.Forms.Label();
@@ -165,7 +175,6 @@ namespace MultecPlugin
             this.lblAbstandT0 = new System.Windows.Forms.Label();
             this.lblFirmware = new System.Windows.Forms.Label();
             this.btnAktualise = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
@@ -189,8 +198,19 @@ namespace MultecPlugin
             this.label16 = new System.Windows.Forms.Label();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
+            this.btnHomeMove = new MyCustomButton.MyCustomButton();
+            this.btnExtrude = new MyCustomButton.MyCustomButton();
+            this.btnRetract = new MyCustomButton.MyCustomButton();
+            this.btnZminus = new MyCustomButton.MyCustomButton();
+            this.btnZPlus = new MyCustomButton.MyCustomButton();
+            this.btnYPlus = new MyCustomButton.MyCustomButton();
+            this.btnYMinus = new MyCustomButton.MyCustomButton();
+            this.btnXPlus = new MyCustomButton.MyCustomButton();
+            this.btnT0 = new MyCustomButton.MyCustomButton();
+            this.btnXMinus = new MyCustomButton.MyCustomButton();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -198,17 +218,24 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).BeginInit();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabpage2
             // 
             tabpage2.BackColor = System.Drawing.SystemColors.Control;
+            tabpage2.Controls.Add(this.btn_zOffset_send);
+            tabpage2.Controls.Add(this.groupBox4);
             tabpage2.Controls.Add(this.label38);
             tabpage2.Controls.Add(this.btnFeinadjustment);
             tabpage2.Controls.Add(this.btn_yOffset_send);
@@ -240,12 +267,148 @@ namespace MultecPlugin
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
             // 
+            // btn_zOffset_send
+            // 
+            this.btn_zOffset_send.Enabled = false;
+            this.btn_zOffset_send.Location = new System.Drawing.Point(146, 214);
+            this.btn_zOffset_send.Name = "btn_zOffset_send";
+            this.btn_zOffset_send.Size = new System.Drawing.Size(88, 33);
+            this.btn_zOffset_send.TabIndex = 61;
+            this.btn_zOffset_send.Text = "Schicken";
+            this.btn_zOffset_send.UseVisualStyleBackColor = true;
+            this.btn_zOffset_send.Click += new System.EventHandler(this.btn_zOffset_send_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label49);
+            this.groupBox4.Controls.Add(this.label48);
+            this.groupBox4.Controls.Add(this.label47);
+            this.groupBox4.Controls.Add(this.label46);
+            this.groupBox4.Controls.Add(this.lblFilamentT3);
+            this.groupBox4.Controls.Add(this.lblFilamentT2);
+            this.groupBox4.Controls.Add(this.lblFilamentT0);
+            this.groupBox4.Controls.Add(this.lblFilamentT1);
+            this.groupBox4.Controls.Add(this.filamentAktualize);
+            this.groupBox4.Controls.Add(this.lblFilamentStatus);
+            this.groupBox4.Location = new System.Drawing.Point(175, 257);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(336, 206);
+            this.groupBox4.TabIndex = 60;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Filament Überwachung";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(4, 173);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(24, 16);
+            this.label49.TabIndex = 9;
+            this.label49.Text = "T3";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(4, 138);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(24, 16);
+            this.label48.TabIndex = 8;
+            this.label48.Text = "T2";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(4, 103);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(24, 16);
+            this.label47.TabIndex = 7;
+            this.label47.Text = "T1";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(4, 68);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(24, 16);
+            this.label46.TabIndex = 6;
+            this.label46.Text = "T0";
+            // 
+            // lblFilamentT3
+            // 
+            this.lblFilamentT3.AutoSize = true;
+            this.lblFilamentT3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFilamentT3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilamentT3.Location = new System.Drawing.Point(31, 167);
+            this.lblFilamentT3.Name = "lblFilamentT3";
+            this.lblFilamentT3.Size = new System.Drawing.Size(59, 26);
+            this.lblFilamentT3.TabIndex = 5;
+            this.lblFilamentT3.Text = "NULL";
+            // 
+            // lblFilamentT2
+            // 
+            this.lblFilamentT2.AutoSize = true;
+            this.lblFilamentT2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFilamentT2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilamentT2.Location = new System.Drawing.Point(31, 133);
+            this.lblFilamentT2.Name = "lblFilamentT2";
+            this.lblFilamentT2.Size = new System.Drawing.Size(59, 26);
+            this.lblFilamentT2.TabIndex = 4;
+            this.lblFilamentT2.Text = "NULL";
+            // 
+            // lblFilamentT0
+            // 
+            this.lblFilamentT0.AutoSize = true;
+            this.lblFilamentT0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFilamentT0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilamentT0.Location = new System.Drawing.Point(31, 63);
+            this.lblFilamentT0.Name = "lblFilamentT0";
+            this.lblFilamentT0.Size = new System.Drawing.Size(59, 26);
+            this.lblFilamentT0.TabIndex = 3;
+            this.lblFilamentT0.Text = "NULL";
+            // 
+            // lblFilamentT1
+            // 
+            this.lblFilamentT1.AutoSize = true;
+            this.lblFilamentT1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFilamentT1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilamentT1.Location = new System.Drawing.Point(31, 98);
+            this.lblFilamentT1.Name = "lblFilamentT1";
+            this.lblFilamentT1.Size = new System.Drawing.Size(59, 26);
+            this.lblFilamentT1.TabIndex = 2;
+            this.lblFilamentT1.Text = "NULL";
+            // 
+            // filamentAktualize
+            // 
+            this.filamentAktualize.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.filamentAktualize.Location = new System.Drawing.Point(230, 27);
+            this.filamentAktualize.Name = "filamentAktualize";
+            this.filamentAktualize.Size = new System.Drawing.Size(98, 25);
+            this.filamentAktualize.TabIndex = 1;
+            this.filamentAktualize.Text = "Aktualizieren";
+            this.filamentAktualize.UseVisualStyleBackColor = true;
+            this.filamentAktualize.Click += new System.EventHandler(this.filamentAktualize_Click);
+            // 
+            // lblFilamentStatus
+            // 
+            this.lblFilamentStatus.AutoSize = true;
+            this.lblFilamentStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblFilamentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilamentStatus.Location = new System.Drawing.Point(31, 26);
+            this.lblFilamentStatus.Name = "lblFilamentStatus";
+            this.lblFilamentStatus.Size = new System.Drawing.Size(59, 26);
+            this.lblFilamentStatus.TabIndex = 0;
+            this.lblFilamentStatus.Text = "NULL";
+            // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Enabled = false;
             this.label38.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label38.Location = new System.Drawing.Point(4, 144);
+            this.label38.Location = new System.Drawing.Point(4, 142);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(20, 13);
@@ -255,7 +418,7 @@ namespace MultecPlugin
             // btnFeinadjustment
             // 
             this.btnFeinadjustment.Enabled = false;
-            this.btnFeinadjustment.Location = new System.Drawing.Point(5, 158);
+            this.btnFeinadjustment.Location = new System.Drawing.Point(7, 155);
             this.btnFeinadjustment.Name = "btnFeinadjustment";
             this.btnFeinadjustment.Size = new System.Drawing.Size(133, 52);
             this.btnFeinadjustment.TabIndex = 58;
@@ -321,7 +484,7 @@ namespace MultecPlugin
             // btn_zOffset_plus
             // 
             this.btn_zOffset_plus.Enabled = false;
-            this.btn_zOffset_plus.Location = new System.Drawing.Point(118, 213);
+            this.btn_zOffset_plus.Location = new System.Drawing.Point(103, 213);
             this.btn_zOffset_plus.Name = "btn_zOffset_plus";
             this.btn_zOffset_plus.Size = new System.Drawing.Size(37, 36);
             this.btn_zOffset_plus.TabIndex = 52;
@@ -494,7 +657,7 @@ namespace MultecPlugin
             this.but_G297.Name = "but_G297";
             this.but_G297.Size = new System.Drawing.Size(133, 52);
             this.but_G297.TabIndex = 14;
-            this.but_G297.Text = "Position Pruefen";
+            this.but_G297.Text = "Position Prüfen";
             this.but_G297.UseVisualStyleBackColor = true;
             this.but_G297.Click += new System.EventHandler(this.but_G297_Click);
             // 
@@ -505,7 +668,7 @@ namespace MultecPlugin
             this.but_G295.Name = "but_G295";
             this.but_G295.Size = new System.Drawing.Size(133, 52);
             this.but_G295.TabIndex = 13;
-            this.but_G295.Text = "Duesenvermessung";
+            this.but_G295.Text = "Düsenvermessung";
             this.but_G295.UseVisualStyleBackColor = true;
             this.but_G295.Click += new System.EventHandler(this.but_G295_Click);
             // 
@@ -571,7 +734,6 @@ namespace MultecPlugin
             // 
             // but_step_10
             // 
-            this.but_step_10.Enabled = false;
             this.but_step_10.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_step_10.Location = new System.Drawing.Point(4, 60);
             this.but_step_10.Margin = new System.Windows.Forms.Padding(2);
@@ -584,7 +746,6 @@ namespace MultecPlugin
             // 
             // but_step_50
             // 
-            this.but_step_50.Enabled = false;
             this.but_step_50.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_step_50.Location = new System.Drawing.Point(4, 16);
             this.but_step_50.Margin = new System.Windows.Forms.Padding(2);
@@ -595,46 +756,13 @@ namespace MultecPlugin
             this.but_step_50.UseVisualStyleBackColor = true;
             this.but_step_50.Click += new System.EventHandler(this.but_step_50_Click);
             // 
-            // but_Zminus
-            // 
-            this.but_Zminus.Enabled = false;
-            this.but_Zminus.Location = new System.Drawing.Point(318, 106);
-            this.but_Zminus.Name = "but_Zminus";
-            this.but_Zminus.Size = new System.Drawing.Size(70, 70);
-            this.but_Zminus.TabIndex = 6;
-            this.but_Zminus.Text = "Z-";
-            this.but_Zminus.UseVisualStyleBackColor = true;
-            this.but_Zminus.Click += new System.EventHandler(this.but_Zminus_Click);
-            // 
-            // but_Extrude
-            // 
-            this.but_Extrude.Enabled = false;
-            this.but_Extrude.Location = new System.Drawing.Point(394, 106);
-            this.but_Extrude.Name = "but_Extrude";
-            this.but_Extrude.Size = new System.Drawing.Size(70, 70);
-            this.but_Extrude.TabIndex = 8;
-            this.but_Extrude.Text = "Extrude";
-            this.but_Extrude.UseVisualStyleBackColor = true;
-            this.but_Extrude.Click += new System.EventHandler(this.but_Extrude_Click);
-            // 
-            // but_Retract
-            // 
-            this.but_Retract.Enabled = false;
-            this.but_Retract.Location = new System.Drawing.Point(394, 14);
-            this.but_Retract.Name = "but_Retract";
-            this.but_Retract.Size = new System.Drawing.Size(70, 70);
-            this.but_Retract.TabIndex = 7;
-            this.but_Retract.Text = "Retract";
-            this.but_Retract.UseVisualStyleBackColor = true;
-            this.but_Retract.Click += new System.EventHandler(this.but_Retract_Click);
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnT0);
             this.groupBox2.Controls.Add(this.but_MOVE);
             this.groupBox2.Controls.Add(this.but_T3);
             this.groupBox2.Controls.Add(this.but_T2);
             this.groupBox2.Controls.Add(this.but_T1);
-            this.groupBox2.Controls.Add(this.but_T0);
             this.groupBox2.Location = new System.Drawing.Point(130, 185);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(334, 66);
@@ -687,32 +815,10 @@ namespace MultecPlugin
             this.but_T1.UseVisualStyleBackColor = true;
             this.but_T1.Click += new System.EventHandler(this.but_T1_Click);
             // 
-            // but_T0
-            // 
-            this.but_T0.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_T0.Location = new System.Drawing.Point(6, 19);
-            this.but_T0.Name = "but_T0";
-            this.but_T0.Size = new System.Drawing.Size(60, 40);
-            this.but_T0.TabIndex = 0;
-            this.but_T0.Text = "T0";
-            this.but_T0.UseVisualStyleBackColor = true;
-            this.but_T0.Click += new System.EventHandler(this.but_T0_Click);
-            // 
-            // but_G222
-            // 
-            this.but_G222.Enabled = false;
-            this.but_G222.Location = new System.Drawing.Point(9, 249);
-            this.but_G222.Name = "but_G222";
-            this.but_G222.Size = new System.Drawing.Size(60, 40);
-            this.but_G222.TabIndex = 5;
-            this.but_G222.Text = "Home MOVE";
-            this.but_G222.UseVisualStyleBackColor = true;
-            this.but_G222.Click += new System.EventHandler(this.but_G222_Click);
-            // 
             // but_G224
             // 
             this.but_G224.Enabled = false;
-            this.but_G224.Location = new System.Drawing.Point(9, 295);
+            this.but_G224.Location = new System.Drawing.Point(9, 320);
             this.but_G224.Name = "but_G224";
             this.but_G224.Size = new System.Drawing.Size(60, 40);
             this.but_G224.TabIndex = 10;
@@ -951,7 +1057,7 @@ namespace MultecPlugin
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(99, 304);
+            this.label1.Location = new System.Drawing.Point(111, 307);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 13);
@@ -962,7 +1068,7 @@ namespace MultecPlugin
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(84, 322);
+            this.label2.Location = new System.Drawing.Point(96, 325);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
@@ -973,7 +1079,7 @@ namespace MultecPlugin
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(84, 350);
+            this.label3.Location = new System.Drawing.Point(96, 353);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
@@ -984,7 +1090,7 @@ namespace MultecPlugin
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(61, 363);
+            this.label4.Location = new System.Drawing.Point(73, 366);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
@@ -995,7 +1101,7 @@ namespace MultecPlugin
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label5.Location = new System.Drawing.Point(62, 415);
+            this.label5.Location = new System.Drawing.Point(74, 418);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
@@ -1006,7 +1112,7 @@ namespace MultecPlugin
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label6.Location = new System.Drawing.Point(76, 402);
+            this.label6.Location = new System.Drawing.Point(88, 405);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
@@ -1096,6 +1202,10 @@ namespace MultecPlugin
             // TouchControl
             // 
             this.TouchControl.BackColor = System.Drawing.SystemColors.Control;
+            this.TouchControl.Controls.Add(this.btnHomeMove);
+            this.TouchControl.Controls.Add(this.btnExtrude);
+            this.TouchControl.Controls.Add(this.btnRetract);
+            this.TouchControl.Controls.Add(this.btnZminus);
             this.TouchControl.Controls.Add(this.btnZPlus);
             this.TouchControl.Controls.Add(this.btnYPlus);
             this.TouchControl.Controls.Add(this.btnYMinus);
@@ -1109,15 +1219,11 @@ namespace MultecPlugin
             this.TouchControl.Controls.Add(this.label7);
             this.TouchControl.Controls.Add(this.label5);
             this.TouchControl.Controls.Add(this.label6);
-            this.TouchControl.Controls.Add(this.but_Zminus);
             this.TouchControl.Controls.Add(this.label4);
-            this.TouchControl.Controls.Add(this.but_Retract);
             this.TouchControl.Controls.Add(this.label3);
-            this.TouchControl.Controls.Add(this.but_Extrude);
             this.TouchControl.Controls.Add(this.label2);
             this.TouchControl.Controls.Add(this.groupBox2);
             this.TouchControl.Controls.Add(this.label1);
-            this.TouchControl.Controls.Add(this.but_G222);
             this.TouchControl.Controls.Add(this.text_Bed_Aktuell);
             this.TouchControl.Controls.Add(this.but_G224);
             this.TouchControl.Controls.Add(this.text_Bed_ziel);
@@ -1149,84 +1255,17 @@ namespace MultecPlugin
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
             // 
-            // btnZPlus
-            // 
-            this.btnZPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnZPlus.Image = global::MultecPlugin.Properties.Resources.zPlus;
-            this.btnZPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zplus_p;
-            this.btnZPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlus;
-            this.btnZPlus.Location = new System.Drawing.Point(318, 14);
-            this.btnZPlus.Name = "btnZPlus";
-            this.btnZPlus.Size = new System.Drawing.Size(70, 70);
-            this.btnZPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZPlus.TabIndex = 51;
-            this.btnZPlus.TabStop = false;
-            this.btnZPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_1);
-            // 
-            // btnYPlus
-            // 
-            this.btnYPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYPlus.Enabled = false;
-            this.btnYPlus.Image = global::MultecPlugin.Properties.Resources.up_normal;
-            this.btnYPlus.ImageClicked = global::MultecPlugin.Properties.Resources.up_pressed;
-            this.btnYPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.up_normal;
-            this.btnYPlus.Location = new System.Drawing.Point(134, 14);
-            this.btnYPlus.Name = "btnYPlus";
-            this.btnYPlus.Size = new System.Drawing.Size(85, 50);
-            this.btnYPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYPlus.TabIndex = 48;
-            this.btnYPlus.TabStop = false;
-            this.btnYPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton2_Click);
-            // 
-            // btnYMinus
-            // 
-            this.btnYMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYMinus.Enabled = false;
-            this.btnYMinus.Image = global::MultecPlugin.Properties.Resources.bottom_normal;
-            this.btnYMinus.ImageClicked = global::MultecPlugin.Properties.Resources.bottom_pressed;
-            this.btnYMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.bottom_normal;
-            this.btnYMinus.Location = new System.Drawing.Point(135, 134);
-            this.btnYMinus.Name = "btnYMinus";
-            this.btnYMinus.Size = new System.Drawing.Size(83, 47);
-            this.btnYMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYMinus.TabIndex = 50;
-            this.btnYMinus.TabStop = false;
-            this.btnYMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton4_Click);
-            // 
-            // btnXPlus
-            // 
-            this.btnXPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXPlus.Enabled = false;
-            this.btnXPlus.Image = global::MultecPlugin.Properties.Resources.right_normal;
-            this.btnXPlus.ImageClicked = global::MultecPlugin.Properties.Resources.right_pressed;
-            this.btnXPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.right_normal;
-            this.btnXPlus.Location = new System.Drawing.Point(202, 62);
-            this.btnXPlus.Name = "btnXPlus";
-            this.btnXPlus.Size = new System.Drawing.Size(73, 73);
-            this.btnXPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXPlus.TabIndex = 49;
-            this.btnXPlus.TabStop = false;
-            this.btnXPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton3_Click);
-            // 
-            // btnXMinus
-            // 
-            this.btnXMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXMinus.Enabled = false;
-            this.btnXMinus.Image = global::MultecPlugin.Properties.Resources.left_normal;
-            this.btnXMinus.ImageClicked = global::MultecPlugin.Properties.Resources.left_pressed;
-            this.btnXMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.left_normal;
-            this.btnXMinus.Location = new System.Drawing.Point(79, 61);
-            this.btnXMinus.Name = "btnXMinus";
-            this.btnXMinus.Size = new System.Drawing.Size(65, 74);
-            this.btnXMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXMinus.TabIndex = 47;
-            this.btnXMinus.TabStop = false;
-            this.btnXMinus.Click += new System.EventHandler(this.myCustomButton1_Click);
-            this.btnXMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
-            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.lblZKorrektur);
+            this.tabPage1.Controls.Add(this.label43);
+            this.tabPage1.Controls.Add(this.lblDisatance);
+            this.tabPage1.Controls.Add(this.label40);
+            this.tabPage1.Controls.Add(this.lblOptimalDistance);
+            this.tabPage1.Controls.Add(this.label42);
+            this.tabPage1.Controls.Add(this.lblRotationalOffset);
+            this.tabPage1.Controls.Add(this.label39);
             this.tabPage1.Controls.Add(this.lblKgSrvcT3);
             this.tabPage1.Controls.Add(this.lblKgSrvcT2);
             this.tabPage1.Controls.Add(this.lblKgSrvcT1);
@@ -1254,7 +1293,6 @@ namespace MultecPlugin
             this.tabPage1.Controls.Add(this.label60);
             this.tabPage1.Controls.Add(this.label61);
             this.tabPage1.Controls.Add(this.label62);
-            this.tabPage1.Controls.Add(this.lblMoveFailure);
             this.tabPage1.Controls.Add(this.lblHeatedTotalT3);
             this.tabPage1.Controls.Add(this.lblHeatedTotalT2);
             this.tabPage1.Controls.Add(this.lblHeatedTotalT1);
@@ -1276,7 +1314,6 @@ namespace MultecPlugin
             this.tabPage1.Controls.Add(this.lblAbstandT0);
             this.tabPage1.Controls.Add(this.lblFirmware);
             this.tabPage1.Controls.Add(this.btnAktualise);
-            this.tabPage1.Controls.Add(this.label37);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.label35);
             this.tabPage1.Controls.Add(this.label34);
@@ -1304,6 +1341,110 @@ namespace MultecPlugin
             this.tabPage1.Size = new System.Drawing.Size(555, 499);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
+            // 
+            // lblZKorrektur
+            // 
+            this.lblZKorrektur.AutoSize = true;
+            this.lblZKorrektur.BackColor = System.Drawing.SystemColors.Control;
+            this.lblZKorrektur.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZKorrektur.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblZKorrektur.Location = new System.Drawing.Point(465, 76);
+            this.lblZKorrektur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblZKorrektur.Name = "lblZKorrektur";
+            this.lblZKorrektur.Size = new System.Drawing.Size(31, 13);
+            this.lblZKorrektur.TabIndex = 116;
+            this.lblZKorrektur.Text = "NULL";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.SystemColors.Control;
+            this.label43.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label43.Location = new System.Drawing.Point(334, 76);
+            this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(109, 13);
+            this.label43.TabIndex = 115;
+            this.label43.Text = "Z-Correction (mm)";
+            // 
+            // lblDisatance
+            // 
+            this.lblDisatance.AutoSize = true;
+            this.lblDisatance.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDisatance.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisatance.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblDisatance.Location = new System.Drawing.Point(465, 46);
+            this.lblDisatance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDisatance.Name = "lblDisatance";
+            this.lblDisatance.Size = new System.Drawing.Size(31, 13);
+            this.lblDisatance.TabIndex = 114;
+            this.lblDisatance.Text = "NULL";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.BackColor = System.Drawing.SystemColors.Control;
+            this.label40.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label40.Location = new System.Drawing.Point(250, 46);
+            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(193, 13);
+            this.label40.TabIndex = 113;
+            this.label40.Text = "Distance T0 <-> Multisense (mm)";
+            // 
+            // lblOptimalDistance
+            // 
+            this.lblOptimalDistance.AutoSize = true;
+            this.lblOptimalDistance.BackColor = System.Drawing.SystemColors.Control;
+            this.lblOptimalDistance.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOptimalDistance.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblOptimalDistance.Location = new System.Drawing.Point(465, 61);
+            this.lblOptimalDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOptimalDistance.Name = "lblOptimalDistance";
+            this.lblOptimalDistance.Size = new System.Drawing.Size(31, 13);
+            this.lblOptimalDistance.TabIndex = 112;
+            this.lblOptimalDistance.Text = "NULL";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.BackColor = System.Drawing.SystemColors.Control;
+            this.label42.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label42.Location = new System.Drawing.Point(202, 61);
+            this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(241, 13);
+            this.label42.TabIndex = 111;
+            this.label42.Text = "Optimal Distance T0 <-> Multisense (mm)";
+            // 
+            // lblRotationalOffset
+            // 
+            this.lblRotationalOffset.AutoSize = true;
+            this.lblRotationalOffset.BackColor = System.Drawing.SystemColors.Control;
+            this.lblRotationalOffset.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRotationalOffset.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblRotationalOffset.Location = new System.Drawing.Point(465, 31);
+            this.lblRotationalOffset.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRotationalOffset.Name = "lblRotationalOffset";
+            this.lblRotationalOffset.Size = new System.Drawing.Size(31, 13);
+            this.lblRotationalOffset.TabIndex = 110;
+            this.lblRotationalOffset.Text = "NULL";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.SystemColors.Control;
+            this.label39.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label39.Location = new System.Drawing.Point(304, 31);
+            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(139, 13);
+            this.label39.TabIndex = 109;
+            this.label39.Text = "Rotational Offset (mm)";
             // 
             // lblKgSrvcT3
             // 
@@ -1542,10 +1683,10 @@ namespace MultecPlugin
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label70.BackColor = System.Drawing.SystemColors.Control;
             this.label70.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.ForeColor = System.Drawing.Color.Maroon;
-            this.label70.Location = new System.Drawing.Point(338, 114);
+            this.label70.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label70.Location = new System.Drawing.Point(309, 114);
             this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(181, 13);
@@ -1607,9 +1748,9 @@ namespace MultecPlugin
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label59.BackColor = System.Drawing.SystemColors.Control;
             this.label59.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label59.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label59.Location = new System.Drawing.Point(9, 336);
             this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label59.Name = "label59";
@@ -1620,9 +1761,9 @@ namespace MultecPlugin
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label60.BackColor = System.Drawing.SystemColors.Control;
             this.label60.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label60.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label60.Location = new System.Drawing.Point(9, 321);
             this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label60.Name = "label60";
@@ -1633,9 +1774,9 @@ namespace MultecPlugin
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label61.BackColor = System.Drawing.SystemColors.Control;
             this.label61.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label61.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label61.Location = new System.Drawing.Point(9, 306);
             this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label61.Name = "label61";
@@ -1646,28 +1787,15 @@ namespace MultecPlugin
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label62.BackColor = System.Drawing.SystemColors.Control;
             this.label62.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label62.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label62.Location = new System.Drawing.Point(9, 291);
             this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(157, 13);
             this.label62.TabIndex = 82;
             this.label62.Text = "T0 Extruded Filament (kg)";
-            // 
-            // lblMoveFailure
-            // 
-            this.lblMoveFailure.AutoSize = true;
-            this.lblMoveFailure.BackColor = System.Drawing.SystemColors.Control;
-            this.lblMoveFailure.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoveFailure.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblMoveFailure.Location = new System.Drawing.Point(182, 422);
-            this.lblMoveFailure.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblMoveFailure.Name = "lblMoveFailure";
-            this.lblMoveFailure.Size = new System.Drawing.Size(31, 13);
-            this.lblMoveFailure.TabIndex = 81;
-            this.lblMoveFailure.Text = "NULL";
             // 
             // lblHeatedTotalT3
             // 
@@ -1854,10 +1982,10 @@ namespace MultecPlugin
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label54.BackColor = System.Drawing.SystemColors.Control;
             this.label54.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.ForeColor = System.Drawing.Color.Maroon;
-            this.label54.Location = new System.Drawing.Point(170, 114);
+            this.label54.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label54.Location = new System.Drawing.Point(150, 114);
             this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(103, 13);
@@ -1939,25 +2067,12 @@ namespace MultecPlugin
             this.btnAktualise.UseVisualStyleBackColor = true;
             this.btnAktualise.Click += new System.EventHandler(this.btnAktualise_Click);
             // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.label37.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label37.Location = new System.Drawing.Point(9, 422);
-            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(139, 13);
-            this.label37.TabIndex = 58;
-            this.label37.Text = "MOVE Rotation Failures";
-            // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label36.BackColor = System.Drawing.SystemColors.Control;
             this.label36.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label36.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label36.Location = new System.Drawing.Point(9, 400);
             this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label36.Name = "label36";
@@ -1968,9 +2083,9 @@ namespace MultecPlugin
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label35.BackColor = System.Drawing.SystemColors.Control;
             this.label35.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label35.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label35.Location = new System.Drawing.Point(9, 385);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
@@ -1981,9 +2096,9 @@ namespace MultecPlugin
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label34.BackColor = System.Drawing.SystemColors.Control;
             this.label34.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label34.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label34.Location = new System.Drawing.Point(9, 370);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
@@ -1994,9 +2109,9 @@ namespace MultecPlugin
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label33.BackColor = System.Drawing.SystemColors.Control;
             this.label33.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label33.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label33.Location = new System.Drawing.Point(9, 355);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
@@ -2007,9 +2122,9 @@ namespace MultecPlugin
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label32.BackColor = System.Drawing.SystemColors.Control;
             this.label32.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label32.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label32.Location = new System.Drawing.Point(9, 276);
             this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label32.Name = "label32";
@@ -2020,9 +2135,9 @@ namespace MultecPlugin
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label31.BackColor = System.Drawing.SystemColors.Control;
             this.label31.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label31.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label31.Location = new System.Drawing.Point(9, 261);
             this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label31.Name = "label31";
@@ -2033,9 +2148,9 @@ namespace MultecPlugin
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label30.BackColor = System.Drawing.SystemColors.Control;
             this.label30.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label30.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label30.Location = new System.Drawing.Point(9, 246);
             this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label30.Name = "label30";
@@ -2046,9 +2161,9 @@ namespace MultecPlugin
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label29.BackColor = System.Drawing.SystemColors.Control;
             this.label29.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label29.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label29.Location = new System.Drawing.Point(9, 231);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
@@ -2059,9 +2174,9 @@ namespace MultecPlugin
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label28.BackColor = System.Drawing.SystemColors.Control;
             this.label28.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label28.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label28.Location = new System.Drawing.Point(9, 210);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
@@ -2072,9 +2187,9 @@ namespace MultecPlugin
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label27.BackColor = System.Drawing.SystemColors.Control;
             this.label27.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label27.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label27.Location = new System.Drawing.Point(9, 196);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
@@ -2085,9 +2200,9 @@ namespace MultecPlugin
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label26.BackColor = System.Drawing.SystemColors.Control;
             this.label26.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label26.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label26.Location = new System.Drawing.Point(9, 181);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
@@ -2098,9 +2213,9 @@ namespace MultecPlugin
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label25.BackColor = System.Drawing.SystemColors.Control;
             this.label25.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label25.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label25.Location = new System.Drawing.Point(33, 159);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
@@ -2111,9 +2226,9 @@ namespace MultecPlugin
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label24.BackColor = System.Drawing.SystemColors.Control;
             this.label24.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label24.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label24.Location = new System.Drawing.Point(33, 144);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
@@ -2124,9 +2239,9 @@ namespace MultecPlugin
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label23.BackColor = System.Drawing.SystemColors.Control;
             this.label23.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label23.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label23.Location = new System.Drawing.Point(33, 129);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
@@ -2137,9 +2252,9 @@ namespace MultecPlugin
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label22.BackColor = System.Drawing.SystemColors.Control;
             this.label22.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label22.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label22.Location = new System.Drawing.Point(9, 114);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
@@ -2150,9 +2265,9 @@ namespace MultecPlugin
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label21.BackColor = System.Drawing.SystemColors.Control;
             this.label21.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label21.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label21.Location = new System.Drawing.Point(33, 91);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
@@ -2163,9 +2278,9 @@ namespace MultecPlugin
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label20.BackColor = System.Drawing.SystemColors.Control;
             this.label20.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label20.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label20.Location = new System.Drawing.Point(33, 76);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
@@ -2176,9 +2291,9 @@ namespace MultecPlugin
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label19.BackColor = System.Drawing.SystemColors.Control;
             this.label19.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label19.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label19.Location = new System.Drawing.Point(33, 61);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
@@ -2189,9 +2304,9 @@ namespace MultecPlugin
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label18.BackColor = System.Drawing.SystemColors.Control;
             this.label18.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label18.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label18.Location = new System.Drawing.Point(33, 46);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
@@ -2202,9 +2317,9 @@ namespace MultecPlugin
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label17.BackColor = System.Drawing.SystemColors.Control;
             this.label17.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label17.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label17.Location = new System.Drawing.Point(9, 31);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
@@ -2215,9 +2330,9 @@ namespace MultecPlugin
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label16.BackColor = System.Drawing.SystemColors.Control;
             this.label16.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label16.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label16.Location = new System.Drawing.Point(9, 12);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
@@ -2235,6 +2350,151 @@ namespace MultecPlugin
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             // 
+            // btnHomeMove
+            // 
+            this.btnHomeMove.BackColor = System.Drawing.Color.Transparent;
+            this.btnHomeMove.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.Image")));
+            this.btnHomeMove.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
+            this.btnHomeMove.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.ImangeNormal")));
+            this.btnHomeMove.Location = new System.Drawing.Point(6, 249);
+            this.btnHomeMove.Name = "btnHomeMove";
+            this.btnHomeMove.Size = new System.Drawing.Size(60, 57);
+            this.btnHomeMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHomeMove.TabIndex = 55;
+            this.btnHomeMove.TabStop = false;
+            this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
+            // 
+            // btnExtrude
+            // 
+            this.btnExtrude.BackColor = System.Drawing.Color.Transparent;
+            this.btnExtrude.Image = global::MultecPlugin.Properties.Resources.extract;
+            this.btnExtrude.ImageClicked = global::MultecPlugin.Properties.Resources.extract_p;
+            this.btnExtrude.ImangeNormal = global::MultecPlugin.Properties.Resources.extract;
+            this.btnExtrude.Location = new System.Drawing.Point(394, 106);
+            this.btnExtrude.Name = "btnExtrude";
+            this.btnExtrude.Size = new System.Drawing.Size(70, 70);
+            this.btnExtrude.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnExtrude.TabIndex = 54;
+            this.btnExtrude.TabStop = false;
+            this.btnExtrude.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnExtrude_MouseClick);
+            // 
+            // btnRetract
+            // 
+            this.btnRetract.BackColor = System.Drawing.Color.Transparent;
+            this.btnRetract.Image = global::MultecPlugin.Properties.Resources.retract;
+            this.btnRetract.ImageClicked = global::MultecPlugin.Properties.Resources.retract_p;
+            this.btnRetract.ImangeNormal = global::MultecPlugin.Properties.Resources.retract;
+            this.btnRetract.Location = new System.Drawing.Point(394, 14);
+            this.btnRetract.Name = "btnRetract";
+            this.btnRetract.Size = new System.Drawing.Size(70, 70);
+            this.btnRetract.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRetract.TabIndex = 53;
+            this.btnRetract.TabStop = false;
+            this.btnRetract.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_2);
+            // 
+            // btnZminus
+            // 
+            this.btnZminus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZminus.Image = global::MultecPlugin.Properties.Resources.Zminus;
+            this.btnZminus.ImageClicked = global::MultecPlugin.Properties.Resources.Zminus_p;
+            this.btnZminus.ImangeNormal = global::MultecPlugin.Properties.Resources.Zminus;
+            this.btnZminus.Location = new System.Drawing.Point(318, 106);
+            this.btnZminus.Name = "btnZminus";
+            this.btnZminus.Size = new System.Drawing.Size(70, 70);
+            this.btnZminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZminus.TabIndex = 52;
+            this.btnZminus.TabStop = false;
+            this.btnZminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZminus_MouseClick);
+            // 
+            // btnZPlus
+            // 
+            this.btnZPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZPlus.Image = global::MultecPlugin.Properties.Resources.zPlus;
+            this.btnZPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zplus_p;
+            this.btnZPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlus;
+            this.btnZPlus.Location = new System.Drawing.Point(318, 14);
+            this.btnZPlus.Name = "btnZPlus";
+            this.btnZPlus.Size = new System.Drawing.Size(70, 70);
+            this.btnZPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZPlus.TabIndex = 51;
+            this.btnZPlus.TabStop = false;
+            this.btnZPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_1);
+            // 
+            // btnYPlus
+            // 
+            this.btnYPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYPlus.Enabled = false;
+            this.btnYPlus.Image = global::MultecPlugin.Properties.Resources.up_normal;
+            this.btnYPlus.ImageClicked = global::MultecPlugin.Properties.Resources.up_pressed;
+            this.btnYPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.up_normal;
+            this.btnYPlus.Location = new System.Drawing.Point(134, 14);
+            this.btnYPlus.Name = "btnYPlus";
+            this.btnYPlus.Size = new System.Drawing.Size(85, 50);
+            this.btnYPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYPlus.TabIndex = 48;
+            this.btnYPlus.TabStop = false;
+            this.btnYPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton2_Click);
+            // 
+            // btnYMinus
+            // 
+            this.btnYMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYMinus.Enabled = false;
+            this.btnYMinus.Image = global::MultecPlugin.Properties.Resources.bottom_normal;
+            this.btnYMinus.ImageClicked = global::MultecPlugin.Properties.Resources.bottom_pressed;
+            this.btnYMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.bottom_normal;
+            this.btnYMinus.Location = new System.Drawing.Point(134, 134);
+            this.btnYMinus.Name = "btnYMinus";
+            this.btnYMinus.Size = new System.Drawing.Size(83, 47);
+            this.btnYMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYMinus.TabIndex = 50;
+            this.btnYMinus.TabStop = false;
+            this.btnYMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton4_Click);
+            // 
+            // btnXPlus
+            // 
+            this.btnXPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXPlus.Enabled = false;
+            this.btnXPlus.Image = global::MultecPlugin.Properties.Resources.right_normal;
+            this.btnXPlus.ImageClicked = global::MultecPlugin.Properties.Resources.right_pressed;
+            this.btnXPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.right_normal;
+            this.btnXPlus.Location = new System.Drawing.Point(202, 62);
+            this.btnXPlus.Name = "btnXPlus";
+            this.btnXPlus.Size = new System.Drawing.Size(73, 73);
+            this.btnXPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXPlus.TabIndex = 49;
+            this.btnXPlus.TabStop = false;
+            this.btnXPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton3_Click);
+            // 
+            // btnT0
+            // 
+            this.btnT0.BackColor = System.Drawing.Color.Transparent;
+            this.btnT0.Image = global::MultecPlugin.Properties.Resources.T01;
+            this.btnT0.ImageClicked = global::MultecPlugin.Properties.Resources.T0_p;
+            this.btnT0.ImangeNormal = global::MultecPlugin.Properties.Resources.T01;
+            this.btnT0.Location = new System.Drawing.Point(8, 19);
+            this.btnT0.Name = "btnT0";
+            this.btnT0.Size = new System.Drawing.Size(60, 40);
+            this.btnT0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT0.TabIndex = 5;
+            this.btnT0.TabStop = false;
+            this.btnT0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT0_MouseClick);
+            // 
+            // btnXMinus
+            // 
+            this.btnXMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXMinus.Enabled = false;
+            this.btnXMinus.Image = global::MultecPlugin.Properties.Resources.left_normal;
+            this.btnXMinus.ImageClicked = global::MultecPlugin.Properties.Resources.left_pressed;
+            this.btnXMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.left_normal;
+            this.btnXMinus.Location = new System.Drawing.Point(84, 61);
+            this.btnXMinus.Name = "btnXMinus";
+            this.btnXMinus.Size = new System.Drawing.Size(65, 74);
+            this.btnXMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXMinus.TabIndex = 47;
+            this.btnXMinus.TabStop = false;
+            this.btnXMinus.Click += new System.EventHandler(this.myCustomButton1_Click);
+            this.btnXMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -2246,6 +2506,8 @@ namespace MultecPlugin
             this.Size = new System.Drawing.Size(562, 554);
             tabpage2.ResumeLayout(false);
             tabpage2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -2254,13 +2516,18 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2276,16 +2543,11 @@ namespace MultecPlugin
         private System.Windows.Forms.Button but_step_1;
         private System.Windows.Forms.Button but_step_10;
         private System.Windows.Forms.Button but_step_50;
-        private System.Windows.Forms.Button but_Zminus;
-        private System.Windows.Forms.Button but_Extrude;
-        private System.Windows.Forms.Button but_Retract;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button but_T0;
         private System.Windows.Forms.Button but_T1;
         private System.Windows.Forms.Button but_T2;
         private System.Windows.Forms.Button but_T3;
         private System.Windows.Forms.Button but_MOVE;
-        private System.Windows.Forms.Button but_G222;
         private System.Windows.Forms.Button but_G224;
         private System.Windows.Forms.Button but_MotorAus;
         private System.Windows.Forms.Button but_T0_OnOff;
@@ -2354,7 +2616,6 @@ namespace MultecPlugin
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
@@ -2378,7 +2639,6 @@ namespace MultecPlugin
         private Button btnAktualise;
         private Button btnFeinadjustment;
         private Label label38;
-        private Label lblMoveFailure;
         private Label lblHeatedTotalT3;
         private Label lblHeatedTotalT2;
         private Label lblHeatedTotalT1;
@@ -2427,5 +2687,30 @@ namespace MultecPlugin
         private Label lblExtrudedSrvcT2;
         private Label lblExtrudedSrvcT1;
         private Label lblExtrudedSrvcT0;
+        private Label lblOptimalDistance;
+        private Label label42;
+        private Label lblRotationalOffset;
+        private Label label39;
+        private MyCustomButton.MyCustomButton btnZminus;
+        private MyCustomButton.MyCustomButton btnRetract;
+        private GroupBox groupBox4;
+        private Label lblFilamentT3;
+        private Label lblFilamentT2;
+        private Label lblFilamentT0;
+        private Label lblFilamentT1;
+        private Button filamentAktualize;
+        private Label lblFilamentStatus;
+        private Label label46;
+        private Label label49;
+        private Label label48;
+        private Label label47;
+        private Label lblZKorrektur;
+        private Label label43;
+        private Label lblDisatance;
+        private Label label40;
+        private Button btn_zOffset_send;
+        private MyCustomButton.MyCustomButton btnExtrude;
+        private MyCustomButton.MyCustomButton btnHomeMove;
+        private MyCustomButton.MyCustomButton btnT0;
     }
 }

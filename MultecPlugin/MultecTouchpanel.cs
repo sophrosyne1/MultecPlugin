@@ -87,7 +87,7 @@ namespace MultecPlugin
 
         //////////Movement Controls//////////
 
-        private double step_dist;
+        private double step_dist= 1;
         private string temp_Zeil;
         private string temp_Zeil_bed;
         private bool T0_On;
@@ -106,7 +106,7 @@ namespace MultecPlugin
         private string optimal_Abstand;
         private string zKorrektur;
         private int lifetimeCheck = 0;
-
+        
 
 
         private void but_Zplus_Click(object sender, EventArgs e)
@@ -122,13 +122,7 @@ namespace MultecPlugin
 
         private void but_Zminus_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Z" + -step_dist);
-                host.Connection.injectManualCommand("G90");
-
-            }
+            
         }
 
         private void but_Retract_Click(object sender, EventArgs e)
@@ -163,23 +157,31 @@ namespace MultecPlugin
 
         private void but_step_50_Click(object sender, EventArgs e)
         {
+            but_step_1.Enabled = true;
+            but_step_10.Enabled = true;
+            but_step_50.Enabled = false;
             step_dist = 50;
         }
 
         private void but_step_10_Click(object sender, EventArgs e)
         {
+            but_step_1.Enabled = true;
+            but_step_10.Enabled = false;
+            but_step_50.Enabled = true;
             step_dist = 10;
         }
 
         private void but_step_1_Click(object sender, EventArgs e)
         {
+            but_step_1.Enabled = false;
+            but_step_10.Enabled = true;
+            but_step_50.Enabled = true;
             step_dist = 1;
         }
 
         private void but_G222_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G222");
+           
         }
 
         private void but_G224_Click(object sender, EventArgs e)
@@ -191,26 +193,10 @@ namespace MultecPlugin
         private void but_G295_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
-            {
+            {  
                 host.Connection.injectManualCommand("G295");
                 host.Connection.injectManualCommand("G296");
-                host.Connection.injectManualCommand("M503");
-
-                while (host.IsJobRunning)
-                {
-                    Thread.Sleep(1000);
-                    if (!host.IsJobRunning)
-                    {
-                        break;
-                    }
-                }
-                
-                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\tT0: " + zOffset_T0 + " mm"
-                        + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + "\t\tT3: "
-                        + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
-                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
-                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung");
-                
+                host.Connection.injectManualCommand("M503");      
             }
         }
 
@@ -567,7 +553,11 @@ namespace MultecPlugin
         private int endindex;
         private string xOffset = string.Empty;
         private string yOffset = string.Empty;
-        private double newOffset;
+        private double newOffset = 0;
+        
+        private int zOffsetMultiplyer = 0;
+        private double relativOffset = 0;
+        private string filamentVal = string.Empty;
 
 
         private void but_M218_T1_Click(object sender, EventArgs e)
@@ -649,10 +639,70 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
+
+            if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 + " mm"
+                       + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + "\t\tT3: "
+                       + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
+                       Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
+                       "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung");
+            }
+
+            if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                lblFirmware.Text = response.Substring(startindex + 1);
+            }
+            if (response.IndexOf("RunOutMonitoringActive", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                
+                startindex = response.IndexOf("=",  StringComparison.CurrentCultureIgnoreCase);
+                filamentVal = response.Substring(startindex + 2);
+
+                if (filamentVal == "true")
+                {
+                    lblFilamentStatus.Text = "AKTIV";
+                    lblFilamentStatus.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    lblFilamentStatus.Text = "NICHT AKTIV";
+                    lblFilamentStatus.BackColor = Color.Yellow;
+                }
+            }
+
+            
+
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
+                if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T0 = response.Substring(startindex + 1);
+                    lblAbstandT0.Text = zOffset_T0;
 
-                
+                }
+                if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T1 = response.Substring(startindex + 1);
+                    lblAbstandT1.Text = zOffset_T1;
+                }
+                if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T2 = response.Substring(startindex + 1);
+                    lblAbstandT2.Text = zOffset_T2;
+                }
+                if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T3 = response.Substring(startindex + 1);
+                    lblAbstandT3.Text = zOffset_T3;
+                }
+
                 if (tool_M218 == "T1")
                 {
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -698,31 +748,7 @@ namespace MultecPlugin
                         text_M218_Y.Text = yOffset;
                     }
                 }
-                if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T0 = response.Substring(startindex + 1);
-                    lblAbstandT0.Text = zOffset_T0;
-
-                }
-                if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T1 = response.Substring(startindex + 1);
-                    lblAbstandT1.Text = zOffset_T1;
-                }
-                if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T2 = response.Substring(startindex + 1);
-                    lblAbstandT2.Text = zOffset_T2;
-                }
-                if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T3 = response.Substring(startindex + 1);
-                    lblAbstandT3.Text = zOffset_T3;
-                }
+                
             }
             if (response.IndexOf("dz_T0_MS_opt", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -731,35 +757,41 @@ namespace MultecPlugin
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
                     optimal_Abstand = response.Substring(startindex + 4);
                     lbl_zOffset.Text = optimal_Abstand;
+                    lblOptimalDistance.Text = optimal_Abstand;
                 }
                 else if (response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
                     lbl_zOffset.Text = response.Substring(startindex + 1);
+                    lblOptimalDistance.Text = response.Substring(startindex + 1);
                 }
-                else startindex = 0;
-                lbl_zOffset.Text = response.Substring(startindex + 1);
+                else
+                {
+                    startindex = 0;
+                    lbl_zOffset.Text = response.Substring(startindex + 1);
+                }
             }
             if (response.IndexOf("dz_T0_MS", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (response.IndexOf("opt", StringComparison.CurrentCultureIgnoreCase) == -1)
                 {
                     if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    { 
+                    {
                         startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
                         abstand = response.Substring(startindex + 4);
-                        
+                        lblDisatance.Text = abstand;
                     }
                 }
-                
+
             }
             if (response.IndexOf("Z-Probe Offset", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                
+
                 if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                    zKorrektur = response.Substring(startindex + 4);
+                    zKorrektur = response.Substring(startindex + 5);
+                    lblZKorrektur.Text = zKorrektur;
 
                 }
 
@@ -771,11 +803,12 @@ namespace MultecPlugin
                 {
                     startindex = response.IndexOf("A", StringComparison.CurrentCultureIgnoreCase);
                     rotationOffset = response.Substring(startindex + 1);
+                    lblRotationalOffset.Text = rotationOffset;
 
                 }
 
             }
-            
+
             if (response.IndexOf("Lifetime statisctics (Total)", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 lifetimeCheck = 1;
@@ -804,39 +837,39 @@ namespace MultecPlugin
                 else if (response.IndexOf("Travelled Distance", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("X=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblTotalDistanceX.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalDistanceX.Text = response.Substring(startindex + 2, endindex - (startindex + 2));
                     startindex = response.IndexOf("Y=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblTotalDistanceY.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblTotalDistanceY.Text = response.Substring(startindex + 2, endindex - (startindex + 2));
                     startindex = response.IndexOf("Z=", StringComparison.CurrentCultureIgnoreCase);
                     lblTotalDistanceZ.Text = response.Substring(startindex + 2);
                 }
                 else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
                     lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
                     lblKgTotalT3.Text = response.Substring(startindex + 3);
                 }
@@ -881,39 +914,44 @@ namespace MultecPlugin
                 else if (response.IndexOf("Travelled Distance", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("X=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblSrvcDistanceX.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcDistanceX.Text = response.Substring(startindex + 2, endindex - (startindex + 2));
+
                     startindex = response.IndexOf("Y=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblSrvcDistanceY.Text = response.Substring(startindex + 2, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblSrvcDistanceY.Text = response.Substring(startindex + 2, endindex - (startindex + 2));
+
                     startindex = response.IndexOf("Z=", StringComparison.CurrentCultureIgnoreCase);
                     lblSrvcDistanceZ.Text = response.Substring(startindex + 2);
                 }
                 else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                     startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
                     lblExtrudedSrvcT3.Text = response.Substring(startindex + 3);
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+
                     startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+
                     startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - startindex - 1);
+                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+
                     startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
                     lblKgSrvcT3.Text = response.Substring(startindex + 3);
                 }
@@ -938,6 +976,76 @@ namespace MultecPlugin
                     lblHeatedSrvcT3.Text = response.Substring(startindex + 1);
                 }
             }
+            
+            if (response.IndexOf("FilamentAvailable_T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+                startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
+                filamentVal = response.Substring(startindex + 2);
+
+                if (filamentVal == "true")
+                {
+                    lblFilamentT0.Text = "FILAMENT VORHANDEN";
+                    lblFilamentT0.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    lblFilamentT0.Text = "FILAMENT LEER";
+                    lblFilamentT0.BackColor = Color.Yellow;
+                }
+            }
+            if (response.IndexOf("FilamentAvailable_T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+                startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
+                filamentVal = response.Substring(startindex + 2);
+
+                if (filamentVal == "true")
+                {
+                    lblFilamentT1.Text = "FILAMENT VORHANDEN";
+                    lblFilamentT1.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    lblFilamentT1.Text = "FILAMENT LEER";
+                    lblFilamentT1.BackColor = Color.Yellow;
+                }
+            }
+            if (response.IndexOf("FilamentAvailable_T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+                startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
+                filamentVal = response.Substring(startindex + 2);
+
+                if (filamentVal == "true")
+                {
+                    lblFilamentT2.Text = "FILAMENT VORHANDEN";
+                    lblFilamentT2.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    lblFilamentT2.Text = "FILAMENT LEER";
+                    lblFilamentT2.BackColor = Color.Yellow;
+                }
+            }
+            if (response.IndexOf("FilamentAvailable_T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+                startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
+                filamentVal = response.Substring(startindex + 2);
+
+                if (filamentVal == "true")
+                {
+                    lblFilamentT3.Text = "FILAMENT VORHANDEN";
+                    lblFilamentT3.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    lblFilamentT3.Text = "FILAMENT LEER";
+                    lblFilamentT3.BackColor = Color.Yellow;
+                }
+               
+            }
         }
         //function to remove temperature readings from textboxes
 
@@ -954,16 +1062,8 @@ namespace MultecPlugin
                 enableDisableControls(true, this);
                 isFormActive = true;
             }
-            if (fineAdjustment)
-            {
-                btn_zOffset_plus.Enabled = true;
-                btn_zOffset_minus.Enabled = true;
-            }
-            else
-            {
-                btn_xOffset_send.Enabled = false;
-                btn_yOffset_send.Enabled = false;
-            }
+
+            
 
             if (!host.IsJobRunning)
             {
@@ -981,7 +1081,24 @@ namespace MultecPlugin
                 btn_xOffset_send.Enabled = true;
                 btn_yOffset_send.Enabled = true;
             }
+            else
+            {
+                btn_xOffset_send.Enabled = false;
+                btn_yOffset_send.Enabled = false;
+            }
 
+            if (fineAdjustment)
+            {
+                btn_zOffset_plus.Enabled = true;
+                btn_zOffset_minus.Enabled = true;
+                btn_zOffset_send.Enabled = true;
+            }
+            else
+            {
+                btn_zOffset_plus.Enabled = false;
+                btn_zOffset_minus.Enabled = false;
+                btn_zOffset_send.Enabled = false;
+            }
 
 
 
@@ -989,21 +1106,18 @@ namespace MultecPlugin
         private void enablDisablWhenPrinting(bool val)
         {
             but_G224.Enabled = val;
-            but_G222.Enabled = val;
+            btnHomeMove.Enabled = val;
             but_MotorAus.Enabled = val;
             but_MOVE.Enabled = val;
             buttonHome.Enabled = val;
-            but_step_1.Enabled = val;
-            but_step_10.Enabled = val;
-            but_step_50.Enabled = val;
             btnXMinus.Enabled = val;
             btnXPlus.Enabled = val;
             btnYMinus.Enabled = val;
             btnYPlus.Enabled = val;
-            but_Zminus.Enabled = val;
+            btnZminus.Enabled = val;
             btnZPlus.Enabled = val;
-            but_Extrude.Enabled = val;
-            but_Retract.Enabled = val;
+            btnExtrude.Enabled = val;
+            btnRetract.Enabled = val;
             but_G295.Enabled = val;
             but_G297.Enabled = val;
             btnFeinadjustment.Enabled = val;
@@ -1179,6 +1293,7 @@ namespace MultecPlugin
         {
             if (tabControl1.SelectedIndex == 1)
             {
+                host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
             }
             if (tabControl1.SelectedIndex == 2)
@@ -1191,10 +1306,7 @@ namespace MultecPlugin
 
         }
 
-        private void informationUpdating ()
-        {
-
-        }
+        
 
         private void btn_xOffset_plus_Click(object sender, EventArgs e)
         {
@@ -1250,16 +1362,19 @@ namespace MultecPlugin
 
         private void btn_zOffset_plus_Click(object sender, EventArgs e)
         {
+            zOffsetMultiplyer = zOffsetMultiplyer + 1;
+            
             newOffset = double.Parse(lbl_zOffset.Text) + 0.05;
             lbl_zOffset.Text = newOffset.ToString();
-            host.Connection.injectManualCommand("M702 " + "D" + lbl_zOffset.Text);
+           
         }
 
         private void btn_zOffset_minus_Click(object sender, EventArgs e)
         {
+            zOffsetMultiplyer = zOffsetMultiplyer - 1;
             newOffset = double.Parse(lbl_zOffset.Text) - 0.05;
             lbl_zOffset.Text = newOffset.ToString();
-            host.Connection.injectManualCommand("M702 " + "D" + lbl_zOffset.Text);
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1275,10 +1390,7 @@ namespace MultecPlugin
             }
         }
 
-        private void myCustomButton1_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        
 
 
 
@@ -1301,10 +1413,103 @@ namespace MultecPlugin
 
         private void btnAktualise_Click(object sender, EventArgs e)
         {
-            host.Connection.injectManualCommand("M513");
-            host.Connection.injectManualCommand("M514");
+            if (host.Connection.connector.IsConnected())
+            {
+                host.Connection.injectManualCommand("M503");
+                host.Connection.injectManualCommand("M513");
+                host.Connection.injectManualCommand("M514");
+            }
         }
 
-  
+        private void btnZminus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G91");
+                    host.Connection.injectManualCommand("G1 Z" + -step_dist);
+                    host.Connection.injectManualCommand("G90");
+
+                }
+            }
+        }
+     
+
+        
+
+        private void filamentAktualize_Click(object sender, EventArgs e)
+        {
+            host.Connection.injectManualCommand("M603");
+        }
+
+        private void myCustomButton1_MouseClick_2(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G91");
+                    host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G90");
+                }
+            }
+        }
+
+        private void btn_zOffset_send_Click(object sender, EventArgs e)
+        {
+
+            relativOffset = zOffsetMultiplyer * 0.05;
+            zOffsetMultiplyer = 0;
+            var mbox = MessageBox.Show("Going to send" + relativOffset + "in M702." + Environment.NewLine +
+                "Press Okay to CONTINUE!! If this is the right value","Warning!!", MessageBoxButtons.OKCancel);
+
+            if (mbox == DialogResult.OK)
+            {
+                host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
+            }
+        }
+
+        private void btnExtrude_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G91");
+                    host.Connection.injectManualCommand("G1 E" + step_dist + " F500");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G90");
+                }
+            }
+        }
+
+        private void btnHomeMove_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G222");
+                }
+            }
+        }
+
+        private void btnT0_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    if (!host.IsJobRunning)
+                    {
+                        host.Connection.injectManualCommand("T0");
+                    }
+                    selected_nozzle = "T0";
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
+                }
+            }
+        }
     }
 }
