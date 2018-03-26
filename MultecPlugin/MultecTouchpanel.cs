@@ -39,12 +39,14 @@ namespace MultecPlugin
             
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
+            Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
 
         }
         /// <summary>
         /// Store reference to host for later use
         /// </summary>
         /// <param name="_host">Host instance</param>
+        /// 
         public void Connect(IHost _host)
         {
             host = _host;
@@ -102,11 +104,20 @@ namespace MultecPlugin
         private string zOffset_T2;
         private string zOffset_T3;
         private string rotationOffset;
+        private string rotationOffsetFilament;
         private string abstand;
         private string optimal_Abstand;
         private string zKorrektur;
         private int lifetimeCheck = 0;
-        
+        private string[] gCode = new string[5];
+        private int gCodeIndex = 0;
+        private int getPrev_gCodeUp = 5;
+        private int getPrev_gCodeDown = 0;
+        private bool coldextrusionActive = false;
+        private bool firstG222 = false;
+        private int gCodeCheck = 0;
+        private string maxGCodeValue;
+
 
 
         private void but_Zplus_Click(object sender, EventArgs e)
@@ -236,34 +247,22 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("T1");
                 }
                 selected_nozzle = "T1";
+                btnT0.Enabled = true;
+                btnT1.Enabled = false;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
                 trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
             }
         }
 
         private void but_T2_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                if (!host.IsJobRunning)
-                {
-                    host.Connection.injectManualCommand("T2");
-                }
-                selected_nozzle = "T2";
-                trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
-            }
+            
         }
 
         private void but_T3_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                if (!host.IsJobRunning)
-                {
-                    host.Connection.injectManualCommand("T3");
-                }
-                selected_nozzle = "T3";
-                trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
-            }
+            
         }
 
         private void but_MOVE_Click(object sender, EventArgs e)
@@ -641,17 +640,43 @@ namespace MultecPlugin
                 reset_parameters();
             }
         }
+        public void PrinterConnectionChange(string msg)
+        {
+            
+            if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                firstG222 = false;
+            }
+            
+        }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
             if (response.IndexOf("Call G222 first", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (firstG222)
+                {
+                    MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                firstG222 = true;
             }
             if (response.IndexOf("Cold extrusion prevented", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                MessageBox.Show("Düsentemperatur zu gering. Extrusion nicht verfügbar. Bitte Düse aufheizen.", "Warnung!", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                try
+                {
+                    if (wrkerColdExtrusion.IsBusy != true)
+                    {
+                        if (!coldextrusionActive)
+                        {
+                            coldextrusionActive = true;
+                            wrkerColdExtrusion.RunWorkerAsync();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Cold Extrusion Prevented wird nicht aktualisiert!");
+                }
             }
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -817,6 +842,13 @@ namespace MultecPlugin
                     startindex = response.IndexOf("A", StringComparison.CurrentCultureIgnoreCase);
                     rotationOffset = response.Substring(startindex + 1);
                     lblRotationalOffset.Text = rotationOffset;
+
+                }
+                else if (response.IndexOf("E", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("E", StringComparison.CurrentCultureIgnoreCase);
+                    rotationOffsetFilament = response.Substring(startindex + 1);
+                    lblRotOffsetFilament.Text = rotationOffsetFilament;
 
                 }
 
@@ -1208,7 +1240,7 @@ namespace MultecPlugin
 
         private void myCustomButton3_Click(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnXPlus, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1222,7 +1254,7 @@ namespace MultecPlugin
 
         private void myCustomButton2_Click(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnYPlus, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1235,7 +1267,7 @@ namespace MultecPlugin
 
         private void myCustomButton4_Click(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnYMinus, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1288,15 +1320,7 @@ namespace MultecPlugin
             return result;
         }
 
-        private void myCustomButton1_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 X" + -step_dist);
-                host.Connection.injectManualCommand("G90");
-            }
-        }
+        
 
 
 
@@ -1423,7 +1447,7 @@ namespace MultecPlugin
 
         private void myCustomButton1_MouseClick_1(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnZPlus, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1450,7 +1474,7 @@ namespace MultecPlugin
 
         private void btnZminus_MouseClick(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnZminus, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1472,7 +1496,7 @@ namespace MultecPlugin
 
         private void myCustomButton1_MouseClick_2(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnRetract, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1488,19 +1512,20 @@ namespace MultecPlugin
         {
 
             relativOffset = zOffsetMultiplyer * 0.05;
-            zOffsetMultiplyer = 0;
+            
             var mbox = MessageBox.Show("Going to send " + relativOffset + " in M702." + Environment.NewLine +
                 "Press Okay to CONTINUE!! If this is the right value","Warning!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (mbox == DialogResult.OK)
             {
                 host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
+                zOffsetMultiplyer = 0;
             }
         }
 
         private void btnExtrude_MouseClick(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnExtrude, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1514,7 +1539,7 @@ namespace MultecPlugin
 
         private void btnHomeMove_MouseClick(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnHomeMove, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1525,7 +1550,7 @@ namespace MultecPlugin
 
         private void btnT0_MouseClick(object sender, MouseEventArgs e)
         {
-            if (HitTest(btnXMinus, e.X, e.Y))
+            if (HitTest(btnT0, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1534,11 +1559,173 @@ namespace MultecPlugin
                         host.Connection.injectManualCommand("T0");
                     }
                     selected_nozzle = "T0";
+                    btnT0.Enabled = false;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
             }
         }
 
-        
+        private void btnManualGcode_Click(object sender, EventArgs e)
+        {
+            if (txtManualGcode.Text != string.Empty)
+            {   
+                host.Connection.injectManualCommand(txtManualGcode.Text);
+                if(gCodeIndex > 5)
+                {
+                    gCodeIndex = 0;
+                }
+                gCode[gCodeIndex] = txtManualGcode.Text;
+                gCodeIndex++;
+                maxGCodeValue = gCode.Max();
+                gCodeCheck = gCode.ToList().IndexOf(maxGCodeValue);
+
+                txtManualGcode.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken", 
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtManualGcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                    btnManualGcode_Click(this, new EventArgs());
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (getPrev_gCodeUp < 0)
+                {
+                    getPrev_gCodeUp = 5;
+                }
+                if (getPrev_gCodeUp > gCodeCheck)
+                {
+                    getPrev_gCodeUp = gCodeCheck;
+                }
+                //MessageBox.Show("the value of index is" + getPrev_gCodeUp.ToString());
+                txtManualGcode.Text = gCode[getPrev_gCodeUp];
+                getPrev_gCodeUp--;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                if (getPrev_gCodeDown > 5)
+                {
+                    getPrev_gCodeDown = 0;
+                }
+                if (getPrev_gCodeDown > gCodeCheck)
+                {
+                    getPrev_gCodeDown = gCodeCheck;
+                }
+                txtManualGcode.Text = gCode[getPrev_gCodeDown];
+                getPrev_gCodeDown++;
+            }
+        }
+
+        private void WrkerColdExtrusion_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+            var newMsg = MessageBox.Show("Düsentemperatur zu gering. Extrusion nicht verfügbar. Bitte Düse aufheizen.", "Warnung!",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (newMsg == DialogResult.OK)
+            {
+                coldextrusionActive = false;
+            }
+        }
+
+        private void btnT0_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT0.Enabled)
+                btnT0.Image = Properties.Resources.T0_p;
+            else
+                btnT0.Image = Properties.Resources.T01;
+        }
+
+        private void BtnT1_MouseClick(object sender, MouseEventArgs e)
+        {   if (HitTest(btnT1, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    if (!host.IsJobRunning)
+                    {
+                        host.Connection.injectManualCommand("T1");
+                    }
+                    selected_nozzle = "T1";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = false;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
+                }
+            }
+        }
+
+        private void BtnT1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT1.Enabled)
+                btnT1.Image = Properties.Resources.T1_p;
+            else
+                btnT1.Image = Properties.Resources.T1;
+        }
+
+        private void btnT2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT2, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    if (!host.IsJobRunning)
+                    {
+                        host.Connection.injectManualCommand("T2");
+                    }
+                    selected_nozzle = "T2";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = false;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
+                }
+            }
+        }
+
+        private void btnT2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT2.Enabled)
+                btnT2.Image = Properties.Resources.T2_p;
+            else
+                btnT2.Image = Properties.Resources.T2;
+        }
+
+        private void btnT3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT3, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    if (!host.IsJobRunning)
+                    {
+                        host.Connection.injectManualCommand("T3");
+                    }
+                    selected_nozzle = "T3";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = false;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
+                }
+            }
+        }
+
+        private void btnT3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT3.Enabled)
+                btnT3.Image = Properties.Resources.T3_p;
+            else
+                btnT3.Image = Properties.Resources.T3;
+        }
     }
 }

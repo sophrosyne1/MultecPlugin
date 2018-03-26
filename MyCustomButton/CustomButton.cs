@@ -22,6 +22,7 @@ namespace MyCustomButton
 
         private Image NormalImage;
         private Image ClickedImage;
+        //private Image DisabledImage;
 
         //private Image HoverImage;
         
@@ -37,6 +38,11 @@ namespace MyCustomButton
             get { return ClickedImage; }
             set { ClickedImage = value; }
         }
+        /*public Image ImangeDisabled
+        {
+            get { return DisabledImage; }
+            set { DisabledImage = value; }
+        }*/
 
         private void MyCustomButton_MouseDown(object sender, MouseEventArgs e)
         {
@@ -47,8 +53,9 @@ namespace MyCustomButton
 
         private void MyCustomButton_MouseUp(object sender, MouseEventArgs e)
         {
-            
+            if (this.Enabled)
                 this.Image = NormalImage;
+            
         }
 
 
@@ -79,9 +86,6 @@ namespace MyCustomButton
                     this.Cursor = Cursors.Default;
             }
         }
-
-       
-
 
     }
 }

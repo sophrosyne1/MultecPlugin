@@ -84,6 +84,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\aus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +230,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\T0_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3_p.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -41,3 +41,4 @@ C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\DotNetZ
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\Newtonsoft.Json.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\websocket-sharp.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MyCustomButton.pdb
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MultecPlugin.dll.config
