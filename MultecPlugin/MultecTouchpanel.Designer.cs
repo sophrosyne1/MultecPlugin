@@ -83,11 +83,6 @@ namespace MultecPlugin
             this.btnT2 = new MyCustomButton.MyCustomButton();
             this.btnT1 = new MyCustomButton.MyCustomButton();
             this.btnT0 = new MyCustomButton.MyCustomButton();
-            this.but_MOVE = new System.Windows.Forms.Button();
-            this.but_T0_OnOff = new System.Windows.Forms.Button();
-            this.but_T1_OnOff = new System.Windows.Forms.Button();
-            this.but_T2_OnOff = new System.Windows.Forms.Button();
-            this.but_T3_OnOff = new System.Windows.Forms.Button();
             this.trackBar_NozzleTemp = new System.Windows.Forms.TrackBar();
             this.but_NozzleMinus = new System.Windows.Forms.Button();
             this.but_NozzlePlus = new System.Windows.Forms.Button();
@@ -100,7 +95,6 @@ namespace MultecPlugin
             this.text_T2_Aktuell = new System.Windows.Forms.TextBox();
             this.text_T3_Aktuell = new System.Windows.Forms.TextBox();
             this.trackBar_BedTemp = new System.Windows.Forms.TrackBar();
-            this.but_bed_OnOff = new System.Windows.Forms.Button();
             this.but_BedMinus = new System.Windows.Forms.Button();
             this.but_BedPlus = new System.Windows.Forms.Button();
             this.text_Bed_ziel = new System.Windows.Forms.TextBox();
@@ -118,6 +112,11 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.btnBed_OnOff = new System.Windows.Forms.PictureBox();
+            this.btnT3_OnOff = new System.Windows.Forms.PictureBox();
+            this.btnT2_OnOff = new System.Windows.Forms.PictureBox();
+            this.btnT1_OnOff = new System.Windows.Forms.PictureBox();
+            this.btnT0_OnOff = new System.Windows.Forms.PictureBox();
             this.btnParkMove = new MyCustomButton.MyCustomButton();
             this.btnHome = new MyCustomButton.MyCustomButton();
             this.btnMotorOff = new MyCustomButton.MyCustomButton();
@@ -233,6 +232,11 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).BeginInit();
@@ -782,7 +786,6 @@ namespace MultecPlugin
             this.groupBox2.Controls.Add(this.btnT2);
             this.groupBox2.Controls.Add(this.btnT1);
             this.groupBox2.Controls.Add(this.btnT0);
-            this.groupBox2.Controls.Add(this.but_MOVE);
             this.groupBox2.Location = new System.Drawing.Point(148, 252);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(334, 66);
@@ -793,13 +796,17 @@ namespace MultecPlugin
             // btnMove
             // 
             this.btnMove.BackColor = System.Drawing.Color.Transparent;
-            this.btnMove.ImageClicked = null;
-            this.btnMove.ImangeNormal = null;
-            this.btnMove.Location = new System.Drawing.Point(271, 19);
+            this.btnMove.Image = global::MultecPlugin.Properties.Resources.MOVE;
+            this.btnMove.ImageClicked = global::MultecPlugin.Properties.Resources.MOVE_p;
+            this.btnMove.ImangeNormal = global::MultecPlugin.Properties.Resources.MOVE;
+            this.btnMove.Location = new System.Drawing.Point(269, 19);
             this.btnMove.Name = "btnMove";
-            this.btnMove.Size = new System.Drawing.Size(58, 40);
+            this.btnMove.Size = new System.Drawing.Size(60, 40);
+            this.btnMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnMove.TabIndex = 9;
             this.btnMove.TabStop = false;
+            this.btnMove.EnabledChanged += new System.EventHandler(this.btnMove_EnabledChanged);
+            this.btnMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnMove_MouseClick);
             // 
             // btnT3
             // 
@@ -860,58 +867,6 @@ namespace MultecPlugin
             this.btnT0.TabStop = false;
             this.btnT0.EnabledChanged += new System.EventHandler(this.btnT0_EnabledChanged);
             this.btnT0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT0_MouseClick);
-            // 
-            // but_MOVE
-            // 
-            this.but_MOVE.Enabled = false;
-            this.but_MOVE.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_MOVE.Location = new System.Drawing.Point(270, 19);
-            this.but_MOVE.Name = "but_MOVE";
-            this.but_MOVE.Size = new System.Drawing.Size(60, 40);
-            this.but_MOVE.TabIndex = 4;
-            this.but_MOVE.Text = "MOVE";
-            this.but_MOVE.UseVisualStyleBackColor = true;
-            this.but_MOVE.Click += new System.EventHandler(this.but_MOVE_Click);
-            // 
-            // but_T0_OnOff
-            // 
-            this.but_T0_OnOff.Location = new System.Drawing.Point(155, 333);
-            this.but_T0_OnOff.Name = "but_T0_OnOff";
-            this.but_T0_OnOff.Size = new System.Drawing.Size(60, 30);
-            this.but_T0_OnOff.TabIndex = 12;
-            this.but_T0_OnOff.Text = "Aus";
-            this.but_T0_OnOff.UseVisualStyleBackColor = true;
-            this.but_T0_OnOff.Click += new System.EventHandler(this.but_T0_OnOff_Click);
-            // 
-            // but_T1_OnOff
-            // 
-            this.but_T1_OnOff.Location = new System.Drawing.Point(219, 334);
-            this.but_T1_OnOff.Name = "but_T1_OnOff";
-            this.but_T1_OnOff.Size = new System.Drawing.Size(60, 30);
-            this.but_T1_OnOff.TabIndex = 13;
-            this.but_T1_OnOff.Text = "Aus";
-            this.but_T1_OnOff.UseVisualStyleBackColor = true;
-            this.but_T1_OnOff.Click += new System.EventHandler(this.but_T1_OnOff_Click);
-            // 
-            // but_T2_OnOff
-            // 
-            this.but_T2_OnOff.Location = new System.Drawing.Point(286, 334);
-            this.but_T2_OnOff.Name = "but_T2_OnOff";
-            this.but_T2_OnOff.Size = new System.Drawing.Size(60, 30);
-            this.but_T2_OnOff.TabIndex = 14;
-            this.but_T2_OnOff.Text = "Aus";
-            this.but_T2_OnOff.UseVisualStyleBackColor = true;
-            this.but_T2_OnOff.Click += new System.EventHandler(this.but_T2_OnOff_Click);
-            // 
-            // but_T3_OnOff
-            // 
-            this.but_T3_OnOff.Location = new System.Drawing.Point(351, 334);
-            this.but_T3_OnOff.Name = "but_T3_OnOff";
-            this.but_T3_OnOff.Size = new System.Drawing.Size(60, 30);
-            this.but_T3_OnOff.TabIndex = 15;
-            this.but_T3_OnOff.Text = "Aus";
-            this.but_T3_OnOff.UseVisualStyleBackColor = true;
-            this.but_T3_OnOff.Click += new System.EventHandler(this.but_T3_OnOff_Click);
             // 
             // trackBar_NozzleTemp
             // 
@@ -1039,16 +994,6 @@ namespace MultecPlugin
             this.trackBar_BedTemp.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.trackBar_BedTemp.Value = 50;
             this.trackBar_BedTemp.ValueChanged += new System.EventHandler(this.trackBar_BedTemp_ValueChanged);
-            // 
-            // but_bed_OnOff
-            // 
-            this.but_bed_OnOff.Location = new System.Drawing.Point(417, 334);
-            this.but_bed_OnOff.Name = "but_bed_OnOff";
-            this.but_bed_OnOff.Size = new System.Drawing.Size(60, 30);
-            this.but_bed_OnOff.TabIndex = 28;
-            this.but_bed_OnOff.Text = "Aus";
-            this.but_bed_OnOff.UseVisualStyleBackColor = true;
-            this.but_bed_OnOff.Click += new System.EventHandler(this.but_bed_OnOff_Click);
             // 
             // but_BedMinus
             // 
@@ -1238,6 +1183,11 @@ namespace MultecPlugin
             // TouchControl
             // 
             this.TouchControl.BackColor = System.Drawing.SystemColors.Control;
+            this.TouchControl.Controls.Add(this.btnBed_OnOff);
+            this.TouchControl.Controls.Add(this.btnT3_OnOff);
+            this.TouchControl.Controls.Add(this.btnT2_OnOff);
+            this.TouchControl.Controls.Add(this.btnT1_OnOff);
+            this.TouchControl.Controls.Add(this.btnT0_OnOff);
             this.TouchControl.Controls.Add(this.btnParkMove);
             this.TouchControl.Controls.Add(this.btnHome);
             this.TouchControl.Controls.Add(this.btnMotorOff);
@@ -1266,13 +1216,8 @@ namespace MultecPlugin
             this.TouchControl.Controls.Add(this.text_Bed_Aktuell);
             this.TouchControl.Controls.Add(this.text_Bed_ziel);
             this.TouchControl.Controls.Add(this.but_BedPlus);
-            this.TouchControl.Controls.Add(this.but_T0_OnOff);
             this.TouchControl.Controls.Add(this.but_BedMinus);
-            this.TouchControl.Controls.Add(this.but_T1_OnOff);
-            this.TouchControl.Controls.Add(this.but_bed_OnOff);
-            this.TouchControl.Controls.Add(this.but_T2_OnOff);
             this.TouchControl.Controls.Add(this.trackBar_BedTemp);
-            this.TouchControl.Controls.Add(this.but_T3_OnOff);
             this.TouchControl.Controls.Add(this.text_T3_Aktuell);
             this.TouchControl.Controls.Add(this.trackBar_NozzleTemp);
             this.TouchControl.Controls.Add(this.text_T2_Aktuell);
@@ -1291,6 +1236,66 @@ namespace MultecPlugin
             this.TouchControl.Size = new System.Drawing.Size(549, 537);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
+            // 
+            // btnBed_OnOff
+            // 
+            this.btnBed_OnOff.Image = global::MultecPlugin.Properties.Resources.AUS_2;
+            this.btnBed_OnOff.Location = new System.Drawing.Point(418, 334);
+            this.btnBed_OnOff.Name = "btnBed_OnOff";
+            this.btnBed_OnOff.Size = new System.Drawing.Size(60, 30);
+            this.btnBed_OnOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnBed_OnOff.TabIndex = 63;
+            this.btnBed_OnOff.TabStop = false;
+            this.btnBed_OnOff.Click += new System.EventHandler(this.btnBed_OnOff_Click);
+            this.btnBed_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBed_OnOff_MouseMove);
+            // 
+            // btnT3_OnOff
+            // 
+            this.btnT3_OnOff.Image = global::MultecPlugin.Properties.Resources.AUS_2;
+            this.btnT3_OnOff.Location = new System.Drawing.Point(352, 334);
+            this.btnT3_OnOff.Name = "btnT3_OnOff";
+            this.btnT3_OnOff.Size = new System.Drawing.Size(60, 30);
+            this.btnT3_OnOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT3_OnOff.TabIndex = 62;
+            this.btnT3_OnOff.TabStop = false;
+            this.btnT3_OnOff.Click += new System.EventHandler(this.btnT3_OnOff_Click);
+            this.btnT3_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnT3_OnOff_MouseMove);
+            // 
+            // btnT2_OnOff
+            // 
+            this.btnT2_OnOff.Image = global::MultecPlugin.Properties.Resources.AUS_2;
+            this.btnT2_OnOff.Location = new System.Drawing.Point(286, 334);
+            this.btnT2_OnOff.Name = "btnT2_OnOff";
+            this.btnT2_OnOff.Size = new System.Drawing.Size(60, 30);
+            this.btnT2_OnOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT2_OnOff.TabIndex = 61;
+            this.btnT2_OnOff.TabStop = false;
+            this.btnT2_OnOff.Click += new System.EventHandler(this.btnT2_OnOff_Click);
+            this.btnT2_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnT2_OnOff_MouseMove);
+            // 
+            // btnT1_OnOff
+            // 
+            this.btnT1_OnOff.Image = global::MultecPlugin.Properties.Resources.AUS_2;
+            this.btnT1_OnOff.Location = new System.Drawing.Point(220, 334);
+            this.btnT1_OnOff.Name = "btnT1_OnOff";
+            this.btnT1_OnOff.Size = new System.Drawing.Size(60, 30);
+            this.btnT1_OnOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT1_OnOff.TabIndex = 60;
+            this.btnT1_OnOff.TabStop = false;
+            this.btnT1_OnOff.Click += new System.EventHandler(this.btnT1_OnOff_Click);
+            this.btnT1_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnT1_OnOff_MouseMove);
+            // 
+            // btnT0_OnOff
+            // 
+            this.btnT0_OnOff.Image = global::MultecPlugin.Properties.Resources.AUS_2;
+            this.btnT0_OnOff.Location = new System.Drawing.Point(154, 334);
+            this.btnT0_OnOff.Name = "btnT0_OnOff";
+            this.btnT0_OnOff.Size = new System.Drawing.Size(60, 30);
+            this.btnT0_OnOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT0_OnOff.TabIndex = 59;
+            this.btnT0_OnOff.TabStop = false;
+            this.btnT0_OnOff.Click += new System.EventHandler(this.btnT0_OnOff_Click);
+            this.btnT0_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnT0_OnOff_MouseMove);
             // 
             // btnParkMove
             // 
@@ -2661,6 +2666,11 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).EndInit();
@@ -2692,11 +2702,6 @@ namespace MultecPlugin
         private System.Windows.Forms.Button but_step_10;
         private System.Windows.Forms.Button but_step_50;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button but_MOVE;
-        private System.Windows.Forms.Button but_T0_OnOff;
-        private System.Windows.Forms.Button but_T1_OnOff;
-        private System.Windows.Forms.Button but_T2_OnOff;
-        private System.Windows.Forms.Button but_T3_OnOff;
         private System.Windows.Forms.TrackBar trackBar_NozzleTemp;
         private System.Windows.Forms.Button but_NozzleMinus;
         private System.Windows.Forms.Button but_NozzlePlus;
@@ -2709,7 +2714,6 @@ namespace MultecPlugin
         private System.Windows.Forms.TextBox text_T2_Aktuell;
         private System.Windows.Forms.TextBox text_T3_Aktuell;
         private System.Windows.Forms.TrackBar trackBar_BedTemp;
-        private System.Windows.Forms.Button but_bed_OnOff;
         private System.Windows.Forms.Button but_BedMinus;
         private System.Windows.Forms.Button but_BedPlus;
         private System.Windows.Forms.TextBox text_Bed_ziel;
@@ -2870,7 +2874,12 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnMotorOff;
         private MyCustomButton.MyCustomButton btnHome;
         private MyCustomButton.MyCustomButton btnParkMove;
-        private MyCustomButton.MyCustomButton myCustomButton1;
+        
         private MyCustomButton.MyCustomButton btnMove;
+        private PictureBox btnT0_OnOff;
+        private PictureBox btnBed_OnOff;
+        private PictureBox btnT3_OnOff;
+        private PictureBox btnT2_OnOff;
+        private PictureBox btnT1_OnOff;
     }
 }

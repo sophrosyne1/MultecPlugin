@@ -240,118 +240,17 @@ namespace MultecPlugin
                 btnT1.Enabled = false;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
+                btnMove.Enabled = true;
                 trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
             }
         }
 
-        private void but_T2_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
-        private void but_T3_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void but_MOVE_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("T4");
-                selected_nozzle = "T4";
-                trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
-            }
-        }
-
-        private void but_T0_OnOff_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-
-                T0_On = !T0_On;
-
-                if (T0_On == true)
-                {
-
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
-                    but_T0_OnOff.Text = "Ein";
-                    host.LogInfo("M104 S" + temp_Zeil + " T0");
-                    host.LogInfo(T0_On.ToString());
+       
 
 
-                }
-                else
-                {
-                    host.Connection.injectManualCommand("M104 S0 T0");
-                    but_T0_OnOff.Text = "Aus";
-                    host.LogInfo("T0_ON" + T0_On.ToString());
-
-                }
-            }
-        }
-
-        private void but_T1_OnOff_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                T1_On = !T1_On;
-
-                if (T1_On == true)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
-                    but_T1_OnOff.Text = "Ein";
-                }
-                else
-                {
-
-                    host.Connection.injectManualCommand("M104 S0 T1");
-                    but_T1_OnOff.Text = "Aus";
-                }
-            }
-        }
-
-        private void but_T2_OnOff_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                T2_On = !T2_On;
-
-                if (T2_On == true)
-                {
-
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
-                    but_T2_OnOff.Text = "Ein";
-                }
-                else
-                {
-
-                    host.Connection.injectManualCommand("M104 S0 T2");
-                    but_T2_OnOff.Text = "Aus";
-                }
-            }
-        }
-
-        private void but_T3_OnOff_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                T3_On = !T3_On;
-
-                if (T3_On == true)
-                {
-
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
-                    but_T3_OnOff.Text = "Ein";
-                }
-                else
-                {
-
-                    host.Connection.injectManualCommand("M104 S0 T3");
-                    but_T3_OnOff.Text = "Aus";
-                }
-            }
-        }
+        
 
         private void but_NozzleMinus_Click(object sender, EventArgs e)
         {
@@ -375,7 +274,7 @@ namespace MultecPlugin
         private void but_NozzlePlus_Click(object sender, EventArgs e)
         {
             try
-            {
+            {   
                 if (trackBar_NozzleTemp.Value < 270)
                 {
                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value + 5;
@@ -441,25 +340,7 @@ namespace MultecPlugin
 
         //////////Heated Bed//////////
 
-        private void but_bed_OnOff_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-
-                Bed_On = !Bed_On;
-
-                if (Bed_On == true)
-                {
-                    host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
-                    but_bed_OnOff.Text = "Ein";
-                }
-                else
-                {
-                    host.Connection.injectManualCommand("M140 S0 T5");
-                    but_bed_OnOff.Text = "Aus";
-                }
-            }
-        }
+        
 
         private void but_BedMinus_Click(object sender, EventArgs e)
         {
@@ -582,15 +463,6 @@ namespace MultecPlugin
             }
         }
 
-       
-
-        
-
-
-
-
-
-
         private void timer_temp_Tick(object sender, EventArgs e)
         {
             try
@@ -641,6 +513,7 @@ namespace MultecPlugin
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
+                btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
             }
             
@@ -675,6 +548,7 @@ namespace MultecPlugin
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
+                btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
                 firstG222 = false;
             }
@@ -715,6 +589,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
                 if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -724,6 +599,7 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
                 }
                 if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -733,6 +609,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
                 }
                 if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -742,6 +619,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
                 }
                 if (response.IndexOf("4", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -751,6 +629,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = false;
                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
                 }
             }
@@ -1220,7 +1099,7 @@ namespace MultecPlugin
             btnParkMove.Enabled = val;
             btnHomeMove.Enabled = val;
             btnMotorOff.Enabled = val;
-            but_MOVE.Enabled = val;
+            btnMove.Enabled = val;
             btnHome.Enabled = val;
             btnXMinus.Enabled = val;
             btnXPlus.Enabled = val;
@@ -1280,11 +1159,11 @@ namespace MultecPlugin
             text_T3_ziel.Text = "205";
             text_Bed_ziel.Text = "60";
             selected_nozzle = "T0";
-            but_T0_OnOff.Text = "Aus";
-            but_T1_OnOff.Text = "Aus";
-            but_T2_OnOff.Text = "Aus";
-            but_T3_OnOff.Text = "Aus";
-            but_bed_OnOff.Text = "Aus";
+            btnT0_OnOff.Image = Properties.Resources.AUS_2;
+            btnT1_OnOff.Image = Properties.Resources.AUS_2;
+            btnT2_OnOff.Image = Properties.Resources.AUS_2;
+            btnT3_OnOff.Image = Properties.Resources.AUS_2;
+            btnBed_OnOff.Image = Properties.Resources.AUS_2;
             if (isFormActive)
             {
                 enableDisableControls(false, this);
@@ -1630,6 +1509,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
             }
@@ -1732,6 +1612,7 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
                 }
             }
@@ -1760,6 +1641,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
                 }
             }
@@ -1788,6 +1670,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
+                    btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
                 }
             }
@@ -1846,6 +1729,172 @@ namespace MultecPlugin
             }
         }
 
-       
+        private void btnMove_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnMove, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    if (!host.IsJobRunning)
+                    {
+                        host.Connection.injectManualCommand("T4");
+                    }
+                    selected_nozzle = "T4";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    btnMove.Enabled = false;
+                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
+                }
+            }
+        }
+
+        private void btnMove_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnMove.Enabled)
+                btnMove.Image = Properties.Resources.MOVE_p_2;
+            else
+                btnMove.Image = Properties.Resources.MOVE_2;
+        }
+
+        private void btnT0_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                T0_On = !T0_On;
+                if (T0_On == true)
+                {
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    btnT0_OnOff.Image = Properties.Resources.ein;
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("M104 S0 T0");
+                    btnT0_OnOff.Image = Properties.Resources.AUS_2;
+                }
+            }
+        }
+
+        private void btnT0_OnOff_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT0_OnOff, e.X, e.Y))
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
+
+        private void btnT1_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                T1_On = !T1_On;
+
+                if (T1_On == true)
+                {
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    btnT1_OnOff.Image = Properties.Resources.ein;
+                }
+                else
+                {
+
+                    host.Connection.injectManualCommand("M104 S0 T1");
+                    btnT1_OnOff.Image = Properties.Resources.AUS_2;
+                }
+            }
+        }
+
+        private void btnT2_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                T2_On = !T2_On;
+
+                if (T2_On == true)
+                {
+
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
+                    btnT2_OnOff.Image = Properties.Resources.ein;                }
+                else
+                {
+
+                    host.Connection.injectManualCommand("M104 S0 T2");
+                    btnT2_OnOff.Image = Properties.Resources.AUS_2;
+                }
+            }
+        }
+
+        private void btnT3_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                T3_On = !T3_On;
+
+                if (T3_On == true)
+                {
+
+                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                    btnT3_OnOff.Image = Properties.Resources.ein;
+                }
+                else
+                {
+
+                    host.Connection.injectManualCommand("M104 S0 T3");
+                    btnT3_OnOff.Image = Properties.Resources.AUS_2;
+                }
+            }
+        }
+
+        private void btnBed_OnOff_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+
+                Bed_On = !Bed_On;
+
+                if (Bed_On == true)
+                {
+                    host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
+                    btnBed_OnOff.Image = Properties.Resources.ein;
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("M140 S0 T5");
+                    btnBed_OnOff.Image = Properties.Resources.AUS_2;
+            }
+            }
+        }
+
+        private void btnT1_OnOff_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT1_OnOff, e.X, e.Y))
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
+
+        private void btnT2_OnOff_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT2_OnOff, e.X, e.Y))
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
+
+        private void btnT3_OnOff_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnT3_OnOff, e.X, e.Y))
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
+
+        private void btnBed_OnOff_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnBed_OnOff, e.X, e.Y))
+                this.Cursor = Cursors.Hand;
+            else
+                this.Cursor = Cursors.Default;
+        }
     }
 }
