@@ -109,14 +109,15 @@ namespace MultecPlugin
         private string optimal_Abstand;
         private string zKorrektur;
         private int lifetimeCheck = 0;
-        private string[] gCode = new string[5];
+        private string[] gCode = new string[6];
         private int gCodeIndex = 0;
         private int getPrev_gCodeUp = 5;
         private int getPrev_gCodeDown = 0;
         private bool coldextrusionActive = false;
-        private bool firstG222 = false;
+        private bool firstG222 = true;
         private int gCodeCheck = 0;
-        private string maxGCodeValue;
+        private bool isG222Active = false;
+        
 
 
 
@@ -158,11 +159,7 @@ namespace MultecPlugin
             }
         }
 
-        private void buttonHome_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G28");
-        }
+        
 
         #endregion
 
@@ -195,11 +192,7 @@ namespace MultecPlugin
            
         }
 
-        private void but_G224_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G224");
-        }
+        
 
         private void but_G295_Click(object sender, EventArgs e)
         {
@@ -217,11 +210,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G297");
         }
 
-        private void but_MotorAus_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("M18");
-        }
+        
 
         //////////Nozzle Selection and Heating//////////
 
@@ -271,6 +260,7 @@ namespace MultecPlugin
             {
                 host.Connection.injectManualCommand("T4");
                 selected_nozzle = "T4";
+                trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
             }
         }
 
@@ -642,24 +632,53 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
-            
+           
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                firstG222 = false;
+
+                firstG222 = true;
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                selected_nozzle = string.Empty;
             }
             
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-            if (response.IndexOf("Call G222 first", StringComparison.CurrentCultureIgnoreCase) != -1)
+            
+            if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                if (firstG222)
+                try
                 {
-                    MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (!firstG222)
+                    {
+
+                        if (wrkrCallG222.IsBusy != true)
+                        {
+                            if (!isG222Active)
+                            {
+
+                                isG222Active = true;
+                                wrkrCallG222.RunWorkerAsync();
+                            }
+                        }
+
+                    }
                 }
-                firstG222 = true;
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Call G222 first wird nicht aktualisiert!");
+                }
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                selected_nozzle = string.Empty;
+                firstG222 = false;
             }
+            
             if (response.IndexOf("Cold extrusion prevented", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
@@ -678,6 +697,7 @@ namespace MultecPlugin
                     MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Cold Extrusion Prevented wird nicht aktualisiert!");
                 }
             }
+
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 + 
@@ -686,7 +706,54 @@ namespace MultecPlugin
                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
+            if (response.IndexOf("Active Extruder", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (response.IndexOf("0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    selected_nozzle = "T0";
+                    btnT0.Enabled = false;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
+                }
+                if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    selected_nozzle = "T1";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = false;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
+                }
+                if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    selected_nozzle = "T2";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = false;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
+                }
+                if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    selected_nozzle = "T3";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = false;
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
+                }
+                if (response.IndexOf("4", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    selected_nozzle = "T4";
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
+                }
+            }
             if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 startindex = response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase);
@@ -1150,11 +1217,11 @@ namespace MultecPlugin
         }
         private void enablDisablWhenPrinting(bool val)
         {
-            but_G224.Enabled = val;
+            btnParkMove.Enabled = val;
             btnHomeMove.Enabled = val;
-            but_MotorAus.Enabled = val;
+            btnMotorOff.Enabled = val;
             but_MOVE.Enabled = val;
-            buttonHome.Enabled = val;
+            btnHome.Enabled = val;
             btnXMinus.Enabled = val;
             btnXPlus.Enabled = val;
             btnYMinus.Enabled = val;
@@ -1579,9 +1646,7 @@ namespace MultecPlugin
                 }
                 gCode[gCodeIndex] = txtManualGcode.Text;
                 gCodeIndex++;
-                maxGCodeValue = gCode.Max();
-                gCodeCheck = gCode.ToList().IndexOf(maxGCodeValue);
-
+                gCodeCheck = gCode.Count(s => s != null);
                 txtManualGcode.Text = string.Empty;
             }
             else
@@ -1610,6 +1675,10 @@ namespace MultecPlugin
                 //MessageBox.Show("the value of index is" + getPrev_gCodeUp.ToString());
                 txtManualGcode.Text = gCode[getPrev_gCodeUp];
                 getPrev_gCodeUp--;
+                if (txtManualGcode.Text != String.Empty)
+                {
+                    txtManualGcode.Select(0, 0);
+                }
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -1623,6 +1692,10 @@ namespace MultecPlugin
                 }
                 txtManualGcode.Text = gCode[getPrev_gCodeDown];
                 getPrev_gCodeDown++;
+                if (txtManualGcode.Text != String.Empty)
+                {
+                    txtManualGcode.Select(txtManualGcode.Text.Length, 0);
+                }
             }
         }
 
@@ -1640,9 +1713,9 @@ namespace MultecPlugin
         private void btnT0_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT0.Enabled)
-                btnT0.Image = Properties.Resources.T0_p;
+                btnT0.Image = Properties.Resources.T0_p_2;
             else
-                btnT0.Image = Properties.Resources.T01;
+                btnT0.Image = Properties.Resources.T0_2;
         }
 
         private void BtnT1_MouseClick(object sender, MouseEventArgs e)
@@ -1667,9 +1740,9 @@ namespace MultecPlugin
         private void BtnT1_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT1.Enabled)
-                btnT1.Image = Properties.Resources.T1_p;
+                btnT1.Image = Properties.Resources.T1_p_2;
             else
-                btnT1.Image = Properties.Resources.T1;
+                btnT1.Image = Properties.Resources.T1_2;
         }
 
         private void btnT2_MouseClick(object sender, MouseEventArgs e)
@@ -1695,9 +1768,9 @@ namespace MultecPlugin
         private void btnT2_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT2.Enabled)
-                btnT2.Image = Properties.Resources.T2_p;
+                btnT2.Image = Properties.Resources.T2_p_2;
             else
-                btnT2.Image = Properties.Resources.T2;
+                btnT2.Image = Properties.Resources.T2_2;
         }
 
         private void btnT3_MouseClick(object sender, MouseEventArgs e)
@@ -1723,9 +1796,56 @@ namespace MultecPlugin
         private void btnT3_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT3.Enabled)
-                btnT3.Image = Properties.Resources.T3_p;
+                btnT3.Image = Properties.Resources.T3_p_2;
             else
-                btnT3.Image = Properties.Resources.T3;
+                btnT3.Image = Properties.Resources.T3_2;
         }
+
+        private void wrkrCallG222_DoWork(object sender, DoWorkEventArgs e)
+        {
+           var newMsg =  MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
+                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (newMsg == DialogResult.OK)
+            {
+                isG222Active = false;
+            }
+            
+            
+        }
+
+        private void btnMotorOff_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnMotorOff, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("M18");
+                }
+            }
+        }
+
+        private void btnHome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnHome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28");
+                }
+            }
+        }
+
+        private void btnParkMove_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnParkMove, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G224");
+                }
+            }
+        }
+
+       
     }
 }

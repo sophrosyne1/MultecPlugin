@@ -73,18 +73,17 @@ namespace MultecPlugin
             this.but_G295 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.buttonHome = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.but_step_1 = new System.Windows.Forms.Button();
             this.but_step_10 = new System.Windows.Forms.Button();
             this.but_step_50 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnMove = new MyCustomButton.MyCustomButton();
+            this.btnT3 = new MyCustomButton.MyCustomButton();
             this.btnT2 = new MyCustomButton.MyCustomButton();
             this.btnT1 = new MyCustomButton.MyCustomButton();
             this.btnT0 = new MyCustomButton.MyCustomButton();
             this.but_MOVE = new System.Windows.Forms.Button();
-            this.but_G224 = new System.Windows.Forms.Button();
-            this.but_MotorAus = new System.Windows.Forms.Button();
             this.but_T0_OnOff = new System.Windows.Forms.Button();
             this.but_T1_OnOff = new System.Windows.Forms.Button();
             this.but_T2_OnOff = new System.Windows.Forms.Button();
@@ -119,7 +118,9 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
-            this.btnT3 = new MyCustomButton.MyCustomButton();
+            this.btnParkMove = new MyCustomButton.MyCustomButton();
+            this.btnHome = new MyCustomButton.MyCustomButton();
+            this.btnMotorOff = new MyCustomButton.MyCustomButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label41 = new System.Windows.Forms.Label();
             this.btnManualGcode = new System.Windows.Forms.Button();
@@ -216,12 +217,15 @@ namespace MultecPlugin
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
             this.wrkerColdExtrusion = new System.ComponentModel.BackgroundWorker();
+            this.wrkrCallG222 = new System.ComponentModel.BackgroundWorker();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT0)).BeginInit();
@@ -229,7 +233,9 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).BeginInit();
@@ -276,7 +282,7 @@ namespace MultecPlugin
             tabpage2.Margin = new System.Windows.Forms.Padding(2);
             tabpage2.Name = "tabpage2";
             tabpage2.Padding = new System.Windows.Forms.Padding(2);
-            tabpage2.Size = new System.Drawing.Size(529, 537);
+            tabpage2.Size = new System.Drawing.Size(549, 537);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
             // 
@@ -707,7 +713,6 @@ namespace MultecPlugin
             this.button1.TabIndex = 11;
             this.button1.Text = "Home MOVE";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.but_G222_Click);
             // 
             // button2
             // 
@@ -718,18 +723,6 @@ namespace MultecPlugin
             this.button2.TabIndex = 12;
             this.button2.Text = "Park MOVE";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.but_G224_Click);
-            // 
-            // buttonHome
-            // 
-            this.buttonHome.Enabled = false;
-            this.buttonHome.Location = new System.Drawing.Point(27, 224);
-            this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(60, 40);
-            this.buttonHome.TabIndex = 0;
-            this.buttonHome.Text = "Home";
-            this.buttonHome.UseVisualStyleBackColor = true;
-            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
             // 
             // groupBox1
             // 
@@ -784,6 +777,7 @@ namespace MultecPlugin
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnMove);
             this.groupBox2.Controls.Add(this.btnT3);
             this.groupBox2.Controls.Add(this.btnT2);
             this.groupBox2.Controls.Add(this.btnT1);
@@ -795,6 +789,32 @@ namespace MultecPlugin
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Werkzeug Auswahl";
+            // 
+            // btnMove
+            // 
+            this.btnMove.BackColor = System.Drawing.Color.Transparent;
+            this.btnMove.ImageClicked = null;
+            this.btnMove.ImangeNormal = null;
+            this.btnMove.Location = new System.Drawing.Point(271, 19);
+            this.btnMove.Name = "btnMove";
+            this.btnMove.Size = new System.Drawing.Size(58, 40);
+            this.btnMove.TabIndex = 9;
+            this.btnMove.TabStop = false;
+            // 
+            // btnT3
+            // 
+            this.btnT3.BackColor = System.Drawing.Color.Transparent;
+            this.btnT3.Image = global::MultecPlugin.Properties.Resources.T3;
+            this.btnT3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
+            this.btnT3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
+            this.btnT3.Location = new System.Drawing.Point(205, 19);
+            this.btnT3.Name = "btnT3";
+            this.btnT3.Size = new System.Drawing.Size(60, 40);
+            this.btnT3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT3.TabIndex = 8;
+            this.btnT3.TabStop = false;
+            this.btnT3.EnabledChanged += new System.EventHandler(this.btnT3_EnabledChanged);
+            this.btnT3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT3_MouseClick);
             // 
             // btnT2
             // 
@@ -852,28 +872,6 @@ namespace MultecPlugin
             this.but_MOVE.Text = "MOVE";
             this.but_MOVE.UseVisualStyleBackColor = true;
             this.but_MOVE.Click += new System.EventHandler(this.but_MOVE_Click);
-            // 
-            // but_G224
-            // 
-            this.but_G224.Enabled = false;
-            this.but_G224.Location = new System.Drawing.Point(24, 389);
-            this.but_G224.Name = "but_G224";
-            this.but_G224.Size = new System.Drawing.Size(60, 40);
-            this.but_G224.TabIndex = 10;
-            this.but_G224.Text = "Park MOVE";
-            this.but_G224.UseVisualStyleBackColor = true;
-            this.but_G224.Click += new System.EventHandler(this.but_G224_Click);
-            // 
-            // but_MotorAus
-            // 
-            this.but_MotorAus.Enabled = false;
-            this.but_MotorAus.Location = new System.Drawing.Point(27, 270);
-            this.but_MotorAus.Name = "but_MotorAus";
-            this.but_MotorAus.Size = new System.Drawing.Size(60, 40);
-            this.but_MotorAus.TabIndex = 11;
-            this.but_MotorAus.Text = "Motoren Aus";
-            this.but_MotorAus.UseVisualStyleBackColor = true;
-            this.but_MotorAus.Click += new System.EventHandler(this.but_MotorAus_Click);
             // 
             // but_T0_OnOff
             // 
@@ -1225,14 +1223,14 @@ namespace MultecPlugin
             this.tabControl1.Controls.Add(tabpage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.tabControl1.ItemSize = new System.Drawing.Size(177, 40);
+            this.tabControl1.ItemSize = new System.Drawing.Size(183, 40);
             this.tabControl1.Location = new System.Drawing.Point(-1, 2);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(537, 585);
+            this.tabControl1.Size = new System.Drawing.Size(557, 585);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
@@ -1240,6 +1238,9 @@ namespace MultecPlugin
             // TouchControl
             // 
             this.TouchControl.BackColor = System.Drawing.SystemColors.Control;
+            this.TouchControl.Controls.Add(this.btnParkMove);
+            this.TouchControl.Controls.Add(this.btnHome);
+            this.TouchControl.Controls.Add(this.btnMotorOff);
             this.TouchControl.Controls.Add(this.groupBox5);
             this.TouchControl.Controls.Add(this.btnHomeMove);
             this.TouchControl.Controls.Add(this.btnExtrude);
@@ -1252,7 +1253,6 @@ namespace MultecPlugin
             this.TouchControl.Controls.Add(this.groupBox1);
             this.TouchControl.Controls.Add(this.label11);
             this.TouchControl.Controls.Add(this.label10);
-            this.TouchControl.Controls.Add(this.buttonHome);
             this.TouchControl.Controls.Add(this.label9);
             this.TouchControl.Controls.Add(this.label8);
             this.TouchControl.Controls.Add(this.label7);
@@ -1264,9 +1264,7 @@ namespace MultecPlugin
             this.TouchControl.Controls.Add(this.groupBox2);
             this.TouchControl.Controls.Add(this.label1);
             this.TouchControl.Controls.Add(this.text_Bed_Aktuell);
-            this.TouchControl.Controls.Add(this.but_G224);
             this.TouchControl.Controls.Add(this.text_Bed_ziel);
-            this.TouchControl.Controls.Add(this.but_MotorAus);
             this.TouchControl.Controls.Add(this.but_BedPlus);
             this.TouchControl.Controls.Add(this.but_T0_OnOff);
             this.TouchControl.Controls.Add(this.but_BedMinus);
@@ -1290,24 +1288,51 @@ namespace MultecPlugin
             this.TouchControl.Location = new System.Drawing.Point(4, 4);
             this.TouchControl.Name = "TouchControl";
             this.TouchControl.Padding = new System.Windows.Forms.Padding(3);
-            this.TouchControl.Size = new System.Drawing.Size(529, 537);
+            this.TouchControl.Size = new System.Drawing.Size(549, 537);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
             // 
-            // btnT3
+            // btnParkMove
             // 
-            this.btnT3.BackColor = System.Drawing.Color.Transparent;
-            this.btnT3.Image = global::MultecPlugin.Properties.Resources.T3;
-            this.btnT3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
-            this.btnT3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
-            this.btnT3.Location = new System.Drawing.Point(205, 20);
-            this.btnT3.Name = "btnT3";
-            this.btnT3.Size = new System.Drawing.Size(60, 39);
-            this.btnT3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnT3.TabIndex = 8;
-            this.btnT3.TabStop = false;
-            this.btnT3.EnabledChanged += new System.EventHandler(this.btnT3_EnabledChanged);
-            this.btnT3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT3_MouseClick);
+            this.btnParkMove.BackColor = System.Drawing.Color.Transparent;
+            this.btnParkMove.Image = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMove.ImageClicked = global::MultecPlugin.Properties.Resources.Park_Move_p;
+            this.btnParkMove.ImangeNormal = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMove.Location = new System.Drawing.Point(27, 437);
+            this.btnParkMove.Name = "btnParkMove";
+            this.btnParkMove.Size = new System.Drawing.Size(60, 58);
+            this.btnParkMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnParkMove.TabIndex = 58;
+            this.btnParkMove.TabStop = false;
+            this.btnParkMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkMove_MouseClick);
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
+            this.btnHome.Image = global::MultecPlugin.Properties.Resources.HOME;
+            this.btnHome.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_p;
+            this.btnHome.ImangeNormal = global::MultecPlugin.Properties.Resources.HOME;
+            this.btnHome.Location = new System.Drawing.Point(27, 246);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(60, 58);
+            this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHome.TabIndex = 9;
+            this.btnHome.TabStop = false;
+            this.btnHome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHome_MouseClick);
+            // 
+            // btnMotorOff
+            // 
+            this.btnMotorOff.BackColor = System.Drawing.Color.Transparent;
+            this.btnMotorOff.Image = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
+            this.btnMotorOff.ImageClicked = global::MultecPlugin.Properties.Resources.MOTOR_OFF_p;
+            this.btnMotorOff.ImangeNormal = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
+            this.btnMotorOff.Location = new System.Drawing.Point(27, 310);
+            this.btnMotorOff.Name = "btnMotorOff";
+            this.btnMotorOff.Size = new System.Drawing.Size(60, 58);
+            this.btnMotorOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnMotorOff.TabIndex = 57;
+            this.btnMotorOff.TabStop = false;
+            this.btnMotorOff.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnMotorOff_MouseClick);
             // 
             // groupBox5
             // 
@@ -1354,7 +1379,7 @@ namespace MultecPlugin
             this.btnHomeMove.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.Image")));
             this.btnHomeMove.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
             this.btnHomeMove.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.ImangeNormal")));
-            this.btnHomeMove.Location = new System.Drawing.Point(24, 316);
+            this.btnHomeMove.Location = new System.Drawing.Point(27, 374);
             this.btnHomeMove.Name = "btnHomeMove";
             this.btnHomeMove.Size = new System.Drawing.Size(60, 57);
             this.btnHomeMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1563,7 +1588,7 @@ namespace MultecPlugin
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(529, 537);
+            this.tabPage1.Size = new System.Drawing.Size(549, 537);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
             // 
@@ -1703,7 +1728,7 @@ namespace MultecPlugin
             this.lblKgSrvcT3.BackColor = System.Drawing.SystemColors.Control;
             this.lblKgSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT3.Location = new System.Drawing.Point(379, 336);
+            this.lblKgSrvcT3.Location = new System.Drawing.Point(376, 336);
             this.lblKgSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT3.Name = "lblKgSrvcT3";
             this.lblKgSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1716,7 +1741,7 @@ namespace MultecPlugin
             this.lblKgSrvcT2.BackColor = System.Drawing.SystemColors.Control;
             this.lblKgSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT2.Location = new System.Drawing.Point(379, 321);
+            this.lblKgSrvcT2.Location = new System.Drawing.Point(376, 321);
             this.lblKgSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT2.Name = "lblKgSrvcT2";
             this.lblKgSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1729,7 +1754,7 @@ namespace MultecPlugin
             this.lblKgSrvcT1.BackColor = System.Drawing.SystemColors.Control;
             this.lblKgSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT1.Location = new System.Drawing.Point(379, 306);
+            this.lblKgSrvcT1.Location = new System.Drawing.Point(376, 306);
             this.lblKgSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT1.Name = "lblKgSrvcT1";
             this.lblKgSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1742,7 +1767,7 @@ namespace MultecPlugin
             this.lblKgSrvcT0.BackColor = System.Drawing.SystemColors.Control;
             this.lblKgSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT0.Location = new System.Drawing.Point(379, 291);
+            this.lblKgSrvcT0.Location = new System.Drawing.Point(376, 291);
             this.lblKgSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT0.Name = "lblKgSrvcT0";
             this.lblKgSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1755,7 +1780,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT3.BackColor = System.Drawing.SystemColors.Control;
             this.lblHeatedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT3.Location = new System.Drawing.Point(379, 400);
+            this.lblHeatedSrvcT3.Location = new System.Drawing.Point(376, 400);
             this.lblHeatedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT3.Name = "lblHeatedSrvcT3";
             this.lblHeatedSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1768,7 +1793,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT2.BackColor = System.Drawing.SystemColors.Control;
             this.lblHeatedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT2.Location = new System.Drawing.Point(379, 385);
+            this.lblHeatedSrvcT2.Location = new System.Drawing.Point(376, 385);
             this.lblHeatedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT2.Name = "lblHeatedSrvcT2";
             this.lblHeatedSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1781,7 +1806,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT1.BackColor = System.Drawing.SystemColors.Control;
             this.lblHeatedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT1.Location = new System.Drawing.Point(379, 370);
+            this.lblHeatedSrvcT1.Location = new System.Drawing.Point(376, 370);
             this.lblHeatedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT1.Name = "lblHeatedSrvcT1";
             this.lblHeatedSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1794,7 +1819,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT0.BackColor = System.Drawing.SystemColors.Control;
             this.lblHeatedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT0.Location = new System.Drawing.Point(379, 355);
+            this.lblHeatedSrvcT0.Location = new System.Drawing.Point(376, 355);
             this.lblHeatedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT0.Name = "lblHeatedSrvcT0";
             this.lblHeatedSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1807,7 +1832,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT3.BackColor = System.Drawing.SystemColors.Control;
             this.lblExtrudedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT3.Location = new System.Drawing.Point(379, 276);
+            this.lblExtrudedSrvcT3.Location = new System.Drawing.Point(376, 276);
             this.lblExtrudedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT3.Name = "lblExtrudedSrvcT3";
             this.lblExtrudedSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1820,7 +1845,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT2.BackColor = System.Drawing.SystemColors.Control;
             this.lblExtrudedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT2.Location = new System.Drawing.Point(379, 261);
+            this.lblExtrudedSrvcT2.Location = new System.Drawing.Point(376, 261);
             this.lblExtrudedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT2.Name = "lblExtrudedSrvcT2";
             this.lblExtrudedSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1833,7 +1858,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT1.BackColor = System.Drawing.SystemColors.Control;
             this.lblExtrudedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT1.Location = new System.Drawing.Point(379, 246);
+            this.lblExtrudedSrvcT1.Location = new System.Drawing.Point(376, 246);
             this.lblExtrudedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT1.Name = "lblExtrudedSrvcT1";
             this.lblExtrudedSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1846,7 +1871,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT0.BackColor = System.Drawing.SystemColors.Control;
             this.lblExtrudedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT0.Location = new System.Drawing.Point(379, 231);
+            this.lblExtrudedSrvcT0.Location = new System.Drawing.Point(376, 231);
             this.lblExtrudedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT0.Name = "lblExtrudedSrvcT0";
             this.lblExtrudedSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1859,7 +1884,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceZ.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcDistanceZ.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceZ.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceZ.Location = new System.Drawing.Point(379, 210);
+            this.lblSrvcDistanceZ.Location = new System.Drawing.Point(376, 210);
             this.lblSrvcDistanceZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceZ.Name = "lblSrvcDistanceZ";
             this.lblSrvcDistanceZ.Size = new System.Drawing.Size(31, 13);
@@ -1872,7 +1897,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceY.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcDistanceY.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceY.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceY.Location = new System.Drawing.Point(379, 196);
+            this.lblSrvcDistanceY.Location = new System.Drawing.Point(376, 196);
             this.lblSrvcDistanceY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceY.Name = "lblSrvcDistanceY";
             this.lblSrvcDistanceY.Size = new System.Drawing.Size(31, 13);
@@ -1885,7 +1910,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceX.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcDistanceX.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceX.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceX.Location = new System.Drawing.Point(379, 181);
+            this.lblSrvcDistanceX.Location = new System.Drawing.Point(376, 181);
             this.lblSrvcDistanceX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceX.Name = "lblSrvcDistanceX";
             this.lblSrvcDistanceX.Size = new System.Drawing.Size(31, 13);
@@ -1898,7 +1923,7 @@ namespace MultecPlugin
             this.lblSrvcPrntLife.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcPrntLife.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPrntLife.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPrntLife.Location = new System.Drawing.Point(379, 159);
+            this.lblSrvcPrntLife.Location = new System.Drawing.Point(376, 159);
             this.lblSrvcPrntLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPrntLife.Name = "lblSrvcPrntLife";
             this.lblSrvcPrntLife.Size = new System.Drawing.Size(31, 13);
@@ -1911,7 +1936,7 @@ namespace MultecPlugin
             this.lblSrvcPwrON.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcPwrON.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPwrON.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPwrON.Location = new System.Drawing.Point(379, 144);
+            this.lblSrvcPwrON.Location = new System.Drawing.Point(376, 144);
             this.lblSrvcPwrON.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPwrON.Name = "lblSrvcPwrON";
             this.lblSrvcPwrON.Size = new System.Drawing.Size(31, 13);
@@ -1924,7 +1949,7 @@ namespace MultecPlugin
             this.lblSrvcPwrCycle.BackColor = System.Drawing.SystemColors.Control;
             this.lblSrvcPwrCycle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPwrCycle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPwrCycle.Location = new System.Drawing.Point(379, 129);
+            this.lblSrvcPwrCycle.Location = new System.Drawing.Point(376, 129);
             this.lblSrvcPwrCycle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPwrCycle.Name = "lblSrvcPwrCycle";
             this.lblSrvcPwrCycle.Size = new System.Drawing.Size(31, 13);
@@ -1937,7 +1962,7 @@ namespace MultecPlugin
             this.label70.BackColor = System.Drawing.SystemColors.Control;
             this.label70.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label70.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label70.Location = new System.Drawing.Point(309, 114);
+            this.label70.Location = new System.Drawing.Point(306, 114);
             this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(181, 13);
@@ -2605,6 +2630,10 @@ namespace MultecPlugin
             // 
             this.wrkerColdExtrusion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.WrkerColdExtrusion_DoWork);
             // 
+            // wrkrCallG222
+            // 
+            this.wrkrCallG222.DoWork += new System.ComponentModel.DoWorkEventHandler(this.wrkrCallG222_DoWork);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -2614,7 +2643,7 @@ namespace MultecPlugin
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tabControl1);
             this.Name = "MultecTouchpanel";
-            this.Size = new System.Drawing.Size(536, 589);
+            this.Size = new System.Drawing.Size(558, 589);
             tabpage2.ResumeLayout(false);
             tabpage2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -2622,6 +2651,8 @@ namespace MultecPlugin
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT0)).EndInit();
@@ -2630,7 +2661,9 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).EndInit();
@@ -2654,15 +2687,12 @@ namespace MultecPlugin
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonHome;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button but_step_1;
         private System.Windows.Forms.Button but_step_10;
         private System.Windows.Forms.Button but_step_50;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button but_MOVE;
-        private System.Windows.Forms.Button but_G224;
-        private System.Windows.Forms.Button but_MotorAus;
         private System.Windows.Forms.Button but_T0_OnOff;
         private System.Windows.Forms.Button but_T1_OnOff;
         private System.Windows.Forms.Button but_T2_OnOff;
@@ -2836,5 +2866,11 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnT1;
         private MyCustomButton.MyCustomButton btnT2;
         private MyCustomButton.MyCustomButton btnT3;
+        private System.ComponentModel.BackgroundWorker wrkrCallG222;
+        private MyCustomButton.MyCustomButton btnMotorOff;
+        private MyCustomButton.MyCustomButton btnHome;
+        private MyCustomButton.MyCustomButton btnParkMove;
+        private MyCustomButton.MyCustomButton myCustomButton1;
+        private MyCustomButton.MyCustomButton btnMove;
     }
 }

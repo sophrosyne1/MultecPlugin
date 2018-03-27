@@ -5,3 +5,4 @@ C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\M
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csproj.CoreCompileInputs.cache
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.pdb
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csprojResolveAssemblyReference.cache

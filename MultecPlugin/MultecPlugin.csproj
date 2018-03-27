@@ -115,9 +115,6 @@
     <None Include="Resources\MOTOR_OFF.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MOVE.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\one_mm.png" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +236,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\T3_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOTOR_OFF_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park_Move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park_Move_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOVE.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
