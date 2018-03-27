@@ -74,9 +74,8 @@ namespace MultecPlugin
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.but_step_1 = new System.Windows.Forms.Button();
-            this.but_step_10 = new System.Windows.Forms.Button();
-            this.but_step_50 = new System.Windows.Forms.Button();
+            this.btnStep10 = new MyCustomButton.MyCustomButton();
+            this.btnStep1 = new MyCustomButton.MyCustomButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnMove = new MyCustomButton.MyCustomButton();
             this.btnT3 = new MyCustomButton.MyCustomButton();
@@ -112,6 +111,7 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.btnStep50 = new MyCustomButton.MyCustomButton();
             this.btnBed_OnOff = new System.Windows.Forms.PictureBox();
             this.btnT3_OnOff = new System.Windows.Forms.PictureBox();
             this.btnT2_OnOff = new System.Windows.Forms.PictureBox();
@@ -222,6 +222,8 @@ namespace MultecPlugin
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
@@ -232,6 +234,7 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).BeginInit();
@@ -730,9 +733,9 @@ namespace MultecPlugin
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.but_step_1);
-            this.groupBox1.Controls.Add(this.but_step_10);
-            this.groupBox1.Controls.Add(this.but_step_50);
+            this.groupBox1.Controls.Add(this.btnStep50);
+            this.groupBox1.Controls.Add(this.btnStep10);
+            this.groupBox1.Controls.Add(this.btnStep1);
             this.groupBox1.Location = new System.Drawing.Point(23, 69);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -742,42 +745,35 @@ namespace MultecPlugin
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Distance";
             // 
-            // but_step_1
+            // btnStep10
             // 
-            this.but_step_1.Enabled = false;
-            this.but_step_1.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_step_1.Location = new System.Drawing.Point(4, 104);
-            this.but_step_1.Margin = new System.Windows.Forms.Padding(2);
-            this.but_step_1.Name = "but_step_1";
-            this.but_step_1.Size = new System.Drawing.Size(60, 40);
-            this.but_step_1.TabIndex = 2;
-            this.but_step_1.Text = "1 mm";
-            this.but_step_1.UseVisualStyleBackColor = true;
-            this.but_step_1.Click += new System.EventHandler(this.but_step_1_Click);
+            this.btnStep10.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep10.Image = global::MultecPlugin.Properties.Resources.tenmm;
+            this.btnStep10.ImageClicked = global::MultecPlugin.Properties.Resources.tenmm_p;
+            this.btnStep10.ImangeNormal = global::MultecPlugin.Properties.Resources.tenmm;
+            this.btnStep10.Location = new System.Drawing.Point(5, 60);
+            this.btnStep10.Name = "btnStep10";
+            this.btnStep10.Size = new System.Drawing.Size(59, 40);
+            this.btnStep10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep10.TabIndex = 4;
+            this.btnStep10.TabStop = false;
+            this.btnStep10.EnabledChanged += new System.EventHandler(this.btnStep10_EnabledChanged);
+            this.btnStep10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep10_MouseClick);
             // 
-            // but_step_10
+            // btnStep1
             // 
-            this.but_step_10.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_step_10.Location = new System.Drawing.Point(4, 60);
-            this.but_step_10.Margin = new System.Windows.Forms.Padding(2);
-            this.but_step_10.Name = "but_step_10";
-            this.but_step_10.Size = new System.Drawing.Size(60, 40);
-            this.but_step_10.TabIndex = 1;
-            this.but_step_10.Text = "10 mm";
-            this.but_step_10.UseVisualStyleBackColor = true;
-            this.but_step_10.Click += new System.EventHandler(this.but_step_10_Click);
-            // 
-            // but_step_50
-            // 
-            this.but_step_50.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_step_50.Location = new System.Drawing.Point(4, 16);
-            this.but_step_50.Margin = new System.Windows.Forms.Padding(2);
-            this.but_step_50.Name = "but_step_50";
-            this.but_step_50.Size = new System.Drawing.Size(60, 40);
-            this.but_step_50.TabIndex = 0;
-            this.but_step_50.Text = "50 mm";
-            this.but_step_50.UseVisualStyleBackColor = true;
-            this.but_step_50.Click += new System.EventHandler(this.but_step_50_Click);
+            this.btnStep1.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep1.Image = global::MultecPlugin.Properties.Resources.onemm;
+            this.btnStep1.ImageClicked = global::MultecPlugin.Properties.Resources.onemm_p;
+            this.btnStep1.ImangeNormal = global::MultecPlugin.Properties.Resources.onemm;
+            this.btnStep1.Location = new System.Drawing.Point(4, 105);
+            this.btnStep1.Name = "btnStep1";
+            this.btnStep1.Size = new System.Drawing.Size(60, 40);
+            this.btnStep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep1.TabIndex = 3;
+            this.btnStep1.TabStop = false;
+            this.btnStep1.EnabledChanged += new System.EventHandler(this.btnStep1_EnabledChanged);
+            this.btnStep1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep1_MouseClick);
             // 
             // groupBox2
             // 
@@ -1236,6 +1232,21 @@ namespace MultecPlugin
             this.TouchControl.Size = new System.Drawing.Size(549, 537);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
+            // 
+            // btnStep50
+            // 
+            this.btnStep50.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep50.Image = global::MultecPlugin.Properties.Resources.fiftymm;
+            this.btnStep50.ImageClicked = global::MultecPlugin.Properties.Resources.fiftymm_p;
+            this.btnStep50.ImangeNormal = global::MultecPlugin.Properties.Resources.fiftymm;
+            this.btnStep50.Location = new System.Drawing.Point(5, 14);
+            this.btnStep50.Name = "btnStep50";
+            this.btnStep50.Size = new System.Drawing.Size(59, 40);
+            this.btnStep50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep50.TabIndex = 5;
+            this.btnStep50.TabStop = false;
+            this.btnStep50.EnabledChanged += new System.EventHandler(this.btnStep50_EnabledChanged);
+            this.btnStep50.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep50_MouseClick);
             // 
             // btnBed_OnOff
             // 
@@ -2655,6 +2666,8 @@ namespace MultecPlugin
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
@@ -2666,6 +2679,7 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).EndInit();
@@ -2698,9 +2712,6 @@ namespace MultecPlugin
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button but_step_1;
-        private System.Windows.Forms.Button but_step_10;
-        private System.Windows.Forms.Button but_step_50;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TrackBar trackBar_NozzleTemp;
         private System.Windows.Forms.Button but_NozzleMinus;
@@ -2881,5 +2892,8 @@ namespace MultecPlugin
         private PictureBox btnT3_OnOff;
         private PictureBox btnT2_OnOff;
         private PictureBox btnT1_OnOff;
+        private MyCustomButton.MyCustomButton btnStep1;
+        private MyCustomButton.MyCustomButton btnStep10;
+        private MyCustomButton.MyCustomButton btnStep50;
     }
 }

@@ -282,6 +282,66 @@
   <ItemGroup>
     <None Include="Resources\EINAus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01mm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01mm_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01mm_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01mm_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10mm_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10mm_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10mm_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50mm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50mm_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50mm_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50mm_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10mm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fiftymm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fiftymm_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fiftymm_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fiftymm_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tenmm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tenmm_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tenmm_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tenmm_p_2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -36,7 +36,7 @@ namespace MultecPlugin
 
         public MultecTouchpanel()
         {
-            
+
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
@@ -89,7 +89,7 @@ namespace MultecPlugin
 
         //////////Movement Controls//////////
 
-        private double step_dist= 1;
+        private double step_dist = 1;
         private string temp_Zeil;
         private string temp_Zeil_bed;
         private bool T0_On;
@@ -117,7 +117,7 @@ namespace MultecPlugin
         private bool firstG222 = true;
         private int gCodeCheck = 0;
         private bool isG222Active = false;
-        
+
 
 
 
@@ -134,7 +134,7 @@ namespace MultecPlugin
 
         private void but_Zminus_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void but_Retract_Click(object sender, EventArgs e)
@@ -159,48 +159,26 @@ namespace MultecPlugin
             }
         }
 
-        
+
 
         #endregion
 
-        private void but_step_50_Click(object sender, EventArgs e)
-        {
-            but_step_1.Enabled = true;
-            but_step_10.Enabled = true;
-            but_step_50.Enabled = false;
-            step_dist = 50;
-        }
 
-        private void but_step_10_Click(object sender, EventArgs e)
-        {
-            but_step_1.Enabled = true;
-            but_step_10.Enabled = false;
-            but_step_50.Enabled = true;
-            step_dist = 10;
-        }
 
-        private void but_step_1_Click(object sender, EventArgs e)
-        {
-            but_step_1.Enabled = false;
-            but_step_10.Enabled = true;
-            but_step_50.Enabled = true;
-            step_dist = 1;
-        }
 
-        private void but_G222_Click(object sender, EventArgs e)
-        {
-           
-        }
 
-        
+
+
+
+
 
         private void but_G295_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
-            {  
+            {
                 host.Connection.injectManualCommand("G295");
                 host.Connection.injectManualCommand("G296");
-                host.Connection.injectManualCommand("M503");      
+                host.Connection.injectManualCommand("M503");
             }
         }
 
@@ -210,7 +188,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G297");
         }
 
-        
+
 
         //////////Nozzle Selection and Heating//////////
 
@@ -245,12 +223,12 @@ namespace MultecPlugin
             }
         }
 
-        
-
-       
 
 
-        
+
+
+
+
 
         private void but_NozzleMinus_Click(object sender, EventArgs e)
         {
@@ -262,7 +240,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!", 
+                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -274,7 +252,7 @@ namespace MultecPlugin
         private void but_NozzlePlus_Click(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 if (trackBar_NozzleTemp.Value < 270)
                 {
                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value + 5;
@@ -340,7 +318,7 @@ namespace MultecPlugin
 
         //////////Heated Bed//////////
 
-        
+
 
         private void but_BedMinus_Click(object sender, EventArgs e)
         {
@@ -428,7 +406,7 @@ namespace MultecPlugin
         private string xOffset = string.Empty;
         private string yOffset = string.Empty;
         private double newOffset = 0;
-        
+
         private int zOffsetMultiplyer = 0;
         private double relativOffset = 0;
         private string filamentVal = string.Empty;
@@ -504,7 +482,7 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
-           
+
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
 
@@ -516,11 +494,11 @@ namespace MultecPlugin
                 btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
             }
-            
+
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-            
+
             if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
@@ -552,7 +530,7 @@ namespace MultecPlugin
                 selected_nozzle = string.Empty;
                 firstG222 = false;
             }
-            
+
             if (response.IndexOf("Cold extrusion prevented", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
@@ -574,9 +552,9 @@ namespace MultecPlugin
 
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 + 
-                       " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine + 
-                       "\t\tT3: "+ zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
+                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 +
+                       " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine +
+                       "\t\tT3: " + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -641,8 +619,8 @@ namespace MultecPlugin
             }
             if (response.IndexOf("RunOutMonitoringActive", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                
-                startindex = response.IndexOf("=",  StringComparison.CurrentCultureIgnoreCase);
+
+                startindex = response.IndexOf("=", StringComparison.CurrentCultureIgnoreCase);
                 filamentVal = response.Substring(startindex + 2);
 
                 if (filamentVal == "true")
@@ -657,7 +635,7 @@ namespace MultecPlugin
                 }
             }
 
-            
+
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -732,7 +710,7 @@ namespace MultecPlugin
                         text_M218_Y.Text = yOffset;
                     }
                 }
-                
+
             }
             if (response.IndexOf("dz_T0_MS_opt", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -967,7 +945,7 @@ namespace MultecPlugin
                     lblHeatedSrvcT3.Text = response.Substring(startindex + 1);
                 }
             }
-            
+
             if (response.IndexOf("FilamentAvailable_T0", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
 
@@ -1035,7 +1013,7 @@ namespace MultecPlugin
                     lblFilamentT3.Text = "FILAMENT LEER";
                     lblFilamentT3.BackColor = Color.Yellow;
                 }
-               
+
             }
         }
         //function to remove temperature readings from textboxes
@@ -1054,18 +1032,18 @@ namespace MultecPlugin
                 isFormActive = true;
             }
 
-            
+
 
             if (!host.IsJobRunning)
             {
 
                 enablDisablWhenPrinting(true);
-                
+
             }
             if (host.IsJobRunning)
             {
                 enablDisablWhenPrinting(false);
-                
+
             }
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
             {
@@ -1266,7 +1244,7 @@ namespace MultecPlugin
             return result;
         }
 
-        
+
 
 
 
@@ -1289,7 +1267,7 @@ namespace MultecPlugin
 
         }
 
-        
+
 
         private void btn_xOffset_plus_Click(object sender, EventArgs e)
         {
@@ -1368,7 +1346,7 @@ namespace MultecPlugin
                 lbl_zOffset.Text = newOffset.ToString();
             }
             else
-            { 
+            {
                 MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -1387,7 +1365,7 @@ namespace MultecPlugin
             }
         }
 
-        
+
 
 
 
@@ -1431,9 +1409,9 @@ namespace MultecPlugin
                 }
             }
         }
-     
 
-        
+
+
 
         private void filamentAktualize_Click(object sender, EventArgs e)
         {
@@ -1458,9 +1436,9 @@ namespace MultecPlugin
         {
 
             relativOffset = zOffsetMultiplyer * 0.05;
-            
+
             var mbox = MessageBox.Show("Going to send " + relativOffset + " in M702." + Environment.NewLine +
-                "Press Okay to CONTINUE!! If this is the right value","Warning!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                "Press Okay to CONTINUE!! If this is the right value", "Warning!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (mbox == DialogResult.OK)
             {
@@ -1518,9 +1496,9 @@ namespace MultecPlugin
         private void btnManualGcode_Click(object sender, EventArgs e)
         {
             if (txtManualGcode.Text != string.Empty)
-            {   
+            {
                 host.Connection.injectManualCommand(txtManualGcode.Text);
-                if(gCodeIndex > 5)
+                if (gCodeIndex > 5)
                 {
                     gCodeIndex = 0;
                 }
@@ -1531,7 +1509,7 @@ namespace MultecPlugin
             }
             else
             {
-                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken", 
+                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1540,7 +1518,7 @@ namespace MultecPlugin
         {
             if (e.KeyCode == Keys.Enter)
             {
-                    btnManualGcode_Click(this, new EventArgs());
+                btnManualGcode_Click(this, new EventArgs());
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -1581,7 +1559,7 @@ namespace MultecPlugin
 
         private void WrkerColdExtrusion_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+
             var newMsg = MessageBox.Show("Düsentemperatur zu gering. Extrusion nicht verfügbar. Bitte Düse aufheizen.", "Warnung!",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (newMsg == DialogResult.OK)
@@ -1599,7 +1577,8 @@ namespace MultecPlugin
         }
 
         private void BtnT1_MouseClick(object sender, MouseEventArgs e)
-        {   if (HitTest(btnT1, e.X, e.Y))
+        {
+            if (HitTest(btnT1, e.X, e.Y))
             {
                 if (host.Connection.connector.IsConnected())
                 {
@@ -1686,14 +1665,14 @@ namespace MultecPlugin
 
         private void wrkrCallG222_DoWork(object sender, DoWorkEventArgs e)
         {
-           var newMsg =  MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
-                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            var newMsg = MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
+                          MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (newMsg == DialogResult.OK)
             {
                 isG222Active = false;
             }
-            
-            
+
+
         }
 
         private void btnMotorOff_MouseClick(object sender, MouseEventArgs e)
@@ -1814,7 +1793,8 @@ namespace MultecPlugin
                 {
 
                     host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
-                    btnT2_OnOff.Image = Properties.Resources.ein;                }
+                    btnT2_OnOff.Image = Properties.Resources.ein;
+                }
                 else
                 {
 
@@ -1861,7 +1841,7 @@ namespace MultecPlugin
                 {
                     host.Connection.injectManualCommand("M140 S0 T5");
                     btnBed_OnOff.Image = Properties.Resources.AUS_2;
-            }
+                }
             }
         }
 
@@ -1895,6 +1875,63 @@ namespace MultecPlugin
                 this.Cursor = Cursors.Hand;
             else
                 this.Cursor = Cursors.Default;
+        }
+
+        private void btnStep1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnStep1, e.X, e.Y))
+            {
+                btnStep1.Enabled = false;
+                btnStep10.Enabled = true;
+                btnStep50.Enabled = true;
+                step_dist = 1;
+            }
+        }
+
+        private void btnStep1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnStep1.Enabled)
+                btnStep1.Image = Properties.Resources.onemm_p_2;
+            else
+                btnStep1.Image = Properties.Resources.onemm_2;
+        }
+
+        private void btnStep10_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnStep10, e.X, e.Y))
+            {
+                btnStep1.Enabled = true;
+                btnStep10.Enabled = false;
+                btnStep50.Enabled = true;
+                step_dist = 10;
+            }
+        }
+
+        private void btnStep10_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnStep10.Enabled)
+                btnStep10.Image = Properties.Resources.tenmm_p_2;
+            else
+                btnStep10.Image = Properties.Resources.tenmm_2;
+        }
+
+        private void btnStep50_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnStep50, e.X, e.Y))
+            {
+                btnStep1.Enabled = true;
+                btnStep10.Enabled = true;
+                btnStep50.Enabled = false;
+                step_dist = 50;
+            }
+        }
+
+        private void btnStep50_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnStep50.Enabled)
+                btnStep50.Image = Properties.Resources.fiftymm_p_2;
+            else
+                btnStep50.Image = Properties.Resources.fiftymm_2;
         }
     }
 }
