@@ -32,6 +32,13 @@ namespace MultecPlugin
 
         private bool isFormActive = true;
         private bool fineAdjustment;
+        private bool is4Move = true;
+        private double xPosition = 0.0;
+        private double yPosition = 0.0;
+        private double zPosition = 0.0;
+        private bool isPrinting = false;
+
+
 
 
         public MultecTouchpanel()
@@ -40,6 +47,9 @@ namespace MultecPlugin
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
+
+
+
 
         }
         /// <summary>
@@ -89,7 +99,7 @@ namespace MultecPlugin
 
         //////////Movement Controls//////////
 
-        private double step_dist = 1;
+        private double step_dist;
         private string temp_Zeil;
         private string temp_Zeil_bed;
         private bool T0_On;
@@ -118,7 +128,7 @@ namespace MultecPlugin
         private int gCodeCheck = 0;
         private bool isG222Active = false;
 
-
+        #endregion  
 
 
         private void but_Zplus_Click(object sender, EventArgs e)
@@ -161,31 +171,15 @@ namespace MultecPlugin
 
 
 
-        #endregion
-
-
-
-
-
-
-
-
-
 
         private void but_G295_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G295");
-                host.Connection.injectManualCommand("G296");
-                host.Connection.injectManualCommand("M503");
-            }
+
         }
 
         private void but_G297_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-                host.Connection.injectManualCommand("G297");
+
         }
 
 
@@ -196,7 +190,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
             {
-                if (!host.IsJobRunning)
+                if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T0");
                 }
@@ -209,7 +203,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
             {
-                if (!host.IsJobRunning)
+                if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T1");
                 }
@@ -408,38 +402,15 @@ namespace MultecPlugin
         private double newOffset = 0;
 
         private int zOffsetMultiplyer = 0;
+        private int rotOffsetMultiplyer = 0;
         private double relativOffset = 0;
         private string filamentVal = string.Empty;
 
 
-        private void but_M218_T1_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                tool_M218 = "T1";
-                host.Connection.injectManualCommand("M503");
 
-            }
-        }
 
-        private void but_M218_T2_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                tool_M218 = "T2";
-                host.Connection.injectManualCommand("M503");
 
-            }
-        }
 
-        private void but_M218_T3_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                tool_M218 = "T3";
-                host.Connection.injectManualCommand("M503");
-            }
-        }
 
         private void timer_temp_Tick(object sender, EventArgs e)
         {
@@ -482,23 +453,73 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
+            isPrinting = false;
 
+            if (!is4Move)
+            {
+                CheckIfFourMove(false);
+
+            }
+            if (is4Move)
+            {
+                CheckIfFourMove(true);
+
+            }
+            chckBoxDruckerende.Checked = false;
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-
+                lblXPosition.Text = "NICH INITILISIERT";
+                lblYPosition.Text = "NICH INITILISIERT";
+                lblZPosition.Text = "NICH INITILISIERT";
+                xPosition = 0;
+                yPosition = 0;
+                zPosition = 0;
+                step_dist = 1;
+                btnStep1.Enabled = false;
+                btnStep10.Enabled = true;
+                btnStep50.Enabled = true;
                 firstG222 = true;
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
                 btnMove.Enabled = true;
+                btnM218T1.Enabled = true;
+                btnM218T2.Enabled = true;
+                btnM218T3.Enabled = true;
                 selected_nozzle = string.Empty;
+                tool_M218 = string.Empty;
+
+
             }
 
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-
+            if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                isPrinting = true;
+            }
+            if (response.IndexOf("Druck beendet", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                isPrinting = false;
+            }
+            if (response.IndexOf("Move Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                radBtnMove.Checked = true;
+            }
+            if (response.IndexOf("Move Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                radBtnMove.Checked = false;
+            }
+            if (response.IndexOf("Drucker Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                radioBtnDrucker.Checked = true;
+            }
+            if (response.IndexOf("Drucker Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                radioBtnDrucker.Checked = false;
+            }
             if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
@@ -558,6 +579,7 @@ namespace MultecPlugin
                        Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             if (response.IndexOf("Active Extruder", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (response.IndexOf("0", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -611,12 +633,27 @@ namespace MultecPlugin
                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
                 }
             }
-            if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
+
+            if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                startindex = response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                lblFirmware.Text = response.Substring(startindex + 1);
+                startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("=", startindex);
+                endindex = response.IndexOf(" ", startindex);
+                lblXPosition.Text = response.Substring(startindex + 1, endindex - (startindex + 1));
+                xPosition = double.Parse(lblXPosition.Text);
+
+                startindex = response.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("=", startindex);
+                endindex = response.IndexOf(" ", startindex);
+                lblYPosition.Text = response.Substring(startindex + 1, endindex - (startindex + 1));
+                yPosition = double.Parse(lblYPosition.Text);
+                startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("=", startindex);
+
+                lblZPosition.Text = response.Substring(startindex + 1);
+                zPosition = double.Parse(lblZPosition.Text);
             }
+
             if (response.IndexOf("RunOutMonitoringActive", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
 
@@ -635,7 +672,20 @@ namespace MultecPlugin
                 }
             }
 
+            if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
 
+                startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                lblFirmware.Text = response.Substring(startindex + 1);
+                if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    is4Move = true;
+                }
+                else if (response.IndexOf("2Move", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    is4Move = false;
+                }
+            }
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -672,11 +722,12 @@ namespace MultecPlugin
                         startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
 
-                        xOffset = response.Substring(startindex + 1, endindex - startindex);
+                        xOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_X.Text = xOffset;
+
                         startindex = response.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
-                        yOffset = response.Substring(startindex + 1, endindex - startindex);
+                        yOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_Y.Text = yOffset;
                     }
                 }
@@ -687,11 +738,11 @@ namespace MultecPlugin
                         startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
 
-                        xOffset = response.Substring(startindex + 1, endindex - startindex);
+                        xOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_X.Text = xOffset;
                         startindex = response.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
-                        yOffset = response.Substring(startindex + 1, endindex - startindex);
+                        yOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_Y.Text = yOffset;
                     }
                 }
@@ -702,11 +753,11 @@ namespace MultecPlugin
                         startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
 
-                        xOffset = response.Substring(startindex + 1, endindex - startindex);
+                        xOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_X.Text = xOffset;
                         startindex = response.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
                         endindex = response.IndexOf(" ", startindex);
-                        yOffset = response.Substring(startindex + 1, endindex - startindex);
+                        yOffset = response.Substring(startindex + 1, endindex - (startindex + 1));
                         text_M218_Y.Text = yOffset;
                     }
                 }
@@ -727,11 +778,7 @@ namespace MultecPlugin
                     lbl_zOffset.Text = response.Substring(startindex + 1);
                     lblOptimalDistance.Text = response.Substring(startindex + 1);
                 }
-                else
-                {
-                    startindex = 0;
-                    lbl_zOffset.Text = response.Substring(startindex + 1);
-                }
+
             }
             if (response.IndexOf("dz_T0_MS", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -755,6 +802,7 @@ namespace MultecPlugin
                     zKorrektur = response.Substring(startindex + 5);
                     lblZKorrektur.Text = zKorrektur;
 
+
                 }
 
             }
@@ -773,6 +821,7 @@ namespace MultecPlugin
                     startindex = response.IndexOf("E", StringComparison.CurrentCultureIgnoreCase);
                     rotationOffsetFilament = response.Substring(startindex + 1);
                     lblRotOffsetFilament.Text = rotationOffsetFilament;
+                    lblRotOffFillVal.Text = rotationOffsetFilament;
 
                 }
 
@@ -816,31 +865,50 @@ namespace MultecPlugin
                 }
                 else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
+
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
                     endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
                     lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
+                    if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
+                    }
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
                     endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
                     lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT3.Text = response.Substring(startindex + 3);
+                    if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        lblKgTotalT3.Text = response.Substring(startindex + 3);
+                    }
                 }
                 else if (response.IndexOf("T0 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -898,31 +966,46 @@ namespace MultecPlugin
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
                     endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
                     lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT3.Text = response.Substring(startindex + 3);
+                    if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        lblExtrudedSrvcT3.Text = response.Substring(startindex + 3);
+                    }
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
                     endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
                     lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-
-                    startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-
-                    startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
-
-                    startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT3.Text = response.Substring(startindex + 3);
+                    if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
+                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                        lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    }
+                    if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        lblKgSrvcT3.Text = response.Substring(startindex + 3);
+                    }
                 }
                 else if (response.IndexOf("T0 heated", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -1033,51 +1116,105 @@ namespace MultecPlugin
             }
 
 
-
-            if (!host.IsJobRunning)
+            if (!isPrinting)
             {
-
                 enablDisablWhenPrinting(true);
-
             }
-            if (host.IsJobRunning)
+            if (isPrinting)
             {
                 enablDisablWhenPrinting(false);
-
+                xPosition = 0;
+                yPosition = 0;
+                zPosition = 0;
+                lblXPosition.Text = "Printing";
+                lblYPosition.Text = "Printing";
+                lblZPosition.Text = "Printing";
             }
+
+
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
             {
-                btn_xOffset_send.Enabled = true;
-                btn_yOffset_send.Enabled = true;
+                btnXoffsetSend.Enabled = true;
+                btnYoffsetSend.Enabled = true;
             }
             else
             {
-                btn_xOffset_send.Enabled = false;
-                btn_yOffset_send.Enabled = false;
+                btnXoffsetSend.Enabled = false;
+                btnYoffsetSend.Enabled = false;
             }
 
             if (fineAdjustment)
             {
-                btn_zOffset_plus.Enabled = true;
-                btn_zOffset_minus.Enabled = true;
-                btn_zOffset_send.Enabled = true;
+                btnZOffsetPlus.Enabled = true;
+                btnZOffsetMinus.Enabled = true;
+                btnZOffsetSend.Enabled = true;
             }
             else
             {
-                btn_zOffset_plus.Enabled = false;
-                btn_zOffset_minus.Enabled = false;
-                btn_zOffset_send.Enabled = false;
+                btnZOffsetPlus.Enabled = false;
+                btnZOffsetMinus.Enabled = false;
+                btnZOffsetSend.Enabled = false;
             }
 
 
 
         }
+        private void CheckIfFourMove(bool val)
+        {
+            btnT2.Visible = val;
+            btnT2_OnOff.Visible = val;
+            text_T2_Aktuell.Visible = val;
+            text_T2_ziel.Visible = val;
+            btnM218T2.Visible = val;
+            lblT2.Visible = val;
+            lblT2_1.Visible = val;
+            lblT2_2.Visible = val;
+            lblT2_3.Visible = val;
+            lblT2_4.Visible = val;
+            lblT2_5.Visible = val;
+            lblFilamentT2.Visible = val;
+            lblAbstandT2.Visible = val;
+            lblExtrudedTotalT2.Visible = val;
+            lblExtrudedSrvcT2.Visible = val;
+            lblKgTotalT2.Visible = val;
+            lblKgSrvcT2.Visible = val;
+            lblHeatedTotalT2.Visible = val;
+            lblHeatedSrvcT2.Visible = val;
+            btnT3.Visible = val;
+            btnT3_OnOff.Visible = val;
+            text_T3_Aktuell.Visible = val;
+            text_T3_ziel.Visible = val;
+            btnM218T3.Visible = val;
+            lblT3.Visible = val;
+            lblT3_1.Visible = val;
+            lblT3_2.Visible = val;
+            lblT3_3.Visible = val;
+            lblT3_4.Visible = val;
+            lblT3_5.Visible = val;
+            lblFilamentT3.Visible = val;
+            lblAbstandT3.Visible = val;
+            lblExtrudedTotalT3.Visible = val;
+            lblExtrudedSrvcT3.Visible = val;
+            lblKgTotalT3.Visible = val;
+            lblKgSrvcT3.Visible = val;
+            lblHeatedTotalT3.Visible = val;
+            lblHeatedSrvcT2.Visible = val;
+            lblWhen4Move.Visible = val;
+            lblRotOffsetFilament.Visible = val;
+            lblKalRotOffsetFilament.Visible = val;
+            lblRotOffFillVal.Visible = val;
+            lblWhen4Move_1.Visible = val;
+            btnEminus.Visible = val;
+            btnEplus.Visible = val;
+            btnRotOffsetSend.Visible = val;
+
+        }
+
         private void enablDisablWhenPrinting(bool val)
         {
             btnParkMove.Enabled = val;
             btnHomeMove.Enabled = val;
             btnMotorOff.Enabled = val;
-            btnMove.Enabled = val;
             btnHome.Enabled = val;
             btnXMinus.Enabled = val;
             btnXPlus.Enabled = val;
@@ -1087,22 +1224,27 @@ namespace MultecPlugin
             btnZPlus.Enabled = val;
             btnExtrude.Enabled = val;
             btnRetract.Enabled = val;
-            but_G295.Enabled = val;
-            but_G297.Enabled = val;
-            btnFeinadjustment.Enabled = val;
-            button1.Enabled = val;
-            button2.Enabled = val;
-            btn_xOffset_minus.Enabled = val;
-            btn_xOffset_plus.Enabled = val;
-            btn_xOffset_send.Enabled = val;
-            btn_yOffset_minus.Enabled = val;
-            btn_yOffset_plus.Enabled = val;
-            btn_yOffset_send.Enabled = val;
-            btn_zOffset_minus.Enabled = val;
-            btn_zOffset_plus.Enabled = val;
-            but_M218_T1.Enabled = val;
-            but_M218_T2.Enabled = val;
-            but_M218_T3.Enabled = val;
+            btnDusevermessung.Enabled = val;
+            btnPositionPrufen.Enabled = val;
+            btnFineAdjustment.Enabled = val;
+            btnHomeMoveKal.Enabled = val;
+            btnParkMoveKal.Enabled = val;
+            btnXOffsetMinus.Enabled = val;
+            btnXOffsetPlus.Enabled = val;
+            btnXoffsetSend.Enabled = val;
+            btnYoffsetMinus.Enabled = val;
+            btnYoffsetPlus.Enabled = val;
+            btnYoffsetSend.Enabled = val;
+            btnZOffsetMinus.Enabled = val;
+            btnZOffsetPlus.Enabled = val;
+            btnZOffsetSend.Enabled = val;
+            //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
+            btnMove.Visible = val;
+            btnEminus.Enabled = val;
+            btnEplus.Enabled = val;
+            btnRotOffsetSend.Enabled = val;
         }
         private void enableDisableControls(bool val, Control container)
         {
@@ -1156,8 +1298,14 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 X" + -step_dist);
+                    host.Connection.injectManualCommand("G1 X" + -step_dist + "F6000");
                     host.Connection.injectManualCommand("G90");
+                    xPosition = xPosition - step_dist;
+                    if (xPosition < 0)
+                    {
+                        xPosition = 0;
+                    }
+                    lblXPosition.Text = xPosition.ToString();
                 }
             }
         }
@@ -1169,8 +1317,10 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 X" + step_dist);
+                    host.Connection.injectManualCommand("G1 X" + step_dist + "F6000");
                     host.Connection.injectManualCommand("G90");
+                    xPosition = xPosition + step_dist;
+                    lblXPosition.Text = xPosition.ToString();
                 }
             }
         }
@@ -1183,8 +1333,10 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Y" + step_dist);
+                    host.Connection.injectManualCommand("G1 Y" + step_dist + "F6000");
                     host.Connection.injectManualCommand("G90");
+                    yPosition = yPosition + step_dist;
+                    lblYPosition.Text = yPosition.ToString();
                 }
             }
         }
@@ -1196,8 +1348,14 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Y" + -step_dist);
+                    host.Connection.injectManualCommand("G1 Y" + -step_dist + "F6000");
                     host.Connection.injectManualCommand("G90");
+                    yPosition = yPosition - step_dist;
+                    if (yPosition < 0)
+                    {
+                        yPosition = 0;
+                    }
+                    lblYPosition.Text = yPosition.ToString();
                 }
             }
         }
@@ -1269,41 +1427,13 @@ namespace MultecPlugin
 
 
 
-        private void btn_xOffset_plus_Click(object sender, EventArgs e)
-        {
-            if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
-            {
-                newOffset = double.Parse(text_M218_X.Text) + 0.05;
-                text_M218_X.Text = newOffset.ToString();
-            }
-        }
 
-        private void btn_xOffset_minus_Click(object sender, EventArgs e)
-        {
-            if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
-            {
-                newOffset = double.Parse(text_M218_X.Text) - 0.05;
-                text_M218_X.Text = newOffset.ToString();
-            }
-        }
 
-        private void btn_yOffset_plus_Click(object sender, EventArgs e)
-        {
-            if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
-            {
-                newOffset = double.Parse(text_M218_Y.Text) + 0.05;
-                text_M218_Y.Text = newOffset.ToString();
-            }
-        }
 
-        private void btn_yOffset_minus_Click(object sender, EventArgs e)
-        {
-            if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
-            {
-                newOffset = double.Parse(text_M218_Y.Text) - 0.05;
-                text_M218_Y.Text = newOffset.ToString();
-            }
-        }
+
+
+
+
 
         private void btn_xOffset_send_Click(object sender, EventArgs e)
         {
@@ -1315,55 +1445,17 @@ namespace MultecPlugin
 
         private void btn_yOffset_send_Click(object sender, EventArgs e)
         {
-            if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
-            {
-                host.Connection.injectManualCommand("M218 " + tool_M218 + "Y " + text_M218_Y.Text);
-            }
+
         }
 
         private void btn_zOffset_plus_Click(object sender, EventArgs e)
         {
-            zOffsetMultiplyer = zOffsetMultiplyer + 1;
 
-            newOffset = double.Parse(lbl_zOffset.Text) + 0.05;
-            if (newOffset < 7)
-            {
-                lbl_zOffset.Text = newOffset.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Der Z-Wert kann nicht größer als 7 mm sein.", "WARNUNG!!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
-        private void btn_zOffset_minus_Click(object sender, EventArgs e)
-        {
-            zOffsetMultiplyer = zOffsetMultiplyer - 1;
-            newOffset = double.Parse(lbl_zOffset.Text) - 0.05;
-            if (newOffset > -7)
-            {
-                lbl_zOffset.Text = newOffset.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var ms = MessageBox.Show("Warnung!! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
-                "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (ms == DialogResult.OK)
-            {
-                host.Connection.injectManualCommand("G222");
-                host.Connection.injectManualCommand("G28");
-                host.Connection.injectManualCommand("G1 Z0");
-                fineAdjustment = true;
-            }
-        }
+
+
 
 
 
@@ -1376,8 +1468,10 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Z" + step_dist);
+                    host.Connection.injectManualCommand("G1 Z" + step_dist + "F300");
                     host.Connection.injectManualCommand("G90");
+                    zPosition = zPosition + step_dist;
+                    lblZPosition.Text = zPosition.ToString();
                 }
             }
 
@@ -1388,12 +1482,7 @@ namespace MultecPlugin
 
         private void btnAktualise_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("M503");
-                host.Connection.injectManualCommand("M513");
-                host.Connection.injectManualCommand("M514");
-            }
+
         }
 
         private void btnZminus_MouseClick(object sender, MouseEventArgs e)
@@ -1403,8 +1492,14 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Z" + -step_dist);
+                    host.Connection.injectManualCommand("G1 Z" + -step_dist + "F300");
                     host.Connection.injectManualCommand("G90");
+                    zPosition = zPosition - step_dist;
+                    if (zPosition < 0)
+                    {
+                        zPosition = 0;
+                    }
+                    lblZPosition.Text = zPosition.ToString();
 
                 }
             }
@@ -1425,7 +1520,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+                    host.Connection.injectManualCommand("G1 E" + -step_dist + " F1800");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G90");
                 }
@@ -1435,16 +1530,7 @@ namespace MultecPlugin
         private void btn_zOffset_send_Click(object sender, EventArgs e)
         {
 
-            relativOffset = zOffsetMultiplyer * 0.05;
 
-            var mbox = MessageBox.Show("Going to send " + relativOffset + " in M702." + Environment.NewLine +
-                "Press Okay to CONTINUE!! If this is the right value", "Warning!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-            if (mbox == DialogResult.OK)
-            {
-                host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
-                zOffsetMultiplyer = 0;
-            }
         }
 
         private void btnExtrude_MouseClick(object sender, MouseEventArgs e)
@@ -1454,7 +1540,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 E" + step_dist + " F500");
+                    host.Connection.injectManualCommand("G1 E" + step_dist + " F300");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G90");
                 }
@@ -1478,7 +1564,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    if (!host.IsJobRunning)
+                    if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T0");
                     }
@@ -1493,34 +1579,25 @@ namespace MultecPlugin
             }
         }
 
-        private void btnManualGcode_Click(object sender, EventArgs e)
-        {
-            if (txtManualGcode.Text != string.Empty)
-            {
-                host.Connection.injectManualCommand(txtManualGcode.Text);
-                if (gCodeIndex > 5)
-                {
-                    gCodeIndex = 0;
-                }
-                gCode[gCodeIndex] = txtManualGcode.Text;
-                gCodeIndex++;
-                gCodeCheck = gCode.Count(s => s != null);
-                txtManualGcode.Text = string.Empty;
-            }
-            else
-            {
-                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+
 
         private void txtManualGcode_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
-                btnManualGcode_Click(this, new EventArgs());
+                btnManualGcodeSend_Click(this, new EventArgs());
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
-            else if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Escape)
+            {
+                txtManualGcode.Clear();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+
+            if (e.KeyCode == Keys.Up)
             {
                 if (getPrev_gCodeUp < 0)
                 {
@@ -1538,6 +1615,7 @@ namespace MultecPlugin
                     txtManualGcode.Select(0, 0);
                 }
             }
+
             else if (e.KeyCode == Keys.Down)
             {
                 if (getPrev_gCodeDown > 5)
@@ -1555,8 +1633,58 @@ namespace MultecPlugin
                     txtManualGcode.Select(txtManualGcode.Text.Length, 0);
                 }
             }
-        }
 
+
+        }
+        private void G1G0Check(string val)
+        {
+            if (val.IndexOf("X", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = val.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblXPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
+                    xPosition = double.Parse(lblXPosition.Text);
+
+                }
+                else
+                {
+                    lblXPosition.Text = val.Substring(startindex + 1);
+                    xPosition = double.Parse(lblXPosition.Text);
+                }
+            }
+            if (val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
+                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblYPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
+                    yPosition = double.Parse(lblYPosition.Text);
+                }
+                else
+                {
+                    lblYPosition.Text = val.Substring(startindex + 1);
+                    yPosition = double.Parse(lblYPosition.Text);
+                }
+            }
+            if (val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
+                    lblZPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
+                    zPosition = double.Parse(lblZPosition.Text);
+                }
+                else
+                {
+                    lblZPosition.Text = val.Substring(startindex + 1);
+                    zPosition = double.Parse(lblZPosition.Text);
+                }
+            }
+        }
         private void WrkerColdExtrusion_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -1582,7 +1710,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    if (!host.IsJobRunning)
+                    if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T1");
                     }
@@ -1611,7 +1739,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    if (!host.IsJobRunning)
+                    if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T2");
                     }
@@ -1640,7 +1768,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    if (!host.IsJobRunning)
+                    if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T3");
                     }
@@ -1714,7 +1842,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    if (!host.IsJobRunning)
+                    if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T4");
                     }
@@ -1731,10 +1859,13 @@ namespace MultecPlugin
 
         private void btnMove_EnabledChanged(object sender, EventArgs e)
         {
-            if (!btnMove.Enabled)
-                btnMove.Image = Properties.Resources.MOVE_p_2;
-            else
-                btnMove.Image = Properties.Resources.MOVE_2;
+            if (!isPrinting)
+            {
+                if (!btnMove.Enabled)
+                    btnMove.Image = Properties.Resources.MOVE_p_2;
+                else
+                    btnMove.Image = Properties.Resources.MOVE_2;
+            }
         }
 
         private void btnT0_OnOff_Click(object sender, EventArgs e)
@@ -1933,5 +2064,594 @@ namespace MultecPlugin
             else
                 btnStep50.Image = Properties.Resources.fiftymm_2;
         }
+
+      
+
+        
+
+
+
+
+
+        private void chckBoxDruckerende_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckBoxDruckerende.Checked)
+            {
+                host.Connection.injectManualCommand("M611");
+
+            }
+            if (!chckBoxDruckerende.Checked)
+            {
+                host.Connection.injectManualCommand("M612");
+
+            }
+        }
+
+        private void btnNozzlePlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnNozzlePlus, e.X, e.Y))
+            {
+                try
+                {
+                    if (trackBar_NozzleTemp.Value < 270)
+                    {
+                        trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value + 5;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Maximales Temperaturlimit erreicht!! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Ocurred! " + ex);
+                }
+            }
+        }
+
+        private void btnNozzlePlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnNozzlePlus.Enabled)
+                btnNozzlePlus.Image = Properties.Resources.plus5_g;
+            else
+                btnNozzlePlus.Image = Properties.Resources.plus5;
+        }
+
+        private void btnBedPlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnBedPlus, e.X, e.Y))
+            {
+                try
+                {
+                    if (trackBar_BedTemp.Value < 100)
+                    {
+                        trackBar_BedTemp.Value = trackBar_BedTemp.Value + 5;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Maximales Temperaturlimit erreicht !! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Ocurred! " + ex);
+                }
+            }
+        }
+
+        private void btnNozzleMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnNozzleMinus, e.X, e.Y))
+            {
+                try
+                {
+                    if (trackBar_NozzleTemp.Value > 170)
+                    {
+                        trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Value - 5;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Ocurred! " + ex);
+                }
+            }
+        }
+
+        private void btnBedMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnBedMinus, e.X, e.Y))
+            {
+                try
+                {
+                    if (trackBar_BedTemp.Value > 0)
+                    {
+                        trackBar_BedTemp.Value = trackBar_BedTemp.Value - 5;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Ocurred! " + ex);
+                }
+            }
+        }
+
+        private void btnBedPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnBedPlus.Enabled)
+                btnBedPlus.Image = Properties.Resources.plus5_g;
+            else
+                btnBedPlus.Image = Properties.Resources.plus5;
+        }
+
+        private void btnNozzleMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnNozzleMinus.Enabled)
+                btnNozzleMinus.Image = Properties.Resources.minus5_g;
+            else
+                btnNozzleMinus.Image = Properties.Resources.minus51;
+        }
+
+        private void btnBedMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnBedMinus.Enabled)
+                btnBedMinus.Image = Properties.Resources.minus5_g;
+            else
+                btnBedMinus.Image = Properties.Resources.minus51;
+        }
+
+        private void btnManualGcodeSend_Click(object sender, EventArgs e)
+        {
+            if (txtManualGcode.Text != string.Empty)
+            {
+                host.Connection.injectManualCommand(txtManualGcode.Text);
+                if (gCodeIndex > 5)
+                {
+                    gCodeIndex = 0;
+                }
+
+                gCode[gCodeIndex] = txtManualGcode.Text;
+                if (gCode[gCodeIndex].IndexOf("G0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    G1G0Check(gCode[gCodeIndex]);
+                }
+                if (gCode[gCodeIndex].IndexOf("G1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    G1G0Check(gCode[gCodeIndex]);
+                }
+                gCodeIndex++;
+                gCodeCheck = gCode.Count(s => s != null);
+                txtManualGcode.Text = string.Empty;
+
+            }
+            else
+            {
+                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHomeMoveKal_MouseClick(object sender, MouseEventArgs e)
+        {
+            btnHomeMove_MouseClick(this, e);
+        }
+
+        private void btnParkMoveKal_MouseClick(object sender, MouseEventArgs e)
+        {
+            btnParkMove_MouseClick(this, e);
+        }
+
+        private void btnInfoAktualise_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnInfoAktualise, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("M503");
+                    host.Connection.injectManualCommand("M513");
+                    host.Connection.injectManualCommand("M514");
+                }
+            }
+        }
+
+        private void btnInfoAktualise_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnInfoAktualise.Enabled)
+                btnInfoAktualise.Image = Properties.Resources.Aktualizieren_g;
+            else
+                btnInfoAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+
+        private void btnFilAktualise_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnFilAktualise, e.X, e.Y))
+            {
+                host.Connection.injectManualCommand("M603");
+            }
+        }
+
+        private void btnFilAktualise_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnFilAktualise.Enabled)
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
+            else
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+
+        private void btnParkMoveKal_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkMoveKal.Enabled)
+                btnParkMoveKal.Image = Properties.Resources.Park_Move_g;
+            else
+                btnParkMoveKal.Image = Properties.Resources.Park_Move;
+        }
+
+        private void btnHomeMoveKal_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHomeMoveKal.Enabled)
+                btnHomeMoveKal.Image = Properties.Resources.HOME_Move_g;
+            else
+                btnHomeMoveKal.Image = Properties.Resources.HOME_Move;
+        }
+
+        private void btnHomeMove_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHomeMove.Enabled)
+                btnHomeMove.Image = Properties.Resources.HOME_Move_g;
+            else
+                btnHomeMove.Image = Properties.Resources.HOME_Move;
+        }
+
+        private void btnParkMove_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkMove.Enabled)
+                btnParkMove.Image = Properties.Resources.Park_Move_g;
+            else
+                btnParkMove.Image = Properties.Resources.Park_Move;
+        }
+
+        private void btnHome_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHome.Enabled)
+                btnHome.Image = Properties.Resources.HOME_g;
+            else
+                btnHome.Image = Properties.Resources.HOME;
+        }
+
+        private void btnMotorOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnMotorOff.Enabled)
+                btnMotorOff.Image = Properties.Resources.MOTOR_OFF_g;
+            else
+                btnMotorOff.Image = Properties.Resources.MOTOR_OFF;
+        }
+
+        private void btnRotOffsetSend_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnRotOffsetSend, e.X, e.Y))
+            {
+                relativOffset = rotOffsetMultiplyer * 0.5;
+
+
+                host.Connection.injectManualCommand("M701 " + "E" + relativOffset.ToString());
+                host.Connection.injectManualCommand("G222");
+                rotOffsetMultiplyer = 0;
+            }
+        }
+
+        private void btnRotOffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRotOffsetSend.Enabled)
+                btnRotOffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnRotOffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnYoffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYoffsetSend.Enabled)
+                btnYoffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnYoffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnXoffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXoffsetSend.Enabled)
+                btnXoffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnXoffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnZOffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZOffsetSend.Enabled)
+                btnZOffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnZOffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnManualGcodeSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnManualGcodeSend.Enabled)
+                btnManualGcodeSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnManualGcodeSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnYoffsetSend_Click(object sender, EventArgs e)
+        {
+            if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
+            {
+                host.Connection.injectManualCommand("M218 " + tool_M218 + "Y " + text_M218_Y.Text);
+            }
+        }
+
+        private void btnXoffsetSend_Click(object sender, EventArgs e)
+        {
+            if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
+            {
+                host.Connection.injectManualCommand("M218 " + tool_M218 + "X " + text_M218_X.Text);
+            }
+        }
+
+        private void btnZOffsetSend_Click(object sender, EventArgs e)
+        {
+            relativOffset = zOffsetMultiplyer * 0.05;
+
+            host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
+            zOffsetMultiplyer = 0;
+        }
+
+        private void btnFineAdjustment_Click(object sender, EventArgs e)
+        {
+            var ms = MessageBox.Show("Warnung!! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
+                "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (ms == DialogResult.OK)
+            {
+                host.Connection.injectManualCommand("G222");
+                host.Connection.injectManualCommand("G28");
+                host.Connection.injectManualCommand("G1 Z0");
+
+
+                fineAdjustment = true;
+            }
+        }
+
+        private void btnDusevermessung_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                host.Connection.injectManualCommand("G295");
+                host.Connection.injectManualCommand("G296");
+                host.Connection.injectManualCommand("M503");
+            }
+        }
+
+        private void btnPositionPrufen_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+                host.Connection.injectManualCommand("G297");
+        }
+
+        private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnFineAdjustment.Enabled)
+                btnFineAdjustment.Image = Properties.Resources.ZF_g;
+            else
+                btnFineAdjustment.Image = Properties.Resources.ZF;
+        }
+
+        private void btnDusevermessung_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnDusevermessung.Enabled)
+                btnDusevermessung.Image = Properties.Resources.DV_g;
+            else
+                btnDusevermessung.Image = Properties.Resources.DV;
+        }
+
+        private void btnPositionPrufen_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnPositionPrufen.Enabled)
+                btnPositionPrufen.Image = Properties.Resources.PP_g;
+            else
+                btnPositionPrufen.Image = Properties.Resources.PP;
+        }
+
+        private void btnM218T1_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                tool_M218 = "T1";
+                host.Connection.injectManualCommand("M503");
+                btnM218T1.Enabled = false;
+                btnM218T2.Enabled = true;
+                btnM218T3.Enabled = true;
+            }
+        }
+
+        private void btnM218T2_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                tool_M218 = "T2";
+                host.Connection.injectManualCommand("M503");
+                btnM218T1.Enabled = true;
+                btnM218T2.Enabled = false;
+                btnM218T3.Enabled = true;
+            }
+        }
+
+        private void btnM218T3_Click(object sender, EventArgs e)
+        {
+            if (host.Connection.connector.IsConnected())
+            {
+                tool_M218 = "T3";
+                host.Connection.injectManualCommand("M503");
+                btnM218T1.Enabled = true;
+                btnM218T2.Enabled = true;
+                btnM218T3.Enabled = false;
+            }
+        }
+
+        private void btnM218T1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T1.Enabled)
+                btnM218T1.Image = Properties.Resources.T1_p_2;
+            else
+                btnM218T1.Image = Properties.Resources.T1_2;
+        }
+
+        private void btnM218T2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T2.Enabled)
+                btnM218T2.Image = Properties.Resources.T2_p_2;
+            else
+                btnM218T2.Image = Properties.Resources.T2_2;
+        }
+
+        private void btnM218T3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T3.Enabled)
+                btnM218T3.Image = Properties.Resources.T3_p_2;
+            else
+                btnM218T3.Image = Properties.Resources.T3_2;
+        }
+
+        private void btnYoffsetPlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnYoffsetPlus, e.X, e.Y))
+            {
+                if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
+                {
+                    newOffset = double.Parse(text_M218_Y.Text) + 0.05;
+                    text_M218_Y.Text = newOffset.ToString();
+                }
+            }
+        }
+
+        private void btnXOffsetPlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXOffsetPlus, e.X, e.Y))
+            {
+                if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
+                {
+                    newOffset = double.Parse(text_M218_X.Text) + 0.05;
+                    text_M218_X.Text = newOffset.ToString();
+                }
+            }
+        }
+
+        private void btnXOffsetMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXOffsetMinus, e.X, e.Y))
+            {
+                if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
+                {
+                    newOffset = double.Parse(text_M218_X.Text) - 0.05;
+                    text_M218_X.Text = newOffset.ToString();
+                }
+            }
+        }
+
+        private void btnYoffsetMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnYoffsetMinus, e.X, e.Y))
+            {
+                if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
+                {
+                    newOffset = double.Parse(text_M218_Y.Text) - 0.05;
+                    text_M218_Y.Text = newOffset.ToString();
+                }
+            }
+        }
+
+        private void btnZOffsetPlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnZOffsetPlus, e.X, e.Y))
+            {
+                zOffsetMultiplyer = zOffsetMultiplyer + 1;
+
+                newOffset = double.Parse(lbl_zOffset.Text) + 0.05;
+                if (newOffset < 7)
+                {
+                    lbl_zOffset.Text = newOffset.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Der Z-Wert kann nicht größer als 7 mm sein.", "WARNUNG!!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void btnZOffsetMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnZOffsetMinus, e.X, e.Y))
+            {
+                zOffsetMultiplyer = zOffsetMultiplyer - 1;
+                newOffset = double.Parse(lbl_zOffset.Text) - 0.05;
+                if (newOffset > -7)
+                {
+                    lbl_zOffset.Text = newOffset.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void btnEplus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(HitTest(btnEplus, e.X, e.Y))
+            {
+                rotOffsetMultiplyer = rotOffsetMultiplyer + 1;
+
+                newOffset = double.Parse(lblRotOffFillVal.Text) + 0.5;
+                if (newOffset <= 12)
+                {
+                    lblRotOffFillVal.Text = newOffset.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Die Rotational Offset Filamentauswahl kann nicht größer als 12 mm sein.", "WARNUNG!!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void btnEminus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(HitTest(btnEminus, e.X, e.Y))
+            {
+                rotOffsetMultiplyer = rotOffsetMultiplyer - 1;
+                newOffset = double.Parse(lblRotOffFillVal.Text) - 0.5;
+                if (newOffset >= 2)
+                {
+                    lblRotOffFillVal.Text = newOffset.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Die Rotational Offset Filamentauswahl kann nicht kleiner als 2 mm sein.", "WARNUNG!!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
     }
 }
+
+
+

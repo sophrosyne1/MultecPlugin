@@ -178,18 +178,6 @@
     <None Include="Resources\image008.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\xPlus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\xPlus_p.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\xPlus1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\xMinus.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\zPlus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +329,198 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tenmm_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus5_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus5_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5_g1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5_p1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schicken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schicken_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xminus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xminus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xplus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xplus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yminus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yminus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yplus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yplus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PP_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PP_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DV_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DV_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZF_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZF_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\extrude_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_Move_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOTOR_OFF_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park_Move_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retract_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schicken_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zMinus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zMinusKal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zMinusKal_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zMinusKal_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlusKal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlusKal_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zPlusKal_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mins5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mins5_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mins5_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus5_p2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eMinusKal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eMinusKal_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eMinusKal_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ePlusKal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ePlusKal_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ePlusKal_p.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
