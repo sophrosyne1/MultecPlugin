@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilamentChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilamentChange.Designer.cs">
+      <DependentUpon>FilamentChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultecTouchpanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FilamentChange.resx">
+      <DependentUpon>FilamentChange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MultecTouchpanel.resx">
       <DependentUpon>MultecTouchpanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -523,10 +532,42 @@
     <None Include="Resources\ePlusKal_p.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Xminus_g.png" />
-    <Content Include="Resources\Xplus_g.png" />
-    <Content Include="Resources\Yminus_g.png" />
-    <Content Include="Resources\Yplus_g.png" />
+    <None Include="Resources\aus_g.png" />
+    <None Include="Resources\Eminus_g.png" />
+    <None Include="Resources\Eplus_g.png" />
+    <None Include="Resources\Xminus_g.png" />
+    <None Include="Resources\Xplus_g.png" />
+    <None Include="Resources\YMinus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yplus_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xhome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xhome_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xhome_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yhome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yhome_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yhome_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zhome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zhome_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zhome_p.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

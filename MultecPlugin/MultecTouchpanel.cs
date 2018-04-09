@@ -38,7 +38,7 @@ namespace MultecPlugin
         private double zPosition = 0.0;
         private bool isPrinting = false;
 
-
+        private FilamentChange filamentChange;
 
 
         public MultecTouchpanel()
@@ -47,6 +47,7 @@ namespace MultecPlugin
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
+            
 
 
 
@@ -120,12 +121,12 @@ namespace MultecPlugin
         private string zKorrektur;
         private int lifetimeCheck = 0;
         private string[] gCode = new string[6];
-        private int gCodeIndex = 0;
-        private int getPrev_gCodeUp = 5;
-        private int getPrev_gCodeDown = 0;
+        private int gCodeIndex;
+        private int getPrev_gCodeUp;
+        private int getPrev_gCodeDown;
         private bool coldextrusionActive = false;
         private bool firstG222 = true;
-        private int gCodeCheck = 0;
+        private int gCodeCheck;
         private bool isG222Active = false;
 
         #endregion  
@@ -454,9 +455,16 @@ namespace MultecPlugin
         public void PrinterConnectionChange(string msg)
         {
             isPrinting = false;
+            firstG222 = true;
+            gCodeCheck = 0;
+            gCodeIndex = 0;
+            getPrev_gCodeDown = 0;
+            getPrev_gCodeUp = 5;
+            gCode = null;
 
             if (!is4Move)
             {
+              
                 CheckIfFourMove(false);
 
             }
@@ -478,7 +486,7 @@ namespace MultecPlugin
                 btnStep1.Enabled = false;
                 btnStep10.Enabled = true;
                 btnStep50.Enabled = true;
-                firstG222 = true;
+                
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
@@ -866,47 +874,95 @@ namespace MultecPlugin
                 else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
 
-                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
+                    }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase);
                         lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
                     }
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
+                    }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase);
                         lblKgTotalT3.Text = response.Substring(startindex + 3);
                     }
                 }
@@ -963,47 +1019,95 @@ namespace MultecPlugin
                 }
                 else if (response.IndexOf("Extruded Material [m]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
+                    }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase);
                         lblExtrudedSrvcT3.Text = response.Substring(startindex + 3);
                     }
                 }
                 else if (response.IndexOf("Extruded Material [kg]", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("T0=", StringComparison.CurrentCultureIgnoreCase);
-                    endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        startindex = response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
+                    }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
-                        endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                        lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        startindex = response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase);
+                        if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                        }
+                        else
+                        {
+                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                        }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase);
                         lblKgSrvcT3.Text = response.Substring(startindex + 3);
                     }
                 }
@@ -1161,6 +1265,7 @@ namespace MultecPlugin
         }
         private void CheckIfFourMove(bool val)
         {
+           
             btnT2.Visible = val;
             btnT2_OnOff.Visible = val;
             text_T2_Aktuell.Visible = val;
@@ -1207,6 +1312,7 @@ namespace MultecPlugin
             btnEminus.Visible = val;
             btnEplus.Visible = val;
             btnRotOffsetSend.Visible = val;
+
 
         }
 
@@ -1278,12 +1384,6 @@ namespace MultecPlugin
             text_T2_ziel.Text = "205";
             text_T3_ziel.Text = "205";
             text_Bed_ziel.Text = "60";
-            selected_nozzle = "T0";
-            btnT0_OnOff.Image = Properties.Resources.AUS_2;
-            btnT1_OnOff.Image = Properties.Resources.AUS_2;
-            btnT2_OnOff.Image = Properties.Resources.AUS_2;
-            btnT3_OnOff.Image = Properties.Resources.AUS_2;
-            btnBed_OnOff.Image = Properties.Resources.AUS_2;
             if (isFormActive)
             {
                 enableDisableControls(false, this);
@@ -1298,7 +1398,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 X" + -step_dist + "F6000");
+                    host.Connection.injectManualCommand("G1 X" + -step_dist + " F6000");
                     host.Connection.injectManualCommand("G90");
                     xPosition = xPosition - step_dist;
                     if (xPosition < 0)
@@ -1317,7 +1417,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 X" + step_dist + "F6000");
+                    host.Connection.injectManualCommand("G1 X" + step_dist + " F6000");
                     host.Connection.injectManualCommand("G90");
                     xPosition = xPosition + step_dist;
                     lblXPosition.Text = xPosition.ToString();
@@ -1333,7 +1433,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Y" + step_dist + "F6000");
+                    host.Connection.injectManualCommand("G1 Y" + step_dist + " F6000");
                     host.Connection.injectManualCommand("G90");
                     yPosition = yPosition + step_dist;
                     lblYPosition.Text = yPosition.ToString();
@@ -1348,7 +1448,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Y" + -step_dist + "F6000");
+                    host.Connection.injectManualCommand("G1 Y" + -step_dist + " F6000");
                     host.Connection.injectManualCommand("G90");
                     yPosition = yPosition - step_dist;
                     if (yPosition < 0)
@@ -1468,7 +1568,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Z" + step_dist + "F300");
+                    host.Connection.injectManualCommand("G1 Z" + step_dist + " F300");
                     host.Connection.injectManualCommand("G90");
                     zPosition = zPosition + step_dist;
                     lblZPosition.Text = zPosition.ToString();
@@ -1492,7 +1592,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 Z" + -step_dist + "F300");
+                    host.Connection.injectManualCommand("G1 Z" + -step_dist + " F300");
                     host.Connection.injectManualCommand("G90");
                     zPosition = zPosition - step_dist;
                     if (zPosition < 0)
@@ -1599,10 +1699,7 @@ namespace MultecPlugin
 
             if (e.KeyCode == Keys.Up)
             {
-                if (getPrev_gCodeUp < 0)
-                {
-                    getPrev_gCodeUp = 5;
-                }
+                
                 if (getPrev_gCodeUp > gCodeCheck)
                 {
                     getPrev_gCodeUp = gCodeCheck;
@@ -1610,6 +1707,10 @@ namespace MultecPlugin
                 //MessageBox.Show("the value of index is" + getPrev_gCodeUp.ToString());
                 txtManualGcode.Text = gCode[getPrev_gCodeUp];
                 getPrev_gCodeUp--;
+                if (getPrev_gCodeUp < 0)
+                {
+                    getPrev_gCodeUp = 5;
+                }
                 if (txtManualGcode.Text != String.Empty)
                 {
                     txtManualGcode.Select(0, 0);
@@ -1618,16 +1719,17 @@ namespace MultecPlugin
 
             else if (e.KeyCode == Keys.Down)
             {
-                if (getPrev_gCodeDown > 5)
-                {
-                    getPrev_gCodeDown = 0;
-                }
+                
                 if (getPrev_gCodeDown > gCodeCheck)
                 {
                     getPrev_gCodeDown = gCodeCheck;
                 }
                 txtManualGcode.Text = gCode[getPrev_gCodeDown];
                 getPrev_gCodeDown++;
+                if (getPrev_gCodeDown > 5)
+                {
+                    getPrev_gCodeDown = 0;
+                }
                 if (txtManualGcode.Text != String.Empty)
                 {
                     txtManualGcode.Select(txtManualGcode.Text.Length, 0);
@@ -2651,9 +2753,269 @@ namespace MultecPlugin
             }
         }
 
-        private void btnHomeMoveKal_Click(object sender, EventArgs e)
+        
+
+        private void btnZPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZPlus.Enabled)
+                btnZPlus.Image = Properties.Resources.zPlus_g;
+            else
+                btnZPlus.Image = Properties.Resources.zPlus;
+        }
+
+        private void btnZminus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZminus.Enabled)
+                btnZminus.Image = Properties.Resources.zMinus_g;
+            else
+                btnZminus.Image = Properties.Resources.Zminus;
+        }
+
+        
+
+        private void btnXOffsetPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXOffsetPlus.Enabled)
+                btnXOffsetPlus.Image = Properties.Resources.plus_g;
+            else
+                btnXOffsetPlus.Image = Properties.Resources.plus;
+        }
+
+        private void btnYoffsetPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYoffsetPlus.Enabled)
+                btnYoffsetPlus.Image = Properties.Resources.plus_g;
+            else
+                btnYoffsetPlus.Image = Properties.Resources.plus;
+        }
+
+        private void btnXOffsetMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXOffsetMinus.Enabled)
+                btnXOffsetMinus.Image = Properties.Resources.minus_g;
+            else
+                btnXOffsetMinus.Image = Properties.Resources.minus;
+        }
+
+        private void btnYoffsetMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYoffsetMinus.Enabled)
+                btnYoffsetMinus.Image = Properties.Resources.minus_g;
+            else
+                btnYoffsetMinus.Image = Properties.Resources.minus;
+        }
+
+        private void btnZOffsetPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZOffsetPlus.Enabled)
+                btnZOffsetPlus.Image = Properties.Resources.zPlusKal_g;
+            else
+                btnZOffsetPlus.Image = Properties.Resources.zPlusKal;
+        }
+
+        private void btnZOffsetMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZOffsetMinus.Enabled)
+                btnZOffsetMinus.Image = Properties.Resources.zMinusKal_g;
+            else
+                btnZOffsetMinus.Image = Properties.Resources.zMinusKal;
+        }
+
+        private void btnEplus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnEplus.Enabled)
+                btnEplus.Image = Properties.Resources.plus_g;
+            else
+                btnEplus.Image = Properties.Resources.plus;
+        }
+
+        private void btnT0_OnOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT0_OnOff.Enabled)
+                btnT0_OnOff.Image = Properties.Resources.aus_g;
+            else
+                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+        }
+
+        private void btnT1_OnOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT1_OnOff.Enabled)
+                btnT1_OnOff.Image = Properties.Resources.aus_g;
+            else
+                btnT1_OnOff.Image = Properties.Resources.AUS_2;
+        }
+
+        private void btnT2_OnOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT2_OnOff.Enabled)
+                btnT2_OnOff.Image = Properties.Resources.aus_g;
+            else
+                btnT2_OnOff.Image = Properties.Resources.AUS_2;
+        }
+
+        private void btnT3_OnOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT3_OnOff.Enabled)
+                btnT3_OnOff.Image = Properties.Resources.aus_g;
+            else
+                btnT3_OnOff.Image = Properties.Resources.AUS_2;
+        }
+
+        private void btnBed_OnOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnBed_OnOff.Enabled)
+                btnBed_OnOff.Image = Properties.Resources.aus_g;
+            else
+                btnBed_OnOff.Image = Properties.Resources.AUS_2;
+        }
+
+       
+
+        private void btnRetract_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetract.Enabled)
+                btnRetract.Image = Properties.Resources.retract_g;
+            else
+                btnRetract.Image = Properties.Resources.retract;
+        }
+
+
+        private void btnExtrude_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnExtrude.Enabled)
+                btnExtrude.Image = Properties.Resources.extrude_g;
+            else
+                btnExtrude.Image = Properties.Resources.extract;
+        }
+
+        private void btnXPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXPlus.Enabled)
+              btnXPlus.Image = Properties.Resources.Xplus_g;
+            else
+                btnXPlus.Image = Properties.Resources.Xplus;
+        }
+
+        private void btnYPlus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYPlus.Enabled)
+                btnYPlus.Image = Properties.Resources.Yplus_g;
+            else
+                btnYPlus.Image = Properties.Resources.Yplus;
+        }
+
+        private void btnXMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXMinus.Enabled)
+                btnXMinus.Image = Properties.Resources.Xminus_g;
+            else
+                btnXMinus.Image = Properties.Resources.Xminus;
+        }
+
+        private void btnYMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYMinus.Enabled)
+                btnYMinus.Image = Properties.Resources.YMinus_g;
+            else
+                btnYMinus.Image = Properties.Resources.Yminus;
+        }
+
+        private void btnEminus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnEminus.Enabled)
+                btnEminus.Image = Properties.Resources.minus_g;
+            else
+                btnEminus.Image = Properties.Resources.minus;
+        }
+        private void btnXhome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXhome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28 X0");
+                }
+            }
+        }
+
+
+        private void btnYhome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnYhome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28 Y0");
+                }
+            }
+        }
+
+        private void btnZhome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnZhome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28 Z0");
+                }
+            }
+        }
+
+        private void btnXhome_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXhome.Enabled)
+                btnXhome.Image = Properties.Resources.Xhome_g;
+            else
+                btnXhome.Image = Properties.Resources.Xhome;
+        }
+
+        private void btnYhome_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYhome.Enabled)
+                btnYhome.Image = Properties.Resources.Yhome_g;
+            else
+                btnYhome.Image = Properties.Resources.Yhome;
+        }
+
+        private void btnZhome_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZhome.Enabled)
+                btnZhome.Image = Properties.Resources.Zhome_g;
+            else
+                btnZhome.Image = Properties.Resources.Zhome;
+        }
+
+
+        
+   
+
+        private void btnFilamentChange_Click(object sender, EventArgs e)
+        {
+            filamentChange = new FilamentChange(host);
+            filamentChange.ShowDialog();
+        }
+
+        private void numericFeedrate_ValueChanged(object sender, EventArgs e)
+        {
+            if ( numericFeedrate.Value < 300  && numericFeedrate.Value > 25)
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("M220 S"+ numericFeedrate.Value.ToString());
+                }
+            }
+        }
+
+        private void numericFlowrate_ValueChanged(object sender, EventArgs e)
         {
 
+            if (numericFeedrate.Value < 300 && numericFeedrate.Value > 25)
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("M221 S" + numericFeedrate.Value.ToString());
+                }
+            }
         }
     }
 }
