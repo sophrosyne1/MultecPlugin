@@ -522,6 +522,12 @@
   <ItemGroup>
     <None Include="Resources\ePlusKal_p.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Xminus_g.png" />
+    <Content Include="Resources\Xplus_g.png" />
+    <Content Include="Resources\Yminus_g.png" />
+    <Content Include="Resources\Yplus_g.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

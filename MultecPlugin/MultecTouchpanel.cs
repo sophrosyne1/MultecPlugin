@@ -2650,6 +2650,11 @@ namespace MultecPlugin
                 }
             }
         }
+
+        private void btnHomeMoveKal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
