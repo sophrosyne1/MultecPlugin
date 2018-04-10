@@ -3024,7 +3024,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G1 E200.0 F200");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3056,7 +3056,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G1 E200.0 F200");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3088,7 +3088,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G1 E200.0 F200");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3120,7 +3120,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G1 E200.0 F200");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
