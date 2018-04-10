@@ -51,7 +51,6 @@ C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\RepetierServer
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\OpenTK.GLControl.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\OpenTK.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\DotNetZip.dll
-C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\Newtonsoft.Json.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\websocket-sharp.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MyCustomButton.pdb
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.FilamentChange.resources

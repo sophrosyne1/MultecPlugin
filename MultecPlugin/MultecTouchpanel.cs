@@ -37,8 +37,9 @@ namespace MultecPlugin
         private double yPosition = 0.0;
         private double zPosition = 0.0;
         private bool isPrinting = false;
+        private string tempValue;
 
-        private FilamentChange filamentChange;
+
 
 
         public MultecTouchpanel()
@@ -47,8 +48,9 @@ namespace MultecPlugin
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
-            
 
+            tempValue = "205";
+            txtBoxTemp.Text = tempValue;
 
 
 
@@ -2985,14 +2987,142 @@ namespace MultecPlugin
                 btnZhome.Image = Properties.Resources.Zhome;
         }
 
+        ///FILAMENT/////////
 
-        
-   
-
-        private void btnFilamentChange_Click(object sender, EventArgs e)
+        private void txtBoxTemp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            filamentChange = new FilamentChange(host);
-            filamentChange.ShowDialog();
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnRetractT0_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnLoadT0_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnRetractT1_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnLoadT1_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnRetractT2_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnLoadT2_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnRetractT3_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+            }
+        }
+
+        private void btnLoadT3_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                tempValue = txtBoxTemp.Text;
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E250.0 F300");
+                host.Connection.injectManualCommand("G92 E0");
+            }
         }
 
         private void numericFeedrate_ValueChanged(object sender, EventArgs e)

@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilamentChange.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FilamentChange.Designer.cs">
-      <DependentUpon>FilamentChange.cs</DependentUpon>
-    </Compile>
     <Compile Include="MultecTouchpanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,9 +62,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FilamentChange.resx">
-      <DependentUpon>FilamentChange.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MultecTouchpanel.resx">
       <DependentUpon>MultecTouchpanel.cs</DependentUpon>
     </EmbeddedResource>
