@@ -78,6 +78,7 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.PictrBoxDoorOpen = new System.Windows.Forms.PictureBox();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.lblFlowrate = new System.Windows.Forms.Label();
@@ -100,6 +101,7 @@ namespace MultecPlugin
             this.label41 = new System.Windows.Forms.Label();
             this.txtManualGcode = new System.Windows.Forms.TextBox();
             this.Filament = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
             this.btnLoadT3 = new System.Windows.Forms.Button();
             this.btnRetractT3 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -229,7 +231,6 @@ namespace MultecPlugin
             this.btnStep50 = new MyCustomButton.MyCustomButton();
             this.btnStep10 = new MyCustomButton.MyCustomButton();
             this.btnStep1 = new MyCustomButton.MyCustomButton();
-            this.btnMove = new MyCustomButton.MyCustomButton();
             this.btnT3 = new MyCustomButton.MyCustomButton();
             this.btnT2 = new MyCustomButton.MyCustomButton();
             this.btnT1 = new MyCustomButton.MyCustomButton();
@@ -257,7 +258,6 @@ namespace MultecPlugin
             this.btnParkMoveKal = new MyCustomButton.MyCustomButton();
             this.btnHomeMoveKal = new MyCustomButton.MyCustomButton();
             this.btnInfoAktualise = new MyCustomButton.MyCustomButton();
-            this.label20 = new System.Windows.Forms.Label();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
             this.druckPermissives.SuspendLayout();
@@ -268,6 +268,7 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.TouchControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictrBoxDoorOpen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).BeginInit();
@@ -303,7 +304,6 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT1)).BeginInit();
@@ -372,7 +372,7 @@ namespace MultecPlugin
             tabpage2.Margin = new System.Windows.Forms.Padding(2);
             tabpage2.Name = "tabpage2";
             tabpage2.Padding = new System.Windows.Forms.Padding(2);
-            tabpage2.Size = new System.Drawing.Size(592, 532);
+            tabpage2.Size = new System.Drawing.Size(594, 532);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
             // 
@@ -584,14 +584,13 @@ namespace MultecPlugin
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnMove);
             this.groupBox2.Controls.Add(this.btnT3);
             this.groupBox2.Controls.Add(this.btnT2);
             this.groupBox2.Controls.Add(this.btnT1);
             this.groupBox2.Controls.Add(this.btnT0);
-            this.groupBox2.Location = new System.Drawing.Point(124, 258);
+            this.groupBox2.Location = new System.Drawing.Point(123, 256);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(334, 66);
+            this.groupBox2.Size = new System.Drawing.Size(279, 66);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Werkzeug Auswahl";
@@ -864,7 +863,7 @@ namespace MultecPlugin
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(600, 580);
+            this.tabControl1.Size = new System.Drawing.Size(602, 580);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 47;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
@@ -935,12 +934,24 @@ namespace MultecPlugin
             this.TouchControl.Controls.Add(this.text_T1_ziel);
             this.TouchControl.Controls.Add(this.text_T2_ziel);
             this.TouchControl.Controls.Add(this.btnXMinus);
+            this.TouchControl.Controls.Add(this.PictrBoxDoorOpen);
             this.TouchControl.Location = new System.Drawing.Point(4, 4);
             this.TouchControl.Name = "TouchControl";
             this.TouchControl.Padding = new System.Windows.Forms.Padding(3);
-            this.TouchControl.Size = new System.Drawing.Size(592, 532);
+            this.TouchControl.Size = new System.Drawing.Size(594, 532);
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Touch Controls";
+            // 
+            // PictrBoxDoorOpen
+            // 
+            this.PictrBoxDoorOpen.Image = ((System.Drawing.Image)(resources.GetObject("PictrBoxDoorOpen.Image")));
+            this.PictrBoxDoorOpen.Location = new System.Drawing.Point(85, 100);
+            this.PictrBoxDoorOpen.Name = "PictrBoxDoorOpen";
+            this.PictrBoxDoorOpen.Size = new System.Drawing.Size(294, 146);
+            this.PictrBoxDoorOpen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PictrBoxDoorOpen.TabIndex = 83;
+            this.PictrBoxDoorOpen.TabStop = false;
+            this.PictrBoxDoorOpen.Visible = false;
             // 
             // trackBar2
             // 
@@ -952,7 +963,7 @@ namespace MultecPlugin
             this.trackBar2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.trackBar2.Size = new System.Drawing.Size(45, 151);
             this.trackBar2.TabIndex = 82;
-            this.trackBar2.Value = 25;
+            this.trackBar2.Value = 100;
             // 
             // trackBar1
             // 
@@ -964,20 +975,20 @@ namespace MultecPlugin
             this.trackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.trackBar1.Size = new System.Drawing.Size(45, 151);
             this.trackBar1.TabIndex = 81;
-            this.trackBar1.Value = 25;
+            this.trackBar1.Value = 100;
             // 
             // lblFlowrate
             // 
-            this.lblFlowrate.Location = new System.Drawing.Point(470, 495);
+            this.lblFlowrate.Location = new System.Drawing.Point(452, 296);
             this.lblFlowrate.Name = "lblFlowrate";
-            this.lblFlowrate.Size = new System.Drawing.Size(91, 28);
+            this.lblFlowrate.Size = new System.Drawing.Size(63, 32);
             this.lblFlowrate.TabIndex = 79;
             this.lblFlowrate.Text = "Flowrate Percentage";
             // 
             // numericFlowrate
             // 
-            this.numericFlowrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericFlowrate.Location = new System.Drawing.Point(470, 475);
+            this.numericFlowrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericFlowrate.Location = new System.Drawing.Point(470, 478);
             this.numericFlowrate.Maximum = new decimal(new int[] {
             300,
             0,
@@ -989,7 +1000,7 @@ namespace MultecPlugin
             0,
             0});
             this.numericFlowrate.Name = "numericFlowrate";
-            this.numericFlowrate.Size = new System.Drawing.Size(57, 24);
+            this.numericFlowrate.Size = new System.Drawing.Size(49, 21);
             this.numericFlowrate.TabIndex = 80;
             this.numericFlowrate.Value = new decimal(new int[] {
             100,
@@ -1000,16 +1011,16 @@ namespace MultecPlugin
             // 
             // lbFeedrate
             // 
-            this.lbFeedrate.Location = new System.Drawing.Point(475, 294);
+            this.lbFeedrate.Location = new System.Drawing.Point(518, 296);
             this.lbFeedrate.Name = "lbFeedrate";
-            this.lbFeedrate.Size = new System.Drawing.Size(91, 28);
+            this.lbFeedrate.Size = new System.Drawing.Size(70, 28);
             this.lbFeedrate.TabIndex = 0;
             this.lbFeedrate.Text = "Feedrate Percentage";
             // 
             // numericFeedrate
             // 
-            this.numericFeedrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericFeedrate.Location = new System.Drawing.Point(470, 267);
+            this.numericFeedrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericFeedrate.Location = new System.Drawing.Point(530, 477);
             this.numericFeedrate.Maximum = new decimal(new int[] {
             300,
             0,
@@ -1021,7 +1032,7 @@ namespace MultecPlugin
             0,
             0});
             this.numericFeedrate.Name = "numericFeedrate";
-            this.numericFeedrate.Size = new System.Drawing.Size(57, 24);
+            this.numericFeedrate.Size = new System.Drawing.Size(49, 21);
             this.numericFeedrate.TabIndex = 78;
             this.numericFeedrate.Value = new decimal(new int[] {
             100,
@@ -1209,9 +1220,19 @@ namespace MultecPlugin
             this.Filament.Controls.Add(this.filamentUberwachung);
             this.Filament.Location = new System.Drawing.Point(4, 4);
             this.Filament.Name = "Filament";
-            this.Filament.Size = new System.Drawing.Size(592, 532);
+            this.Filament.Size = new System.Drawing.Size(594, 532);
             this.Filament.TabIndex = 3;
             this.Filament.Text = "Filament";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(9, 241);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(195, 25);
+            this.label20.TabIndex = 107;
+            this.label20.Text = "Filament Wechseln";
             // 
             // btnLoadT3
             // 
@@ -1551,7 +1572,7 @@ namespace MultecPlugin
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(592, 532);
+            this.tabPage1.Size = new System.Drawing.Size(594, 532);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
             // 
@@ -2572,7 +2593,7 @@ namespace MultecPlugin
             // timer_temp
             // 
             this.timer_temp.Enabled = true;
-            this.timer_temp.Interval = 3000;
+            this.timer_temp.Interval = 1500;
             this.timer_temp.Tick += new System.EventHandler(this.timer_temp_Tick);
             // 
             // worker
@@ -2916,21 +2937,6 @@ namespace MultecPlugin
             this.btnStep1.TabStop = false;
             this.btnStep1.EnabledChanged += new System.EventHandler(this.btnStep1_EnabledChanged);
             this.btnStep1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep1_MouseClick);
-            // 
-            // btnMove
-            // 
-            this.btnMove.BackColor = System.Drawing.Color.Transparent;
-            this.btnMove.Image = global::MultecPlugin.Properties.Resources.MOVE;
-            this.btnMove.ImageClicked = global::MultecPlugin.Properties.Resources.MOVE_p;
-            this.btnMove.ImangeNormal = global::MultecPlugin.Properties.Resources.MOVE;
-            this.btnMove.Location = new System.Drawing.Point(269, 19);
-            this.btnMove.Name = "btnMove";
-            this.btnMove.Size = new System.Drawing.Size(60, 40);
-            this.btnMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnMove.TabIndex = 9;
-            this.btnMove.TabStop = false;
-            this.btnMove.EnabledChanged += new System.EventHandler(this.btnMove_EnabledChanged);
-            this.btnMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnMove_MouseClick);
             // 
             // btnT3
             // 
@@ -3336,16 +3342,6 @@ namespace MultecPlugin
             this.btnInfoAktualise.EnabledChanged += new System.EventHandler(this.btnInfoAktualise_EnabledChanged);
             this.btnInfoAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnInfoAktualise_MouseClick);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(9, 241);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(195, 25);
-            this.label20.TabIndex = 107;
-            this.label20.Text = "Filament Wechseln";
-            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -3355,7 +3351,7 @@ namespace MultecPlugin
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tabControl1);
             this.Name = "MultecTouchpanel";
-            this.Size = new System.Drawing.Size(600, 580);
+            this.Size = new System.Drawing.Size(601, 580);
             tabpage2.ResumeLayout(false);
             tabpage2.PerformLayout();
             this.druckPermissives.ResumeLayout(false);
@@ -3368,6 +3364,7 @@ namespace MultecPlugin
             this.tabControl1.ResumeLayout(false);
             this.TouchControl.ResumeLayout(false);
             this.TouchControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictrBoxDoorOpen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).EndInit();
@@ -3407,7 +3404,6 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnT1)).EndInit();
@@ -3585,8 +3581,6 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnMotorOff;
         private MyCustomButton.MyCustomButton btnHome;
         private MyCustomButton.MyCustomButton btnParkMove;
-        
-        private MyCustomButton.MyCustomButton btnMove;
         private PictureBox btnT0_OnOff;
         private PictureBox btnBed_OnOff;
         private PictureBox btnT3_OnOff;
@@ -3670,5 +3664,6 @@ namespace MultecPlugin
         private Button btnRetractT3;
         private Label label10;
         private Label label20;
+        private PictureBox PictrBoxDoorOpen;
     }
 }

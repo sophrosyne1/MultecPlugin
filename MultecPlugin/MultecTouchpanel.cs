@@ -18,7 +18,7 @@ using System.IO;
 using System.Timers;
 using System.Threading;
 using System.Globalization;
-
+using System.Runtime.InteropServices;
 
 namespace MultecPlugin
 {
@@ -51,6 +51,8 @@ namespace MultecPlugin
 
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
+
+           
 
 
 
@@ -112,6 +114,7 @@ namespace MultecPlugin
         private bool Bed_On;
         private string selected_nozzle;
         private int count = 0;
+        
         private string zOffset_T0;
         private string zOffset_T1;
         private string zOffset_T2;
@@ -123,12 +126,12 @@ namespace MultecPlugin
         private string zKorrektur;
         private int lifetimeCheck = 0;
         private string[] gCode = new string[6];
-        private int gCodeIndex;
-        private int getPrev_gCodeUp;
-        private int getPrev_gCodeDown;
+        private int gCodeIndex = 0;
+        private int getPrev_gCodeUp = 5;
+        private int getPrev_gCodeDown = 0;
         private bool coldextrusionActive = false;
         private bool firstG222 = true;
-        private int gCodeCheck;
+        private int gCodeCheck = 0;
         private bool isG222Active = false;
 
         #endregion  
@@ -215,7 +218,7 @@ namespace MultecPlugin
                 btnT1.Enabled = false;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                btnMove.Enabled = true;
+                //btnMove.Enabled = true;
                 trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
             }
         }
@@ -408,7 +411,8 @@ namespace MultecPlugin
         private int rotOffsetMultiplyer = 0;
         private double relativOffset = 0;
         private string filamentVal = string.Empty;
-
+        private bool redPictureActive;
+        private bool doorOpen;
 
 
 
@@ -456,17 +460,19 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
+            
             isPrinting = false;
             firstG222 = true;
             gCodeCheck = 0;
             gCodeIndex = 0;
             getPrev_gCodeDown = 0;
             getPrev_gCodeUp = 5;
-            gCode = null;
-
+           
+            Array.Clear(gCode, 0, gCode.Length);
+            
             if (!is4Move)
             {
-              
+
                 CheckIfFourMove(false);
 
             }
@@ -488,24 +494,37 @@ namespace MultecPlugin
                 btnStep1.Enabled = false;
                 btnStep10.Enabled = true;
                 btnStep50.Enabled = true;
-                
+                btnStep1.Image = Properties.Resources.onemm_p;
+                redPictureActive = false;
+                doorOpen = false;
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                btnMove.Enabled = true;
+                ////btnMove.Enabled = true;
                 btnM218T1.Enabled = true;
                 btnM218T2.Enabled = true;
                 btnM218T3.Enabled = true;
                 selected_nozzle = string.Empty;
                 tool_M218 = string.Empty;
 
+               
+                
 
             }
+                
+
+              
+            
 
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
+            
+            if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                isPrinting = true;
+            }
             if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 isPrinting = true;
@@ -534,6 +553,7 @@ namespace MultecPlugin
             {
                 try
                 {
+                    
                     if (!firstG222)
                     {
 
@@ -557,7 +577,7 @@ namespace MultecPlugin
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                btnMove.Enabled = true;
+                //btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
                 firstG222 = false;
             }
@@ -599,7 +619,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
                 if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -609,7 +629,7 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
                 }
                 if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -619,7 +639,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
                 }
                 if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -629,7 +649,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
                 }
                 if (response.IndexOf("4", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -639,7 +659,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = false;
+                    //btnMove.Enabled = false;
                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
                 }
             }
@@ -681,10 +701,19 @@ namespace MultecPlugin
                     lblFilamentStatus.BackColor = Color.Yellow;
                 }
             }
+            if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                doorOpen = true;
+
+            }
+            else if (response.IndexOf("Sicherheitskreis geschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                doorOpen = false;
+            }
 
             if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-
+            
                 startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
                 lblFirmware.Text = response.Substring(startindex + 1);
                 if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -882,16 +911,16 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblExtrudedTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblExtrudedTotalT0.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T1=", StringComparison.CurrentCultureIgnoreCase);
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
@@ -902,22 +931,22 @@ namespace MultecPlugin
                             lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
                         }
                     }
-                    if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T2=", StringComparison.CurrentCultureIgnoreCase);
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblExtrudedTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblExtrudedTotalT2.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        startindex = response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase);
+                        startindex = response.IndexOf("T3=", StringComparison.CurrentCultureIgnoreCase);
                         lblExtrudedTotalT3.Text = response.Substring(startindex + 3);
                     }
                 }
@@ -929,11 +958,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgTotalT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgTotalT0.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -942,11 +971,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgTotalT1.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -955,11 +984,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgTotalT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgTotalT2.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1027,11 +1056,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblExtrudedSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblExtrudedSrvcT0.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1040,11 +1069,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblExtrudedSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblExtrudedSrvcT1.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1053,11 +1082,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblExtrudedSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblExtrudedSrvcT2.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1074,11 +1103,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgSrvcT0.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgSrvcT0.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1087,11 +1116,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgSrvcT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgSrvcT1.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1100,11 +1129,11 @@ namespace MultecPlugin
                         if (response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
                         {
                             endindex = response.IndexOf(";", startindex, StringComparison.CurrentCultureIgnoreCase);
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
+                            lblKgSrvcT2.Text = response.Substring(startindex + 3, endindex - (startindex + 3));
                         }
                         else
                         {
-                            lblExtrudedTotalT1.Text = response.Substring(startindex + 3);
+                            lblKgSrvcT2.Text = response.Substring(startindex + 3);
                         }
                     }
                     if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1220,8 +1249,14 @@ namespace MultecPlugin
                 enableDisableControls(true, this);
                 isFormActive = true;
             }
-
-
+            if (!doorOpen)
+            {
+                if (PictrBoxDoorOpen.Visible)
+                {
+                    enablDisablWhenDoorOpen(true);
+                }
+            }
+            
             if (!isPrinting)
             {
                 enablDisablWhenPrinting(true);
@@ -1236,7 +1271,27 @@ namespace MultecPlugin
                 lblYPosition.Text = "Printing";
                 lblZPosition.Text = "Printing";
             }
+            if (doorOpen)
+            {
+                if (!PictrBoxDoorOpen.Visible)
+                {
+                    enablDisablWhenDoorOpen(false);
+                }
+                else
+                {
+                    if (this.redPictureActive)
+                    {
+                        this.PictrBoxDoorOpen.Image = Properties.Resources.Warnung;
+                        this.redPictureActive = false;
+                    }
+                    else
+                    {
 
+                        this.PictrBoxDoorOpen.Image = Properties.Resources.WarnungGrey;
+                        this.redPictureActive = true;
+                    }
+                }
+            }
 
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
             {
@@ -1267,7 +1322,7 @@ namespace MultecPlugin
         }
         private void CheckIfFourMove(bool val)
         {
-           
+
             btnT2.Visible = val;
             btnT2_OnOff.Visible = val;
             text_T2_Aktuell.Visible = val;
@@ -1317,13 +1372,51 @@ namespace MultecPlugin
 
 
         }
-
+        private void enablDisablWhenDoorOpen(bool val)
+        {
+            
+            btnMotorOff.Enabled = val;
+            btnHome.Enabled = val;
+            btnXhome.Enabled = val;
+            btnYhome.Enabled = val;
+            btnZhome.Enabled = val;
+            btnXMinus.Enabled = val;
+            btnXPlus.Enabled = val;
+            btnYMinus.Enabled = val;
+            btnYPlus.Enabled = val;
+            btnZminus.Enabled = val;
+            btnZPlus.Enabled = val;
+            btnXMinus.Visible = val;
+            btnXPlus.Visible = val;
+            btnYMinus.Visible = val;
+            btnYPlus.Visible = val;
+            btnZminus.Visible = val;
+            btnZPlus.Visible = val;
+            
+            btnDusevermessung.Enabled = val;
+            btnPositionPrufen.Enabled = val;
+            btnFineAdjustment.Enabled = val;
+            PictrBoxDoorOpen.Visible = !val;
+            
+            btnZOffsetMinus.Enabled = val;
+            btnZOffsetPlus.Enabled = val;
+            btnZOffsetSend.Enabled = val;
+            //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
+            //btnMove.Visible = val;
+           
+           
+        }
         private void enablDisablWhenPrinting(bool val)
         {
             btnParkMove.Enabled = val;
             btnHomeMove.Enabled = val;
             btnMotorOff.Enabled = val;
             btnHome.Enabled = val;
+            btnXhome.Enabled = val;
+            btnYhome.Enabled = val;
+            btnZhome.Enabled = val;
             btnXMinus.Enabled = val;
             btnXPlus.Enabled = val;
             btnYMinus.Enabled = val;
@@ -1349,7 +1442,7 @@ namespace MultecPlugin
             //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
             //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
             //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
-            btnMove.Visible = val;
+            //btnMove.Visible = val;
             btnEminus.Enabled = val;
             btnEplus.Enabled = val;
             btnRotOffsetSend.Enabled = val;
@@ -1519,6 +1612,11 @@ namespace MultecPlugin
             }
             if (tabControl1.SelectedIndex == 2)
             {
+                host.Connection.injectManualCommand("M603");
+                host.Connection.injectManualCommand("M503");
+            }
+            if (tabControl1.SelectedIndex == 3)
+            {
                 host.Connection.injectManualCommand("M503");
                 host.Connection.injectManualCommand("M513");
                 host.Connection.injectManualCommand("M514");
@@ -1675,7 +1773,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
             }
@@ -1689,6 +1787,8 @@ namespace MultecPlugin
             if (e.KeyCode == Keys.Enter)
             {
                 btnManualGcodeSend_Click(this, new EventArgs());
+                getPrev_gCodeDown = 0;
+                getPrev_gCodeUp = 5;
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -1701,7 +1801,10 @@ namespace MultecPlugin
 
             if (e.KeyCode == Keys.Up)
             {
-                
+                if (getPrev_gCodeUp < 0)
+                {
+                    getPrev_gCodeUp = 5;
+                }
                 if (getPrev_gCodeUp > gCodeCheck)
                 {
                     getPrev_gCodeUp = gCodeCheck;
@@ -1709,10 +1812,7 @@ namespace MultecPlugin
                 //MessageBox.Show("the value of index is" + getPrev_gCodeUp.ToString());
                 txtManualGcode.Text = gCode[getPrev_gCodeUp];
                 getPrev_gCodeUp--;
-                if (getPrev_gCodeUp < 0)
-                {
-                    getPrev_gCodeUp = 5;
-                }
+
                 if (txtManualGcode.Text != String.Empty)
                 {
                     txtManualGcode.Select(0, 0);
@@ -1721,17 +1821,17 @@ namespace MultecPlugin
 
             else if (e.KeyCode == Keys.Down)
             {
-                
+                if (getPrev_gCodeDown > 5)
+                {
+                    getPrev_gCodeDown = 0;
+                }
                 if (getPrev_gCodeDown > gCodeCheck)
                 {
                     getPrev_gCodeDown = gCodeCheck;
                 }
                 txtManualGcode.Text = gCode[getPrev_gCodeDown];
                 getPrev_gCodeDown++;
-                if (getPrev_gCodeDown > 5)
-                {
-                    getPrev_gCodeDown = 0;
-                }
+
                 if (txtManualGcode.Text != String.Empty)
                 {
                     txtManualGcode.Select(txtManualGcode.Text.Length, 0);
@@ -1823,7 +1923,7 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
                 }
             }
@@ -1852,7 +1952,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
                 }
             }
@@ -1881,7 +1981,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
-                    btnMove.Enabled = true;
+                    //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
                 }
             }
@@ -1940,37 +2040,37 @@ namespace MultecPlugin
             }
         }
 
-        private void btnMove_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnMove, e.X, e.Y))
-            {
-                if (host.Connection.connector.IsConnected())
-                {
-                    if (!isPrinting)
-                    {
-                        host.Connection.injectManualCommand("T4");
-                    }
-                    selected_nozzle = "T4";
-                    btnT0.Enabled = true;
-                    btnT1.Enabled = true;
-                    btnT2.Enabled = true;
-                    btnT3.Enabled = true;
-                    btnMove.Enabled = false;
-                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
-                }
-            }
-        }
+        /* private void btnMove_MouseClick(object sender, MouseEventArgs e)
+         {
+             if (HitTest(btnMove, e.X, e.Y))
+             {
+                 if (host.Connection.connector.IsConnected())
+                 {
+                     if (!isPrinting)
+                     {
+                         host.Connection.injectManualCommand("T4");
+                     }
+                     selected_nozzle = "T4";
+                     btnT0.Enabled = true;
+                     btnT1.Enabled = true;
+                     btnT2.Enabled = true;
+                     btnT3.Enabled = true;
+                     //btnMove.Enabled = false;
+                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
+                 }
+             }
+         }*/
 
-        private void btnMove_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!isPrinting)
-            {
-                if (!btnMove.Enabled)
-                    btnMove.Image = Properties.Resources.MOVE_p_2;
-                else
-                    btnMove.Image = Properties.Resources.MOVE_2;
-            }
-        }
+        //private void btnmove_enabledchanged(object sender, eventargs e)
+        //{
+        //    if (!isprinting)
+        //    {
+        //        if (!btnmove.enabled)
+        //            btnmove.image = properties.resources.move_p_2;
+        //        else
+        //            btnmove.image = properties.resources.move_2;
+        //    }
+        //}
 
         private void btnT0_OnOff_Click(object sender, EventArgs e)
         {
@@ -2169,9 +2269,9 @@ namespace MultecPlugin
                 btnStep50.Image = Properties.Resources.fiftymm_2;
         }
 
-      
 
-        
+
+
 
 
 
@@ -2322,7 +2422,11 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand(txtManualGcode.Text);
                 if (gCodeIndex > 5)
                 {
-                    gCodeIndex = 0;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        gCode[i] = gCode[i + 1];
+                    }
+                    gCodeIndex = 5;
                 }
 
                 gCode[gCodeIndex] = txtManualGcode.Text;
@@ -2720,7 +2824,7 @@ namespace MultecPlugin
 
         private void btnEplus_MouseClick(object sender, MouseEventArgs e)
         {
-            if(HitTest(btnEplus, e.X, e.Y))
+            if (HitTest(btnEplus, e.X, e.Y))
             {
                 rotOffsetMultiplyer = rotOffsetMultiplyer + 1;
 
@@ -2739,7 +2843,7 @@ namespace MultecPlugin
 
         private void btnEminus_MouseClick(object sender, MouseEventArgs e)
         {
-            if(HitTest(btnEminus, e.X, e.Y))
+            if (HitTest(btnEminus, e.X, e.Y))
             {
                 rotOffsetMultiplyer = rotOffsetMultiplyer - 1;
                 newOffset = double.Parse(lblRotOffFillVal.Text) - 0.5;
@@ -2755,7 +2859,7 @@ namespace MultecPlugin
             }
         }
 
-        
+
 
         private void btnZPlus_EnabledChanged(object sender, EventArgs e)
         {
@@ -2773,7 +2877,7 @@ namespace MultecPlugin
                 btnZminus.Image = Properties.Resources.Zminus;
         }
 
-        
+
 
         private void btnXOffsetPlus_EnabledChanged(object sender, EventArgs e)
         {
@@ -2871,7 +2975,7 @@ namespace MultecPlugin
                 btnBed_OnOff.Image = Properties.Resources.AUS_2;
         }
 
-       
+
 
         private void btnRetract_EnabledChanged(object sender, EventArgs e)
         {
@@ -2893,7 +2997,7 @@ namespace MultecPlugin
         private void btnXPlus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnXPlus.Enabled)
-              btnXPlus.Image = Properties.Resources.Xplus_g;
+                btnXPlus.Image = Properties.Resources.Xplus_g;
             else
                 btnXPlus.Image = Properties.Resources.Xplus;
         }
@@ -3003,6 +3107,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                T0_On = true;
+                btnT0_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3019,6 +3125,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                T0_On = true;
+                btnT0_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3035,6 +3143,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                T1_On = true;
+                btnT1_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3051,6 +3161,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                T1_On = true;
+                btnT1_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3067,6 +3179,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                T2_On = true;
+                btnT2_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3083,6 +3197,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                T2_On = true;
+                btnT2_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3099,6 +3215,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                T3_On = true;
+                btnT3_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3115,6 +3233,8 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                T3_On = true;
+                btnT3_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F2000");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3127,11 +3247,11 @@ namespace MultecPlugin
 
         private void numericFeedrate_ValueChanged(object sender, EventArgs e)
         {
-            if ( numericFeedrate.Value < 300  && numericFeedrate.Value > 25)
+            if (numericFeedrate.Value < 300 && numericFeedrate.Value > 25)
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    host.Connection.injectManualCommand("M220 S"+ numericFeedrate.Value.ToString());
+                    host.Connection.injectManualCommand("M220 S" + numericFeedrate.Value.ToString());
                 }
             }
         }
@@ -3147,7 +3267,16 @@ namespace MultecPlugin
                 }
             }
         }
+
+        
+       
+
+       
+
+        
     }
+
+    
 }
 
 

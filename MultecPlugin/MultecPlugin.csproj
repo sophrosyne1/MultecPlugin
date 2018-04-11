@@ -66,7 +66,7 @@
       <DependentUpon>MultecTouchpanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -559,6 +559,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Zhome_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WarnungRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WarnungWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WarnungGrey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warnung.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
