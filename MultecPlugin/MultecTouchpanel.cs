@@ -158,7 +158,7 @@ namespace MultecPlugin
             if (host.Connection.connector.IsConnected())
             {
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + " F500");
+                host.Connection.injectManualCommand("G1 E" + -step_dist + " F120");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G90");
             }
@@ -169,7 +169,7 @@ namespace MultecPlugin
             if (host.Connection.connector.IsConnected())
             {
                 host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + step_dist + " F500");
+                host.Connection.injectManualCommand("G1 E" + step_dist + " F120");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G90");
             }
@@ -3112,9 +3112,9 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3128,11 +3128,11 @@ namespace MultecPlugin
                 T0_On = true;
                 btnT0_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F200");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3148,9 +3148,9 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3164,11 +3164,11 @@ namespace MultecPlugin
                 T1_On = true;
                 btnT1_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F200");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3184,9 +3184,9 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3200,11 +3200,11 @@ namespace MultecPlugin
                 T2_On = true;
                 btnT2_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F200");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3220,9 +3220,9 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F2000");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }
@@ -3236,11 +3236,11 @@ namespace MultecPlugin
                 T3_On = true;
                 btnT3_OnOff.Image = Properties.Resources.ein;
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F2000");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F200");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
             }
         }

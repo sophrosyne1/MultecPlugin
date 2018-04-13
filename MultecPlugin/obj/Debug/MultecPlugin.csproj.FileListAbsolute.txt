@@ -53,3 +53,4 @@ C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\OpenTK.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\DotNetZip.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\websocket-sharp.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MyCustomButton.pdb
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\Newtonsoft.Json.dll
