@@ -38,6 +38,8 @@ namespace MultecPlugin
         private double zPosition = 0.0;
         private bool isPrinting = false;
         private string tempValue;
+        private bool wasNozSelected=false;
+        private int G222count = 0;
 
 
 
@@ -199,6 +201,7 @@ namespace MultecPlugin
                 if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T0");
+                    wasNozSelected = true;
                 }
                 selected_nozzle = "T0";
                 trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
@@ -212,6 +215,7 @@ namespace MultecPlugin
                 if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T1");
+                    wasNozSelected = true;
                 }
                 selected_nozzle = "T1";
                 btnT0.Enabled = true;
@@ -467,6 +471,7 @@ namespace MultecPlugin
             gCodeIndex = 0;
             getPrev_gCodeDown = 0;
             getPrev_gCodeUp = 5;
+            G222count = 0;
            
             Array.Clear(gCode, 0, gCode.Length);
             
@@ -553,21 +558,37 @@ namespace MultecPlugin
             {
                 try
                 {
-                    
-                    if (!firstG222)
+                    if (wasNozSelected)
                     {
-
-                        if (wrkrCallG222.IsBusy != true)
+                        G222count = G222count + 1;
+                        if (G222count == 2)
                         {
-                            if (!isG222Active)
+                            if (wrkrCallG222.IsBusy != true)
                             {
-
                                 isG222Active = true;
                                 wrkrCallG222.RunWorkerAsync();
                             }
                         }
-
+                        
                     }
+                    else
+                    {
+                        if (!firstG222)
+                        {
+
+                            if (wrkrCallG222.IsBusy != true)
+                            {
+                                if (!isG222Active)
+                                {
+
+                                    isG222Active = true;
+                                    wrkrCallG222.RunWorkerAsync();
+                                }
+                            }
+
+                        }
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -1249,13 +1270,13 @@ namespace MultecPlugin
                 enableDisableControls(true, this);
                 isFormActive = true;
             }
-            if (!doorOpen)
+           /* if (!doorOpen)
             {
                 if (PictrBoxDoorOpen.Visible)
                 {
                     enablDisablWhenDoorOpen(true);
                 }
-            }
+            }*/
             
             if (!isPrinting)
             {
@@ -1271,27 +1292,27 @@ namespace MultecPlugin
                 lblYPosition.Text = "Printing";
                 lblZPosition.Text = "Printing";
             }
-            if (doorOpen)
-            {
-                if (!PictrBoxDoorOpen.Visible)
-                {
-                    enablDisablWhenDoorOpen(false);
-                }
-                else
-                {
-                    if (this.redPictureActive)
-                    {
-                        this.PictrBoxDoorOpen.Image = Properties.Resources.Warnung;
-                        this.redPictureActive = false;
-                    }
-                    else
-                    {
+            //if (doorOpen)
+            //{
+            //    if (!PictrBoxDoorOpen.Visible)
+            //    {
+            //        enablDisablWhenDoorOpen(false);
+            //    }
+            //    else
+            //    {
+            //        if (this.redPictureActive)
+            //        {
+            //            this.PictrBoxDoorOpen.Image = Properties.Resources.Warnung;
+            //            this.redPictureActive = false;
+            //        }
+            //        else
+            //        {
 
-                        this.PictrBoxDoorOpen.Image = Properties.Resources.WarnungGrey;
-                        this.redPictureActive = true;
-                    }
-                }
-            }
+            //            this.PictrBoxDoorOpen.Image = Properties.Resources.WarnungGrey;
+            //            this.redPictureActive = true;
+            //        }
+            //    }
+            //}
 
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
             {
@@ -1396,7 +1417,7 @@ namespace MultecPlugin
             btnDusevermessung.Enabled = val;
             btnPositionPrufen.Enabled = val;
             btnFineAdjustment.Enabled = val;
-            PictrBoxDoorOpen.Visible = !val;
+            //PictrBoxDoorOpen.Visible = !val;
             
             btnZOffsetMinus.Enabled = val;
             btnZOffsetPlus.Enabled = val;
@@ -1767,6 +1788,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T0");
+                        wasNozSelected = true;
                     }
                     selected_nozzle = "T0";
                     btnT0.Enabled = false;
@@ -1775,6 +1797,7 @@ namespace MultecPlugin
                     btnT3.Enabled = true;
                     //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
+                    
                 }
             }
         }
@@ -1917,6 +1940,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T1");
+                        wasNozSelected = true;
                     }
                     selected_nozzle = "T1";
                     btnT0.Enabled = true;
@@ -1946,6 +1970,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T2");
+                        wasNozSelected = true;
                     }
                     selected_nozzle = "T2";
                     btnT0.Enabled = true;
@@ -1975,6 +2000,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T3");
+                        wasNozSelected = true;
                     }
                     selected_nozzle = "T3";
                     btnT0.Enabled = true;
@@ -3268,12 +3294,71 @@ namespace MultecPlugin
             }
         }
 
-        
-       
+        private void trackBar_flowrate_ValueChanged(object sender, EventArgs e)
+        {
+            if (trackBar_flowrate.Value < 300 && trackBar_flowrate.Value > 25)
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    numericFlowrate.Value = trackBar_flowrate.Value;
+                }
+            }
+        }
 
-       
+        private void trackBar_feedrate_ValueChanged(object sender, EventArgs e)
+        {
+            if (trackBar_feedrate.Value < 300 && trackBar_feedrate.Value > 25)
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    numericFeedrate.Value = trackBar_feedrate.Value;
+                }
+            }
+        }
 
-        
+        private void btnFlowratePlus_MouseClick(object sender, MouseEventArgs e)
+        {
+           if (HitTest(btnFlowratePlus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    trackBar_flowrate.Value = trackBar_flowrate.Value + 5;
+                }
+            }
+        }
+
+        private void btnFlowrateMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnFlowrateMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    trackBar_flowrate.Value = trackBar_flowrate.Value - 5;
+                }
+            }
+        }
+
+        private void btnFeedratePlus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnFeedratePlus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    trackBar_feedrate.Value = trackBar_feedrate.Value + 5;
+                }
+            }
+        }
+
+        private void btnFeedrateMinus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnFeedrateMinus, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    trackBar_feedrate.Value = trackBar_feedrate.Value - 5;
+                }
+            }
+        }
     }
 
     
