@@ -118,442 +118,442 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="T0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T2_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T2_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xminus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xminus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="retract_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Eminus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ePlusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ePlusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tenmm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ZF_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZF_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zMinusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zMinusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="up_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Park_Move_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Park_Move_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus5_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus5_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus51" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus52.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DV" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Schicken" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Schicken.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T3_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T3_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xplus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xplus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T0_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T0_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="aus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\aus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="onemm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\01mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Schicken_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Schicken_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T3_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T3_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="onemm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\01mm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WarnungWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WarnungWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zMinusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zMinusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xplus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOVE_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOVE_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zMinusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zMinusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="retract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\retract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tenmm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tenmm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="extrude_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Eplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T0_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T0_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ZF_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZF_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fiftymm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fiftymm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fiftymm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fiftymm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yplus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yplus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOTOR_OFF_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOTOR_OFF_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tenmm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tenmm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOVE_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOVE_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOTOR_OFF" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOTOR_OFF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOTOR_OFF_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOTOR_OFF_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Aktualizieren_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Aktualizieren_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME_Move_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_Move_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus5_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus5_p2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zPlus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Warnung" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Warnung.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOVE_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOVE_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T3_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T3_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Aktualizieren" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Aktualizieren.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ePlusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ePlusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T2_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T2_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WarnungRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WarnungRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fiftymm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fiftymm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T0_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T0_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tenmm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tenmm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eMinusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eMinusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="extract" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\extract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zPlus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zPlus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus5_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus5_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PlusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="retract" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\retract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PP_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PP_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="YMinus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\YMinus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Park_Move" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Park Move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PlusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bottom_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Zminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Zminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="minus5_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus5_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="zMinusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zMinusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image008.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Park_Move_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Park_Move_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ePlusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ePlusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Schicken_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Schicken_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zPlusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zPlusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eMinusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eMinusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="onemm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\01mm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Aktualizieren_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Aktualizieren_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="up_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yplus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ZF" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zMinus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zMinus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PlusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ein" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EINAus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T1_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T1_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zPlusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zPlusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bottom_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image006.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T1_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T1_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PP_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PP_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="extract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\extract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus5_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus5_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fiftymm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fiftymm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eMinusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eMinusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Xminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="retract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\retract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus5_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus5_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Zhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Zhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="one_mm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\one_mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Yhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HOME_Move_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_Move_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="up_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AUS_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AUS_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MinusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="onemm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\01mm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="minus5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zPlusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zPlusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MOVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MOVE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WarnungGrey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WarnungGrey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T2_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T2_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="left_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Xminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Xminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME_Move" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_Move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Yhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="T1_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\T1_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_g1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_p1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PlusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ZF_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZF_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlusV_g1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlusV_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eMinusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eMinusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus51" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus52.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fiftymm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fiftymm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zPlusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zPlusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PP_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PP_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus5_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus5_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zPlusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zPlusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T1_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T1_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_Move_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_Move_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="one_mm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\one_mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="extract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\extract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PP_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PP_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warnung" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warnung.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T0_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ePlusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ePlusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ePlusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ePlusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_Move_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_Move_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ePlusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ePlusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T0_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PlusV_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlusV_p1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T2_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T2_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AUS_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AUS_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image008.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="onemm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\01mm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tenmm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_p1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tenmm_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tenmm_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOTOR_OFF_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOTOR_OFF_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T3_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T3_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tenmm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tenmm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T0_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yplus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yplus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T1_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T1_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Park_Move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Park Move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zMinusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zMinusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T2_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T2_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZF_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZF_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOTOR_OFF_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOTOR_OFF_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xplus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xplus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eMinusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eMinusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ein" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EINAus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Schicken" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Schicken.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xminus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xminus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus5_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus5_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_Move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_Move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retract_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Eminus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fiftymm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fiftymm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOTOR_OFF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOTOR_OFF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus5_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus5_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yhome_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yhome_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="onemm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\01mm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Aktualizieren" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Aktualizieren1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="extract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\extract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zMinusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zMinusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus5_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus5_p2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yplus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOVE_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOVE_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zMinus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zMinus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fiftymm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fiftymm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zPlusKal_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zPlusKal_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarnungWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarnungWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xhome_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xhome_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tenmm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tenmm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="YMinus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\YMinus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fiftymm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fiftymm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="onemm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\01mm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Schicken_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Schicken_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOVE_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOVE_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOVE_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOVE_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T3_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T3_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xplus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Xplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarnungGrey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarnungGrey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarnungRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarnungRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_g1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retract" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\retract.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="aus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\aus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Schicken_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Schicken_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zminus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zminus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bottom_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T3_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T3_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zPlus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Park_Move_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Park_Move_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T2_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T2_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zPlus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zPlus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T1_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T1_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="onemm_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\01mm_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MOVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MOVE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Park_Move_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Park_Move_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bottom_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image006.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Aktualizieren_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Aktualizieren_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Aktualizieren_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Aktualizieren_p1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

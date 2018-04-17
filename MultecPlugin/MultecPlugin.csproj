@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoorOpenDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoorOpenDialogBox.Designer.cs">
+      <DependentUpon>DoorOpenDialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultecTouchpanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DoorOpenDialogBox.resx">
+      <DependentUpon>DoorOpenDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MultecTouchpanel.resx">
       <DependentUpon>MultecTouchpanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -610,6 +619,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlusV_p1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren_g1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aktualizieren_p1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
