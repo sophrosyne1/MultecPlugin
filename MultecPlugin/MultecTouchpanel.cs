@@ -475,6 +475,7 @@ namespace MultecPlugin
             getPrev_gCodeDown = 0;
             getPrev_gCodeUp = 5;
             G222count = 0;
+            relativOffset = 0;
 
             Array.Clear(gCode, 0, gCode.Length);
 
@@ -2695,6 +2696,8 @@ namespace MultecPlugin
         private void btnZOffsetSend_Click(object sender, EventArgs e)
         {
             relativOffset = zOffsetMultiplyer * 0.05;
+            
+
 
             host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
             zOffsetMultiplyer = 0;
