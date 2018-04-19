@@ -394,7 +394,7 @@ namespace MultecPlugin
             this.druckPermissives.Size = new System.Drawing.Size(133, 94);
             this.druckPermissives.TabIndex = 69;
             this.druckPermissives.TabStop = false;
-            this.druckPermissives.Text = "Druck Permissives";
+            this.druckPermissives.Text = "Druckerstatus";
             this.druckPermissives.Visible = false;
             // 
             // radioBtnDrucker
@@ -406,7 +406,7 @@ namespace MultecPlugin
             this.radioBtnDrucker.Size = new System.Drawing.Size(111, 17);
             this.radioBtnDrucker.TabIndex = 1;
             this.radioBtnDrucker.TabStop = true;
-            this.radioBtnDrucker.Text = "Drucker Initializiert";
+            this.radioBtnDrucker.Text = "Drucker Initialisiert";
             this.radioBtnDrucker.UseVisualStyleBackColor = true;
             // 
             // radBtnMove
@@ -418,7 +418,7 @@ namespace MultecPlugin
             this.radBtnMove.Size = new System.Drawing.Size(100, 17);
             this.radBtnMove.TabIndex = 0;
             this.radBtnMove.TabStop = true;
-            this.radBtnMove.Text = "Move Initializiert";
+            this.radBtnMove.Text = "Move Initialisiert";
             this.radBtnMove.UseVisualStyleBackColor = true;
             // 
             // lblKalRotOffsetFilament
@@ -431,7 +431,7 @@ namespace MultecPlugin
             this.lblKalRotOffsetFilament.Name = "lblKalRotOffsetFilament";
             this.lblKalRotOffsetFilament.Size = new System.Drawing.Size(130, 15);
             this.lblKalRotOffsetFilament.TabIndex = 68;
-            this.lblKalRotOffsetFilament.Text = "Rotational Offset Filament";
+            this.lblKalRotOffsetFilament.Text = "Rotationsoffset Filamentauswahl";
             // 
             // lblWhen4Move_1
             // 
@@ -464,7 +464,7 @@ namespace MultecPlugin
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(64, 15);
             this.label37.TabIndex = 62;
-            this.label37.Text = "T0 Abstand";
+            this.label37.Text = "M702 D Feinjustierung";
             // 
             // label38
             // 
@@ -512,7 +512,7 @@ namespace MultecPlugin
             this.groupBox3.Size = new System.Drawing.Size(241, 65);
             this.groupBox3.TabIndex = 47;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Werkzeug Auswahl";
+            this.groupBox3.Text = "Extruder Auswahl";
             // 
             // btnM218T3
             // 
@@ -890,7 +890,7 @@ namespace MultecPlugin
             this.groupBox1.Size = new System.Drawing.Size(68, 173);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Distance";
+            this.groupBox1.Text = "Fahrweg";
             // 
             // btnStep50
             // 
@@ -948,7 +948,7 @@ namespace MultecPlugin
             this.groupBox2.Size = new System.Drawing.Size(279, 66);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Werkzeug Auswahl";
+            this.groupBox2.Text = "Extruder Auswahl";
             // 
             // btnT3
             // 
@@ -1357,7 +1357,7 @@ namespace MultecPlugin
             this.TouchControl.Padding = new System.Windows.Forms.Padding(3);
             this.TouchControl.Size = new System.Drawing.Size(594, 545);
             this.TouchControl.TabIndex = 0;
-            this.TouchControl.Text = "Touch Controls";
+            this.TouchControl.Text = "Manuelle Steuerung";
             // 
             // btnFeedratePlus
             // 
@@ -1447,7 +1447,7 @@ namespace MultecPlugin
             this.lblFlowrate.Name = "lblFlowrate";
             this.lblFlowrate.Size = new System.Drawing.Size(63, 32);
             this.lblFlowrate.TabIndex = 79;
-            this.lblFlowrate.Text = "Flowrate Percentage";
+            this.lblFlowrate.Text = "Flussrate [%]";
             // 
             // numericFlowrate
             // 
@@ -1479,7 +1479,7 @@ namespace MultecPlugin
             this.lbFeedrate.Name = "lbFeedrate";
             this.lbFeedrate.Size = new System.Drawing.Size(70, 28);
             this.lbFeedrate.TabIndex = 0;
-            this.lbFeedrate.Text = "Feedrate Percentage";
+            this.lbFeedrate.Text = "Geschwindigkeit [%]";
             // 
             // numericFeedrate
             // 
@@ -1611,7 +1611,7 @@ namespace MultecPlugin
             this.lblYPosition.Name = "lblYPosition";
             this.lblYPosition.Size = new System.Drawing.Size(108, 13);
             this.lblYPosition.TabIndex = 69;
-            this.lblYPosition.Text = "NICHT INITILISIERT";
+            this.lblYPosition.Text = "NICHT INITIALISIERT";
             // 
             // lblY
             // 
@@ -1629,7 +1629,7 @@ namespace MultecPlugin
             this.lblZPosition.Name = "lblZPosition";
             this.lblZPosition.Size = new System.Drawing.Size(108, 13);
             this.lblZPosition.TabIndex = 67;
-            this.lblZPosition.Text = "NICHT INITILISIERT";
+            this.lblZPosition.Text = "NICHT INITIALISIERT";
             // 
             // lblXPosition
             // 
@@ -1780,7 +1780,7 @@ namespace MultecPlugin
             this.groupBox5.Size = new System.Drawing.Size(457, 46);
             this.groupBox5.TabIndex = 56;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Manuelle Befehlen";
+            this.groupBox5.Text = "Manuelle Befehle";
             // 
             // btnManualGcodeSend
             // 
@@ -2368,7 +2368,7 @@ namespace MultecPlugin
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(115, 13);
             this.label31.TabIndex = 122;
-            this.label31.Text = "Move Cover abstand";
+            this.label31.Text = "Move Parkposition";
             // 
             // lblReinigungsschwelle
             // 
@@ -2394,7 +2394,7 @@ namespace MultecPlugin
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(235, 13);
             this.label35.TabIndex = 120;
-            this.label35.Text = "Leerlaufdüsen-Reinigungsschwelle (sec)";
+            this.label35.Text = "Reinigungsschwelle inakt. Düse (sec)";
             // 
             // btnInfoAktualise
             // 
@@ -2435,7 +2435,7 @@ namespace MultecPlugin
             this.lblWhen4Move.Name = "lblWhen4Move";
             this.lblWhen4Move.Size = new System.Drawing.Size(235, 13);
             this.lblWhen4Move.TabIndex = 117;
-            this.lblWhen4Move.Text = "Rotational Offset Filamentauswahl (mm)";
+            this.lblWhen4Move.Text = "Rotations-Offset Filamentauswahl (mm)";
             // 
             // lblZKorrektur
             // 
@@ -2461,7 +2461,7 @@ namespace MultecPlugin
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(109, 13);
             this.label43.TabIndex = 115;
-            this.label43.Text = "Z-Correction (mm)";
+            this.label43.Text = "Z-Korrektur (mm)";
             // 
             // lblDisatance
             // 
@@ -2487,7 +2487,7 @@ namespace MultecPlugin
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(193, 13);
             this.label40.TabIndex = 113;
-            this.label40.Text = "Distance T0 <-> Multisense (mm)";
+            this.label40.Text = "Distanz T0 <-> Multisense (mm)";
             // 
             // lblOptimalDistance
             // 
@@ -2513,7 +2513,7 @@ namespace MultecPlugin
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(241, 13);
             this.label42.TabIndex = 111;
-            this.label42.Text = "Optimal Distance T0 <-> Multisense (mm)";
+            this.label42.Text = "Optimale Distanu T0 <-> Multisense (mm)";
             // 
             // lblRotationalOffset
             // 
@@ -2539,7 +2539,7 @@ namespace MultecPlugin
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(223, 13);
             this.label39.TabIndex = 109;
-            this.label39.Text = "Rotational Offset Move Extruder (mm)";
+            this.label39.Text = "Rotations-Offset Move Extruder (mm)";
             // 
             // lblKgSrvcT3
             // 
@@ -2786,7 +2786,7 @@ namespace MultecPlugin
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(181, 13);
             this.label70.TabIndex = 90;
-            this.label70.Text = "Lifetime (Since Last Service)";
+            this.label70.Text = "Betriebsdaten (Seit Wartung)";
             // 
             // lblKgTotalT3
             // 
@@ -3085,7 +3085,7 @@ namespace MultecPlugin
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(103, 13);
             this.label54.TabIndex = 66;
-            this.label54.Text = "Lifetime (TOTAL)";
+            this.label54.Text = "Betriebsdaten (Total)";
             // 
             // lblAbstandT3
             // 
@@ -3267,7 +3267,7 @@ namespace MultecPlugin
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(133, 13);
             this.label28.TabIndex = 49;
-            this.label28.Text = "Z Travel distance (m)";
+            this.label28.Text = "Zurückgelegter Weg Z (m)";
             // 
             // label27
             // 
@@ -3280,7 +3280,7 @@ namespace MultecPlugin
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(133, 13);
             this.label27.TabIndex = 48;
-            this.label27.Text = "Y Travel distance (m)";
+            this.label27.Text = "Zurückgelegter Weg Y (m)";
             // 
             // label26
             // 
@@ -3293,7 +3293,7 @@ namespace MultecPlugin
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(133, 13);
             this.label26.TabIndex = 47;
-            this.label26.Text = "X Travel distance (m)";
+            this.label26.Text = "Zurückgelegter Weg X (m)";
             // 
             // label25
             // 
@@ -3306,7 +3306,7 @@ namespace MultecPlugin
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(67, 13);
             this.label25.TabIndex = 46;
-            this.label25.Text = "Print Life";
+            this.label25.Text = "Druckzeit";
             // 
             // label24
             // 
@@ -3319,7 +3319,7 @@ namespace MultecPlugin
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(85, 13);
             this.label24.TabIndex = 45;
-            this.label24.Text = "Power On Time";
+            this.label24.Text = "Drucker An";
             // 
             // label23
             // 
@@ -3332,7 +3332,7 @@ namespace MultecPlugin
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(79, 13);
             this.label23.TabIndex = 44;
-            this.label23.Text = "Power Cycles";
+            this.label23.Text = "Anzahl Verbindungen";
             // 
             // label22
             // 
@@ -3345,7 +3345,7 @@ namespace MultecPlugin
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(121, 13);
             this.label22.TabIndex = 43;
-            this.label22.Text = "Lifetime Statistics";
+            this.label22.Text = " ";
             // 
             // lblT3_5
             // 
@@ -3410,7 +3410,7 @@ namespace MultecPlugin
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(85, 13);
             this.label17.TabIndex = 38;
-            this.label17.Text = "Duese Abstand";
+            this.label17.Text = "Duesen-Offsets Z (mm)";
             // 
             // label16
             // 

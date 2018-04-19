@@ -247,7 +247,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!",
+                    MessageBox.Show("Minimale Temperaturgrenze erreicht, Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -266,7 +266,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Maximales Temperaturlimit erreicht!! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!!",
+                    MessageBox.Show("Maximales Temperaturlimit erreicht! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -337,7 +337,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!!",
+                    MessageBox.Show("Minimale Temperaturgrenze erreicht! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -357,7 +357,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Maximales Temperaturlimit erreicht !! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!!",
+                    MessageBox.Show("Maximales Temperaturlimit erreicht! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -493,9 +493,9 @@ namespace MultecPlugin
             chckBoxDruckerende.Checked = false;
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                lblXPosition.Text = "NICH INITILISIERT";
-                lblYPosition.Text = "NICH INITILISIERT";
-                lblZPosition.Text = "NICH INITILISIERT";
+                lblXPosition.Text = "NICHT INITIALISIERT";
+                lblYPosition.Text = "NICHT INITIALISIERT";
+                lblZPosition.Text = "NICHT INITIALISIERT";
                 xPosition = 0;
                 yPosition = 0;
                 zPosition = 0;
@@ -2382,7 +2382,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Maximales Temperaturlimit erreicht!! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!!",
+                        MessageBox.Show("Maximales Temperaturlimit erreicht! Temperatureinstellung größer als 270 nicht möglich.", "WARNUNG!!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -2413,7 +2413,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Maximales Temperaturlimit erreicht !! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!!",
+                        MessageBox.Show("Maximales Temperaturlimit erreicht! Temperatureinstellung größer als 100 nicht möglich.", "WARNUNG!!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -2436,7 +2436,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!",
+                        MessageBox.Show("Minimale Temperaturgrenze erreicht! Temperatureinstellung unter 170 nicht möglich.", "WARNUNG!!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -2459,7 +2459,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Minimale Temperaturgrenze erreicht !! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!!",
+                        MessageBox.Show("Minimale Temperaturgrenze erreicht! Temperatureinstellung unter 0 nicht möglich", "WARNUNG!!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -2524,7 +2524,7 @@ namespace MultecPlugin
             }
             else
             {
-                MessageBox.Show("Kein G-Code wurde eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken",
+                MessageBox.Show("Kein G-Code eingegeben. Bitte geben Sie den G-Code ein, bevor Sie auf Senden klicken",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -2705,7 +2705,7 @@ namespace MultecPlugin
 
         private void btnFineAdjustment_Click(object sender, EventArgs e)
         {
-            var ms = MessageBox.Show("Warnung!! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
+            var ms = MessageBox.Show("Warnung! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
                 "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (ms == DialogResult.OK)
             {
@@ -2884,7 +2884,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Der Z-Wert kann nicht größer als 7 mm sein.", "WARNUNG!!",
+                    MessageBox.Show("Der Z-Wert kann nicht größer als 7 mm sein.", "WARNUNG!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -2903,7 +2903,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!!",
+                    MessageBox.Show("Der Z-Wert kann nicht kleiner als -7 mm sein.", "WARNUNG!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -2922,7 +2922,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Die Rotational Offset Filamentauswahl kann nicht größer als 12 mm sein.", "WARNUNG!!",
+                    MessageBox.Show("Der Rotations-Offset Filamentauswahl kann nicht größer als 20 mm sein.", "WARNUNG!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -2941,7 +2941,7 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Die Rotational Offset Filamentauswahl kann nicht kleiner als 2 mm sein.", "WARNUNG!!",
+                    MessageBox.Show("Der Rotations-Offset Filamentauswahl kann nicht kleiner als 2 mm sein.", "WARNUNG!",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
