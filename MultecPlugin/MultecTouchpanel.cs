@@ -43,7 +43,7 @@ namespace MultecPlugin
         private int G222count = 0;
         private bool doorOpenCalled;
         private bool printEnableCalled;
-
+        private bool isInitialised = false;
 
 
 
@@ -480,7 +480,7 @@ namespace MultecPlugin
             zOffsetMultiplyer = 0;
             rotOffsetMultiplyer = 0;
             newOffset = 0;
-            
+            isInitialised = false;
 
             Array.Clear(gCode, 0, gCode.Length);
 
@@ -597,6 +597,8 @@ namespace MultecPlugin
 
                                     isG222Active = true;
                                     wrkrCallG222.RunWorkerAsync();
+                                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
+                                    isInitialised = false;
                                 }
                             }
 
@@ -1528,11 +1530,20 @@ namespace MultecPlugin
             text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
             text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
             text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
-            lblBanner.Text = "Connected";
+
+
             if (!isFormActive)
             {
                 enableDisableControls(true, this);
                 isFormActive = true;
+                if (!isInitialised)
+                {
+                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
+                }
+                if (isInitialised)
+                {
+                    lblBanner.Text = "Connected";
+                }
             }
             if (!doorOpen)
             {
@@ -1757,7 +1768,7 @@ namespace MultecPlugin
         //resets all parameters and textboxes to default
         public void reset_parameters()
         {
-            lblBanner.Text = "Disconnected";
+            
             text_T0_Aktuell.Text = String.Empty;
             text_T1_Aktuell.Text = String.Empty;
             text_T2_Aktuell.Text = String.Empty;
@@ -1776,6 +1787,7 @@ namespace MultecPlugin
             {
                 enableDisableControls(false, this);
                 isFormActive = false;
+                lblBanner.Text = "Disconnected";
             }
         }
 
@@ -2053,6 +2065,8 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G222");
+                    lblBanner.Text = "Connected";
+                    isInitialised = true;
                 }
             }
         }
@@ -3661,7 +3675,7 @@ namespace MultecPlugin
         {
             dialogBox = new DoorOpenDialogBox();
             dialogBox.StartPosition = FormStartPosition.Manual;
-            dialogBox.Location = new Point(80, 200);
+            dialogBox.Location = new Point(50, 150);
             dialogBox.ShowDialog();
 
         }
@@ -3761,7 +3775,7 @@ namespace MultecPlugin
             }
         }
 
-        
+       
     }
 
     

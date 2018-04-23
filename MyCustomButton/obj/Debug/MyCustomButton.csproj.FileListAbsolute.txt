@@ -13,3 +13,4 @@ C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustom
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csprojResolveAssemblyReference.cache
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csprojResolveAssemblyReference.cache
