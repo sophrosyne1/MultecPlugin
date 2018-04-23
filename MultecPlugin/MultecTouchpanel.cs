@@ -3675,7 +3675,7 @@ namespace MultecPlugin
         {
             dialogBox = new DoorOpenDialogBox();
             dialogBox.StartPosition = FormStartPosition.Manual;
-            dialogBox.Location = new Point(50, 150);
+            dialogBox.Location = new Point(48, 150);
             dialogBox.ShowDialog();
 
         }
