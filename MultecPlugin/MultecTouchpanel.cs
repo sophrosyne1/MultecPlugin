@@ -420,7 +420,8 @@ namespace MultecPlugin
         private string filamentVal = string.Empty;
         //private bool redPictureActive;
         private bool doorOpen;
-
+        private string nozzleSwitch;
+        private int nozzleTempValue;
 
 
 
@@ -476,6 +477,10 @@ namespace MultecPlugin
             getPrev_gCodeUp = 5;
             G222count = 0;
             relativOffset = 0;
+            zOffsetMultiplyer = 0;
+            rotOffsetMultiplyer = 0;
+            newOffset = 0;
+            
 
             Array.Clear(gCode, 0, gCode.Length);
 
@@ -491,8 +496,14 @@ namespace MultecPlugin
 
             }
             chckBoxDruckerende.Checked = false;
+            if (msg.IndexOf("Disconnected", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                lblBanner.Text = "Disconnected";
+            }
+
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
+                lblBanner.Text = "Connected";
                 lblXPosition.Text = "NICHT INITIALISIERT";
                 lblYPosition.Text = "NICHT INITIALISIERT";
                 lblZPosition.Text = "NICHT INITIALISIERT";
@@ -529,6 +540,7 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
+            
             if (response.IndexOf("M51 T", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 startindex = response.IndexOf("T", StringComparison.CurrentCultureIgnoreCase);
@@ -543,12 +555,14 @@ namespace MultecPlugin
             {
                 isPrinting = true;
                 printEnableCalled = false;
+                lblBanner.Text = "Is Printing";
             }
             
             if (response.IndexOf("Druck beendet", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 isPrinting = false;
                 printEnableCalled = true;
+                lblBanner.Text = "Print Finished";
             }
             if (response.IndexOf("Move Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -744,6 +758,223 @@ namespace MultecPlugin
                     lblFilamentStatus.BackColor = Color.Yellow;
                 }
             }
+            
+            if (response.IndexOf("M104", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        
+
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue== 0)
+                            {
+
+                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+                            }
+                            else
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.ein;
+                            }
+
+                        }
+                    }
+                    else if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue > 0)
+                            {
+                                btnT1_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT1_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                    else if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                          
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT2_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT2_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                    else if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT3_OnOff.Image = Properties.Resources.AUS_2;
+                            }
+                            else
+                            {
+
+                                btnT3_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                }
+                if (response.IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue == 0)
+                            {
+
+                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+                            }
+                            else
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.ein;
+                            }
+
+                        }
+                    }
+                    else if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                           
+                            if (nozzleTempValue== 0)
+                            {
+                                btnT1_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT1_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                    else if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT2_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT2_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                    else if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                           
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT3_OnOff.Image = Properties.Resources.AUS_2;
+                            }
+                            else
+                            {
+
+                                btnT3_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                            endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
+                            nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            
+                            if (nozzleTempValue == 0)
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+
+                            }
+                            else
+                            {
+                                btnT0_OnOff.Image = Properties.Resources.ein;
+                            }
+                        }
+                    }
+                
+
+            }
             if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (!wrkrOpenDialogBox.IsBusy)
@@ -783,27 +1014,27 @@ namespace MultecPlugin
             {
                 if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T0 = response.Substring(startindex + 1);
+                    startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T0 = response.Substring(startindex);
                     lblAbstandT0.Text = zOffset_T0;
 
                 }
                 if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T1 = response.Substring(startindex + 1);
+                    startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T1 = response.Substring(startindex);
                     lblAbstandT1.Text = zOffset_T1;
                 }
                 if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T2 = response.Substring(startindex + 1);
+                    startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T2 = response.Substring(startindex);
                     lblAbstandT2.Text = zOffset_T2;
                 }
                 if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                    zOffset_T3 = response.Substring(startindex + 1);
+                    startindex = response.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                    zOffset_T3 = response.Substring(startindex);
                     lblAbstandT3.Text = zOffset_T3;
                 }
 
@@ -1297,6 +1528,7 @@ namespace MultecPlugin
             text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
             text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
             text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
+            lblBanner.Text = "Connected";
             if (!isFormActive)
             {
                 enableDisableControls(true, this);
@@ -1525,6 +1757,7 @@ namespace MultecPlugin
         //resets all parameters and textboxes to default
         public void reset_parameters()
         {
+            lblBanner.Text = "Disconnected";
             text_T0_Aktuell.Text = String.Empty;
             text_T1_Aktuell.Text = String.Empty;
             text_T2_Aktuell.Text = String.Empty;
@@ -3428,9 +3661,9 @@ namespace MultecPlugin
         {
             dialogBox = new DoorOpenDialogBox();
             dialogBox.StartPosition = FormStartPosition.Manual;
-            dialogBox.Location = new Point(200, 200);
+            dialogBox.Location = new Point(80, 200);
             dialogBox.ShowDialog();
-            
+
         }
 
         private void text_T0_ziel_KeyDown(object sender, KeyEventArgs e)
@@ -3528,7 +3761,7 @@ namespace MultecPlugin
             }
         }
 
-       
+        
     }
 
     

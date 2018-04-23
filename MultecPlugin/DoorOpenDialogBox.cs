@@ -16,6 +16,7 @@ namespace MultecPlugin
         private int count;
         public DoorOpenDialogBox()
         {
+            this.ControlBox = false;
             InitializeComponent();
             redPictureActive = false;
             timerChangePic.Start();
@@ -46,6 +47,9 @@ namespace MultecPlugin
         private void DoorOpenDialogBox_FormClosing(object sender, FormClosingEventArgs e)
         {
             timerChangePic.Stop();
+            
         }
+
+        
     }
 }
