@@ -45,14 +45,41 @@ namespace MultecPlugin
             this.lbl_mm = new System.Windows.Forms.Label();
             this.lbl_zOffset = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnM218T3 = new MyCustomButton.MyCustomButton();
+            this.btnM218T2 = new MyCustomButton.MyCustomButton();
+            this.btnM218T1 = new MyCustomButton.MyCustomButton();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.text_M218_Y = new System.Windows.Forms.TextBox();
             this.text_M218_X = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnEminus = new MyCustomButton.MyCustomButton();
+            this.btnEplus = new MyCustomButton.MyCustomButton();
+            this.btnZOffsetPlus = new MyCustomButton.MyCustomButton();
+            this.btnZOffsetMinus = new MyCustomButton.MyCustomButton();
+            this.btnXOffsetPlus = new MyCustomButton.MyCustomButton();
+            this.btnXOffsetMinus = new MyCustomButton.MyCustomButton();
+            this.btnYoffsetPlus = new MyCustomButton.MyCustomButton();
+            this.btnYoffsetMinus = new MyCustomButton.MyCustomButton();
+            this.btnZOffsetSend = new MyCustomButton.MyCustomButton();
+            this.btnXoffsetSend = new MyCustomButton.MyCustomButton();
+            this.btnYoffsetSend = new MyCustomButton.MyCustomButton();
+            this.btnRotOffsetSend = new MyCustomButton.MyCustomButton();
+            this.btnFineAdjustment = new MyCustomButton.MyCustomButton();
+            this.btnDusevermessung = new MyCustomButton.MyCustomButton();
+            this.btnPositionPrufen = new MyCustomButton.MyCustomButton();
+            this.btnParkMoveKal = new MyCustomButton.MyCustomButton();
+            this.btnHomeMoveKal = new MyCustomButton.MyCustomButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnStep50 = new MyCustomButton.MyCustomButton();
+            this.btnStep10 = new MyCustomButton.MyCustomButton();
+            this.btnStep1 = new MyCustomButton.MyCustomButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnT3 = new MyCustomButton.MyCustomButton();
+            this.btnT2 = new MyCustomButton.MyCustomButton();
+            this.btnT1 = new MyCustomButton.MyCustomButton();
+            this.btnT0 = new MyCustomButton.MyCustomButton();
             this.trackBar_NozzleTemp = new System.Windows.Forms.TrackBar();
             this.text_T0_ziel = new System.Windows.Forms.TextBox();
             this.text_T1_ziel = new System.Windows.Forms.TextBox();
@@ -78,12 +105,22 @@ namespace MultecPlugin
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TouchControl = new System.Windows.Forms.TabPage();
+            this.btnFeedratePlus = new MyCustomButton.MyCustomButton();
+            this.btnFlowratePlus = new MyCustomButton.MyCustomButton();
+            this.btnFeedrateMinus = new MyCustomButton.MyCustomButton();
+            this.btnFlowrateMinus = new MyCustomButton.MyCustomButton();
             this.trackBar_feedrate = new System.Windows.Forms.TrackBar();
             this.trackBar_flowrate = new System.Windows.Forms.TrackBar();
             this.lblFlowrate = new System.Windows.Forms.Label();
             this.numericFlowrate = new System.Windows.Forms.NumericUpDown();
             this.lbFeedrate = new System.Windows.Forms.Label();
             this.numericFeedrate = new System.Windows.Forms.NumericUpDown();
+            this.btnYhome = new MyCustomButton.MyCustomButton();
+            this.btnXhome = new MyCustomButton.MyCustomButton();
+            this.btnBedMinus = new MyCustomButton.MyCustomButton();
+            this.btnBedPlus = new MyCustomButton.MyCustomButton();
+            this.btnNozzleMinus = new MyCustomButton.MyCustomButton();
+            this.btnNozzlePlus = new MyCustomButton.MyCustomButton();
             this.lblZ = new System.Windows.Forms.Label();
             this.lblYPosition = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
@@ -96,9 +133,22 @@ namespace MultecPlugin
             this.btnT2_OnOff = new System.Windows.Forms.PictureBox();
             this.btnT1_OnOff = new System.Windows.Forms.PictureBox();
             this.btnT0_OnOff = new System.Windows.Forms.PictureBox();
+            this.btnParkMove = new MyCustomButton.MyCustomButton();
+            this.btnHome = new MyCustomButton.MyCustomButton();
+            this.btnMotorOff = new MyCustomButton.MyCustomButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnManualGcodeSend = new MyCustomButton.MyCustomButton();
             this.label41 = new System.Windows.Forms.Label();
             this.txtManualGcode = new System.Windows.Forms.TextBox();
+            this.btnHomeMove = new MyCustomButton.MyCustomButton();
+            this.btnExtrude = new MyCustomButton.MyCustomButton();
+            this.btnRetract = new MyCustomButton.MyCustomButton();
+            this.btnZminus = new MyCustomButton.MyCustomButton();
+            this.btnZPlus = new MyCustomButton.MyCustomButton();
+            this.btnYPlus = new MyCustomButton.MyCustomButton();
+            this.btnYMinus = new MyCustomButton.MyCustomButton();
+            this.btnXPlus = new MyCustomButton.MyCustomButton();
+            this.btnXMinus = new MyCustomButton.MyCustomButton();
             this.Filament = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
             this.btnLoadT3 = new System.Windows.Forms.Button();
@@ -116,6 +166,7 @@ namespace MultecPlugin
             this.txtBoxTemp = new System.Windows.Forms.TextBox();
             this.lblFilamentChangeTemp = new System.Windows.Forms.Label();
             this.filamentUberwachung = new System.Windows.Forms.GroupBox();
+            this.btnFilAktualise = new MyCustomButton.MyCustomButton();
             this.lblT3_1 = new System.Windows.Forms.Label();
             this.lblT2_1 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -126,6 +177,8 @@ namespace MultecPlugin
             this.lblFilamentT1 = new System.Windows.Forms.Label();
             this.lblFilamentStatus = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblDV = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.LblMoveCoverOffset = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.lblReinigungsschwelle = new System.Windows.Forms.Label();
@@ -201,13 +254,13 @@ namespace MultecPlugin
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.lblT3_5 = new System.Windows.Forms.Label();
             this.lblT2_5 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnInfoAktualise = new MyCustomButton.MyCustomButton();
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.worker = new System.ComponentModel.BackgroundWorker();
             this.wrkerColdExtrusion = new System.ComponentModel.BackgroundWorker();
@@ -215,113 +268,10 @@ namespace MultecPlugin
             this.wrkrOpenDialogBox = new System.ComponentModel.BackgroundWorker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblBanner = new System.Windows.Forms.Label();
-            this.btnFeedratePlus = new MyCustomButton.MyCustomButton();
-            this.btnFlowratePlus = new MyCustomButton.MyCustomButton();
-            this.btnFeedrateMinus = new MyCustomButton.MyCustomButton();
-            this.btnFlowrateMinus = new MyCustomButton.MyCustomButton();
-            this.btnYhome = new MyCustomButton.MyCustomButton();
-            this.btnXhome = new MyCustomButton.MyCustomButton();
-            this.btnBedMinus = new MyCustomButton.MyCustomButton();
-            this.btnBedPlus = new MyCustomButton.MyCustomButton();
-            this.btnNozzleMinus = new MyCustomButton.MyCustomButton();
-            this.btnNozzlePlus = new MyCustomButton.MyCustomButton();
-            this.btnParkMove = new MyCustomButton.MyCustomButton();
-            this.btnHome = new MyCustomButton.MyCustomButton();
-            this.btnMotorOff = new MyCustomButton.MyCustomButton();
-            this.btnManualGcodeSend = new MyCustomButton.MyCustomButton();
-            this.btnHomeMove = new MyCustomButton.MyCustomButton();
-            this.btnExtrude = new MyCustomButton.MyCustomButton();
-            this.btnRetract = new MyCustomButton.MyCustomButton();
-            this.btnZminus = new MyCustomButton.MyCustomButton();
-            this.btnZPlus = new MyCustomButton.MyCustomButton();
-            this.btnYPlus = new MyCustomButton.MyCustomButton();
-            this.btnYMinus = new MyCustomButton.MyCustomButton();
-            this.btnXPlus = new MyCustomButton.MyCustomButton();
-            this.btnStep50 = new MyCustomButton.MyCustomButton();
-            this.btnStep10 = new MyCustomButton.MyCustomButton();
-            this.btnStep1 = new MyCustomButton.MyCustomButton();
-            this.btnT3 = new MyCustomButton.MyCustomButton();
-            this.btnT2 = new MyCustomButton.MyCustomButton();
-            this.btnT1 = new MyCustomButton.MyCustomButton();
-            this.btnT0 = new MyCustomButton.MyCustomButton();
-            this.btnXMinus = new MyCustomButton.MyCustomButton();
-            this.btnFilAktualise = new MyCustomButton.MyCustomButton();
-            this.btnM218T3 = new MyCustomButton.MyCustomButton();
-            this.btnM218T2 = new MyCustomButton.MyCustomButton();
-            this.btnM218T1 = new MyCustomButton.MyCustomButton();
-            this.btnEminus = new MyCustomButton.MyCustomButton();
-            this.btnEplus = new MyCustomButton.MyCustomButton();
-            this.btnZOffsetPlus = new MyCustomButton.MyCustomButton();
-            this.btnZOffsetMinus = new MyCustomButton.MyCustomButton();
-            this.btnXOffsetPlus = new MyCustomButton.MyCustomButton();
-            this.btnXOffsetMinus = new MyCustomButton.MyCustomButton();
-            this.btnYoffsetPlus = new MyCustomButton.MyCustomButton();
-            this.btnYoffsetMinus = new MyCustomButton.MyCustomButton();
-            this.btnZOffsetSend = new MyCustomButton.MyCustomButton();
-            this.btnXoffsetSend = new MyCustomButton.MyCustomButton();
-            this.btnYoffsetSend = new MyCustomButton.MyCustomButton();
-            this.btnRotOffsetSend = new MyCustomButton.MyCustomButton();
-            this.btnFineAdjustment = new MyCustomButton.MyCustomButton();
-            this.btnDusevermessung = new MyCustomButton.MyCustomButton();
-            this.btnPositionPrufen = new MyCustomButton.MyCustomButton();
-            this.btnParkMoveKal = new MyCustomButton.MyCustomButton();
-            this.btnHomeMoveKal = new MyCustomButton.MyCustomButton();
-            this.btnInfoAktualise = new MyCustomButton.MyCustomButton();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
             this.druckPermissives.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_NozzleTemp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.TouchControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_feedrate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_flowrate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFeedrate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            this.Filament.SuspendLayout();
-            this.filamentUberwachung.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFeedratePlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFlowratePlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFeedrateMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFlowrateMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYhome)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXhome)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBedMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBedPlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNozzleMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNozzlePlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnManualGcodeSend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T1)).BeginInit();
@@ -342,7 +292,58 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnPositionPrufen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnParkMoveKal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMoveKal)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_NozzleTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.TouchControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFeedratePlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFlowratePlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFeedrateMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFlowrateMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_feedrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_flowrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericFeedrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYhome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXhome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBedMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBedPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNozzleMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNozzlePlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnManualGcodeSend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).BeginInit();
+            this.Filament.SuspendLayout();
+            this.filamentUberwachung.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).BeginInit();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoAktualise)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabpage2
@@ -517,6 +518,51 @@ namespace MultecPlugin
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Extruder Auswahl";
             // 
+            // btnM218T3
+            // 
+            this.btnM218T3.BackColor = System.Drawing.Color.Transparent;
+            this.btnM218T3.Image = global::MultecPlugin.Properties.Resources.T3;
+            this.btnM218T3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
+            this.btnM218T3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
+            this.btnM218T3.Location = new System.Drawing.Point(176, 18);
+            this.btnM218T3.Name = "btnM218T3";
+            this.btnM218T3.Size = new System.Drawing.Size(60, 40);
+            this.btnM218T3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnM218T3.TabIndex = 84;
+            this.btnM218T3.TabStop = false;
+            this.btnM218T3.EnabledChanged += new System.EventHandler(this.btnM218T3_EnabledChanged);
+            this.btnM218T3.Click += new System.EventHandler(this.btnM218T3_Click);
+            // 
+            // btnM218T2
+            // 
+            this.btnM218T2.BackColor = System.Drawing.Color.Transparent;
+            this.btnM218T2.Image = global::MultecPlugin.Properties.Resources.T2;
+            this.btnM218T2.ImageClicked = global::MultecPlugin.Properties.Resources.T2_p;
+            this.btnM218T2.ImangeNormal = global::MultecPlugin.Properties.Resources.T2;
+            this.btnM218T2.Location = new System.Drawing.Point(86, 18);
+            this.btnM218T2.Name = "btnM218T2";
+            this.btnM218T2.Size = new System.Drawing.Size(60, 40);
+            this.btnM218T2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnM218T2.TabIndex = 83;
+            this.btnM218T2.TabStop = false;
+            this.btnM218T2.EnabledChanged += new System.EventHandler(this.btnM218T2_EnabledChanged);
+            this.btnM218T2.Click += new System.EventHandler(this.btnM218T2_Click);
+            // 
+            // btnM218T1
+            // 
+            this.btnM218T1.BackColor = System.Drawing.Color.Transparent;
+            this.btnM218T1.Image = global::MultecPlugin.Properties.Resources.T1;
+            this.btnM218T1.ImageClicked = global::MultecPlugin.Properties.Resources.T1_p;
+            this.btnM218T1.ImangeNormal = global::MultecPlugin.Properties.Resources.T1;
+            this.btnM218T1.Location = new System.Drawing.Point(5, 18);
+            this.btnM218T1.Name = "btnM218T1";
+            this.btnM218T1.Size = new System.Drawing.Size(57, 40);
+            this.btnM218T1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnM218T1.TabIndex = 82;
+            this.btnM218T1.TabStop = false;
+            this.btnM218T1.EnabledChanged += new System.EventHandler(this.btnM218T1_EnabledChanged);
+            this.btnM218T1.Click += new System.EventHandler(this.btnM218T1_Click);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -581,6 +627,262 @@ namespace MultecPlugin
             this.label12.TabIndex = 37;
             this.label12.Text = "#1";
             // 
+            // btnEminus
+            // 
+            this.btnEminus.BackColor = System.Drawing.Color.Transparent;
+            this.btnEminus.Image = global::MultecPlugin.Properties.Resources.minus;
+            this.btnEminus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
+            this.btnEminus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
+            this.btnEminus.Location = new System.Drawing.Point(287, 264);
+            this.btnEminus.Name = "btnEminus";
+            this.btnEminus.Size = new System.Drawing.Size(36, 33);
+            this.btnEminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnEminus.TabIndex = 89;
+            this.btnEminus.TabStop = false;
+            this.btnEminus.EnabledChanged += new System.EventHandler(this.btnEminus_EnabledChanged);
+            this.btnEminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnEminus_MouseClick);
+            // 
+            // btnEplus
+            // 
+            this.btnEplus.BackColor = System.Drawing.Color.Transparent;
+            this.btnEplus.Image = global::MultecPlugin.Properties.Resources.plus;
+            this.btnEplus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
+            this.btnEplus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
+            this.btnEplus.Location = new System.Drawing.Point(397, 264);
+            this.btnEplus.Name = "btnEplus";
+            this.btnEplus.Size = new System.Drawing.Size(36, 33);
+            this.btnEplus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnEplus.TabIndex = 88;
+            this.btnEplus.TabStop = false;
+            this.btnEplus.EnabledChanged += new System.EventHandler(this.btnEplus_EnabledChanged);
+            this.btnEplus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnEplus_MouseClick);
+            // 
+            // btnZOffsetPlus
+            // 
+            this.btnZOffsetPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZOffsetPlus.Image = global::MultecPlugin.Properties.Resources.zPlusKal;
+            this.btnZOffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zPlusKal_p;
+            this.btnZOffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlusKal;
+            this.btnZOffsetPlus.Location = new System.Drawing.Point(397, 201);
+            this.btnZOffsetPlus.Name = "btnZOffsetPlus";
+            this.btnZOffsetPlus.Size = new System.Drawing.Size(36, 33);
+            this.btnZOffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZOffsetPlus.TabIndex = 87;
+            this.btnZOffsetPlus.TabStop = false;
+            this.btnZOffsetPlus.EnabledChanged += new System.EventHandler(this.btnZOffsetPlus_EnabledChanged);
+            this.btnZOffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZOffsetPlus_MouseClick);
+            // 
+            // btnZOffsetMinus
+            // 
+            this.btnZOffsetMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZOffsetMinus.Image = global::MultecPlugin.Properties.Resources.zMinusKal;
+            this.btnZOffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.zMinusKal_p;
+            this.btnZOffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.zMinusKal;
+            this.btnZOffsetMinus.Location = new System.Drawing.Point(287, 201);
+            this.btnZOffsetMinus.Name = "btnZOffsetMinus";
+            this.btnZOffsetMinus.Size = new System.Drawing.Size(36, 33);
+            this.btnZOffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZOffsetMinus.TabIndex = 86;
+            this.btnZOffsetMinus.TabStop = false;
+            this.btnZOffsetMinus.EnabledChanged += new System.EventHandler(this.btnZOffsetMinus_EnabledChanged);
+            this.btnZOffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZOffsetMinus_MouseClick);
+            // 
+            // btnXOffsetPlus
+            // 
+            this.btnXOffsetPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXOffsetPlus.Image = global::MultecPlugin.Properties.Resources.plus;
+            this.btnXOffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
+            this.btnXOffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
+            this.btnXOffsetPlus.Location = new System.Drawing.Point(397, 87);
+            this.btnXOffsetPlus.Name = "btnXOffsetPlus";
+            this.btnXOffsetPlus.Size = new System.Drawing.Size(36, 33);
+            this.btnXOffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXOffsetPlus.TabIndex = 85;
+            this.btnXOffsetPlus.TabStop = false;
+            this.btnXOffsetPlus.EnabledChanged += new System.EventHandler(this.btnXOffsetPlus_EnabledChanged);
+            this.btnXOffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXOffsetPlus_MouseClick);
+            // 
+            // btnXOffsetMinus
+            // 
+            this.btnXOffsetMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXOffsetMinus.Image = global::MultecPlugin.Properties.Resources.minus;
+            this.btnXOffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
+            this.btnXOffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
+            this.btnXOffsetMinus.Location = new System.Drawing.Point(287, 89);
+            this.btnXOffsetMinus.Name = "btnXOffsetMinus";
+            this.btnXOffsetMinus.Size = new System.Drawing.Size(36, 33);
+            this.btnXOffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXOffsetMinus.TabIndex = 84;
+            this.btnXOffsetMinus.TabStop = false;
+            this.btnXOffsetMinus.EnabledChanged += new System.EventHandler(this.btnXOffsetMinus_EnabledChanged);
+            this.btnXOffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXOffsetMinus_MouseClick);
+            // 
+            // btnYoffsetPlus
+            // 
+            this.btnYoffsetPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYoffsetPlus.Image = global::MultecPlugin.Properties.Resources.plus;
+            this.btnYoffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
+            this.btnYoffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
+            this.btnYoffsetPlus.Location = new System.Drawing.Point(397, 135);
+            this.btnYoffsetPlus.Name = "btnYoffsetPlus";
+            this.btnYoffsetPlus.Size = new System.Drawing.Size(36, 33);
+            this.btnYoffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYoffsetPlus.TabIndex = 83;
+            this.btnYoffsetPlus.TabStop = false;
+            this.btnYoffsetPlus.EnabledChanged += new System.EventHandler(this.btnYoffsetPlus_EnabledChanged);
+            this.btnYoffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYoffsetPlus_MouseClick);
+            // 
+            // btnYoffsetMinus
+            // 
+            this.btnYoffsetMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYoffsetMinus.Image = global::MultecPlugin.Properties.Resources.minus;
+            this.btnYoffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
+            this.btnYoffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
+            this.btnYoffsetMinus.Location = new System.Drawing.Point(287, 135);
+            this.btnYoffsetMinus.Name = "btnYoffsetMinus";
+            this.btnYoffsetMinus.Size = new System.Drawing.Size(36, 33);
+            this.btnYoffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYoffsetMinus.TabIndex = 82;
+            this.btnYoffsetMinus.TabStop = false;
+            this.btnYoffsetMinus.EnabledChanged += new System.EventHandler(this.btnYoffsetMinus_EnabledChanged);
+            this.btnYoffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYoffsetMinus_MouseClick);
+            // 
+            // btnZOffsetSend
+            // 
+            this.btnZOffsetSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnZOffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnZOffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnZOffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnZOffsetSend.Location = new System.Drawing.Point(439, 203);
+            this.btnZOffsetSend.Name = "btnZOffsetSend";
+            this.btnZOffsetSend.Size = new System.Drawing.Size(89, 31);
+            this.btnZOffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZOffsetSend.TabIndex = 81;
+            this.btnZOffsetSend.TabStop = false;
+            this.btnZOffsetSend.EnabledChanged += new System.EventHandler(this.btnZOffsetSend_EnabledChanged);
+            this.btnZOffsetSend.Click += new System.EventHandler(this.btnZOffsetSend_Click);
+            // 
+            // btnXoffsetSend
+            // 
+            this.btnXoffsetSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnXoffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnXoffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnXoffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnXoffsetSend.Location = new System.Drawing.Point(439, 88);
+            this.btnXoffsetSend.Name = "btnXoffsetSend";
+            this.btnXoffsetSend.Size = new System.Drawing.Size(89, 31);
+            this.btnXoffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXoffsetSend.TabIndex = 80;
+            this.btnXoffsetSend.TabStop = false;
+            this.btnXoffsetSend.EnabledChanged += new System.EventHandler(this.btnXoffsetSend_EnabledChanged);
+            this.btnXoffsetSend.Click += new System.EventHandler(this.btnXoffsetSend_Click);
+            // 
+            // btnYoffsetSend
+            // 
+            this.btnYoffsetSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnYoffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnYoffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnYoffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnYoffsetSend.Location = new System.Drawing.Point(439, 136);
+            this.btnYoffsetSend.Name = "btnYoffsetSend";
+            this.btnYoffsetSend.Size = new System.Drawing.Size(89, 31);
+            this.btnYoffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYoffsetSend.TabIndex = 79;
+            this.btnYoffsetSend.TabStop = false;
+            this.btnYoffsetSend.EnabledChanged += new System.EventHandler(this.btnYoffsetSend_EnabledChanged);
+            this.btnYoffsetSend.Click += new System.EventHandler(this.btnYoffsetSend_Click);
+            // 
+            // btnRotOffsetSend
+            // 
+            this.btnRotOffsetSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnRotOffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnRotOffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnRotOffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnRotOffsetSend.Location = new System.Drawing.Point(439, 266);
+            this.btnRotOffsetSend.Name = "btnRotOffsetSend";
+            this.btnRotOffsetSend.Size = new System.Drawing.Size(89, 31);
+            this.btnRotOffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRotOffsetSend.TabIndex = 78;
+            this.btnRotOffsetSend.TabStop = false;
+            this.btnRotOffsetSend.EnabledChanged += new System.EventHandler(this.btnRotOffsetSend_EnabledChanged);
+            
+            this.btnRotOffsetSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnRotOffsetSend_MouseClick);
+            // 
+            // btnFineAdjustment
+            // 
+            this.btnFineAdjustment.BackColor = System.Drawing.Color.Transparent;
+            this.btnFineAdjustment.Image = global::MultecPlugin.Properties.Resources.ZF;
+            this.btnFineAdjustment.ImageClicked = global::MultecPlugin.Properties.Resources.ZF_p;
+            this.btnFineAdjustment.ImangeNormal = global::MultecPlugin.Properties.Resources.ZF;
+            this.btnFineAdjustment.Location = new System.Drawing.Point(5, 157);
+            this.btnFineAdjustment.Name = "btnFineAdjustment";
+            this.btnFineAdjustment.Size = new System.Drawing.Size(133, 52);
+            this.btnFineAdjustment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFineAdjustment.TabIndex = 74;
+            this.btnFineAdjustment.TabStop = false;
+            this.btnFineAdjustment.EnabledChanged += new System.EventHandler(this.btnFineAdjustment_EnabledChanged);
+            this.btnFineAdjustment.Click += new System.EventHandler(this.btnFineAdjustment_Click);
+            // 
+            // btnDusevermessung
+            // 
+            this.btnDusevermessung.BackColor = System.Drawing.Color.Transparent;
+            this.btnDusevermessung.Image = global::MultecPlugin.Properties.Resources.DV;
+            this.btnDusevermessung.ImageClicked = global::MultecPlugin.Properties.Resources.DV_p;
+            this.btnDusevermessung.ImangeNormal = global::MultecPlugin.Properties.Resources.DV;
+            this.btnDusevermessung.Location = new System.Drawing.Point(5, 89);
+            this.btnDusevermessung.Name = "btnDusevermessung";
+            this.btnDusevermessung.Size = new System.Drawing.Size(133, 52);
+            this.btnDusevermessung.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnDusevermessung.TabIndex = 73;
+            this.btnDusevermessung.TabStop = false;
+            this.btnDusevermessung.EnabledChanged += new System.EventHandler(this.btnDusevermessung_EnabledChanged);
+            this.btnDusevermessung.Click += new System.EventHandler(this.btnDusevermessung_Click);
+            // 
+            // btnPositionPrufen
+            // 
+            this.btnPositionPrufen.BackColor = System.Drawing.Color.Transparent;
+            this.btnPositionPrufen.Image = global::MultecPlugin.Properties.Resources.PP;
+            this.btnPositionPrufen.ImageClicked = global::MultecPlugin.Properties.Resources.PP_p;
+            this.btnPositionPrufen.ImangeNormal = global::MultecPlugin.Properties.Resources.PP;
+            this.btnPositionPrufen.Location = new System.Drawing.Point(5, 20);
+            this.btnPositionPrufen.Name = "btnPositionPrufen";
+            this.btnPositionPrufen.Size = new System.Drawing.Size(133, 52);
+            this.btnPositionPrufen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnPositionPrufen.TabIndex = 72;
+            this.btnPositionPrufen.TabStop = false;
+            this.btnPositionPrufen.EnabledChanged += new System.EventHandler(this.btnPositionPrufen_EnabledChanged);
+            this.btnPositionPrufen.Click += new System.EventHandler(this.btnPositionPrufen_Click);
+            // 
+            // btnParkMoveKal
+            // 
+            this.btnParkMoveKal.BackColor = System.Drawing.Color.Transparent;
+            this.btnParkMoveKal.Image = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMoveKal.ImageClicked = global::MultecPlugin.Properties.Resources.Park_Move_p;
+            this.btnParkMoveKal.ImangeNormal = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMoveKal.Location = new System.Drawing.Point(5, 443);
+            this.btnParkMoveKal.Name = "btnParkMoveKal";
+            this.btnParkMoveKal.Size = new System.Drawing.Size(60, 58);
+            this.btnParkMoveKal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnParkMoveKal.TabIndex = 71;
+            this.btnParkMoveKal.TabStop = false;
+            this.btnParkMoveKal.EnabledChanged += new System.EventHandler(this.btnParkMoveKal_EnabledChanged);
+            this.btnParkMoveKal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkMoveKal_MouseClick);
+            // 
+            // btnHomeMoveKal
+            // 
+            this.btnHomeMoveKal.BackColor = System.Drawing.Color.Transparent;
+            this.btnHomeMoveKal.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMoveKal.Image")));
+            this.btnHomeMoveKal.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
+            this.btnHomeMoveKal.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMoveKal.ImangeNormal")));
+            this.btnHomeMoveKal.Location = new System.Drawing.Point(5, 372);
+            this.btnHomeMoveKal.Name = "btnHomeMoveKal";
+            this.btnHomeMoveKal.Size = new System.Drawing.Size(60, 57);
+            this.btnHomeMoveKal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHomeMoveKal.TabIndex = 70;
+            this.btnHomeMoveKal.TabStop = false;
+            this.btnHomeMoveKal.EnabledChanged += new System.EventHandler(this.btnHomeMoveKal_EnabledChanged);
+            this.btnHomeMoveKal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMoveKal_MouseClick);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnStep50);
@@ -595,6 +897,51 @@ namespace MultecPlugin
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fahrweg";
             // 
+            // btnStep50
+            // 
+            this.btnStep50.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep50.Image = global::MultecPlugin.Properties.Resources.fiftymm;
+            this.btnStep50.ImageClicked = global::MultecPlugin.Properties.Resources.fiftymm_p;
+            this.btnStep50.ImangeNormal = global::MultecPlugin.Properties.Resources.fiftymm;
+            this.btnStep50.Location = new System.Drawing.Point(9, 13);
+            this.btnStep50.Name = "btnStep50";
+            this.btnStep50.Size = new System.Drawing.Size(50, 50);
+            this.btnStep50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep50.TabIndex = 5;
+            this.btnStep50.TabStop = false;
+            this.btnStep50.EnabledChanged += new System.EventHandler(this.btnStep50_EnabledChanged);
+            this.btnStep50.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep50_MouseClick);
+            // 
+            // btnStep10
+            // 
+            this.btnStep10.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep10.Image = global::MultecPlugin.Properties.Resources.tenmm;
+            this.btnStep10.ImageClicked = global::MultecPlugin.Properties.Resources.tenmm_p;
+            this.btnStep10.ImangeNormal = global::MultecPlugin.Properties.Resources.tenmm;
+            this.btnStep10.Location = new System.Drawing.Point(9, 66);
+            this.btnStep10.Name = "btnStep10";
+            this.btnStep10.Size = new System.Drawing.Size(50, 50);
+            this.btnStep10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep10.TabIndex = 4;
+            this.btnStep10.TabStop = false;
+            this.btnStep10.EnabledChanged += new System.EventHandler(this.btnStep10_EnabledChanged);
+            this.btnStep10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep10_MouseClick);
+            // 
+            // btnStep1
+            // 
+            this.btnStep1.BackColor = System.Drawing.Color.Transparent;
+            this.btnStep1.Image = global::MultecPlugin.Properties.Resources.onemm;
+            this.btnStep1.ImageClicked = global::MultecPlugin.Properties.Resources.onemm_p;
+            this.btnStep1.ImangeNormal = global::MultecPlugin.Properties.Resources.onemm;
+            this.btnStep1.Location = new System.Drawing.Point(9, 119);
+            this.btnStep1.Name = "btnStep1";
+            this.btnStep1.Size = new System.Drawing.Size(50, 50);
+            this.btnStep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnStep1.TabIndex = 3;
+            this.btnStep1.TabStop = false;
+            this.btnStep1.EnabledChanged += new System.EventHandler(this.btnStep1_EnabledChanged);
+            this.btnStep1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep1_MouseClick);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnT3);
@@ -607,6 +954,66 @@ namespace MultecPlugin
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Extruder Auswahl";
+            // 
+            // btnT3
+            // 
+            this.btnT3.BackColor = System.Drawing.Color.Transparent;
+            this.btnT3.Image = global::MultecPlugin.Properties.Resources.T3;
+            this.btnT3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
+            this.btnT3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
+            this.btnT3.Location = new System.Drawing.Point(205, 19);
+            this.btnT3.Name = "btnT3";
+            this.btnT3.Size = new System.Drawing.Size(60, 40);
+            this.btnT3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT3.TabIndex = 8;
+            this.btnT3.TabStop = false;
+            this.btnT3.EnabledChanged += new System.EventHandler(this.btnT3_EnabledChanged);
+            this.btnT3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT3_MouseClick);
+            // 
+            // btnT2
+            // 
+            this.btnT2.BackColor = System.Drawing.Color.Transparent;
+            this.btnT2.Image = global::MultecPlugin.Properties.Resources.T2;
+            this.btnT2.ImageClicked = global::MultecPlugin.Properties.Resources.T2_p;
+            this.btnT2.ImangeNormal = global::MultecPlugin.Properties.Resources.T2;
+            this.btnT2.Location = new System.Drawing.Point(139, 19);
+            this.btnT2.Name = "btnT2";
+            this.btnT2.Size = new System.Drawing.Size(60, 40);
+            this.btnT2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT2.TabIndex = 7;
+            this.btnT2.TabStop = false;
+            this.btnT2.EnabledChanged += new System.EventHandler(this.btnT2_EnabledChanged);
+            this.btnT2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT2_MouseClick);
+            // 
+            // btnT1
+            // 
+            this.btnT1.BackColor = System.Drawing.Color.Transparent;
+            this.btnT1.Image = global::MultecPlugin.Properties.Resources.T1;
+            this.btnT1.ImageClicked = global::MultecPlugin.Properties.Resources.T1_p;
+            this.btnT1.ImangeNormal = global::MultecPlugin.Properties.Resources.T1;
+            this.btnT1.Location = new System.Drawing.Point(75, 19);
+            this.btnT1.Name = "btnT1";
+            this.btnT1.Size = new System.Drawing.Size(57, 40);
+            this.btnT1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT1.TabIndex = 6;
+            this.btnT1.TabStop = false;
+            this.btnT1.EnabledChanged += new System.EventHandler(this.BtnT1_EnabledChanged);
+            this.btnT1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnT1_MouseClick);
+            // 
+            // btnT0
+            // 
+            this.btnT0.BackColor = System.Drawing.Color.Transparent;
+            this.btnT0.Image = global::MultecPlugin.Properties.Resources.T0;
+            this.btnT0.ImageClicked = global::MultecPlugin.Properties.Resources.T0_p;
+            this.btnT0.ImangeNormal = global::MultecPlugin.Properties.Resources.T0;
+            this.btnT0.Location = new System.Drawing.Point(8, 19);
+            this.btnT0.Name = "btnT0";
+            this.btnT0.Size = new System.Drawing.Size(60, 40);
+            this.btnT0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnT0.TabIndex = 5;
+            this.btnT0.TabStop = false;
+            this.btnT0.EnabledChanged += new System.EventHandler(this.btnT0_EnabledChanged);
+            this.btnT0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT0_MouseClick);
             // 
             // trackBar_NozzleTemp
             // 
@@ -958,6 +1365,62 @@ namespace MultecPlugin
             this.TouchControl.TabIndex = 0;
             this.TouchControl.Text = "Manuelle Steuerung";
             // 
+            // btnFeedratePlus
+            // 
+            this.btnFeedratePlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnFeedratePlus.Image = global::MultecPlugin.Properties.Resources.PlusV;
+            this.btnFeedratePlus.ImageClicked = global::MultecPlugin.Properties.Resources.PlusV_p;
+            this.btnFeedratePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.PlusV;
+            this.btnFeedratePlus.Location = new System.Drawing.Point(531, 293);
+            this.btnFeedratePlus.Name = "btnFeedratePlus";
+            this.btnFeedratePlus.Size = new System.Drawing.Size(31, 33);
+            this.btnFeedratePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFeedratePlus.TabIndex = 89;
+            this.btnFeedratePlus.TabStop = false;
+            this.btnFeedratePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFeedratePlus_MouseClick);
+            // 
+            // btnFlowratePlus
+            // 
+            this.btnFlowratePlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlowratePlus.Image = global::MultecPlugin.Properties.Resources.PlusV;
+            this.btnFlowratePlus.ImageClicked = global::MultecPlugin.Properties.Resources.PlusV_p;
+            this.btnFlowratePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.PlusV;
+            this.btnFlowratePlus.Location = new System.Drawing.Point(471, 293);
+            this.btnFlowratePlus.Name = "btnFlowratePlus";
+            this.btnFlowratePlus.Size = new System.Drawing.Size(31, 33);
+            this.btnFlowratePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFlowratePlus.TabIndex = 88;
+            this.btnFlowratePlus.TabStop = false;
+            this.btnFlowratePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFlowratePlus_MouseClick);
+            // 
+            // btnFeedrateMinus
+            // 
+            this.btnFeedrateMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnFeedrateMinus.Image = global::MultecPlugin.Properties.Resources.MinusV;
+            this.btnFeedrateMinus.ImageClicked = global::MultecPlugin.Properties.Resources.MinusV_p;
+            this.btnFeedrateMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.MinusV;
+            this.btnFeedrateMinus.Location = new System.Drawing.Point(531, 469);
+            this.btnFeedrateMinus.Name = "btnFeedrateMinus";
+            this.btnFeedrateMinus.Size = new System.Drawing.Size(31, 33);
+            this.btnFeedrateMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFeedrateMinus.TabIndex = 87;
+            this.btnFeedrateMinus.TabStop = false;
+            this.btnFeedrateMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFeedrateMinus_MouseClick);
+            // 
+            // btnFlowrateMinus
+            // 
+            this.btnFlowrateMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlowrateMinus.Image = global::MultecPlugin.Properties.Resources.MinusV;
+            this.btnFlowrateMinus.ImageClicked = global::MultecPlugin.Properties.Resources.MinusV_p;
+            this.btnFlowrateMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.MinusV;
+            this.btnFlowrateMinus.Location = new System.Drawing.Point(471, 469);
+            this.btnFlowrateMinus.Name = "btnFlowrateMinus";
+            this.btnFlowrateMinus.Size = new System.Drawing.Size(31, 33);
+            this.btnFlowrateMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFlowrateMinus.TabIndex = 86;
+            this.btnFlowrateMinus.TabStop = false;
+            this.btnFlowrateMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFlowrateMinus_MouseClick);
+            // 
             // trackBar_feedrate
             // 
             this.trackBar_feedrate.Location = new System.Drawing.Point(531, 322);
@@ -1047,6 +1510,96 @@ namespace MultecPlugin
             0,
             0});
             this.numericFeedrate.ValueChanged += new System.EventHandler(this.numericFeedrate_ValueChanged);
+            // 
+            // btnYhome
+            // 
+            this.btnYhome.BackColor = System.Drawing.Color.Transparent;
+            this.btnYhome.Image = global::MultecPlugin.Properties.Resources.Yhome;
+            this.btnYhome.ImageClicked = global::MultecPlugin.Properties.Resources.Yhome_p;
+            this.btnYhome.ImangeNormal = global::MultecPlugin.Properties.Resources.Yhome;
+            this.btnYhome.Location = new System.Drawing.Point(6, 174);
+            this.btnYhome.Name = "btnYhome";
+            this.btnYhome.Size = new System.Drawing.Size(60, 58);
+            this.btnYhome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYhome.TabIndex = 76;
+            this.btnYhome.TabStop = false;
+            this.btnYhome.EnabledChanged += new System.EventHandler(this.btnYhome_EnabledChanged);
+            this.btnYhome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYhome_MouseClick);
+            // 
+            // btnXhome
+            // 
+            this.btnXhome.BackColor = System.Drawing.Color.Transparent;
+            this.btnXhome.Image = global::MultecPlugin.Properties.Resources.Xhome;
+            this.btnXhome.ImageClicked = global::MultecPlugin.Properties.Resources.Xhome_p;
+            this.btnXhome.ImangeNormal = global::MultecPlugin.Properties.Resources.Xhome;
+            this.btnXhome.Location = new System.Drawing.Point(6, 110);
+            this.btnXhome.Name = "btnXhome";
+            this.btnXhome.Size = new System.Drawing.Size(60, 58);
+            this.btnXhome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXhome.TabIndex = 75;
+            this.btnXhome.TabStop = false;
+            this.btnXhome.EnabledChanged += new System.EventHandler(this.btnXhome_EnabledChanged);
+            this.btnXhome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXhome_MouseClick);
+            // 
+            // btnBedMinus
+            // 
+            this.btnBedMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnBedMinus.Image = global::MultecPlugin.Properties.Resources.minus51;
+            this.btnBedMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus5_p1;
+            this.btnBedMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus51;
+            this.btnBedMinus.Location = new System.Drawing.Point(132, 466);
+            this.btnBedMinus.Name = "btnBedMinus";
+            this.btnBedMinus.Size = new System.Drawing.Size(60, 45);
+            this.btnBedMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnBedMinus.TabIndex = 74;
+            this.btnBedMinus.TabStop = false;
+            this.btnBedMinus.EnabledChanged += new System.EventHandler(this.btnBedMinus_EnabledChanged);
+            this.btnBedMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBedMinus_MouseClick);
+            // 
+            // btnBedPlus
+            // 
+            this.btnBedPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnBedPlus.Image = global::MultecPlugin.Properties.Resources.plus5;
+            this.btnBedPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus5_p;
+            this.btnBedPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus5;
+            this.btnBedPlus.Location = new System.Drawing.Point(394, 466);
+            this.btnBedPlus.Name = "btnBedPlus";
+            this.btnBedPlus.Size = new System.Drawing.Size(60, 45);
+            this.btnBedPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnBedPlus.TabIndex = 73;
+            this.btnBedPlus.TabStop = false;
+            this.btnBedPlus.EnabledChanged += new System.EventHandler(this.btnBedPlus_EnabledChanged);
+            this.btnBedPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBedPlus_MouseClick);
+            // 
+            // btnNozzleMinus
+            // 
+            this.btnNozzleMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnNozzleMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnNozzleMinus.Image")));
+            this.btnNozzleMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus5_p1;
+            this.btnNozzleMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus51;
+            this.btnNozzleMinus.Location = new System.Drawing.Point(131, 415);
+            this.btnNozzleMinus.Name = "btnNozzleMinus";
+            this.btnNozzleMinus.Size = new System.Drawing.Size(60, 45);
+            this.btnNozzleMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnNozzleMinus.TabIndex = 72;
+            this.btnNozzleMinus.TabStop = false;
+            this.btnNozzleMinus.EnabledChanged += new System.EventHandler(this.btnNozzleMinus_EnabledChanged);
+            this.btnNozzleMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNozzleMinus_MouseClick);
+            // 
+            // btnNozzlePlus
+            // 
+            this.btnNozzlePlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnNozzlePlus.Image = global::MultecPlugin.Properties.Resources.plus5;
+            this.btnNozzlePlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus5_p;
+            this.btnNozzlePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus5;
+            this.btnNozzlePlus.Location = new System.Drawing.Point(394, 415);
+            this.btnNozzlePlus.Name = "btnNozzlePlus";
+            this.btnNozzlePlus.Size = new System.Drawing.Size(60, 45);
+            this.btnNozzlePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnNozzlePlus.TabIndex = 71;
+            this.btnNozzlePlus.TabStop = false;
+            this.btnNozzlePlus.EnabledChanged += new System.EventHandler(this.btnNozzlePlus_EnabledChanged);
+            this.btnNozzlePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNozzlePlus_MouseClick);
             // 
             // lblZ
             // 
@@ -1178,6 +1731,51 @@ namespace MultecPlugin
             this.btnT0_OnOff.Click += new System.EventHandler(this.btnT0_OnOff_Click);
             this.btnT0_OnOff.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnT0_OnOff_MouseMove);
             // 
+            // btnParkMove
+            // 
+            this.btnParkMove.BackColor = System.Drawing.Color.Transparent;
+            this.btnParkMove.Image = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMove.ImageClicked = global::MultecPlugin.Properties.Resources.Park_Move_p;
+            this.btnParkMove.ImangeNormal = global::MultecPlugin.Properties.Resources.Park_Move;
+            this.btnParkMove.Location = new System.Drawing.Point(6, 381);
+            this.btnParkMove.Name = "btnParkMove";
+            this.btnParkMove.Size = new System.Drawing.Size(60, 58);
+            this.btnParkMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnParkMove.TabIndex = 58;
+            this.btnParkMove.TabStop = false;
+            this.btnParkMove.EnabledChanged += new System.EventHandler(this.btnParkMove_EnabledChanged);
+            this.btnParkMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkMove_MouseClick);
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
+            this.btnHome.Image = global::MultecPlugin.Properties.Resources.HOME;
+            this.btnHome.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_p;
+            this.btnHome.ImangeNormal = global::MultecPlugin.Properties.Resources.HOME;
+            this.btnHome.Location = new System.Drawing.Point(6, 32);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(60, 58);
+            this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHome.TabIndex = 9;
+            this.btnHome.TabStop = false;
+            this.btnHome.EnabledChanged += new System.EventHandler(this.btnHome_EnabledChanged);
+            this.btnHome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHome_MouseClick);
+            // 
+            // btnMotorOff
+            // 
+            this.btnMotorOff.BackColor = System.Drawing.Color.Transparent;
+            this.btnMotorOff.Image = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
+            this.btnMotorOff.ImageClicked = global::MultecPlugin.Properties.Resources.MOTOR_OFF_p;
+            this.btnMotorOff.ImangeNormal = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
+            this.btnMotorOff.Location = new System.Drawing.Point(6, 254);
+            this.btnMotorOff.Name = "btnMotorOff";
+            this.btnMotorOff.Size = new System.Drawing.Size(60, 58);
+            this.btnMotorOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnMotorOff.TabIndex = 57;
+            this.btnMotorOff.TabStop = false;
+            this.btnMotorOff.EnabledChanged += new System.EventHandler(this.btnMotorOff_EnabledChanged);
+            this.btnMotorOff.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnMotorOff_MouseClick);
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnManualGcodeSend);
@@ -1189,6 +1787,21 @@ namespace MultecPlugin
             this.groupBox5.TabIndex = 56;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Manuelle Befehle";
+            // 
+            // btnManualGcodeSend
+            // 
+            this.btnManualGcodeSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnManualGcodeSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnManualGcodeSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnManualGcodeSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnManualGcodeSend.Location = new System.Drawing.Point(387, 17);
+            this.btnManualGcodeSend.Name = "btnManualGcodeSend";
+            this.btnManualGcodeSend.Size = new System.Drawing.Size(64, 23);
+            this.btnManualGcodeSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnManualGcodeSend.TabIndex = 3;
+            this.btnManualGcodeSend.TabStop = false;
+            this.btnManualGcodeSend.EnabledChanged += new System.EventHandler(this.btnManualGcodeSend_EnabledChanged);
+            this.btnManualGcodeSend.Click += new System.EventHandler(this.btnManualGcodeSend_Click);
             // 
             // label41
             // 
@@ -1206,6 +1819,141 @@ namespace MultecPlugin
             this.txtManualGcode.Size = new System.Drawing.Size(316, 20);
             this.txtManualGcode.TabIndex = 0;
             this.txtManualGcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtManualGcode_KeyDown);
+            // 
+            // btnHomeMove
+            // 
+            this.btnHomeMove.BackColor = System.Drawing.Color.Transparent;
+            this.btnHomeMove.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.Image")));
+            this.btnHomeMove.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
+            this.btnHomeMove.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.ImangeNormal")));
+            this.btnHomeMove.Location = new System.Drawing.Point(6, 318);
+            this.btnHomeMove.Name = "btnHomeMove";
+            this.btnHomeMove.Size = new System.Drawing.Size(60, 57);
+            this.btnHomeMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHomeMove.TabIndex = 55;
+            this.btnHomeMove.TabStop = false;
+            this.btnHomeMove.EnabledChanged += new System.EventHandler(this.btnHomeMove_EnabledChanged);
+            this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
+            // 
+            // btnExtrude
+            // 
+            this.btnExtrude.BackColor = System.Drawing.Color.Transparent;
+            this.btnExtrude.Image = global::MultecPlugin.Properties.Resources.extract;
+            this.btnExtrude.ImageClicked = global::MultecPlugin.Properties.Resources.extract_p;
+            this.btnExtrude.ImangeNormal = global::MultecPlugin.Properties.Resources.extract;
+            this.btnExtrude.Location = new System.Drawing.Point(398, 174);
+            this.btnExtrude.Name = "btnExtrude";
+            this.btnExtrude.Size = new System.Drawing.Size(70, 70);
+            this.btnExtrude.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnExtrude.TabIndex = 54;
+            this.btnExtrude.TabStop = false;
+            this.btnExtrude.EnabledChanged += new System.EventHandler(this.btnExtrude_EnabledChanged);
+            this.btnExtrude.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnExtrude_MouseClick);
+            // 
+            // btnRetract
+            // 
+            this.btnRetract.BackColor = System.Drawing.Color.Transparent;
+            this.btnRetract.Image = global::MultecPlugin.Properties.Resources.retract;
+            this.btnRetract.ImageClicked = global::MultecPlugin.Properties.Resources.retract_p;
+            this.btnRetract.ImangeNormal = global::MultecPlugin.Properties.Resources.retract;
+            this.btnRetract.Location = new System.Drawing.Point(398, 98);
+            this.btnRetract.Name = "btnRetract";
+            this.btnRetract.Size = new System.Drawing.Size(70, 70);
+            this.btnRetract.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRetract.TabIndex = 53;
+            this.btnRetract.TabStop = false;
+            this.btnRetract.EnabledChanged += new System.EventHandler(this.btnRetract_EnabledChanged);
+            this.btnRetract.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_2);
+            // 
+            // btnZminus
+            // 
+            this.btnZminus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZminus.Image = global::MultecPlugin.Properties.Resources.Zminus;
+            this.btnZminus.ImageClicked = global::MultecPlugin.Properties.Resources.Zminus_p;
+            this.btnZminus.ImangeNormal = global::MultecPlugin.Properties.Resources.Zminus;
+            this.btnZminus.Location = new System.Drawing.Point(309, 174);
+            this.btnZminus.Name = "btnZminus";
+            this.btnZminus.Size = new System.Drawing.Size(70, 70);
+            this.btnZminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZminus.TabIndex = 52;
+            this.btnZminus.TabStop = false;
+            this.btnZminus.EnabledChanged += new System.EventHandler(this.btnZminus_EnabledChanged);
+            this.btnZminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZminus_MouseClick);
+            // 
+            // btnZPlus
+            // 
+            this.btnZPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnZPlus.Image = global::MultecPlugin.Properties.Resources.zPlus;
+            this.btnZPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zplus_p;
+            this.btnZPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlus;
+            this.btnZPlus.Location = new System.Drawing.Point(309, 98);
+            this.btnZPlus.Name = "btnZPlus";
+            this.btnZPlus.Size = new System.Drawing.Size(70, 70);
+            this.btnZPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnZPlus.TabIndex = 51;
+            this.btnZPlus.TabStop = false;
+            this.btnZPlus.EnabledChanged += new System.EventHandler(this.btnZPlus_EnabledChanged);
+            this.btnZPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_1);
+            // 
+            // btnYPlus
+            // 
+            this.btnYPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYPlus.Image = global::MultecPlugin.Properties.Resources.Yplus;
+            this.btnYPlus.ImageClicked = global::MultecPlugin.Properties.Resources.Yplus_p;
+            this.btnYPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.Yplus;
+            this.btnYPlus.Location = new System.Drawing.Point(158, 98);
+            this.btnYPlus.Name = "btnYPlus";
+            this.btnYPlus.Size = new System.Drawing.Size(70, 70);
+            this.btnYPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYPlus.TabIndex = 48;
+            this.btnYPlus.TabStop = false;
+            this.btnYPlus.EnabledChanged += new System.EventHandler(this.btnYPlus_EnabledChanged);
+            this.btnYPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton2_Click);
+            // 
+            // btnYMinus
+            // 
+            this.btnYMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnYMinus.Image = global::MultecPlugin.Properties.Resources.Yminus;
+            this.btnYMinus.ImageClicked = global::MultecPlugin.Properties.Resources.Yminus_p;
+            this.btnYMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.Yminus;
+            this.btnYMinus.Location = new System.Drawing.Point(158, 174);
+            this.btnYMinus.Name = "btnYMinus";
+            this.btnYMinus.Size = new System.Drawing.Size(70, 70);
+            this.btnYMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnYMinus.TabIndex = 50;
+            this.btnYMinus.TabStop = false;
+            this.btnYMinus.EnabledChanged += new System.EventHandler(this.btnYMinus_EnabledChanged);
+            this.btnYMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton4_Click);
+            // 
+            // btnXPlus
+            // 
+            this.btnXPlus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXPlus.Image = global::MultecPlugin.Properties.Resources.Xplus;
+            this.btnXPlus.ImageClicked = global::MultecPlugin.Properties.Resources.Xplus_p;
+            this.btnXPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.Xplus;
+            this.btnXPlus.Location = new System.Drawing.Point(230, 136);
+            this.btnXPlus.Name = "btnXPlus";
+            this.btnXPlus.Size = new System.Drawing.Size(70, 70);
+            this.btnXPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXPlus.TabIndex = 49;
+            this.btnXPlus.TabStop = false;
+            this.btnXPlus.EnabledChanged += new System.EventHandler(this.btnXPlus_EnabledChanged);
+            this.btnXPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton3_Click);
+            // 
+            // btnXMinus
+            // 
+            this.btnXMinus.BackColor = System.Drawing.Color.Transparent;
+            this.btnXMinus.Image = global::MultecPlugin.Properties.Resources.Xminus;
+            this.btnXMinus.ImageClicked = global::MultecPlugin.Properties.Resources.Xminus_p;
+            this.btnXMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.Xminus;
+            this.btnXMinus.Location = new System.Drawing.Point(85, 136);
+            this.btnXMinus.Name = "btnXMinus";
+            this.btnXMinus.Size = new System.Drawing.Size(70, 70);
+            this.btnXMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnXMinus.TabIndex = 47;
+            this.btnXMinus.TabStop = false;
+            this.btnXMinus.EnabledChanged += new System.EventHandler(this.btnXMinus_EnabledChanged);
+            this.btnXMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
             // 
             // Filament
             // 
@@ -1400,6 +2148,20 @@ namespace MultecPlugin
             this.filamentUberwachung.TabStop = false;
             this.filamentUberwachung.Text = "Filament Überwachung";
             // 
+            // btnFilAktualise
+            // 
+            this.btnFilAktualise.BackColor = System.Drawing.Color.Transparent;
+            this.btnFilAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.Image")));
+            this.btnFilAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImageClicked")));
+            this.btnFilAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImangeNormal")));
+            this.btnFilAktualise.Location = new System.Drawing.Point(239, 19);
+            this.btnFilAktualise.Name = "btnFilAktualise";
+            this.btnFilAktualise.Size = new System.Drawing.Size(97, 31);
+            this.btnFilAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFilAktualise.TabIndex = 82;
+            this.btnFilAktualise.TabStop = false;
+            this.btnFilAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFilAktualise_MouseClick);
+            // 
             // lblT3_1
             // 
             this.lblT3_1.AutoSize = true;
@@ -1498,6 +2260,8 @@ namespace MultecPlugin
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.lblDV);
+            this.tabPage1.Controls.Add(this.label32);
             this.tabPage1.Controls.Add(this.LblMoveCoverOffset);
             this.tabPage1.Controls.Add(this.label31);
             this.tabPage1.Controls.Add(this.lblReinigungsschwelle);
@@ -1573,7 +2337,6 @@ namespace MultecPlugin
             this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.label24);
             this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.lblT3_5);
             this.tabPage1.Controls.Add(this.lblT2_5);
             this.tabPage1.Controls.Add(this.label19);
@@ -1587,6 +2350,32 @@ namespace MultecPlugin
             this.tabPage1.Size = new System.Drawing.Size(599, 535);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Information";
+            // 
+            // lblDV
+            // 
+            this.lblDV.AutoSize = true;
+            this.lblDV.BackColor = System.Drawing.Color.White;
+            this.lblDV.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDV.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblDV.Location = new System.Drawing.Point(246, 182);
+            this.lblDV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDV.Name = "lblDV";
+            this.lblDV.Size = new System.Drawing.Size(31, 13);
+            this.lblDV.TabIndex = 125;
+            this.lblDV.Text = "NULL";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.White;
+            this.label32.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label32.Location = new System.Drawing.Point(131, 182);
+            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(97, 13);
+            this.label32.TabIndex = 124;
+            this.label32.Text = "Düsenvermessung";
             // 
             // LblMoveCoverOffset
             // 
@@ -1776,7 +2565,7 @@ namespace MultecPlugin
             this.lblKgSrvcT3.BackColor = System.Drawing.Color.White;
             this.lblKgSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT3.Location = new System.Drawing.Point(372, 416);
+            this.lblKgSrvcT3.Location = new System.Drawing.Point(372, 422);
             this.lblKgSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT3.Name = "lblKgSrvcT3";
             this.lblKgSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1789,7 +2578,7 @@ namespace MultecPlugin
             this.lblKgSrvcT2.BackColor = System.Drawing.Color.White;
             this.lblKgSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT2.Location = new System.Drawing.Point(372, 401);
+            this.lblKgSrvcT2.Location = new System.Drawing.Point(372, 407);
             this.lblKgSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT2.Name = "lblKgSrvcT2";
             this.lblKgSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1802,7 +2591,7 @@ namespace MultecPlugin
             this.lblKgSrvcT1.BackColor = System.Drawing.Color.White;
             this.lblKgSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT1.Location = new System.Drawing.Point(372, 386);
+            this.lblKgSrvcT1.Location = new System.Drawing.Point(372, 392);
             this.lblKgSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT1.Name = "lblKgSrvcT1";
             this.lblKgSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1815,7 +2604,7 @@ namespace MultecPlugin
             this.lblKgSrvcT0.BackColor = System.Drawing.Color.White;
             this.lblKgSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgSrvcT0.Location = new System.Drawing.Point(372, 371);
+            this.lblKgSrvcT0.Location = new System.Drawing.Point(372, 377);
             this.lblKgSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgSrvcT0.Name = "lblKgSrvcT0";
             this.lblKgSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1828,7 +2617,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT3.BackColor = System.Drawing.Color.White;
             this.lblHeatedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT3.Location = new System.Drawing.Point(372, 480);
+            this.lblHeatedSrvcT3.Location = new System.Drawing.Point(372, 486);
             this.lblHeatedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT3.Name = "lblHeatedSrvcT3";
             this.lblHeatedSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1841,7 +2630,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT2.BackColor = System.Drawing.Color.White;
             this.lblHeatedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT2.Location = new System.Drawing.Point(372, 465);
+            this.lblHeatedSrvcT2.Location = new System.Drawing.Point(372, 471);
             this.lblHeatedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT2.Name = "lblHeatedSrvcT2";
             this.lblHeatedSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1854,7 +2643,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT1.BackColor = System.Drawing.Color.White;
             this.lblHeatedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT1.Location = new System.Drawing.Point(372, 450);
+            this.lblHeatedSrvcT1.Location = new System.Drawing.Point(372, 456);
             this.lblHeatedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT1.Name = "lblHeatedSrvcT1";
             this.lblHeatedSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1867,7 +2656,7 @@ namespace MultecPlugin
             this.lblHeatedSrvcT0.BackColor = System.Drawing.Color.White;
             this.lblHeatedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedSrvcT0.Location = new System.Drawing.Point(372, 435);
+            this.lblHeatedSrvcT0.Location = new System.Drawing.Point(372, 441);
             this.lblHeatedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedSrvcT0.Name = "lblHeatedSrvcT0";
             this.lblHeatedSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1880,7 +2669,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT3.BackColor = System.Drawing.Color.White;
             this.lblExtrudedSrvcT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT3.Location = new System.Drawing.Point(372, 356);
+            this.lblExtrudedSrvcT3.Location = new System.Drawing.Point(372, 362);
             this.lblExtrudedSrvcT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT3.Name = "lblExtrudedSrvcT3";
             this.lblExtrudedSrvcT3.Size = new System.Drawing.Size(31, 13);
@@ -1893,7 +2682,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT2.BackColor = System.Drawing.Color.White;
             this.lblExtrudedSrvcT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT2.Location = new System.Drawing.Point(372, 341);
+            this.lblExtrudedSrvcT2.Location = new System.Drawing.Point(372, 347);
             this.lblExtrudedSrvcT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT2.Name = "lblExtrudedSrvcT2";
             this.lblExtrudedSrvcT2.Size = new System.Drawing.Size(31, 13);
@@ -1906,7 +2695,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT1.BackColor = System.Drawing.Color.White;
             this.lblExtrudedSrvcT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT1.Location = new System.Drawing.Point(372, 326);
+            this.lblExtrudedSrvcT1.Location = new System.Drawing.Point(372, 332);
             this.lblExtrudedSrvcT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT1.Name = "lblExtrudedSrvcT1";
             this.lblExtrudedSrvcT1.Size = new System.Drawing.Size(31, 13);
@@ -1919,7 +2708,7 @@ namespace MultecPlugin
             this.lblExtrudedSrvcT0.BackColor = System.Drawing.Color.White;
             this.lblExtrudedSrvcT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedSrvcT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedSrvcT0.Location = new System.Drawing.Point(372, 311);
+            this.lblExtrudedSrvcT0.Location = new System.Drawing.Point(372, 317);
             this.lblExtrudedSrvcT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedSrvcT0.Name = "lblExtrudedSrvcT0";
             this.lblExtrudedSrvcT0.Size = new System.Drawing.Size(31, 13);
@@ -1932,7 +2721,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceZ.BackColor = System.Drawing.Color.White;
             this.lblSrvcDistanceZ.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceZ.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceZ.Location = new System.Drawing.Point(372, 290);
+            this.lblSrvcDistanceZ.Location = new System.Drawing.Point(372, 296);
             this.lblSrvcDistanceZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceZ.Name = "lblSrvcDistanceZ";
             this.lblSrvcDistanceZ.Size = new System.Drawing.Size(31, 13);
@@ -1945,7 +2734,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceY.BackColor = System.Drawing.Color.White;
             this.lblSrvcDistanceY.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceY.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceY.Location = new System.Drawing.Point(372, 276);
+            this.lblSrvcDistanceY.Location = new System.Drawing.Point(372, 282);
             this.lblSrvcDistanceY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceY.Name = "lblSrvcDistanceY";
             this.lblSrvcDistanceY.Size = new System.Drawing.Size(31, 13);
@@ -1958,7 +2747,7 @@ namespace MultecPlugin
             this.lblSrvcDistanceX.BackColor = System.Drawing.Color.White;
             this.lblSrvcDistanceX.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcDistanceX.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcDistanceX.Location = new System.Drawing.Point(372, 261);
+            this.lblSrvcDistanceX.Location = new System.Drawing.Point(372, 267);
             this.lblSrvcDistanceX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcDistanceX.Name = "lblSrvcDistanceX";
             this.lblSrvcDistanceX.Size = new System.Drawing.Size(31, 13);
@@ -1971,7 +2760,7 @@ namespace MultecPlugin
             this.lblSrvcPrntLife.BackColor = System.Drawing.Color.White;
             this.lblSrvcPrntLife.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPrntLife.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPrntLife.Location = new System.Drawing.Point(372, 239);
+            this.lblSrvcPrntLife.Location = new System.Drawing.Point(372, 245);
             this.lblSrvcPrntLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPrntLife.Name = "lblSrvcPrntLife";
             this.lblSrvcPrntLife.Size = new System.Drawing.Size(31, 13);
@@ -1984,7 +2773,7 @@ namespace MultecPlugin
             this.lblSrvcPwrON.BackColor = System.Drawing.Color.White;
             this.lblSrvcPwrON.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPwrON.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPwrON.Location = new System.Drawing.Point(372, 224);
+            this.lblSrvcPwrON.Location = new System.Drawing.Point(372, 230);
             this.lblSrvcPwrON.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPwrON.Name = "lblSrvcPwrON";
             this.lblSrvcPwrON.Size = new System.Drawing.Size(31, 13);
@@ -1997,7 +2786,7 @@ namespace MultecPlugin
             this.lblSrvcPwrCycle.BackColor = System.Drawing.Color.White;
             this.lblSrvcPwrCycle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSrvcPwrCycle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblSrvcPwrCycle.Location = new System.Drawing.Point(372, 209);
+            this.lblSrvcPwrCycle.Location = new System.Drawing.Point(372, 215);
             this.lblSrvcPwrCycle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSrvcPwrCycle.Name = "lblSrvcPwrCycle";
             this.lblSrvcPwrCycle.Size = new System.Drawing.Size(31, 13);
@@ -2010,7 +2799,7 @@ namespace MultecPlugin
             this.label70.BackColor = System.Drawing.Color.White;
             this.label70.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label70.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label70.Location = new System.Drawing.Point(372, 194);
+            this.label70.Location = new System.Drawing.Point(372, 200);
             this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(175, 13);
@@ -2023,7 +2812,7 @@ namespace MultecPlugin
             this.lblKgTotalT3.BackColor = System.Drawing.Color.White;
             this.lblKgTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgTotalT3.Location = new System.Drawing.Point(178, 416);
+            this.lblKgTotalT3.Location = new System.Drawing.Point(178, 422);
             this.lblKgTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgTotalT3.Name = "lblKgTotalT3";
             this.lblKgTotalT3.Size = new System.Drawing.Size(31, 13);
@@ -2036,7 +2825,7 @@ namespace MultecPlugin
             this.lblKgTotalT2.BackColor = System.Drawing.Color.White;
             this.lblKgTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgTotalT2.Location = new System.Drawing.Point(178, 401);
+            this.lblKgTotalT2.Location = new System.Drawing.Point(178, 407);
             this.lblKgTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgTotalT2.Name = "lblKgTotalT2";
             this.lblKgTotalT2.Size = new System.Drawing.Size(31, 13);
@@ -2049,7 +2838,7 @@ namespace MultecPlugin
             this.lblKgTotalT1.BackColor = System.Drawing.Color.White;
             this.lblKgTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgTotalT1.Location = new System.Drawing.Point(178, 386);
+            this.lblKgTotalT1.Location = new System.Drawing.Point(178, 392);
             this.lblKgTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgTotalT1.Name = "lblKgTotalT1";
             this.lblKgTotalT1.Size = new System.Drawing.Size(31, 13);
@@ -2062,7 +2851,7 @@ namespace MultecPlugin
             this.lblKgTotalT0.BackColor = System.Drawing.Color.White;
             this.lblKgTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKgTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblKgTotalT0.Location = new System.Drawing.Point(178, 371);
+            this.lblKgTotalT0.Location = new System.Drawing.Point(178, 377);
             this.lblKgTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKgTotalT0.Name = "lblKgTotalT0";
             this.lblKgTotalT0.Size = new System.Drawing.Size(31, 13);
@@ -2075,7 +2864,7 @@ namespace MultecPlugin
             this.lblT3_3.BackColor = System.Drawing.Color.White;
             this.lblT3_3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT3_3.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT3_3.Location = new System.Drawing.Point(5, 416);
+            this.lblT3_3.Location = new System.Drawing.Point(5, 422);
             this.lblT3_3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT3_3.Name = "lblT3_3";
             this.lblT3_3.Size = new System.Drawing.Size(157, 13);
@@ -2088,7 +2877,7 @@ namespace MultecPlugin
             this.lblT2_3.BackColor = System.Drawing.Color.White;
             this.lblT2_3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT2_3.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT2_3.Location = new System.Drawing.Point(5, 401);
+            this.lblT2_3.Location = new System.Drawing.Point(5, 407);
             this.lblT2_3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT2_3.Name = "lblT2_3";
             this.lblT2_3.Size = new System.Drawing.Size(157, 13);
@@ -2101,7 +2890,7 @@ namespace MultecPlugin
             this.label61.BackColor = System.Drawing.Color.White;
             this.label61.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label61.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label61.Location = new System.Drawing.Point(5, 386);
+            this.label61.Location = new System.Drawing.Point(5, 392);
             this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(157, 13);
@@ -2114,7 +2903,7 @@ namespace MultecPlugin
             this.label62.BackColor = System.Drawing.Color.White;
             this.label62.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label62.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label62.Location = new System.Drawing.Point(5, 371);
+            this.label62.Location = new System.Drawing.Point(5, 377);
             this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(157, 13);
@@ -2127,7 +2916,7 @@ namespace MultecPlugin
             this.lblHeatedTotalT3.BackColor = System.Drawing.Color.White;
             this.lblHeatedTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedTotalT3.Location = new System.Drawing.Point(178, 480);
+            this.lblHeatedTotalT3.Location = new System.Drawing.Point(178, 486);
             this.lblHeatedTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedTotalT3.Name = "lblHeatedTotalT3";
             this.lblHeatedTotalT3.Size = new System.Drawing.Size(31, 13);
@@ -2140,7 +2929,7 @@ namespace MultecPlugin
             this.lblHeatedTotalT2.BackColor = System.Drawing.Color.White;
             this.lblHeatedTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedTotalT2.Location = new System.Drawing.Point(178, 465);
+            this.lblHeatedTotalT2.Location = new System.Drawing.Point(178, 471);
             this.lblHeatedTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedTotalT2.Name = "lblHeatedTotalT2";
             this.lblHeatedTotalT2.Size = new System.Drawing.Size(31, 13);
@@ -2153,7 +2942,7 @@ namespace MultecPlugin
             this.lblHeatedTotalT1.BackColor = System.Drawing.Color.White;
             this.lblHeatedTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedTotalT1.Location = new System.Drawing.Point(178, 450);
+            this.lblHeatedTotalT1.Location = new System.Drawing.Point(178, 456);
             this.lblHeatedTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedTotalT1.Name = "lblHeatedTotalT1";
             this.lblHeatedTotalT1.Size = new System.Drawing.Size(31, 13);
@@ -2166,7 +2955,7 @@ namespace MultecPlugin
             this.lblHeatedTotalT0.BackColor = System.Drawing.Color.White;
             this.lblHeatedTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeatedTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblHeatedTotalT0.Location = new System.Drawing.Point(178, 435);
+            this.lblHeatedTotalT0.Location = new System.Drawing.Point(178, 441);
             this.lblHeatedTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeatedTotalT0.Name = "lblHeatedTotalT0";
             this.lblHeatedTotalT0.Size = new System.Drawing.Size(31, 13);
@@ -2179,7 +2968,7 @@ namespace MultecPlugin
             this.lblExtrudedTotalT3.BackColor = System.Drawing.Color.White;
             this.lblExtrudedTotalT3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedTotalT3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedTotalT3.Location = new System.Drawing.Point(178, 356);
+            this.lblExtrudedTotalT3.Location = new System.Drawing.Point(178, 362);
             this.lblExtrudedTotalT3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedTotalT3.Name = "lblExtrudedTotalT3";
             this.lblExtrudedTotalT3.Size = new System.Drawing.Size(31, 13);
@@ -2192,7 +2981,7 @@ namespace MultecPlugin
             this.lblExtrudedTotalT2.BackColor = System.Drawing.Color.White;
             this.lblExtrudedTotalT2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedTotalT2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedTotalT2.Location = new System.Drawing.Point(178, 341);
+            this.lblExtrudedTotalT2.Location = new System.Drawing.Point(178, 347);
             this.lblExtrudedTotalT2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedTotalT2.Name = "lblExtrudedTotalT2";
             this.lblExtrudedTotalT2.Size = new System.Drawing.Size(31, 13);
@@ -2205,7 +2994,7 @@ namespace MultecPlugin
             this.lblExtrudedTotalT1.BackColor = System.Drawing.Color.White;
             this.lblExtrudedTotalT1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedTotalT1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedTotalT1.Location = new System.Drawing.Point(178, 326);
+            this.lblExtrudedTotalT1.Location = new System.Drawing.Point(178, 332);
             this.lblExtrudedTotalT1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedTotalT1.Name = "lblExtrudedTotalT1";
             this.lblExtrudedTotalT1.Size = new System.Drawing.Size(31, 13);
@@ -2218,7 +3007,7 @@ namespace MultecPlugin
             this.lblExtrudedTotalT0.BackColor = System.Drawing.Color.White;
             this.lblExtrudedTotalT0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtrudedTotalT0.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblExtrudedTotalT0.Location = new System.Drawing.Point(178, 311);
+            this.lblExtrudedTotalT0.Location = new System.Drawing.Point(178, 317);
             this.lblExtrudedTotalT0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExtrudedTotalT0.Name = "lblExtrudedTotalT0";
             this.lblExtrudedTotalT0.Size = new System.Drawing.Size(31, 13);
@@ -2231,7 +3020,7 @@ namespace MultecPlugin
             this.lblTotalDistanceZ.BackColor = System.Drawing.Color.White;
             this.lblTotalDistanceZ.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDistanceZ.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalDistanceZ.Location = new System.Drawing.Point(178, 290);
+            this.lblTotalDistanceZ.Location = new System.Drawing.Point(178, 296);
             this.lblTotalDistanceZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalDistanceZ.Name = "lblTotalDistanceZ";
             this.lblTotalDistanceZ.Size = new System.Drawing.Size(31, 13);
@@ -2244,7 +3033,7 @@ namespace MultecPlugin
             this.lblTotalDistanceY.BackColor = System.Drawing.Color.White;
             this.lblTotalDistanceY.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDistanceY.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalDistanceY.Location = new System.Drawing.Point(178, 276);
+            this.lblTotalDistanceY.Location = new System.Drawing.Point(178, 282);
             this.lblTotalDistanceY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalDistanceY.Name = "lblTotalDistanceY";
             this.lblTotalDistanceY.Size = new System.Drawing.Size(31, 13);
@@ -2257,7 +3046,7 @@ namespace MultecPlugin
             this.lblTotalDistanceX.BackColor = System.Drawing.Color.White;
             this.lblTotalDistanceX.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDistanceX.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalDistanceX.Location = new System.Drawing.Point(178, 261);
+            this.lblTotalDistanceX.Location = new System.Drawing.Point(178, 267);
             this.lblTotalDistanceX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalDistanceX.Name = "lblTotalDistanceX";
             this.lblTotalDistanceX.Size = new System.Drawing.Size(31, 13);
@@ -2270,7 +3059,7 @@ namespace MultecPlugin
             this.lblTotalPrntLife.BackColor = System.Drawing.Color.White;
             this.lblTotalPrntLife.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPrntLife.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalPrntLife.Location = new System.Drawing.Point(178, 239);
+            this.lblTotalPrntLife.Location = new System.Drawing.Point(178, 245);
             this.lblTotalPrntLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalPrntLife.Name = "lblTotalPrntLife";
             this.lblTotalPrntLife.Size = new System.Drawing.Size(31, 13);
@@ -2283,7 +3072,7 @@ namespace MultecPlugin
             this.lblTotalPwrON.BackColor = System.Drawing.Color.White;
             this.lblTotalPwrON.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPwrON.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalPwrON.Location = new System.Drawing.Point(178, 224);
+            this.lblTotalPwrON.Location = new System.Drawing.Point(178, 230);
             this.lblTotalPwrON.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalPwrON.Name = "lblTotalPwrON";
             this.lblTotalPwrON.Size = new System.Drawing.Size(31, 13);
@@ -2296,7 +3085,7 @@ namespace MultecPlugin
             this.lblTotalPwrCycle.BackColor = System.Drawing.Color.White;
             this.lblTotalPwrCycle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPwrCycle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTotalPwrCycle.Location = new System.Drawing.Point(178, 209);
+            this.lblTotalPwrCycle.Location = new System.Drawing.Point(178, 215);
             this.lblTotalPwrCycle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalPwrCycle.Name = "lblTotalPwrCycle";
             this.lblTotalPwrCycle.Size = new System.Drawing.Size(31, 13);
@@ -2309,7 +3098,7 @@ namespace MultecPlugin
             this.label54.BackColor = System.Drawing.Color.White;
             this.label54.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label54.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label54.Location = new System.Drawing.Point(178, 194);
+            this.label54.Location = new System.Drawing.Point(178, 200);
             this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(133, 13);
@@ -2387,7 +3176,7 @@ namespace MultecPlugin
             this.lblT3_4.BackColor = System.Drawing.Color.White;
             this.lblT3_4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT3_4.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT3_4.Location = new System.Drawing.Point(5, 480);
+            this.lblT3_4.Location = new System.Drawing.Point(5, 486);
             this.lblT3_4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT3_4.Name = "lblT3_4";
             this.lblT3_4.Size = new System.Drawing.Size(91, 13);
@@ -2400,7 +3189,7 @@ namespace MultecPlugin
             this.lblT2_4.BackColor = System.Drawing.Color.White;
             this.lblT2_4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT2_4.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT2_4.Location = new System.Drawing.Point(5, 465);
+            this.lblT2_4.Location = new System.Drawing.Point(5, 471);
             this.lblT2_4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT2_4.Name = "lblT2_4";
             this.lblT2_4.Size = new System.Drawing.Size(91, 13);
@@ -2413,7 +3202,7 @@ namespace MultecPlugin
             this.label34.BackColor = System.Drawing.Color.White;
             this.label34.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label34.Location = new System.Drawing.Point(5, 450);
+            this.label34.Location = new System.Drawing.Point(5, 456);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(91, 13);
@@ -2426,7 +3215,7 @@ namespace MultecPlugin
             this.label33.BackColor = System.Drawing.Color.White;
             this.label33.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label33.Location = new System.Drawing.Point(5, 435);
+            this.label33.Location = new System.Drawing.Point(5, 441);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(91, 13);
@@ -2439,7 +3228,7 @@ namespace MultecPlugin
             this.lblT3_2.BackColor = System.Drawing.Color.White;
             this.lblT3_2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT3_2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT3_2.Location = new System.Drawing.Point(5, 356);
+            this.lblT3_2.Location = new System.Drawing.Point(5, 362);
             this.lblT3_2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT3_2.Name = "lblT3_2";
             this.lblT3_2.Size = new System.Drawing.Size(151, 13);
@@ -2452,7 +3241,7 @@ namespace MultecPlugin
             this.lblT2_2.BackColor = System.Drawing.Color.White;
             this.lblT2_2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblT2_2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblT2_2.Location = new System.Drawing.Point(5, 341);
+            this.lblT2_2.Location = new System.Drawing.Point(5, 347);
             this.lblT2_2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblT2_2.Name = "lblT2_2";
             this.lblT2_2.Size = new System.Drawing.Size(151, 13);
@@ -2465,7 +3254,7 @@ namespace MultecPlugin
             this.label30.BackColor = System.Drawing.Color.White;
             this.label30.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label30.Location = new System.Drawing.Point(5, 326);
+            this.label30.Location = new System.Drawing.Point(5, 332);
             this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(151, 13);
@@ -2478,7 +3267,7 @@ namespace MultecPlugin
             this.label29.BackColor = System.Drawing.Color.White;
             this.label29.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label29.Location = new System.Drawing.Point(5, 311);
+            this.label29.Location = new System.Drawing.Point(5, 317);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(151, 13);
@@ -2491,7 +3280,7 @@ namespace MultecPlugin
             this.label28.BackColor = System.Drawing.Color.White;
             this.label28.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label28.Location = new System.Drawing.Point(5, 290);
+            this.label28.Location = new System.Drawing.Point(5, 296);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(151, 13);
@@ -2504,7 +3293,7 @@ namespace MultecPlugin
             this.label27.BackColor = System.Drawing.Color.White;
             this.label27.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label27.Location = new System.Drawing.Point(5, 276);
+            this.label27.Location = new System.Drawing.Point(5, 282);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(151, 13);
@@ -2517,7 +3306,7 @@ namespace MultecPlugin
             this.label26.BackColor = System.Drawing.Color.White;
             this.label26.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label26.Location = new System.Drawing.Point(5, 261);
+            this.label26.Location = new System.Drawing.Point(5, 267);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(151, 13);
@@ -2530,7 +3319,7 @@ namespace MultecPlugin
             this.label25.BackColor = System.Drawing.Color.White;
             this.label25.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label25.Location = new System.Drawing.Point(29, 239);
+            this.label25.Location = new System.Drawing.Point(29, 245);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(61, 13);
@@ -2543,7 +3332,7 @@ namespace MultecPlugin
             this.label24.BackColor = System.Drawing.Color.White;
             this.label24.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label24.Location = new System.Drawing.Point(29, 224);
+            this.label24.Location = new System.Drawing.Point(30, 230);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(67, 13);
@@ -2556,25 +3345,12 @@ namespace MultecPlugin
             this.label23.BackColor = System.Drawing.Color.White;
             this.label23.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label23.Location = new System.Drawing.Point(29, 209);
+            this.label23.Location = new System.Drawing.Point(29, 215);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(121, 13);
             this.label23.TabIndex = 44;
             this.label23.Text = "Anzahl Verbindungen";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.White;
-            this.label22.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label22.Location = new System.Drawing.Point(5, 194);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(13, 13);
-            this.label22.TabIndex = 43;
-            this.label22.Text = " ";
             // 
             // lblT3_5
             // 
@@ -2654,6 +3430,21 @@ namespace MultecPlugin
             this.label16.TabIndex = 37;
             this.label16.Text = "Firmware Version";
             // 
+            // btnInfoAktualise
+            // 
+            this.btnInfoAktualise.BackColor = System.Drawing.Color.Transparent;
+            this.btnInfoAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.Image")));
+            this.btnInfoAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImageClicked")));
+            this.btnInfoAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImangeNormal")));
+            this.btnInfoAktualise.Location = new System.Drawing.Point(6, 16);
+            this.btnInfoAktualise.Name = "btnInfoAktualise";
+            this.btnInfoAktualise.Size = new System.Drawing.Size(107, 36);
+            this.btnInfoAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnInfoAktualise.TabIndex = 119;
+            this.btnInfoAktualise.TabStop = false;
+            this.btnInfoAktualise.EnabledChanged += new System.EventHandler(this.btnInfoAktualise_EnabledChanged);
+            this.btnInfoAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnInfoAktualise_MouseClick);
+            // 
             // timer_temp
             // 
             this.timer_temp.Enabled = true;
@@ -2697,781 +3488,6 @@ namespace MultecPlugin
             this.lblBanner.TabIndex = 49;
             this.lblBanner.Text = "Disconnected";
             // 
-            // btnFeedratePlus
-            // 
-            this.btnFeedratePlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnFeedratePlus.Image = global::MultecPlugin.Properties.Resources.PlusV;
-            this.btnFeedratePlus.ImageClicked = global::MultecPlugin.Properties.Resources.PlusV_p;
-            this.btnFeedratePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.PlusV;
-            this.btnFeedratePlus.Location = new System.Drawing.Point(531, 293);
-            this.btnFeedratePlus.Name = "btnFeedratePlus";
-            this.btnFeedratePlus.Size = new System.Drawing.Size(31, 33);
-            this.btnFeedratePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFeedratePlus.TabIndex = 89;
-            this.btnFeedratePlus.TabStop = false;
-            this.btnFeedratePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFeedratePlus_MouseClick);
-            // 
-            // btnFlowratePlus
-            // 
-            this.btnFlowratePlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlowratePlus.Image = global::MultecPlugin.Properties.Resources.PlusV;
-            this.btnFlowratePlus.ImageClicked = global::MultecPlugin.Properties.Resources.PlusV_p;
-            this.btnFlowratePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.PlusV;
-            this.btnFlowratePlus.Location = new System.Drawing.Point(471, 293);
-            this.btnFlowratePlus.Name = "btnFlowratePlus";
-            this.btnFlowratePlus.Size = new System.Drawing.Size(31, 33);
-            this.btnFlowratePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFlowratePlus.TabIndex = 88;
-            this.btnFlowratePlus.TabStop = false;
-            this.btnFlowratePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFlowratePlus_MouseClick);
-            // 
-            // btnFeedrateMinus
-            // 
-            this.btnFeedrateMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnFeedrateMinus.Image = global::MultecPlugin.Properties.Resources.MinusV;
-            this.btnFeedrateMinus.ImageClicked = global::MultecPlugin.Properties.Resources.MinusV_p;
-            this.btnFeedrateMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.MinusV;
-            this.btnFeedrateMinus.Location = new System.Drawing.Point(531, 469);
-            this.btnFeedrateMinus.Name = "btnFeedrateMinus";
-            this.btnFeedrateMinus.Size = new System.Drawing.Size(31, 33);
-            this.btnFeedrateMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFeedrateMinus.TabIndex = 87;
-            this.btnFeedrateMinus.TabStop = false;
-            this.btnFeedrateMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFeedrateMinus_MouseClick);
-            // 
-            // btnFlowrateMinus
-            // 
-            this.btnFlowrateMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlowrateMinus.Image = global::MultecPlugin.Properties.Resources.MinusV;
-            this.btnFlowrateMinus.ImageClicked = global::MultecPlugin.Properties.Resources.MinusV_p;
-            this.btnFlowrateMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.MinusV;
-            this.btnFlowrateMinus.Location = new System.Drawing.Point(471, 469);
-            this.btnFlowrateMinus.Name = "btnFlowrateMinus";
-            this.btnFlowrateMinus.Size = new System.Drawing.Size(31, 33);
-            this.btnFlowrateMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFlowrateMinus.TabIndex = 86;
-            this.btnFlowrateMinus.TabStop = false;
-            this.btnFlowrateMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFlowrateMinus_MouseClick);
-            // 
-            // btnYhome
-            // 
-            this.btnYhome.BackColor = System.Drawing.Color.Transparent;
-            this.btnYhome.Image = global::MultecPlugin.Properties.Resources.Yhome;
-            this.btnYhome.ImageClicked = global::MultecPlugin.Properties.Resources.Yhome_p;
-            this.btnYhome.ImangeNormal = global::MultecPlugin.Properties.Resources.Yhome;
-            this.btnYhome.Location = new System.Drawing.Point(6, 174);
-            this.btnYhome.Name = "btnYhome";
-            this.btnYhome.Size = new System.Drawing.Size(60, 58);
-            this.btnYhome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYhome.TabIndex = 76;
-            this.btnYhome.TabStop = false;
-            this.btnYhome.EnabledChanged += new System.EventHandler(this.btnYhome_EnabledChanged);
-            this.btnYhome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYhome_MouseClick);
-            // 
-            // btnXhome
-            // 
-            this.btnXhome.BackColor = System.Drawing.Color.Transparent;
-            this.btnXhome.Image = global::MultecPlugin.Properties.Resources.Xhome;
-            this.btnXhome.ImageClicked = global::MultecPlugin.Properties.Resources.Xhome_p;
-            this.btnXhome.ImangeNormal = global::MultecPlugin.Properties.Resources.Xhome;
-            this.btnXhome.Location = new System.Drawing.Point(6, 110);
-            this.btnXhome.Name = "btnXhome";
-            this.btnXhome.Size = new System.Drawing.Size(60, 58);
-            this.btnXhome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXhome.TabIndex = 75;
-            this.btnXhome.TabStop = false;
-            this.btnXhome.EnabledChanged += new System.EventHandler(this.btnXhome_EnabledChanged);
-            this.btnXhome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXhome_MouseClick);
-            // 
-            // btnBedMinus
-            // 
-            this.btnBedMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnBedMinus.Image = global::MultecPlugin.Properties.Resources.minus51;
-            this.btnBedMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus5_p1;
-            this.btnBedMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus51;
-            this.btnBedMinus.Location = new System.Drawing.Point(132, 466);
-            this.btnBedMinus.Name = "btnBedMinus";
-            this.btnBedMinus.Size = new System.Drawing.Size(60, 45);
-            this.btnBedMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnBedMinus.TabIndex = 74;
-            this.btnBedMinus.TabStop = false;
-            this.btnBedMinus.EnabledChanged += new System.EventHandler(this.btnBedMinus_EnabledChanged);
-            this.btnBedMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBedMinus_MouseClick);
-            // 
-            // btnBedPlus
-            // 
-            this.btnBedPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnBedPlus.Image = global::MultecPlugin.Properties.Resources.plus5;
-            this.btnBedPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus5_p;
-            this.btnBedPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus5;
-            this.btnBedPlus.Location = new System.Drawing.Point(394, 466);
-            this.btnBedPlus.Name = "btnBedPlus";
-            this.btnBedPlus.Size = new System.Drawing.Size(60, 45);
-            this.btnBedPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnBedPlus.TabIndex = 73;
-            this.btnBedPlus.TabStop = false;
-            this.btnBedPlus.EnabledChanged += new System.EventHandler(this.btnBedPlus_EnabledChanged);
-            this.btnBedPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBedPlus_MouseClick);
-            // 
-            // btnNozzleMinus
-            // 
-            this.btnNozzleMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnNozzleMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnNozzleMinus.Image")));
-            this.btnNozzleMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus5_p1;
-            this.btnNozzleMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus51;
-            this.btnNozzleMinus.Location = new System.Drawing.Point(131, 415);
-            this.btnNozzleMinus.Name = "btnNozzleMinus";
-            this.btnNozzleMinus.Size = new System.Drawing.Size(60, 45);
-            this.btnNozzleMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnNozzleMinus.TabIndex = 72;
-            this.btnNozzleMinus.TabStop = false;
-            this.btnNozzleMinus.EnabledChanged += new System.EventHandler(this.btnNozzleMinus_EnabledChanged);
-            this.btnNozzleMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNozzleMinus_MouseClick);
-            // 
-            // btnNozzlePlus
-            // 
-            this.btnNozzlePlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnNozzlePlus.Image = global::MultecPlugin.Properties.Resources.plus5;
-            this.btnNozzlePlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus5_p;
-            this.btnNozzlePlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus5;
-            this.btnNozzlePlus.Location = new System.Drawing.Point(394, 415);
-            this.btnNozzlePlus.Name = "btnNozzlePlus";
-            this.btnNozzlePlus.Size = new System.Drawing.Size(60, 45);
-            this.btnNozzlePlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnNozzlePlus.TabIndex = 71;
-            this.btnNozzlePlus.TabStop = false;
-            this.btnNozzlePlus.EnabledChanged += new System.EventHandler(this.btnNozzlePlus_EnabledChanged);
-            this.btnNozzlePlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNozzlePlus_MouseClick);
-            // 
-            // btnParkMove
-            // 
-            this.btnParkMove.BackColor = System.Drawing.Color.Transparent;
-            this.btnParkMove.Image = global::MultecPlugin.Properties.Resources.Park_Move;
-            this.btnParkMove.ImageClicked = global::MultecPlugin.Properties.Resources.Park_Move_p;
-            this.btnParkMove.ImangeNormal = global::MultecPlugin.Properties.Resources.Park_Move;
-            this.btnParkMove.Location = new System.Drawing.Point(6, 381);
-            this.btnParkMove.Name = "btnParkMove";
-            this.btnParkMove.Size = new System.Drawing.Size(60, 58);
-            this.btnParkMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnParkMove.TabIndex = 58;
-            this.btnParkMove.TabStop = false;
-            this.btnParkMove.EnabledChanged += new System.EventHandler(this.btnParkMove_EnabledChanged);
-            this.btnParkMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkMove_MouseClick);
-            // 
-            // btnHome
-            // 
-            this.btnHome.BackColor = System.Drawing.Color.Transparent;
-            this.btnHome.Image = global::MultecPlugin.Properties.Resources.HOME;
-            this.btnHome.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_p;
-            this.btnHome.ImangeNormal = global::MultecPlugin.Properties.Resources.HOME;
-            this.btnHome.Location = new System.Drawing.Point(6, 32);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(60, 58);
-            this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnHome.TabIndex = 9;
-            this.btnHome.TabStop = false;
-            this.btnHome.EnabledChanged += new System.EventHandler(this.btnHome_EnabledChanged);
-            this.btnHome.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHome_MouseClick);
-            // 
-            // btnMotorOff
-            // 
-            this.btnMotorOff.BackColor = System.Drawing.Color.Transparent;
-            this.btnMotorOff.Image = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
-            this.btnMotorOff.ImageClicked = global::MultecPlugin.Properties.Resources.MOTOR_OFF_p;
-            this.btnMotorOff.ImangeNormal = global::MultecPlugin.Properties.Resources.MOTOR_OFF;
-            this.btnMotorOff.Location = new System.Drawing.Point(6, 254);
-            this.btnMotorOff.Name = "btnMotorOff";
-            this.btnMotorOff.Size = new System.Drawing.Size(60, 58);
-            this.btnMotorOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnMotorOff.TabIndex = 57;
-            this.btnMotorOff.TabStop = false;
-            this.btnMotorOff.EnabledChanged += new System.EventHandler(this.btnMotorOff_EnabledChanged);
-            this.btnMotorOff.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnMotorOff_MouseClick);
-            // 
-            // btnManualGcodeSend
-            // 
-            this.btnManualGcodeSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnManualGcodeSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnManualGcodeSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
-            this.btnManualGcodeSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnManualGcodeSend.Location = new System.Drawing.Point(387, 17);
-            this.btnManualGcodeSend.Name = "btnManualGcodeSend";
-            this.btnManualGcodeSend.Size = new System.Drawing.Size(64, 23);
-            this.btnManualGcodeSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnManualGcodeSend.TabIndex = 3;
-            this.btnManualGcodeSend.TabStop = false;
-            this.btnManualGcodeSend.EnabledChanged += new System.EventHandler(this.btnManualGcodeSend_EnabledChanged);
-            this.btnManualGcodeSend.Click += new System.EventHandler(this.btnManualGcodeSend_Click);
-            // 
-            // btnHomeMove
-            // 
-            this.btnHomeMove.BackColor = System.Drawing.Color.Transparent;
-            this.btnHomeMove.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.Image")));
-            this.btnHomeMove.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
-            this.btnHomeMove.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMove.ImangeNormal")));
-            this.btnHomeMove.Location = new System.Drawing.Point(6, 318);
-            this.btnHomeMove.Name = "btnHomeMove";
-            this.btnHomeMove.Size = new System.Drawing.Size(60, 57);
-            this.btnHomeMove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnHomeMove.TabIndex = 55;
-            this.btnHomeMove.TabStop = false;
-            this.btnHomeMove.EnabledChanged += new System.EventHandler(this.btnHomeMove_EnabledChanged);
-            this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
-            // 
-            // btnExtrude
-            // 
-            this.btnExtrude.BackColor = System.Drawing.Color.Transparent;
-            this.btnExtrude.Image = global::MultecPlugin.Properties.Resources.extract;
-            this.btnExtrude.ImageClicked = global::MultecPlugin.Properties.Resources.extract_p;
-            this.btnExtrude.ImangeNormal = global::MultecPlugin.Properties.Resources.extract;
-            this.btnExtrude.Location = new System.Drawing.Point(398, 174);
-            this.btnExtrude.Name = "btnExtrude";
-            this.btnExtrude.Size = new System.Drawing.Size(70, 70);
-            this.btnExtrude.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnExtrude.TabIndex = 54;
-            this.btnExtrude.TabStop = false;
-            this.btnExtrude.EnabledChanged += new System.EventHandler(this.btnExtrude_EnabledChanged);
-            this.btnExtrude.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnExtrude_MouseClick);
-            // 
-            // btnRetract
-            // 
-            this.btnRetract.BackColor = System.Drawing.Color.Transparent;
-            this.btnRetract.Image = global::MultecPlugin.Properties.Resources.retract;
-            this.btnRetract.ImageClicked = global::MultecPlugin.Properties.Resources.retract_p;
-            this.btnRetract.ImangeNormal = global::MultecPlugin.Properties.Resources.retract;
-            this.btnRetract.Location = new System.Drawing.Point(398, 98);
-            this.btnRetract.Name = "btnRetract";
-            this.btnRetract.Size = new System.Drawing.Size(70, 70);
-            this.btnRetract.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnRetract.TabIndex = 53;
-            this.btnRetract.TabStop = false;
-            this.btnRetract.EnabledChanged += new System.EventHandler(this.btnRetract_EnabledChanged);
-            this.btnRetract.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_2);
-            // 
-            // btnZminus
-            // 
-            this.btnZminus.BackColor = System.Drawing.Color.Transparent;
-            this.btnZminus.Image = global::MultecPlugin.Properties.Resources.Zminus;
-            this.btnZminus.ImageClicked = global::MultecPlugin.Properties.Resources.Zminus_p;
-            this.btnZminus.ImangeNormal = global::MultecPlugin.Properties.Resources.Zminus;
-            this.btnZminus.Location = new System.Drawing.Point(309, 174);
-            this.btnZminus.Name = "btnZminus";
-            this.btnZminus.Size = new System.Drawing.Size(70, 70);
-            this.btnZminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZminus.TabIndex = 52;
-            this.btnZminus.TabStop = false;
-            this.btnZminus.EnabledChanged += new System.EventHandler(this.btnZminus_EnabledChanged);
-            this.btnZminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZminus_MouseClick);
-            // 
-            // btnZPlus
-            // 
-            this.btnZPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnZPlus.Image = global::MultecPlugin.Properties.Resources.zPlus;
-            this.btnZPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zplus_p;
-            this.btnZPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlus;
-            this.btnZPlus.Location = new System.Drawing.Point(309, 98);
-            this.btnZPlus.Name = "btnZPlus";
-            this.btnZPlus.Size = new System.Drawing.Size(70, 70);
-            this.btnZPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZPlus.TabIndex = 51;
-            this.btnZPlus.TabStop = false;
-            this.btnZPlus.EnabledChanged += new System.EventHandler(this.btnZPlus_EnabledChanged);
-            this.btnZPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick_1);
-            // 
-            // btnYPlus
-            // 
-            this.btnYPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYPlus.Image = global::MultecPlugin.Properties.Resources.Yplus;
-            this.btnYPlus.ImageClicked = global::MultecPlugin.Properties.Resources.Yplus_p;
-            this.btnYPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.Yplus;
-            this.btnYPlus.Location = new System.Drawing.Point(158, 98);
-            this.btnYPlus.Name = "btnYPlus";
-            this.btnYPlus.Size = new System.Drawing.Size(70, 70);
-            this.btnYPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYPlus.TabIndex = 48;
-            this.btnYPlus.TabStop = false;
-            this.btnYPlus.EnabledChanged += new System.EventHandler(this.btnYPlus_EnabledChanged);
-            this.btnYPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton2_Click);
-            // 
-            // btnYMinus
-            // 
-            this.btnYMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYMinus.Image = global::MultecPlugin.Properties.Resources.Yminus;
-            this.btnYMinus.ImageClicked = global::MultecPlugin.Properties.Resources.Yminus_p;
-            this.btnYMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.Yminus;
-            this.btnYMinus.Location = new System.Drawing.Point(158, 174);
-            this.btnYMinus.Name = "btnYMinus";
-            this.btnYMinus.Size = new System.Drawing.Size(70, 70);
-            this.btnYMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYMinus.TabIndex = 50;
-            this.btnYMinus.TabStop = false;
-            this.btnYMinus.EnabledChanged += new System.EventHandler(this.btnYMinus_EnabledChanged);
-            this.btnYMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton4_Click);
-            // 
-            // btnXPlus
-            // 
-            this.btnXPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXPlus.Image = global::MultecPlugin.Properties.Resources.Xplus;
-            this.btnXPlus.ImageClicked = global::MultecPlugin.Properties.Resources.Xplus_p;
-            this.btnXPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.Xplus;
-            this.btnXPlus.Location = new System.Drawing.Point(230, 136);
-            this.btnXPlus.Name = "btnXPlus";
-            this.btnXPlus.Size = new System.Drawing.Size(70, 70);
-            this.btnXPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXPlus.TabIndex = 49;
-            this.btnXPlus.TabStop = false;
-            this.btnXPlus.EnabledChanged += new System.EventHandler(this.btnXPlus_EnabledChanged);
-            this.btnXPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton3_Click);
-            // 
-            // btnStep50
-            // 
-            this.btnStep50.BackColor = System.Drawing.Color.Transparent;
-            this.btnStep50.Image = global::MultecPlugin.Properties.Resources.fiftymm;
-            this.btnStep50.ImageClicked = global::MultecPlugin.Properties.Resources.fiftymm_p;
-            this.btnStep50.ImangeNormal = global::MultecPlugin.Properties.Resources.fiftymm;
-            this.btnStep50.Location = new System.Drawing.Point(9, 13);
-            this.btnStep50.Name = "btnStep50";
-            this.btnStep50.Size = new System.Drawing.Size(50, 50);
-            this.btnStep50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnStep50.TabIndex = 5;
-            this.btnStep50.TabStop = false;
-            this.btnStep50.EnabledChanged += new System.EventHandler(this.btnStep50_EnabledChanged);
-            this.btnStep50.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep50_MouseClick);
-            // 
-            // btnStep10
-            // 
-            this.btnStep10.BackColor = System.Drawing.Color.Transparent;
-            this.btnStep10.Image = global::MultecPlugin.Properties.Resources.tenmm;
-            this.btnStep10.ImageClicked = global::MultecPlugin.Properties.Resources.tenmm_p;
-            this.btnStep10.ImangeNormal = global::MultecPlugin.Properties.Resources.tenmm;
-            this.btnStep10.Location = new System.Drawing.Point(9, 66);
-            this.btnStep10.Name = "btnStep10";
-            this.btnStep10.Size = new System.Drawing.Size(50, 50);
-            this.btnStep10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnStep10.TabIndex = 4;
-            this.btnStep10.TabStop = false;
-            this.btnStep10.EnabledChanged += new System.EventHandler(this.btnStep10_EnabledChanged);
-            this.btnStep10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep10_MouseClick);
-            // 
-            // btnStep1
-            // 
-            this.btnStep1.BackColor = System.Drawing.Color.Transparent;
-            this.btnStep1.Image = global::MultecPlugin.Properties.Resources.onemm;
-            this.btnStep1.ImageClicked = global::MultecPlugin.Properties.Resources.onemm_p;
-            this.btnStep1.ImangeNormal = global::MultecPlugin.Properties.Resources.onemm;
-            this.btnStep1.Location = new System.Drawing.Point(9, 119);
-            this.btnStep1.Name = "btnStep1";
-            this.btnStep1.Size = new System.Drawing.Size(50, 50);
-            this.btnStep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnStep1.TabIndex = 3;
-            this.btnStep1.TabStop = false;
-            this.btnStep1.EnabledChanged += new System.EventHandler(this.btnStep1_EnabledChanged);
-            this.btnStep1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnStep1_MouseClick);
-            // 
-            // btnT3
-            // 
-            this.btnT3.BackColor = System.Drawing.Color.Transparent;
-            this.btnT3.Image = global::MultecPlugin.Properties.Resources.T3;
-            this.btnT3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
-            this.btnT3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
-            this.btnT3.Location = new System.Drawing.Point(205, 19);
-            this.btnT3.Name = "btnT3";
-            this.btnT3.Size = new System.Drawing.Size(60, 40);
-            this.btnT3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnT3.TabIndex = 8;
-            this.btnT3.TabStop = false;
-            this.btnT3.EnabledChanged += new System.EventHandler(this.btnT3_EnabledChanged);
-            this.btnT3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT3_MouseClick);
-            // 
-            // btnT2
-            // 
-            this.btnT2.BackColor = System.Drawing.Color.Transparent;
-            this.btnT2.Image = global::MultecPlugin.Properties.Resources.T2;
-            this.btnT2.ImageClicked = global::MultecPlugin.Properties.Resources.T2_p;
-            this.btnT2.ImangeNormal = global::MultecPlugin.Properties.Resources.T2;
-            this.btnT2.Location = new System.Drawing.Point(139, 19);
-            this.btnT2.Name = "btnT2";
-            this.btnT2.Size = new System.Drawing.Size(60, 40);
-            this.btnT2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnT2.TabIndex = 7;
-            this.btnT2.TabStop = false;
-            this.btnT2.EnabledChanged += new System.EventHandler(this.btnT2_EnabledChanged);
-            this.btnT2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT2_MouseClick);
-            // 
-            // btnT1
-            // 
-            this.btnT1.BackColor = System.Drawing.Color.Transparent;
-            this.btnT1.Image = global::MultecPlugin.Properties.Resources.T1;
-            this.btnT1.ImageClicked = global::MultecPlugin.Properties.Resources.T1_p;
-            this.btnT1.ImangeNormal = global::MultecPlugin.Properties.Resources.T1;
-            this.btnT1.Location = new System.Drawing.Point(75, 19);
-            this.btnT1.Name = "btnT1";
-            this.btnT1.Size = new System.Drawing.Size(57, 40);
-            this.btnT1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnT1.TabIndex = 6;
-            this.btnT1.TabStop = false;
-            this.btnT1.EnabledChanged += new System.EventHandler(this.BtnT1_EnabledChanged);
-            this.btnT1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnT1_MouseClick);
-            // 
-            // btnT0
-            // 
-            this.btnT0.BackColor = System.Drawing.Color.Transparent;
-            this.btnT0.Image = global::MultecPlugin.Properties.Resources.T0;
-            this.btnT0.ImageClicked = global::MultecPlugin.Properties.Resources.T0_p;
-            this.btnT0.ImangeNormal = global::MultecPlugin.Properties.Resources.T0;
-            this.btnT0.Location = new System.Drawing.Point(8, 19);
-            this.btnT0.Name = "btnT0";
-            this.btnT0.Size = new System.Drawing.Size(60, 40);
-            this.btnT0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnT0.TabIndex = 5;
-            this.btnT0.TabStop = false;
-            this.btnT0.EnabledChanged += new System.EventHandler(this.btnT0_EnabledChanged);
-            this.btnT0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnT0_MouseClick);
-            // 
-            // btnXMinus
-            // 
-            this.btnXMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXMinus.Image = global::MultecPlugin.Properties.Resources.Xminus;
-            this.btnXMinus.ImageClicked = global::MultecPlugin.Properties.Resources.Xminus_p;
-            this.btnXMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.Xminus;
-            this.btnXMinus.Location = new System.Drawing.Point(85, 136);
-            this.btnXMinus.Name = "btnXMinus";
-            this.btnXMinus.Size = new System.Drawing.Size(70, 70);
-            this.btnXMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXMinus.TabIndex = 47;
-            this.btnXMinus.TabStop = false;
-            this.btnXMinus.EnabledChanged += new System.EventHandler(this.btnXMinus_EnabledChanged);
-            this.btnXMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.myCustomButton1_MouseClick);
-            // 
-            // btnFilAktualise
-            // 
-            this.btnFilAktualise.BackColor = System.Drawing.Color.Transparent;
-            this.btnFilAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.Image")));
-            this.btnFilAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImageClicked")));
-            this.btnFilAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImangeNormal")));
-            this.btnFilAktualise.Location = new System.Drawing.Point(239, 19);
-            this.btnFilAktualise.Name = "btnFilAktualise";
-            this.btnFilAktualise.Size = new System.Drawing.Size(97, 31);
-            this.btnFilAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFilAktualise.TabIndex = 82;
-            this.btnFilAktualise.TabStop = false;
-            this.btnFilAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFilAktualise_MouseClick);
-            // 
-            // btnM218T3
-            // 
-            this.btnM218T3.BackColor = System.Drawing.Color.Transparent;
-            this.btnM218T3.Image = global::MultecPlugin.Properties.Resources.T3;
-            this.btnM218T3.ImageClicked = global::MultecPlugin.Properties.Resources.T3_p;
-            this.btnM218T3.ImangeNormal = global::MultecPlugin.Properties.Resources.T3;
-            this.btnM218T3.Location = new System.Drawing.Point(176, 18);
-            this.btnM218T3.Name = "btnM218T3";
-            this.btnM218T3.Size = new System.Drawing.Size(60, 40);
-            this.btnM218T3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnM218T3.TabIndex = 84;
-            this.btnM218T3.TabStop = false;
-            this.btnM218T3.EnabledChanged += new System.EventHandler(this.btnM218T3_EnabledChanged);
-            this.btnM218T3.Click += new System.EventHandler(this.btnM218T3_Click);
-            // 
-            // btnM218T2
-            // 
-            this.btnM218T2.BackColor = System.Drawing.Color.Transparent;
-            this.btnM218T2.Image = global::MultecPlugin.Properties.Resources.T2;
-            this.btnM218T2.ImageClicked = global::MultecPlugin.Properties.Resources.T2_p;
-            this.btnM218T2.ImangeNormal = global::MultecPlugin.Properties.Resources.T2;
-            this.btnM218T2.Location = new System.Drawing.Point(86, 18);
-            this.btnM218T2.Name = "btnM218T2";
-            this.btnM218T2.Size = new System.Drawing.Size(60, 40);
-            this.btnM218T2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnM218T2.TabIndex = 83;
-            this.btnM218T2.TabStop = false;
-            this.btnM218T2.EnabledChanged += new System.EventHandler(this.btnM218T2_EnabledChanged);
-            this.btnM218T2.Click += new System.EventHandler(this.btnM218T2_Click);
-            // 
-            // btnM218T1
-            // 
-            this.btnM218T1.BackColor = System.Drawing.Color.Transparent;
-            this.btnM218T1.Image = global::MultecPlugin.Properties.Resources.T1;
-            this.btnM218T1.ImageClicked = global::MultecPlugin.Properties.Resources.T1_p;
-            this.btnM218T1.ImangeNormal = global::MultecPlugin.Properties.Resources.T1;
-            this.btnM218T1.Location = new System.Drawing.Point(5, 18);
-            this.btnM218T1.Name = "btnM218T1";
-            this.btnM218T1.Size = new System.Drawing.Size(57, 40);
-            this.btnM218T1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnM218T1.TabIndex = 82;
-            this.btnM218T1.TabStop = false;
-            this.btnM218T1.EnabledChanged += new System.EventHandler(this.btnM218T1_EnabledChanged);
-            this.btnM218T1.Click += new System.EventHandler(this.btnM218T1_Click);
-            // 
-            // btnEminus
-            // 
-            this.btnEminus.BackColor = System.Drawing.Color.Transparent;
-            this.btnEminus.Image = global::MultecPlugin.Properties.Resources.minus;
-            this.btnEminus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
-            this.btnEminus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
-            this.btnEminus.Location = new System.Drawing.Point(287, 264);
-            this.btnEminus.Name = "btnEminus";
-            this.btnEminus.Size = new System.Drawing.Size(36, 33);
-            this.btnEminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnEminus.TabIndex = 89;
-            this.btnEminus.TabStop = false;
-            this.btnEminus.EnabledChanged += new System.EventHandler(this.btnEminus_EnabledChanged);
-            this.btnEminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnEminus_MouseClick);
-            // 
-            // btnEplus
-            // 
-            this.btnEplus.BackColor = System.Drawing.Color.Transparent;
-            this.btnEplus.Image = global::MultecPlugin.Properties.Resources.plus;
-            this.btnEplus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
-            this.btnEplus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
-            this.btnEplus.Location = new System.Drawing.Point(397, 264);
-            this.btnEplus.Name = "btnEplus";
-            this.btnEplus.Size = new System.Drawing.Size(36, 33);
-            this.btnEplus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnEplus.TabIndex = 88;
-            this.btnEplus.TabStop = false;
-            this.btnEplus.EnabledChanged += new System.EventHandler(this.btnEplus_EnabledChanged);
-            this.btnEplus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnEplus_MouseClick);
-            // 
-            // btnZOffsetPlus
-            // 
-            this.btnZOffsetPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnZOffsetPlus.Image = global::MultecPlugin.Properties.Resources.zPlusKal;
-            this.btnZOffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.zPlusKal_p;
-            this.btnZOffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.zPlusKal;
-            this.btnZOffsetPlus.Location = new System.Drawing.Point(397, 201);
-            this.btnZOffsetPlus.Name = "btnZOffsetPlus";
-            this.btnZOffsetPlus.Size = new System.Drawing.Size(36, 33);
-            this.btnZOffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZOffsetPlus.TabIndex = 87;
-            this.btnZOffsetPlus.TabStop = false;
-            this.btnZOffsetPlus.EnabledChanged += new System.EventHandler(this.btnZOffsetPlus_EnabledChanged);
-            this.btnZOffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZOffsetPlus_MouseClick);
-            // 
-            // btnZOffsetMinus
-            // 
-            this.btnZOffsetMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnZOffsetMinus.Image = global::MultecPlugin.Properties.Resources.zMinusKal;
-            this.btnZOffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.zMinusKal_p;
-            this.btnZOffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.zMinusKal;
-            this.btnZOffsetMinus.Location = new System.Drawing.Point(287, 201);
-            this.btnZOffsetMinus.Name = "btnZOffsetMinus";
-            this.btnZOffsetMinus.Size = new System.Drawing.Size(36, 33);
-            this.btnZOffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZOffsetMinus.TabIndex = 86;
-            this.btnZOffsetMinus.TabStop = false;
-            this.btnZOffsetMinus.EnabledChanged += new System.EventHandler(this.btnZOffsetMinus_EnabledChanged);
-            this.btnZOffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZOffsetMinus_MouseClick);
-            // 
-            // btnXOffsetPlus
-            // 
-            this.btnXOffsetPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXOffsetPlus.Image = global::MultecPlugin.Properties.Resources.plus;
-            this.btnXOffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
-            this.btnXOffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
-            this.btnXOffsetPlus.Location = new System.Drawing.Point(397, 87);
-            this.btnXOffsetPlus.Name = "btnXOffsetPlus";
-            this.btnXOffsetPlus.Size = new System.Drawing.Size(36, 33);
-            this.btnXOffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXOffsetPlus.TabIndex = 85;
-            this.btnXOffsetPlus.TabStop = false;
-            this.btnXOffsetPlus.EnabledChanged += new System.EventHandler(this.btnXOffsetPlus_EnabledChanged);
-            this.btnXOffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXOffsetPlus_MouseClick);
-            // 
-            // btnXOffsetMinus
-            // 
-            this.btnXOffsetMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnXOffsetMinus.Image = global::MultecPlugin.Properties.Resources.minus;
-            this.btnXOffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
-            this.btnXOffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
-            this.btnXOffsetMinus.Location = new System.Drawing.Point(287, 89);
-            this.btnXOffsetMinus.Name = "btnXOffsetMinus";
-            this.btnXOffsetMinus.Size = new System.Drawing.Size(36, 33);
-            this.btnXOffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXOffsetMinus.TabIndex = 84;
-            this.btnXOffsetMinus.TabStop = false;
-            this.btnXOffsetMinus.EnabledChanged += new System.EventHandler(this.btnXOffsetMinus_EnabledChanged);
-            this.btnXOffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnXOffsetMinus_MouseClick);
-            // 
-            // btnYoffsetPlus
-            // 
-            this.btnYoffsetPlus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYoffsetPlus.Image = global::MultecPlugin.Properties.Resources.plus;
-            this.btnYoffsetPlus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
-            this.btnYoffsetPlus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
-            this.btnYoffsetPlus.Location = new System.Drawing.Point(397, 135);
-            this.btnYoffsetPlus.Name = "btnYoffsetPlus";
-            this.btnYoffsetPlus.Size = new System.Drawing.Size(36, 33);
-            this.btnYoffsetPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYoffsetPlus.TabIndex = 83;
-            this.btnYoffsetPlus.TabStop = false;
-            this.btnYoffsetPlus.EnabledChanged += new System.EventHandler(this.btnYoffsetPlus_EnabledChanged);
-            this.btnYoffsetPlus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYoffsetPlus_MouseClick);
-            // 
-            // btnYoffsetMinus
-            // 
-            this.btnYoffsetMinus.BackColor = System.Drawing.Color.Transparent;
-            this.btnYoffsetMinus.Image = global::MultecPlugin.Properties.Resources.minus;
-            this.btnYoffsetMinus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
-            this.btnYoffsetMinus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
-            this.btnYoffsetMinus.Location = new System.Drawing.Point(287, 135);
-            this.btnYoffsetMinus.Name = "btnYoffsetMinus";
-            this.btnYoffsetMinus.Size = new System.Drawing.Size(36, 33);
-            this.btnYoffsetMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYoffsetMinus.TabIndex = 82;
-            this.btnYoffsetMinus.TabStop = false;
-            this.btnYoffsetMinus.EnabledChanged += new System.EventHandler(this.btnYoffsetMinus_EnabledChanged);
-            this.btnYoffsetMinus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnYoffsetMinus_MouseClick);
-            // 
-            // btnZOffsetSend
-            // 
-            this.btnZOffsetSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnZOffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnZOffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
-            this.btnZOffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnZOffsetSend.Location = new System.Drawing.Point(439, 203);
-            this.btnZOffsetSend.Name = "btnZOffsetSend";
-            this.btnZOffsetSend.Size = new System.Drawing.Size(89, 31);
-            this.btnZOffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnZOffsetSend.TabIndex = 81;
-            this.btnZOffsetSend.TabStop = false;
-            this.btnZOffsetSend.EnabledChanged += new System.EventHandler(this.btnZOffsetSend_EnabledChanged);
-            this.btnZOffsetSend.Click += new System.EventHandler(this.btnZOffsetSend_Click);
-            // 
-            // btnXoffsetSend
-            // 
-            this.btnXoffsetSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnXoffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnXoffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
-            this.btnXoffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnXoffsetSend.Location = new System.Drawing.Point(439, 88);
-            this.btnXoffsetSend.Name = "btnXoffsetSend";
-            this.btnXoffsetSend.Size = new System.Drawing.Size(89, 31);
-            this.btnXoffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnXoffsetSend.TabIndex = 80;
-            this.btnXoffsetSend.TabStop = false;
-            this.btnXoffsetSend.EnabledChanged += new System.EventHandler(this.btnXoffsetSend_EnabledChanged);
-            this.btnXoffsetSend.Click += new System.EventHandler(this.btnXoffsetSend_Click);
-            // 
-            // btnYoffsetSend
-            // 
-            this.btnYoffsetSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnYoffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnYoffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
-            this.btnYoffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnYoffsetSend.Location = new System.Drawing.Point(439, 136);
-            this.btnYoffsetSend.Name = "btnYoffsetSend";
-            this.btnYoffsetSend.Size = new System.Drawing.Size(89, 31);
-            this.btnYoffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnYoffsetSend.TabIndex = 79;
-            this.btnYoffsetSend.TabStop = false;
-            this.btnYoffsetSend.EnabledChanged += new System.EventHandler(this.btnYoffsetSend_EnabledChanged);
-            this.btnYoffsetSend.Click += new System.EventHandler(this.btnYoffsetSend_Click);
-            // 
-            // btnRotOffsetSend
-            // 
-            this.btnRotOffsetSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnRotOffsetSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnRotOffsetSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
-            this.btnRotOffsetSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
-            this.btnRotOffsetSend.Location = new System.Drawing.Point(439, 266);
-            this.btnRotOffsetSend.Name = "btnRotOffsetSend";
-            this.btnRotOffsetSend.Size = new System.Drawing.Size(89, 31);
-            this.btnRotOffsetSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnRotOffsetSend.TabIndex = 78;
-            this.btnRotOffsetSend.TabStop = false;
-            this.btnRotOffsetSend.EnabledChanged += new System.EventHandler(this.btnRotOffsetSend_EnabledChanged);
-            this.btnRotOffsetSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnRotOffsetSend_MouseClick);
-            // 
-            // btnFineAdjustment
-            // 
-            this.btnFineAdjustment.BackColor = System.Drawing.Color.Transparent;
-            this.btnFineAdjustment.Image = global::MultecPlugin.Properties.Resources.ZF;
-            this.btnFineAdjustment.ImageClicked = global::MultecPlugin.Properties.Resources.ZF_p;
-            this.btnFineAdjustment.ImangeNormal = global::MultecPlugin.Properties.Resources.ZF;
-            this.btnFineAdjustment.Location = new System.Drawing.Point(5, 157);
-            this.btnFineAdjustment.Name = "btnFineAdjustment";
-            this.btnFineAdjustment.Size = new System.Drawing.Size(133, 52);
-            this.btnFineAdjustment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFineAdjustment.TabIndex = 74;
-            this.btnFineAdjustment.TabStop = false;
-            this.btnFineAdjustment.EnabledChanged += new System.EventHandler(this.btnFineAdjustment_EnabledChanged);
-            this.btnFineAdjustment.Click += new System.EventHandler(this.btnFineAdjustment_Click);
-            // 
-            // btnDusevermessung
-            // 
-            this.btnDusevermessung.BackColor = System.Drawing.Color.Transparent;
-            this.btnDusevermessung.Image = global::MultecPlugin.Properties.Resources.DV;
-            this.btnDusevermessung.ImageClicked = global::MultecPlugin.Properties.Resources.DV_p;
-            this.btnDusevermessung.ImangeNormal = global::MultecPlugin.Properties.Resources.DV;
-            this.btnDusevermessung.Location = new System.Drawing.Point(5, 89);
-            this.btnDusevermessung.Name = "btnDusevermessung";
-            this.btnDusevermessung.Size = new System.Drawing.Size(133, 52);
-            this.btnDusevermessung.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnDusevermessung.TabIndex = 73;
-            this.btnDusevermessung.TabStop = false;
-            this.btnDusevermessung.EnabledChanged += new System.EventHandler(this.btnDusevermessung_EnabledChanged);
-            this.btnDusevermessung.Click += new System.EventHandler(this.btnDusevermessung_Click);
-            // 
-            // btnPositionPrufen
-            // 
-            this.btnPositionPrufen.BackColor = System.Drawing.Color.Transparent;
-            this.btnPositionPrufen.Image = global::MultecPlugin.Properties.Resources.PP;
-            this.btnPositionPrufen.ImageClicked = global::MultecPlugin.Properties.Resources.PP_p;
-            this.btnPositionPrufen.ImangeNormal = global::MultecPlugin.Properties.Resources.PP;
-            this.btnPositionPrufen.Location = new System.Drawing.Point(5, 20);
-            this.btnPositionPrufen.Name = "btnPositionPrufen";
-            this.btnPositionPrufen.Size = new System.Drawing.Size(133, 52);
-            this.btnPositionPrufen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnPositionPrufen.TabIndex = 72;
-            this.btnPositionPrufen.TabStop = false;
-            this.btnPositionPrufen.EnabledChanged += new System.EventHandler(this.btnPositionPrufen_EnabledChanged);
-            this.btnPositionPrufen.Click += new System.EventHandler(this.btnPositionPrufen_Click);
-            // 
-            // btnParkMoveKal
-            // 
-            this.btnParkMoveKal.BackColor = System.Drawing.Color.Transparent;
-            this.btnParkMoveKal.Image = global::MultecPlugin.Properties.Resources.Park_Move;
-            this.btnParkMoveKal.ImageClicked = global::MultecPlugin.Properties.Resources.Park_Move_p;
-            this.btnParkMoveKal.ImangeNormal = global::MultecPlugin.Properties.Resources.Park_Move;
-            this.btnParkMoveKal.Location = new System.Drawing.Point(5, 443);
-            this.btnParkMoveKal.Name = "btnParkMoveKal";
-            this.btnParkMoveKal.Size = new System.Drawing.Size(60, 58);
-            this.btnParkMoveKal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnParkMoveKal.TabIndex = 71;
-            this.btnParkMoveKal.TabStop = false;
-            this.btnParkMoveKal.EnabledChanged += new System.EventHandler(this.btnParkMoveKal_EnabledChanged);
-            this.btnParkMoveKal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkMoveKal_MouseClick);
-            // 
-            // btnHomeMoveKal
-            // 
-            this.btnHomeMoveKal.BackColor = System.Drawing.Color.Transparent;
-            this.btnHomeMoveKal.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeMoveKal.Image")));
-            this.btnHomeMoveKal.ImageClicked = global::MultecPlugin.Properties.Resources.HOME_Move_p;
-            this.btnHomeMoveKal.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnHomeMoveKal.ImangeNormal")));
-            this.btnHomeMoveKal.Location = new System.Drawing.Point(5, 372);
-            this.btnHomeMoveKal.Name = "btnHomeMoveKal";
-            this.btnHomeMoveKal.Size = new System.Drawing.Size(60, 57);
-            this.btnHomeMoveKal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnHomeMoveKal.TabIndex = 70;
-            this.btnHomeMoveKal.TabStop = false;
-            this.btnHomeMoveKal.EnabledChanged += new System.EventHandler(this.btnHomeMoveKal_EnabledChanged);
-            this.btnHomeMoveKal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMoveKal_MouseClick);
-            // 
-            // btnInfoAktualise
-            // 
-            this.btnInfoAktualise.BackColor = System.Drawing.Color.Transparent;
-            this.btnInfoAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.Image")));
-            this.btnInfoAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImageClicked")));
-            this.btnInfoAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImangeNormal")));
-            this.btnInfoAktualise.Location = new System.Drawing.Point(6, 16);
-            this.btnInfoAktualise.Name = "btnInfoAktualise";
-            this.btnInfoAktualise.Size = new System.Drawing.Size(107, 36);
-            this.btnInfoAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnInfoAktualise.TabIndex = 119;
-            this.btnInfoAktualise.TabStop = false;
-            this.btnInfoAktualise.EnabledChanged += new System.EventHandler(this.btnInfoAktualise_EnabledChanged);
-            this.btnInfoAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnInfoAktualise_MouseClick);
-            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -3490,62 +3506,6 @@ namespace MultecPlugin
             this.druckPermissives.ResumeLayout(false);
             this.druckPermissives.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_NozzleTemp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.TouchControl.ResumeLayout(false);
-            this.TouchControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_feedrate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_flowrate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFeedrate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.Filament.ResumeLayout(false);
-            this.Filament.PerformLayout();
-            this.filamentUberwachung.ResumeLayout(false);
-            this.filamentUberwachung.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFeedratePlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFlowratePlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFeedrateMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFlowrateMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYhome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXhome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBedMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBedPlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNozzleMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNozzlePlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnManualGcodeSend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T1)).EndInit();
@@ -3566,7 +3526,63 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnPositionPrufen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnParkMoveKal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMoveKal)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStep1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_NozzleTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_BedTemp)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.TouchControl.ResumeLayout(false);
+            this.TouchControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFeedratePlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFlowratePlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFeedrateMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFlowrateMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_feedrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_flowrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericFlowrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericFeedrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYhome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXhome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBedMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBedPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNozzleMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNozzlePlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBed_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT3_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT2_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT1_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnT0_OnOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMotorOff)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnManualGcodeSend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHomeMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnExtrude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRetract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZminus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnYMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).EndInit();
+            this.Filament.ResumeLayout(false);
+            this.Filament.PerformLayout();
+            this.filamentUberwachung.ResumeLayout(false);
+            this.filamentUberwachung.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoAktualise)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3623,7 +3639,6 @@ namespace MultecPlugin
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblT3_5;
         private System.Windows.Forms.Label lblT2_5;
         private System.Windows.Forms.Label label19;
@@ -3718,11 +3733,11 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnMotorOff;
         private MyCustomButton.MyCustomButton btnHome;
         private MyCustomButton.MyCustomButton btnParkMove;
-        private PictureBox btnT0_OnOff;
-        private PictureBox btnBed_OnOff;
-        private PictureBox btnT3_OnOff;
-        private PictureBox btnT2_OnOff;
-        private PictureBox btnT1_OnOff;
+        public PictureBox btnT0_OnOff;
+        public PictureBox btnBed_OnOff;
+        public PictureBox btnT3_OnOff;
+        public PictureBox btnT2_OnOff;
+        public PictureBox btnT1_OnOff;
         private MyCustomButton.MyCustomButton btnStep1;
         private MyCustomButton.MyCustomButton btnStep10;
         private MyCustomButton.MyCustomButton btnStep50;
@@ -3811,5 +3826,7 @@ namespace MultecPlugin
         private Label label35;
         private PictureBox pictureBox1;
         private Label lblBanner;
+        private Label lblDV;
+        private Label label32;
     }
 }

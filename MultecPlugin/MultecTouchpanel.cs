@@ -39,7 +39,7 @@ namespace MultecPlugin
         private double zPosition = 0.0;
         private bool isPrinting = false;
         private string tempValue;
-        private bool wasNozSelected = false;
+        
         private int G222count = 0;
         private bool doorOpenCalled;
         private bool printEnableCalled;
@@ -204,7 +204,7 @@ namespace MultecPlugin
                 if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T0");
-                    wasNozSelected = true;
+                    
                 }
                 selected_nozzle = "T0";
                 trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
@@ -218,7 +218,7 @@ namespace MultecPlugin
                 if (!isPrinting)
                 {
                     host.Connection.injectManualCommand("T1");
-                    wasNozSelected = true;
+                    
                 }
                 selected_nozzle = "T1";
                 btnT0.Enabled = true;
@@ -422,9 +422,9 @@ namespace MultecPlugin
         private bool doorOpen;
         private string nozzleSwitch;
         private int nozzleTempValue;
-
-
-
+        private string isHeaterOn = string.Empty;
+        private double heaterOnTemp = 0;
+        private int extruderNumber;
 
 
         private void timer_temp_Tick(object sender, EventArgs e)
@@ -481,7 +481,8 @@ namespace MultecPlugin
             rotOffsetMultiplyer = 0;
             newOffset = 0;
             isInitialised = false;
-
+            isHeaterOn = string.Empty;
+            heaterOnTemp = 0;
             Array.Clear(gCode, 0, gCode.Length);
 
             if (!is4Move)
@@ -538,9 +539,150 @@ namespace MultecPlugin
 
 
         }
+        
+        public void changeTempButtonsToOn(PictureBox val)
+        {
+
+            if (val.Image != Properties.Resources.ein)
+            {
+                val.Image = Properties.Resources.ein;
+
+            }
+        }
+        public void changeTempButtonsToOff(PictureBox val)
+        {
+            if (val.Image != Properties.Resources.AUS_2)
+            {
+                val.Image = Properties.Resources.AUS_2;
+
+            }
+        }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-            
+            if (response.IndexOf("T:", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (response.IndexOf("E:", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    startindex = response.IndexOf("E:", StringComparison.CurrentCultureIgnoreCase);
+                    extruderNumber = int.Parse(response.Substring(startindex + 2, 1).Trim());
+                    if (response.IndexOf("W:", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        switch (extruderNumber)
+                        {
+                            case 0:
+                                changeTempButtonsToOn(btnT0_OnOff);
+                                
+                                break;
+                            case 1:
+                                changeTempButtonsToOn(btnT1_OnOff);
+                                break;
+                            case 2:
+                                changeTempButtonsToOn(btnT2_OnOff);
+                                break;
+                            case 3:
+                                changeTempButtonsToOn(btnT3_OnOff);
+                                break;
+                            default:
+                                break;
+
+                        }
+                    }
+                    if (response.IndexOf("B:", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        changeTempButtonsToOn(btnBed_OnOff);
+                    }
+                }
+            }
+            if (response.IndexOf("ok T:", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {   
+                startindex = response.IndexOf("B:", StringComparison.CurrentCultureIgnoreCase);
+                endindex  = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T0:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
+                isHeaterOn.Trim();
+                heaterOnTemp = double.Parse(isHeaterOn);
+                if (heaterOnTemp > 0)
+                {
+                    changeTempButtonsToOn(btnBed_OnOff);
+                    text_Bed_ziel.Text = isHeaterOn;
+                    
+                }
+                else
+                {
+                    changeTempButtonsToOff(btnBed_OnOff);
+                }
+                endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T1:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
+                isHeaterOn.Trim();
+                heaterOnTemp = double.Parse(isHeaterOn);
+                if (heaterOnTemp > 0)
+                {
+                    
+                    changeTempButtonsToOn(btnT0_OnOff);
+                    text_T0_ziel.Text = isHeaterOn;
+                }
+                else
+                {
+                    changeTempButtonsToOff(btnT0_OnOff);
+                }
+                endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T2:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
+                isHeaterOn.Trim();
+                heaterOnTemp = double.Parse(isHeaterOn);
+                if (heaterOnTemp > 0)
+                {
+                    
+                    changeTempButtonsToOn(btnT1_OnOff);
+                    text_T1_ziel.Text = isHeaterOn;
+                }
+                else
+                {
+                    changeTempButtonsToOff(btnT1_OnOff);
+                }
+                endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T3:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
+                isHeaterOn.Trim();
+                heaterOnTemp = double.Parse(isHeaterOn);
+                if (heaterOnTemp > 0)
+                {
+                    
+                    changeTempButtonsToOn(btnT2_OnOff);
+                    text_T2_ziel.Text = isHeaterOn;
+                }
+                else
+                {
+                    changeTempButtonsToOff(btnT2_OnOff);
+                }
+                endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T4:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
+                isHeaterOn.Trim();
+                heaterOnTemp = double.Parse(isHeaterOn);
+                if (heaterOnTemp > 0)
+                {
+                    
+                    changeTempButtonsToOn(btnT3_OnOff);
+                    text_T3_ziel.Text = isHeaterOn;
+                }
+                else
+                {
+                    changeTempButtonsToOff(btnT3_OnOff);
+                }
+            }
+
+            if (response.IndexOf("X_Position DV", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                lblDV.Text = "X:" + response.Substring(startindex + 4);
+            }
+            if (response.IndexOf("Y_Position DV", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                lblDV.Text = lblDV.Text + " Y:" + response.Substring(startindex + 4);
+            }
             if (response.IndexOf("M51 T", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 startindex = response.IndexOf("T", StringComparison.CurrentCultureIgnoreCase);
@@ -584,29 +726,9 @@ namespace MultecPlugin
             {
                 try
                 {
-                    if (wasNozSelected)
-                    {
-                        G222count = G222count + 1;
-                        if (G222count >=2)
-                        {
+                               
 
-                            if (wrkrCallG222.IsBusy != true)
-                            {
-                                if (!isG222Active)
-                                {
-
-                                    isG222Active = true;
-                                    wrkrCallG222.RunWorkerAsync();
-                                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
-                                    isInitialised = false;
-                                }
-                            }
-
-                        }
-
-                    }
-
-                    else if (!firstG222)
+                    if (!firstG222)
                     {
 
                         if (wrkrCallG222.IsBusy != true)
@@ -674,7 +796,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    wasNozSelected = true;
+                    
                     //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
                 }
@@ -685,7 +807,7 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    wasNozSelected = true;
+                    
                     //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
                 }
@@ -696,7 +818,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
-                    wasNozSelected = true;
+                    
                     //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
                 }
@@ -707,7 +829,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
-                    wasNozSelected = true;
+                    
                     //btnMove.Enabled = true;
                     trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
                 }
@@ -2080,7 +2202,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T0");
-                        wasNozSelected = true;
+                        
                     }
                     selected_nozzle = "T0";
                     btnT0.Enabled = false;
@@ -2155,51 +2277,219 @@ namespace MultecPlugin
 
 
         }
+        private void M109M190Check(string val)
+        {
+            int regionalStartIndex = 0;
+            int regionalendIndex = 0;
+
+            if (val.IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (val.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    if (val.IndexOf("T", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        regionalStartIndex = val.IndexOf("T", StringComparison.CurrentCultureIgnoreCase);
+                        extruderNumber = int.Parse(val.Substring(regionalStartIndex + 1, 1).Trim());
+                    }
+                    else
+                    {
+                        extruderNumber = 0;
+                    }
+                    regionalStartIndex = val.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                    if (val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        regionalendIndex = val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase);
+                        if (regionalendIndex != regionalStartIndex + 1)
+                        {
+
+                            tempValue = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
+                            
+                        }
+                        else
+                        {
+                            if (val.IndexOf(" ", regionalendIndex + 1, StringComparison.CurrentCultureIgnoreCase) != -1)
+                            {
+                                regionalendIndex = val.IndexOf(" ", regionalendIndex + 1, StringComparison.CurrentCultureIgnoreCase);
+                                tempValue = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
+                                
+                            }
+                            else
+                            {
+                                tempValue = val.Substring(regionalStartIndex + 2).Trim();
+                                
+                            }
+                        }
+                    }
+                    else
+                    {
+                       tempValue = val.Substring(regionalStartIndex + 1).Trim();
+                        
+                    }
+                    switch (extruderNumber)
+                    {
+                        case 0:
+                            text_T0_ziel.Text = tempValue;
+                            break;
+                        case 1:
+                            text_T1_ziel.Text = tempValue;
+                            break;
+                        case 2:
+                            text_T2_ziel.Text = tempValue;
+                            break;
+                        case 3:
+                            text_T3_ziel.Text = tempValue;
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            }
+            if (val.IndexOf("M190", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (val.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    
+                    regionalStartIndex = val.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
+                    if (val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        regionalendIndex = val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase);
+                        if (regionalendIndex != regionalStartIndex + 1)
+                        {
+
+                            tempValue = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
+
+                        }
+                        else
+                        {
+                            if (val.IndexOf(" ", regionalendIndex + 1, StringComparison.CurrentCultureIgnoreCase) != -1)
+                            {
+                                regionalendIndex = val.IndexOf(" ", regionalendIndex + 1, StringComparison.CurrentCultureIgnoreCase);
+                                tempValue = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
+
+                            }
+                            else
+                            {
+                                tempValue = val.Substring(regionalStartIndex + 2).Trim();
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        tempValue = val.Substring(regionalStartIndex + 1).Trim();
+
+                    }
+                    text_Bed_ziel.Text = tempValue;
+                }
+            }
+        }
         private void G1G0Check(string val)
         {
+            int regionalStartIndex = 0;
+            int regionalendIndex = 0;
+
             if (val.IndexOf("X", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                startindex = val.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
-                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                regionalStartIndex = val.IndexOf("X", StringComparison.CurrentCultureIgnoreCase);
+                if (val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblXPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
-                    xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
-
+                    regionalendIndex = val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase);
+                    if (regionalendIndex != regionalStartIndex + 1)
+                    {
+                        
+                        lblXPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
+                        xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        if (val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
+                            lblXPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
+                            xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                        }
+                        else
+                        {
+                            lblXPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
+                            xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                        }
+                    }
                 }
                 else
                 {
-                    lblXPosition.Text = val.Substring(startindex + 1);
+                    lblXPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
                     xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
             if (val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                startindex = val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
-                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                regionalStartIndex = val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
+                if (val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblYPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
-                    yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                    regionalendIndex = val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase);
+                    if (regionalendIndex != regionalStartIndex + 1)
+                    {
+                        
+                        lblYPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
+                        yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        if (val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
+                            lblYPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
+                            yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                        }
+                        else
+                        {
+                            lblYPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
+                            yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                        }
+                    }
                 }
                 else
                 {
-                    lblYPosition.Text = val.Substring(startindex + 1);
+                    lblYPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
                     yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
             if (val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                startindex = val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
-                if (val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase) != -1)
+                regionalStartIndex = val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
+
+                if (val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    endindex = val.IndexOf(" ", startindex, StringComparison.CurrentCultureIgnoreCase);
-                    lblZPosition.Text = val.Substring(startindex + 1, endindex - (startindex + 1));
-                    zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
+                    
+
+                    regionalendIndex = val.IndexOf(" ", regionalStartIndex, StringComparison.CurrentCultureIgnoreCase);
+                    if (regionalendIndex != regionalStartIndex + 1)
+                    {
+                        
+                        lblZPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
+                        zPosition = double.Parse(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        if (val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            
+                            regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
+                            lblZPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
+                            zPosition = double.Parse(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
+                        }
+                        else
+                        {
+                            
+                            lblZPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
+                            zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
+                        }
+                    }
                 }
                 else
                 {
-                    lblZPosition.Text = val.Substring(startindex + 1);
+                    lblZPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
                     zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
@@ -2234,7 +2524,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T1");
-                        wasNozSelected = true;
+                        
                     }
                     selected_nozzle = "T1";
                     btnT0.Enabled = true;
@@ -2264,7 +2554,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T2");
-                        wasNozSelected = true;
+                        
                     }
                     selected_nozzle = "T2";
                     btnT0.Enabled = true;
@@ -2294,7 +2584,7 @@ namespace MultecPlugin
                     if (!isPrinting)
                     {
                         host.Connection.injectManualCommand("T3");
-                        wasNozSelected = true;
+                        
                     }
                     selected_nozzle = "T3";
                     btnT0.Enabled = true;
@@ -2318,7 +2608,7 @@ namespace MultecPlugin
         private void wrkrCallG222_DoWork(object sender, DoWorkEventArgs e)
         {
             
-                var newMsg = MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
+            var newMsg = MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
                           MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (newMsg == DialogResult.OK)
             {
@@ -2764,6 +3054,14 @@ namespace MultecPlugin
                 {
                     G1G0Check(gCode[gCodeIndex]);
                 }
+                if (gCode[gCodeIndex].IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    M109M190Check(gCode[gCodeIndex]);
+                }
+                if (gCode[gCodeIndex].IndexOf("M190", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    M109M190Check(gCode[gCodeIndex]);
+                }
                 gCodeIndex++;
                 gCodeCheck = gCode.Count(s => s != null);
                 txtManualGcode.Text = string.Empty;
@@ -2878,7 +3176,7 @@ namespace MultecPlugin
                 relativOffset = rotOffsetMultiplyer * 0.5;
 
 
-                host.Connection.injectManualCommand("M701 " + "E" + relativOffset.ToString());
+                host.Connection.injectManualCommand("M701 " + "E" + relativOffset.ToString(CultureInfo.InvariantCulture));
                 host.Connection.injectManualCommand("G222");
                 rotOffsetMultiplyer = 0;
             }
@@ -2946,7 +3244,7 @@ namespace MultecPlugin
             
 
 
-            host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString());
+            host.Connection.injectManualCommand("M702 " + "D" + relativOffset.ToString(CultureInfo.InvariantCulture));
             zOffsetMultiplyer = 0;
         }
 
@@ -3433,9 +3731,17 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                text_T0_ziel.Text = tempValue.ToString();
+                changeTempButtonsToOn(btnT0_OnOff);
+                btnT0.Enabled = false;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("G222");
                 T0_On = true;
-                btnT0_OnOff.Image = Properties.Resources.ein;
+               
                 host.Connection.injectManualCommand("T0");
+
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3452,8 +3758,15 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                text_T0_ziel.Text = tempValue.ToString();
+                changeTempButtonsToOn(btnT0_OnOff);
+                btnT0.Enabled = false;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("G222");
                 T0_On = true;
-                btnT0_OnOff.Image = Properties.Resources.ein;
+                
                 host.Connection.injectManualCommand("T0");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F1800");
@@ -3471,8 +3784,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                text_T1_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T1_On = true;
-                btnT1_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT1_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = false;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T1");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
@@ -3490,8 +3809,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                text_T1_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T1_On = true;
-                btnT1_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT1_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = false;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T1");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F1800");
@@ -3509,8 +3834,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                text_T2_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T2_On = true;
-                btnT2_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT2_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = false;
+                btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T2");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
@@ -3528,8 +3859,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                text_T2_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T2_On = true;
-                btnT2_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT2_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = false;
+                btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T2");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F1800");
@@ -3547,8 +3884,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                text_T3_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T3_On = true;
-                btnT3_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT3_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = false;
                 host.Connection.injectManualCommand("T3");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-50.0 F600");
@@ -3566,8 +3909,14 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                text_T3_ziel.Text = tempValue.ToString();
+                host.Connection.injectManualCommand("G222");
                 T3_On = true;
-                btnT3_OnOff.Image = Properties.Resources.ein;
+                changeTempButtonsToOn(btnT3_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = false;
                 host.Connection.injectManualCommand("T3");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E700.0 F1800");
@@ -3775,7 +4124,7 @@ namespace MultecPlugin
             }
         }
 
-       
+        
     }
 
     
