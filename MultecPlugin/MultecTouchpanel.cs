@@ -40,7 +40,7 @@ namespace MultecPlugin
         private bool isPrinting = false;
         private string tempValue;
         
-        private int G222count = 0;
+        //private int G222count = 0;
         private bool doorOpenCalled;
         private bool printEnableCalled;
         private bool isInitialised = false;
@@ -226,7 +226,7 @@ namespace MultecPlugin
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
                 //btnMove.Enabled = true;
-                trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
+                trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text.Replace(".0", ""));
             }
         }
 
@@ -475,7 +475,7 @@ namespace MultecPlugin
             gCodeIndex = 0;
             getPrev_gCodeDown = 0;
             getPrev_gCodeUp = 5;
-            G222count = 0;
+            //G222count = 0;
             relativOffset = 0;
             zOffsetMultiplyer = 0;
             rotOffsetMultiplyer = 0;
@@ -559,12 +559,13 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
+            
             if (response.IndexOf("T:", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (response.IndexOf("E:", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     startindex = response.IndexOf("E:", StringComparison.CurrentCultureIgnoreCase);
-                    extruderNumber = int.Parse(response.Substring(startindex + 2, 1).Trim());
+                    extruderNumber = Convert.ToInt32(response.Substring(startindex + 2, 1).Trim());
                     if (response.IndexOf("W:", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         switch (extruderNumber)
@@ -597,10 +598,10 @@ namespace MultecPlugin
             {   
                 startindex = response.IndexOf("B:", StringComparison.CurrentCultureIgnoreCase);
                 endindex  = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf("T0:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T0:", StringComparison.CurrentCultureIgnoreCase);
                 isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
                 isHeaterOn.Trim();
-                heaterOnTemp = double.Parse(isHeaterOn);
+                heaterOnTemp = Convert.ToDouble(isHeaterOn);
                 if (heaterOnTemp > 0)
                 {
                     changeTempButtonsToOn(btnBed_OnOff);
@@ -612,10 +613,10 @@ namespace MultecPlugin
                     changeTempButtonsToOff(btnBed_OnOff);
                 }
                 endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf("T1:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T1:", StringComparison.CurrentCultureIgnoreCase);
                 isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
                 isHeaterOn.Trim();
-                heaterOnTemp = double.Parse(isHeaterOn);
+                heaterOnTemp = Convert.ToDouble(isHeaterOn);
                 if (heaterOnTemp > 0)
                 {
                     
@@ -627,10 +628,10 @@ namespace MultecPlugin
                     changeTempButtonsToOff(btnT0_OnOff);
                 }
                 endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf("T2:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T2:", StringComparison.CurrentCultureIgnoreCase);
                 isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
                 isHeaterOn.Trim();
-                heaterOnTemp = double.Parse(isHeaterOn);
+                heaterOnTemp = Convert.ToDouble(isHeaterOn);
                 if (heaterOnTemp > 0)
                 {
                     
@@ -642,10 +643,10 @@ namespace MultecPlugin
                     changeTempButtonsToOff(btnT1_OnOff);
                 }
                 endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf("T3:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T3:", StringComparison.CurrentCultureIgnoreCase);
                 isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
                 isHeaterOn.Trim();
-                heaterOnTemp = double.Parse(isHeaterOn);
+                heaterOnTemp = Convert.ToDouble(isHeaterOn);
                 if (heaterOnTemp > 0)
                 {
                     
@@ -656,11 +657,11 @@ namespace MultecPlugin
                 {
                     changeTempButtonsToOff(btnT2_OnOff);
                 }
-                endindex = response.IndexOf("/", startindex, StringComparison.CurrentCultureIgnoreCase);
-                startindex = response.IndexOf("T4:", endindex, StringComparison.CurrentCultureIgnoreCase);
+                endindex = response.IndexOf("/", startindex+1, StringComparison.CurrentCultureIgnoreCase);
+                startindex = response.IndexOf("T4:", StringComparison.CurrentCultureIgnoreCase);
                 isHeaterOn = response.Substring(endindex + 1, startindex - (endindex + 1));
                 isHeaterOn.Trim();
-                heaterOnTemp = double.Parse(isHeaterOn);
+                heaterOnTemp = Convert.ToDouble(isHeaterOn);
                 if (heaterOnTemp > 0)
                 {
                     
@@ -796,10 +797,17 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    
+
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
-                }
+                    try {
+                        trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text.Replace(".0", ""));
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("There was an error in conversion!! " +  ex);
+                    }
+                    }
+
                 if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     selected_nozzle = "T1";
@@ -807,9 +815,15 @@ namespace MultecPlugin
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    
+
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
+                    try
+                    { trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text.Replace(".0", ""));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("There was an error in conversion!! " + ex);
+                    }
                 }
                 if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -818,9 +832,15 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
-                    
+
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
+                    try
+                    { trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text.Replace(".0", ""));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("There was an error in conversion!! " + ex);
+                    }
                 }
                 if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -829,10 +849,16 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
-                    
-                    //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
+                    try
+                    {
+                        //btnMove.Enabled = true;
+                        trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text.Replace(".0", ""));
                 }
+                    catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error in conversion!! " + ex);
+                }
+            }
                 if (response.IndexOf("4", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     selected_nozzle = "T4";
@@ -840,9 +866,16 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    //btnMove.Enabled = false;
-                    trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
-                }
+                    try
+                    {
+                        //btnMove.Enabled = false;
+                        trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
+            }
+                    catch (Exception ex)
+            {
+                MessageBox.Show("There was an error in conversion!! " + ex);
+            }
+        }
             }
 
             if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -851,18 +884,18 @@ namespace MultecPlugin
                 startindex = response.IndexOf("=", startindex);
                 endindex = response.IndexOf(" ", startindex);
                 lblXPosition.Text = response.Substring(startindex + 1, endindex - (startindex + 1));
-                xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                xPosition = Convert.ToDouble(lblXPosition.Text, CultureInfo.InvariantCulture);
 
                 startindex = response.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase);
                 startindex = response.IndexOf("=", startindex);
                 endindex = response.IndexOf(" ", startindex);
                 lblYPosition.Text = response.Substring(startindex + 1, endindex - (startindex + 1));
-                yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                yPosition = Convert.ToDouble(lblYPosition.Text, CultureInfo.InvariantCulture);
                 startindex = response.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase);
                 startindex = response.IndexOf("=", startindex);
 
                 lblZPosition.Text = response.Substring(startindex + 1);
-                zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
+                zPosition = Convert.ToDouble(lblZPosition.Text, CultureInfo.InvariantCulture);
             }
 
             if (response.IndexOf("RunOutMonitoringActive", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -896,7 +929,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue== 0)
                             {
@@ -917,7 +950,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue > 0)
                             {
@@ -937,7 +970,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                           
                             if (nozzleTempValue == 0)
                             {
@@ -957,7 +990,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue == 0)
                             {
@@ -978,7 +1011,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue == 0)
                             {
@@ -1001,7 +1034,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue == 0)
                             {
@@ -1022,7 +1055,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                            
                             if (nozzleTempValue== 0)
                             {
@@ -1042,7 +1075,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue == 0)
                             {
@@ -1062,7 +1095,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                            
                             if (nozzleTempValue == 0)
                             {
@@ -1083,7 +1116,7 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
-                            nozzleTempValue = int.Parse(nozzleSwitch);
+                            nozzleTempValue = Convert.ToInt32(nozzleSwitch);
                             
                             if (nozzleTempValue == 0)
                             {
@@ -2210,7 +2243,7 @@ namespace MultecPlugin
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text.Replace(".0", ""));
 
                 }
             }
@@ -2289,7 +2322,7 @@ namespace MultecPlugin
                     if (val.IndexOf("T", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         regionalStartIndex = val.IndexOf("T", StringComparison.CurrentCultureIgnoreCase);
-                        extruderNumber = int.Parse(val.Substring(regionalStartIndex + 1, 1).Trim());
+                        extruderNumber = Convert.ToInt32(val.Substring(regionalStartIndex + 1, 1).Trim());
                     }
                     else
                     {
@@ -2399,7 +2432,7 @@ namespace MultecPlugin
                     {
                         
                         lblXPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
-                        xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                        xPosition = Convert.ToDouble(lblXPosition.Text, CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -2407,19 +2440,19 @@ namespace MultecPlugin
                         {
                             regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
                             lblXPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
-                            xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                            xPosition = Convert.ToDouble(lblXPosition.Text, CultureInfo.InvariantCulture);
                         }
                         else
                         {
                             lblXPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
-                            xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                            xPosition = Convert.ToDouble(lblXPosition.Text, CultureInfo.InvariantCulture);
                         }
                     }
                 }
                 else
                 {
                     lblXPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
-                    xPosition = double.Parse(lblXPosition.Text, CultureInfo.InvariantCulture);
+                    xPosition = Convert.ToDouble(lblXPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
             if (val.IndexOf("Y", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -2432,7 +2465,7 @@ namespace MultecPlugin
                     {
                         
                         lblYPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
-                        yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                        yPosition = Convert.ToDouble(lblYPosition.Text, CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -2440,19 +2473,19 @@ namespace MultecPlugin
                         {
                             regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
                             lblYPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
-                            yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                            yPosition = Convert.ToDouble(lblYPosition.Text, CultureInfo.InvariantCulture);
                         }
                         else
                         {
                             lblYPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
-                            yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                            yPosition = Convert.ToDouble(lblYPosition.Text, CultureInfo.InvariantCulture);
                         }
                     }
                 }
                 else
                 {
                     lblYPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
-                    yPosition = double.Parse(lblYPosition.Text, CultureInfo.InvariantCulture);
+                    yPosition = Convert.ToDouble(lblYPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
             if (val.IndexOf("Z", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -2468,7 +2501,7 @@ namespace MultecPlugin
                     {
                         
                         lblZPosition.Text = val.Substring(regionalStartIndex + 1, regionalendIndex - (regionalStartIndex + 1)).Trim();
-                        zPosition = double.Parse(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
+                        zPosition = Convert.ToDouble(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -2477,20 +2510,20 @@ namespace MultecPlugin
                             
                             regionalendIndex = val.IndexOf(" ", regionalendIndex+1, StringComparison.CurrentCultureIgnoreCase);
                             lblZPosition.Text = val.Substring(regionalStartIndex + 2, regionalendIndex - (regionalStartIndex + 2)).Trim();
-                            zPosition = double.Parse(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
+                            zPosition = Convert.ToDouble(lblZPosition.Text.Trim(), CultureInfo.InvariantCulture);
                         }
                         else
                         {
                             
                             lblZPosition.Text = val.Substring(regionalStartIndex + 2).Trim();
-                            zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
+                            zPosition = Convert.ToDouble(lblZPosition.Text, CultureInfo.InvariantCulture);
                         }
                     }
                 }
                 else
                 {
                     lblZPosition.Text = val.Substring(regionalStartIndex + 1).Trim();
-                    zPosition = double.Parse(lblZPosition.Text, CultureInfo.InvariantCulture);
+                    zPosition = Convert.ToDouble(lblZPosition.Text, CultureInfo.InvariantCulture);
                 }
             }
         }
@@ -2532,7 +2565,7 @@ namespace MultecPlugin
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text.Replace(".0", ""));
                 }
             }
         }
@@ -2562,7 +2595,7 @@ namespace MultecPlugin
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text.Replace(".0", ""));
                 }
             }
         }
@@ -2592,7 +2625,7 @@ namespace MultecPlugin
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
                     //btnMove.Enabled = true;
-                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text.Replace(".0", ""));
                 }
             }
         }
@@ -3370,7 +3403,7 @@ namespace MultecPlugin
                 if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
                 {
                     text_M218_Y.Text.Replace(",", ".");
-                    newOffset = double.Parse(text_M218_Y.Text, CultureInfo.InvariantCulture) + 0.05;
+                    newOffset = Convert.ToDouble(text_M218_Y.Text, CultureInfo.InvariantCulture) + 0.05;
                     text_M218_Y.Text = newOffset.ToString(CultureInfo.InvariantCulture);
                 }
             }
@@ -3383,7 +3416,7 @@ namespace MultecPlugin
                 if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
                 {
                     text_M218_X.Text.Replace(",", ".");
-                    newOffset = double.Parse(text_M218_X.Text, CultureInfo.InvariantCulture) + 0.05;
+                    newOffset = Convert.ToDouble(text_M218_X.Text, CultureInfo.InvariantCulture) + 0.05;
                     text_M218_X.Text = newOffset.ToString(CultureInfo.InvariantCulture);
                 }
             }
@@ -3396,7 +3429,7 @@ namespace MultecPlugin
                 if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
                 {
                     text_M218_X.Text.Replace(",", ".");
-                    newOffset = double.Parse(text_M218_X.Text, CultureInfo.InvariantCulture) - 0.05;
+                    newOffset = Convert.ToDouble(text_M218_X.Text, CultureInfo.InvariantCulture) - 0.05;
                     text_M218_X.Text = newOffset.ToString(CultureInfo.InvariantCulture);
                 }
             }
@@ -3409,7 +3442,7 @@ namespace MultecPlugin
                 if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
                 {
                     text_M218_Y.Text.Replace(",", ".");
-                    newOffset = double.Parse(text_M218_Y.Text, CultureInfo.InvariantCulture) - 0.05;
+                    newOffset = Convert.ToDouble(text_M218_Y.Text, CultureInfo.InvariantCulture) - 0.05;
                     text_M218_Y.Text = newOffset.ToString(CultureInfo.InvariantCulture);
                 }
             }
@@ -3421,7 +3454,7 @@ namespace MultecPlugin
             {
                 zOffsetMultiplyer = zOffsetMultiplyer + 1;
                 lbl_zOffset.Text.Replace(",", ".");
-                newOffset = double.Parse(lbl_zOffset.Text, CultureInfo.InvariantCulture) + 0.05;
+                newOffset = Convert.ToDouble(lbl_zOffset.Text, CultureInfo.InvariantCulture) + 0.05;
                 if (newOffset < 7)
                 {
                     lbl_zOffset.Text = newOffset.ToString(CultureInfo.InvariantCulture);
@@ -3441,7 +3474,7 @@ namespace MultecPlugin
             {
                 zOffsetMultiplyer = zOffsetMultiplyer - 1;
                 lbl_zOffset.Text.Replace(",", ".");
-                newOffset = double.Parse(lbl_zOffset.Text, CultureInfo.InvariantCulture) - 0.05;
+                newOffset = Convert.ToDouble(lbl_zOffset.Text, CultureInfo.InvariantCulture) - 0.05;
                 if (newOffset > -7)
                 {
                     lbl_zOffset.Text = newOffset.ToString(CultureInfo.InvariantCulture);
@@ -3460,7 +3493,7 @@ namespace MultecPlugin
             {
                 rotOffsetMultiplyer = rotOffsetMultiplyer + 1;
                 lblRotOffFillVal.Text.Replace(",", ".");
-                newOffset = double.Parse(lblRotOffFillVal.Text, CultureInfo.InvariantCulture) + 0.5;
+                newOffset = Convert.ToDouble(lblRotOffFillVal.Text, CultureInfo.InvariantCulture) + 0.5;
                 if (newOffset <= 20)
                 {
                     lblRotOffFillVal.Text = newOffset.ToString(CultureInfo.InvariantCulture);
@@ -3479,7 +3512,7 @@ namespace MultecPlugin
             {
                 rotOffsetMultiplyer = rotOffsetMultiplyer - 1;
                 lblRotOffFillVal.Text.Replace(",", ".");
-                newOffset = double.Parse(lblRotOffFillVal.Text, CultureInfo.InvariantCulture) - 0.5;
+                newOffset = Convert.ToDouble(lblRotOffFillVal.Text, CultureInfo.InvariantCulture) - 0.5;
                 if (newOffset >= 2)
                 {
                     lblRotOffFillVal.Text = newOffset.ToString(CultureInfo.InvariantCulture);
@@ -3731,7 +3764,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-                text_T0_ziel.Text = tempValue.ToString();
+                text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
                 btnT1.Enabled = true;
@@ -3758,7 +3791,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-                text_T0_ziel.Text = tempValue.ToString();
+                text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
                 btnT1.Enabled = true;
@@ -3784,7 +3817,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
-                text_T1_ziel.Text = tempValue.ToString();
+                text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
                 changeTempButtonsToOn(btnT1_OnOff);
@@ -3809,7 +3842,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
-                text_T1_ziel.Text = tempValue.ToString();
+                text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
                 changeTempButtonsToOn(btnT1_OnOff);
@@ -3834,7 +3867,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
-                text_T2_ziel.Text = tempValue.ToString();
+                text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
                 changeTempButtonsToOn(btnT2_OnOff);
@@ -3859,7 +3892,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
-                text_T2_ziel.Text = tempValue.ToString();
+                text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
                 changeTempButtonsToOn(btnT2_OnOff);
@@ -3884,7 +3917,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
-                text_T3_ziel.Text = tempValue.ToString();
+                text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
                 changeTempButtonsToOn(btnT3_OnOff);
@@ -3909,7 +3942,7 @@ namespace MultecPlugin
             {
                 tempValue = txtBoxTemp.Text;
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
-                text_T3_ziel.Text = tempValue.ToString();
+                text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
                 changeTempButtonsToOn(btnT3_OnOff);
@@ -4035,7 +4068,7 @@ namespace MultecPlugin
             {
                 if (text_T0_ziel.Text != string.Empty)
                 {
-                    trackBar_NozzleTemp.Value = int.Parse(text_T0_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T0_ziel.Text.Replace(".0", ""));
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -4054,7 +4087,7 @@ namespace MultecPlugin
             {
                 if (text_T1_ziel.Text != string.Empty)
                 {
-                    trackBar_NozzleTemp.Value = int.Parse(text_T1_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T1_ziel.Text.Replace(".0", ""));
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -4073,7 +4106,7 @@ namespace MultecPlugin
             {
                 if (text_T2_ziel.Text != string.Empty)
                 {
-                    trackBar_NozzleTemp.Value = int.Parse(text_T2_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T2_ziel.Text.Replace(".0", ""));
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -4092,7 +4125,7 @@ namespace MultecPlugin
             {
                 if (text_T3_ziel.Text != string.Empty)
                 {
-                    trackBar_NozzleTemp.Value = int.Parse(text_T3_ziel.Text);
+                    trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text.Replace(".0", ""));
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -4111,7 +4144,7 @@ namespace MultecPlugin
             {
                 if (text_Bed_ziel.Text != string.Empty)
                 {
-                    trackBar_BedTemp.Value = int.Parse(text_Bed_ziel.Text);
+                    trackBar_BedTemp.Value = Convert.ToInt32(text_Bed_ziel.Text.Replace(".0", ""));
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;

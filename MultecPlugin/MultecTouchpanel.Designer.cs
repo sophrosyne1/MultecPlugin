@@ -805,7 +805,6 @@ namespace MultecPlugin
             this.btnRotOffsetSend.TabIndex = 78;
             this.btnRotOffsetSend.TabStop = false;
             this.btnRotOffsetSend.EnabledChanged += new System.EventHandler(this.btnRotOffsetSend_EnabledChanged);
-            
             this.btnRotOffsetSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnRotOffsetSend_MouseClick);
             // 
             // btnFineAdjustment
@@ -1833,6 +1832,7 @@ namespace MultecPlugin
             this.btnHomeMove.TabIndex = 55;
             this.btnHomeMove.TabStop = false;
             this.btnHomeMove.EnabledChanged += new System.EventHandler(this.btnHomeMove_EnabledChanged);
+            
             this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
             // 
             // btnExtrude
