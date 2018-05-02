@@ -3985,6 +3985,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
+                    trackBar_feedrate.Value = Convert.ToInt32(numericFeedrate.Value);
                     host.Connection.injectManualCommand("M220 S" + numericFeedrate.Value.ToString());
                 }
             }
@@ -3993,11 +3994,12 @@ namespace MultecPlugin
         private void numericFlowrate_ValueChanged(object sender, EventArgs e)
         {
 
-            if (numericFeedrate.Value < 300 && numericFeedrate.Value > 25)
+            if (numericFlowrate.Value < 300 && numericFlowrate.Value > 25)
             {
                 if (host.Connection.connector.IsConnected())
                 {
-                    host.Connection.injectManualCommand("M221 S" + numericFeedrate.Value.ToString());
+                    trackBar_flowrate.Value = Convert.ToInt32(numericFlowrate.Value);
+                    host.Connection.injectManualCommand("M221 S" + numericFlowrate.Value.ToString());
                 }
             }
         }
