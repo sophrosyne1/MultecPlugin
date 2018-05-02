@@ -135,6 +135,7 @@ namespace MultecPlugin
         private int getPrev_gCodeUp = 5;
         private int getPrev_gCodeDown = 0;
         private bool coldextrusionActive = false;
+        private bool homeXYActive = false;
         private bool firstG222 = true;
         private int gCodeCheck = 0;
         private bool isG222Active = false;
@@ -778,7 +779,24 @@ namespace MultecPlugin
                     MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Cold Extrusion Prevented wird nicht aktualisiert!");
                 }
             }
-
+            if (response.IndexOf("Home X/Y before Z", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                try
+                {
+                    if (wrkrHomeXY.IsBusy != true)
+                    {
+                        if (!homeXYActive)
+                        {
+                            homeXYActive = true;
+                            wrkrHomeXY.RunWorkerAsync();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Home X/Y before Z wird nicht aktualisiert!");
+                }
+            }
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 +
@@ -4157,7 +4175,16 @@ namespace MultecPlugin
             }
         }
 
-        
+        private void wrkrHomeXY_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var newMsg = MessageBox.Show(this, "Home X/Y before Z", "Warnung!",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            if (newMsg == DialogResult.OK)
+            {
+                homeXYActive = false;
+            }
+        }
     }
 
     

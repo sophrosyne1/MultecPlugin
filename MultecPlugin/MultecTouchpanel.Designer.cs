@@ -268,6 +268,7 @@ namespace MultecPlugin
             this.wrkrOpenDialogBox = new System.ComponentModel.BackgroundWorker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblBanner = new System.Windows.Forms.Label();
+            this.wrkrHomeXY = new System.ComponentModel.BackgroundWorker();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
             this.druckPermissives.SuspendLayout();
@@ -1832,7 +1833,6 @@ namespace MultecPlugin
             this.btnHomeMove.TabIndex = 55;
             this.btnHomeMove.TabStop = false;
             this.btnHomeMove.EnabledChanged += new System.EventHandler(this.btnHomeMove_EnabledChanged);
-            
             this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
             // 
             // btnExtrude
@@ -3488,6 +3488,10 @@ namespace MultecPlugin
             this.lblBanner.TabIndex = 49;
             this.lblBanner.Text = "Disconnected";
             // 
+            // wrkrHomeXY
+            // 
+            this.wrkrHomeXY.DoWork += new System.ComponentModel.DoWorkEventHandler(this.wrkrHomeXY_DoWork);
+            // 
             // MultecTouchpanel
             // 
             this.AllowDrop = true;
@@ -3828,5 +3832,6 @@ namespace MultecPlugin
         private Label lblBanner;
         private Label lblDV;
         private Label label32;
+        private System.ComponentModel.BackgroundWorker wrkrHomeXY;
     }
 }
