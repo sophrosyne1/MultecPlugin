@@ -481,7 +481,7 @@ namespace MultecPlugin
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(20, 13);
             this.label38.TabIndex = 59;
-            this.label38.Text = "#3";
+            this.label38.Text = "#2";
             // 
             // lbl_mm
             // 
@@ -615,7 +615,7 @@ namespace MultecPlugin
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(20, 13);
             this.label13.TabIndex = 38;
-            this.label13.Text = "#2";
+            this.label13.Text = "#1";
             // 
             // label12
             // 
@@ -627,6 +627,7 @@ namespace MultecPlugin
             this.label12.Size = new System.Drawing.Size(20, 13);
             this.label12.TabIndex = 37;
             this.label12.Text = "#1";
+            this.label12.Visible = false;
             // 
             // btnEminus
             // 
@@ -850,6 +851,7 @@ namespace MultecPlugin
             this.btnPositionPrufen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnPositionPrufen.TabIndex = 72;
             this.btnPositionPrufen.TabStop = false;
+            this.btnPositionPrufen.Visible = false;
             this.btnPositionPrufen.EnabledChanged += new System.EventHandler(this.btnPositionPrufen_EnabledChanged);
             this.btnPositionPrufen.Click += new System.EventHandler(this.btnPositionPrufen_Click);
             // 
@@ -3436,7 +3438,7 @@ namespace MultecPlugin
             this.btnInfoAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.Image")));
             this.btnInfoAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImageClicked")));
             this.btnInfoAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnInfoAktualise.ImangeNormal")));
-            this.btnInfoAktualise.Location = new System.Drawing.Point(6, 16);
+            this.btnInfoAktualise.Location = new System.Drawing.Point(8, 12);
             this.btnInfoAktualise.Name = "btnInfoAktualise";
             this.btnInfoAktualise.Size = new System.Drawing.Size(107, 36);
             this.btnInfoAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

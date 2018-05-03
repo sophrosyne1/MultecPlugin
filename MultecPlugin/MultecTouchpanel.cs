@@ -485,7 +485,30 @@ namespace MultecPlugin
             isHeaterOn = string.Empty;
             heaterOnTemp = 0;
             Array.Clear(gCode, 0, gCode.Length);
-
+           
+            lblXPosition.Text = "NICHT INITIALISIERT";
+            lblYPosition.Text = "NICHT INITIALISIERT";
+            lblZPosition.Text = "NICHT INITIALISIERT";
+            xPosition = 0;
+            yPosition = 0;
+            zPosition = 0;
+            step_dist = 1;
+            btnStep1.Enabled = false;
+            btnStep10.Enabled = true;
+            btnStep50.Enabled = true;
+            btnStep1.Image = Properties.Resources.onemm_p;
+            //redPictureActive = false;
+            //doorOpen = false;
+            btnT0.Enabled = true;
+            btnT1.Enabled = true;
+            btnT2.Enabled = true;
+            btnT3.Enabled = true;
+            ////btnMove.Enabled = true;
+            btnM218T1.Enabled = true;
+            btnM218T2.Enabled = true;
+            btnM218T3.Enabled = true;
+            selected_nozzle = string.Empty;
+            tool_M218 = string.Empty;
             if (!is4Move)
             {
 
@@ -505,31 +528,8 @@ namespace MultecPlugin
 
             if (msg.IndexOf("Connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                lblBanner.Text = "Connected";
-                lblXPosition.Text = "NICHT INITIALISIERT";
-                lblYPosition.Text = "NICHT INITIALISIERT";
-                lblZPosition.Text = "NICHT INITIALISIERT";
-                xPosition = 0;
-                yPosition = 0;
-                zPosition = 0;
-                step_dist = 1;
-                btnStep1.Enabled = false;
-                btnStep10.Enabled = true;
-                btnStep50.Enabled = true;
-                btnStep1.Image = Properties.Resources.onemm_p;
-                //redPictureActive = false;
-                //doorOpen = false;
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                ////btnMove.Enabled = true;
-                btnM218T1.Enabled = true;
-                btnM218T2.Enabled = true;
-                btnM218T3.Enabled = true;
-                selected_nozzle = string.Empty;
-                tool_M218 = string.Empty;
 
+                lblBanner.Text = "Connected";
 
 
 
@@ -560,7 +560,28 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-            
+            if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                btnLoadT0.Enabled = true;
+                btnLoadT1.Enabled = true;
+                btnLoadT2.Enabled = true;
+                btnLoadT3.Enabled = true;
+                btnRetractT0.Enabled = true;
+                btnRetractT1.Enabled = true;
+                btnRetractT2.Enabled = true;
+                btnRetractT3.Enabled = true;
+            }
+            if (response.IndexOf("Filament zurueckgezogen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                btnLoadT0.Enabled = true;
+                btnLoadT1.Enabled = true;
+                btnLoadT2.Enabled = true;
+                btnLoadT3.Enabled = true;
+                btnRetractT0.Enabled = true;
+                btnRetractT1.Enabled = true;
+                btnRetractT2.Enabled = true;
+                btnRetractT3.Enabled = true;
+            }
             if (response.IndexOf("T:", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (response.IndexOf("E:", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -3141,6 +3162,7 @@ namespace MultecPlugin
             {
                 if (host.Connection.connector.IsConnected())
                 {
+                    //host.Connection.injectManualCommand("M990");
                     host.Connection.injectManualCommand("M503");
                     host.Connection.injectManualCommand("M513");
                     host.Connection.injectManualCommand("M514");
@@ -3305,6 +3327,7 @@ namespace MultecPlugin
                 "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (ms == DialogResult.OK)
             {
+                //host.Connection.injectManualCommand("G991");
                 host.Connection.injectManualCommand("G222");
                 host.Connection.injectManualCommand("G28");
                 host.Connection.injectManualCommand("G1 Z0");
@@ -3318,6 +3341,7 @@ namespace MultecPlugin
         {
             if (host.Connection.connector.IsConnected())
             {
+                //host.Connection.injectManualCommand("G990");
                 host.Connection.injectManualCommand("G295");
                 host.Connection.injectManualCommand("G296");
                 host.Connection.injectManualCommand("M503");
@@ -3327,7 +3351,9 @@ namespace MultecPlugin
         private void btnPositionPrufen_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
+            {
                 host.Connection.injectManualCommand("G297");
+            }
         }
 
         private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
@@ -3781,6 +3807,17 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+
+
+                //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
@@ -3794,7 +3831,9 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("T0");
 
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3808,6 +3847,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
@@ -3834,6 +3882,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -3845,7 +3902,9 @@ namespace MultecPlugin
                 btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T1");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3859,6 +3918,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -3884,6 +3952,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -3895,7 +3972,9 @@ namespace MultecPlugin
                 btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T2");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3909,6 +3988,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -3934,6 +4022,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -3945,7 +4042,9 @@ namespace MultecPlugin
                 btnT3.Enabled = false;
                 host.Connection.injectManualCommand("T3");
                 host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-50.0 F600");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
@@ -3959,6 +4058,15 @@ namespace MultecPlugin
             if (txtBoxTemp.Text != string.Empty)
             {
                 tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
@@ -4187,6 +4295,8 @@ namespace MultecPlugin
                 homeXYActive = false;
             }
         }
+
+        
     }
 
     
