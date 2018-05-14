@@ -25,7 +25,7 @@ namespace MultecPlugin
 {
     public partial class MultecTouchpanel : UserControl, IHostComponent 
     {
-
+        #region Variables
         private IHost host;
 
         //event OnResponse eventResponse;
@@ -44,7 +44,43 @@ namespace MultecPlugin
         private bool doorOpenCalled;
         private bool printEnableCalled;
         private bool isInitialised = false;
+        
 
+        //////////Movement Controls//////////
+
+        private double step_dist;
+        private string temp_Zeil;
+        private string temp_Zeil_bed;
+        private bool T0_On;
+        private bool T1_On;
+        private bool T2_On;
+        private bool T3_On;
+        private bool Bed_On;
+        private string selected_nozzle;
+        private int count = 0;
+
+        private string zOffset_T0;
+        private string zOffset_T1;
+        private string zOffset_T2;
+        private string zOffset_T3;
+        private string rotationOffset;
+        private string rotationOffsetFilament;
+        private string abstand;
+        private string optimal_Abstand;
+        private string zKorrektur;
+        private int lifetimeCheck = 0;
+        private string[] gCode = new string[6];
+        private int gCodeIndex = 0;
+        private int getPrev_gCodeUp = 5;
+        private int getPrev_gCodeDown = 0;
+        private bool coldextrusionActive = false;
+        private bool homeXYActive = false;
+        private bool firstG222 = true;
+        private int gCodeCheck = 0;
+        private bool isG222Active = false;
+
+
+        #endregion  
 
 
         public MultecTouchpanel()
@@ -105,42 +141,7 @@ namespace MultecPlugin
 
         #endregion
 
-        #region Button functions
-
-        //////////Movement Controls//////////
-
-        private double step_dist;
-        private string temp_Zeil;
-        private string temp_Zeil_bed;
-        private bool T0_On;
-        private bool T1_On;
-        private bool T2_On;
-        private bool T3_On;
-        private bool Bed_On;
-        private string selected_nozzle;
-        private int count = 0;
-
-        private string zOffset_T0;
-        private string zOffset_T1;
-        private string zOffset_T2;
-        private string zOffset_T3;
-        private string rotationOffset;
-        private string rotationOffsetFilament;
-        private string abstand;
-        private string optimal_Abstand;
-        private string zKorrektur;
-        private int lifetimeCheck = 0;
-        private string[] gCode = new string[6];
-        private int gCodeIndex = 0;
-        private int getPrev_gCodeUp = 5;
-        private int getPrev_gCodeDown = 0;
-        private bool coldextrusionActive = false;
-        private bool homeXYActive = false;
-        private bool firstG222 = true;
-        private int gCodeCheck = 0;
-        private bool isG222Active = false;
-
-        #endregion  
+        
 
 
         private void but_Zplus_Click(object sender, EventArgs e)
@@ -184,15 +185,7 @@ namespace MultecPlugin
 
 
 
-        private void but_G295_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void but_G297_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
 
 
@@ -892,12 +885,12 @@ namespace MultecPlugin
                     {
                         //btnMove.Enabled = true;
                         trackBar_NozzleTemp.Value = Convert.ToInt32(text_T3_ziel.Text.Replace(".0", ""));
-                }
+                    }
                     catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in conversion!! " + ex);
+                    {
+                        MessageBox.Show("There was an error in conversion!! " + ex);
+                    }
                 }
-            }
                 if (response.IndexOf("4", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     selected_nozzle = "T4";
@@ -909,12 +902,12 @@ namespace MultecPlugin
                     {
                         //btnMove.Enabled = false;
                         trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
-            }
+                    }
                     catch (Exception ex)
-            {
-                MessageBox.Show("There was an error in conversion!! " + ex);
-            }
-        }
+                    {
+                        MessageBox.Show("There was an error in conversion!! " + ex);
+                    }
+                }
             }
 
             if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -956,7 +949,7 @@ namespace MultecPlugin
             }
             
             if (response.IndexOf("M104", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
+            {
                     
                     if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
@@ -968,16 +961,26 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value  is not in a recognizable format.");
+                        }
                             if (nozzleTempValue== 0)
                             {
 
-                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+                                changeTempButtonsToOff(btnT0_OnOff);
                             }
                             else
                             {
-                                btnT0_OnOff.Image = Properties.Resources.ein;
+                                changeTempButtonsToOn(btnT0_OnOff);
                             }
 
                         }
@@ -989,16 +992,27 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue > 0)
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue > 0)
                             {
-                                btnT1_OnOff.Image = Properties.Resources.AUS_2;
+                                changeTempButtonsToOff(btnT1_OnOff); 
 
                             }
                             else
                             {
-                                btnT1_OnOff.Image = Properties.Resources.ein;
+                                changeTempButtonsToOn(btnT1_OnOff);
                             }
                         }
                     }
@@ -1009,16 +1023,27 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                          
-                            if (nozzleTempValue == 0)
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue == 0)
                             {
-                                btnT2_OnOff.Image = Properties.Resources.AUS_2;
+                                changeTempButtonsToOn(btnT2_OnOff);
 
                             }
                             else
                             {
-                                btnT2_OnOff.Image = Properties.Resources.ein;
+                                changeTempButtonsToOff(btnT2_OnOff);
                             }
                         }
                     }
@@ -1029,17 +1054,28 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue == 0)
-                            {
-                                btnT3_OnOff.Image = Properties.Resources.AUS_2;
-                            }
-                            else
-                            {
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
 
-                                btnT3_OnOff.Image = Properties.Resources.ein;
-                            }
+                        if (nozzleTempValue == 0)
+                        {
+                                changeTempButtonsToOff(btnT3_OnOff);
+                        }
+                        else
+                        {
+
+                                changeTempButtonsToOn(btnT3_OnOff);
+                        }
                         }
                     }
 
@@ -1050,22 +1086,33 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue == 0)
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue == 0)
                             {
-                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
+                                changeTempButtonsToOff(btnT0_OnOff);
 
                             }
                             else
                             {
-                                btnT0_OnOff.Image = Properties.Resources.ein;
+                                changeTempButtonsToOn(btnT0_OnOff);
                             }
                         }
                     }
-                }
-                if (response.IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
+            }
+            if (response.IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
                     if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1073,19 +1120,30 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue == 0)
-                            {
+                        }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
 
-                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
-                            }
-                            else
-                            {
-                                btnT0_OnOff.Image = Properties.Resources.ein;
-                            }
+                        if (nozzleTempValue == 0)
+                        {
+                            changeTempButtonsToOff(btnT0_OnOff);
 
                         }
+                        else
+                        {
+                            changeTempButtonsToOn(btnT0_OnOff);
+                        }
+
+                    }
                     }
                     else if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
@@ -1094,18 +1152,29 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                           
-                            if (nozzleTempValue== 0)
-                            {
-                                btnT1_OnOff.Image = Properties.Resources.AUS_2;
-
-                            }
-                            else
-                            {
-                                btnT1_OnOff.Image = Properties.Resources.ein;
-                            }
                         }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue== 0)
+                        {
+                            changeTempButtonsToOff(btnT1_OnOff);
+
+                        }
+                        else
+                        {
+                            changeTempButtonsToOn(btnT1_OnOff);
+                        }
+                    }
                     }
                     else if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
@@ -1114,18 +1183,29 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue == 0)
-                            {
-                                btnT2_OnOff.Image = Properties.Resources.AUS_2;
-
-                            }
-                            else
-                            {
-                                btnT2_OnOff.Image = Properties.Resources.ein;
-                            }
                         }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue == 0)
+                        {
+                            changeTempButtonsToOff(btnT2_OnOff);
+
+                        }
+                        else
+                        {
+                            changeTempButtonsToOn(btnT2_OnOff);
+                        }
+                    }
                     }
                     else if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
@@ -1134,18 +1214,29 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                           
-                            if (nozzleTempValue == 0)
-                            {
-                                btnT3_OnOff.Image = Properties.Resources.AUS_2;
-                            }
-                            else
-                            {
-
-                                btnT3_OnOff.Image = Properties.Resources.ein;
-                            }
                         }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue == 0)
+                        {
+                            changeTempButtonsToOff(btnT3_OnOff);
+
+                        }
+                        else
+                        {
+                            changeTempButtonsToOn(btnT3_OnOff);
+                        }
+                    }
                     }
 
                     else
@@ -1155,22 +1246,33 @@ namespace MultecPlugin
                             startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
                             endindex = response.IndexOf("*", StringComparison.CurrentCultureIgnoreCase);
                             nozzleSwitch = response.Substring(startindex + 1, endindex - (startindex + 1));
+                        try
+                        {
                             nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-                            
-                            if (nozzleTempValue == 0)
-                            {
-                                btnT0_OnOff.Image = Properties.Resources.AUS_2;
-
-                            }
-                            else
-                            {
-                                btnT0_OnOff.Image = Properties.Resources.ein;
-                            }
                         }
+                        catch (OverflowException)
+                        {
+                            MessageBox.Show("Value is outside the range of the Int32 type.");
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("The value is not in a recognizable format.");
+                        }
+
+                        if (nozzleTempValue == 0)
+                        {
+                            changeTempButtonsToOff(btnT0_OnOff);
+
+                        }
+                        else
+                        {
+                            changeTempButtonsToOn(btnT0_OnOff);
+                        }
+                    }
                     }
                 
 
-            }
+                }
             if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (!wrkrOpenDialogBox.IsBusy)
@@ -2232,11 +2334,7 @@ namespace MultecPlugin
             }
         }
 
-        private void btn_zOffset_send_Click(object sender, EventArgs e)
-        {
-
-
-        }
+       
 
         private void btnExtrude_MouseClick(object sender, MouseEventArgs e)
         {
