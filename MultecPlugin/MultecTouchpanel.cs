@@ -86,7 +86,7 @@ namespace MultecPlugin
 
         public MultecTouchpanel()
         {
-            try { 
+            
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
@@ -94,11 +94,7 @@ namespace MultecPlugin
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Initialise fail: " + ex);
-            }
+            
 
 
 
@@ -110,18 +106,14 @@ namespace MultecPlugin
         /// 
         public void Connect(IHost _host)
         {
-            try { 
+           
             host = _host;
             T0_On = false;
             T1_On = false;
             T2_On = false;
             T3_On = false;
             Bed_On = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Connect fail: " + ex);
-            }
+            
             //reset_parameters(); //function to reset all parameters and text boxes
 
 
@@ -503,7 +495,7 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
-            try { 
+          
             //dontUpdateTemp = false;
             isPrinting = false;
             firstG222 = true;
@@ -574,12 +566,7 @@ namespace MultecPlugin
 
 
             }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("printerconnection fail: " + ex);
-            }
+            
 
 
 
@@ -1093,18 +1080,13 @@ namespace MultecPlugin
             }
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                try
-                {
+                
                     MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 +
                            " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine +
                            "\t\tT3: " + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
                            Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
                            "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in G296 abgeschlossen: " + ex);
-                }
+                
             }
 
 
@@ -1620,24 +1602,18 @@ namespace MultecPlugin
             }
             else if (response.IndexOf("Sicherheitskreis geschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                try
-                {
+                
                     //doorOpen = false;
                     dialogBox.Close();
                     doorOpen = false;
                     doorOpenCalled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in Sicherheitskreis geschlossen: " + ex);
-                }
+                
             }
 
 
             if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                try
-                {
+               
                     startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
                     lblFirmware.Text = response.Substring(startindex + 1);
                     if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1648,11 +1624,8 @@ namespace MultecPlugin
                     {
                         is4Move = false;
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in FIRMWARE: " + ex);
-                }
+                
+                
             }
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -2242,8 +2215,7 @@ namespace MultecPlugin
         //function to add temperature readings to the textboxes
         public void DoTheLoop()
         {
-            try
-            {
+           
                 text_T0_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(0));
                 text_T1_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(1));
                 text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
@@ -2333,16 +2305,12 @@ namespace MultecPlugin
                     btnZOffsetSend.Enabled = false;
                 }
 
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("do loop fail: " + ex);
-            }
+           
 
         }
         private void CheckIfFourMove(bool val)
         {
-            try { 
+          
             label9.Visible = val;
             label10.Visible = val;
             btnRetractT2.Visible = val;
@@ -2396,16 +2364,13 @@ namespace MultecPlugin
             btnEplus.Visible = val;
             btnRotOffsetSend.Visible = val;
             LblMoveCoverOffset.Visible = val;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Checkif4Move fail: " + ex);
-            }
+        
+            
 
         }
         public void enablDisablWhenDoorOpen(bool val)
         {
-            try { 
+            
             btnMotorOff.Enabled = val;
             btnHome.Enabled = val;
             btnXhome.Enabled = val;
@@ -2436,16 +2401,12 @@ namespace MultecPlugin
                 //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
                 //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
                 //btnMove.Visible = val;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("enabledisable when door open fail: " + ex);
-            }
+            
 
         }
         private void enablDisablWhenPrinting(bool val)
         {
-            try {
+            
                 btnParkMove.Enabled = val;
                 btnHomeMove.Enabled = val;
                 btnMotorOff.Enabled = val;
@@ -2482,15 +2443,11 @@ namespace MultecPlugin
                 btnEminus.Enabled = val;
                 btnEplus.Enabled = val;
                 btnRotOffsetSend.Enabled = val;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("enabledisable when printing failure: " + ex);
-            }
+           
 }
         private void enableDisableControls(bool val, Control container)
         {
-            try { 
+            
             foreach (Control c in container.Controls)
             {
                 if (c is Panel || c is GroupBox)
@@ -2502,18 +2459,14 @@ namespace MultecPlugin
                     c.Enabled = val;
                 }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("enabledisablecontrols fail: " + ex);
-            }
+            
+            
         }
 
         //resets all parameters and textboxes to default
         public void reset_parameters()
         {
-            try
-            {
+           
                 text_T0_Aktuell.Text = String.Empty;
                 text_T1_Aktuell.Text = String.Empty;
                 text_T2_Aktuell.Text = String.Empty;
@@ -2535,11 +2488,7 @@ namespace MultecPlugin
                     lblBanner.Text = "Disconnected";
                 }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("reset parameter fail: " + ex);
-            }
+           
         }
     private void myCustomButton1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -4733,18 +4682,15 @@ namespace MultecPlugin
 
         private void wrkrOpenDialogBox_DoWork(object sender, DoWorkEventArgs e)
         {
-            try { 
+           
             dialogBox = new DoorOpenDialogBox()
             {
                 StartPosition = FormStartPosition.Manual
             };
             dialogBox.Location = new Point(48, 150);
             dialogBox.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("WorkerOpenDialogBox fail: " + ex);
-            }
+            
+            
         }
 
         private void text_T0_ziel_KeyDown(object sender, KeyEventArgs e)
@@ -4844,7 +4790,7 @@ namespace MultecPlugin
 
         private void wrkrHomeXY_DoWork(object sender, DoWorkEventArgs e)
         {
-            try { 
+           
     var newMsg = MessageBox.Show(this, "Home X/Y before Z", "Warnung!",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -4852,11 +4798,7 @@ namespace MultecPlugin
             {
                 homeXYActive = false;
             }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("WrkrHomeXY fail: " + ex);
-            }
+            
         }
 
 
