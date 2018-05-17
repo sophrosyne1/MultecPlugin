@@ -642,6 +642,42 @@
   <ItemGroup>
     <None Include="Resources\WarnungGrey2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck_g_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zuruck_p_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden_g_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laden_p_2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

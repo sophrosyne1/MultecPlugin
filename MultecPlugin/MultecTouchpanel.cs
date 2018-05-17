@@ -4358,336 +4358,20 @@ namespace MultecPlugin
             }
         }
 
-        private void btnRetractT0_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T0LoadRetractClicked = true;
-                retractT0 = true;
-                loadT0 = false;
-                //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-                lblRetractLoadFilT0.Visible = true;
-                lblRetractLoadFilT0.Text = "Heating Nozzle!";
-                text_T0_ziel.Text = tempValue;
-                changeTempButtonsToOn(btnT0_OnOff);
-                btnT0.Enabled = false;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("G222");
-                T0_On = true;
+        
 
-                host.Connection.injectManualCommand("T0");
+     
 
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E20.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-70.0 F600");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
+       
 
-        private void btnLoadT0_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T0LoadRetractClicked = true;
-                retractT0 = false;
-                loadT0 = true;
-                //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-                lblRetractLoadFilT0.Visible = true;
-                lblRetractLoadFilT0.Text = "Heating Nozzle!";
-                text_T0_ziel.Text = tempValue;
-                changeTempButtonsToOn(btnT0_OnOff);
-                btnT0.Enabled = false;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("G222");
-                T0_On = true;
+        
 
-                host.Connection.injectManualCommand("T0");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
+       
 
-        private void btnRetractT1_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T1LoadRetractClicked = true;
-                retractT1 = true;
-                loadT1 = false;
-                //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
-                lblRetractLoadFilT1.Visible = true;
-                lblRetractLoadFilT1.Text = "Heating Nozzle!";
-                text_T1_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T1_On = true;
-                changeTempButtonsToOn(btnT1_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = false;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T1");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E20.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-70.0 F600");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
 
-        private void btnLoadT1_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T1LoadRetractClicked = true;
-                retractT1 = false;
-                loadT1 = true;
-                //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
-                lblRetractLoadFilT1.Visible = true;
-                lblRetractLoadFilT1.Text = "Heating Nozzle!";
-                text_T1_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T1_On = true;
-                changeTempButtonsToOn(btnT1_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = false;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T1");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
+        
 
-        private void btnRetractT2_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T2LoadRetractClicked = true;
-                retractT2 = true;
-                loadT2 = false;
-                //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
-                lblRetractLoadFilT2.Visible = true;
-                lblRetractLoadFilT2.Text = "Heating Nozzle!";
-                text_T2_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T2_On = true;
-                changeTempButtonsToOn(btnT2_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = false;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T2");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E20.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-70.0 F600");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
-
-        private void btnLoadT2_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T2LoadRetractClicked = true;
-                retractT2 = false;
-                loadT2 = true;
-                //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
-                lblRetractLoadFilT2.Visible = true;
-                lblRetractLoadFilT2.Text = "Heating Nozzle!";
-                text_T2_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T2_On = true;
-                changeTempButtonsToOn(btnT2_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = false;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T2");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
-
-        private void btnRetractT3_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T3LoadRetractClicked = true;
-                retractT3 = true;
-                loadT3 = false;
-                //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
-                lblRetractLoadFilT3.Visible = true;
-                lblRetractLoadFilT3.Text = "Heating Nozzle!";
-                text_T3_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T3_On = true;
-                changeTempButtonsToOn(btnT3_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = false;
-                host.Connection.injectManualCommand("T3");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E20.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-70.0 F600");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E-800.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
-
-        private void btnLoadT3_Click(object sender, EventArgs e)
-        {
-            if (txtBoxTemp.Text != string.Empty)
-            {
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T3LoadRetractClicked = true;
-                retractT3 = false;
-                loadT3 = true;
-                //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
-                lblRetractLoadFilT3.Visible = true;
-                lblRetractLoadFilT3.Text = "Heating Nozzle!";
-                text_T3_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T3_On = true;
-                changeTempButtonsToOn(btnT3_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = false;
-                host.Connection.injectManualCommand("T3");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
-                timerRetractLoad.Start();
-            }
-        }
+        
 
         private void numericFeedrate_ValueChanged(object sender, EventArgs e)
         {
@@ -5142,6 +4826,410 @@ namespace MultecPlugin
             {
                 MessageBox.Show("There was an error in Retracting or Loading" + ex);
             }
+        }
+
+        private void btnRetractT0_Click_1(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T0LoadRetractClicked = true;
+                retractT0 = true;
+                loadT0 = false;
+                //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                lblRetractLoadFilT0.Visible = true;
+                lblRetractLoadFilT0.Text = "Heating Nozzle!";
+                text_T0_ziel.Text = tempValue;
+                changeTempButtonsToOn(btnT0_OnOff);
+                btnT0.Enabled = false;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("G222");
+                T0_On = true;
+
+                host.Connection.injectManualCommand("T0");
+
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnRetractT1_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T1LoadRetractClicked = true;
+                retractT1 = true;
+                loadT1 = false;
+                //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                lblRetractLoadFilT1.Visible = true;
+                lblRetractLoadFilT1.Text = "Heating Nozzle!";
+                text_T1_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T1_On = true;
+                changeTempButtonsToOn(btnT1_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = false;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("T1");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnRetractT2_Click_1(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T2LoadRetractClicked = true;
+                retractT2 = true;
+                loadT2 = false;
+                //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                lblRetractLoadFilT2.Visible = true;
+                lblRetractLoadFilT2.Text = "Heating Nozzle!";
+                text_T2_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T2_On = true;
+                changeTempButtonsToOn(btnT2_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = false;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("T2");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnRetractT3_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T3LoadRetractClicked = true;
+                retractT3 = true;
+                loadT3 = false;
+                //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                lblRetractLoadFilT3.Visible = true;
+                lblRetractLoadFilT3.Text = "Heating Nozzle!";
+                text_T3_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T3_On = true;
+                changeTempButtonsToOn(btnT3_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = false;
+                host.Connection.injectManualCommand("T3");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E20.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-70.0 F600");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E-800.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnLoadT0_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T0LoadRetractClicked = true;
+                retractT0 = false;
+                loadT0 = true;
+                //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                lblRetractLoadFilT0.Visible = true;
+                lblRetractLoadFilT0.Text = "Heating Nozzle!";
+                text_T0_ziel.Text = tempValue;
+                changeTempButtonsToOn(btnT0_OnOff);
+                btnT0.Enabled = false;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("G222");
+                T0_On = true;
+
+                host.Connection.injectManualCommand("T0");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnLoadT1_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T1LoadRetractClicked = true;
+                retractT1 = false;
+                loadT1 = true;
+                //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                lblRetractLoadFilT1.Visible = true;
+                lblRetractLoadFilT1.Text = "Heating Nozzle!";
+                text_T1_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T1_On = true;
+                changeTempButtonsToOn(btnT1_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = false;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("T1");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnLoadT2_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T2LoadRetractClicked = true;
+                retractT2 = false;
+                loadT2 = true;
+                //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                lblRetractLoadFilT2.Visible = true;
+                lblRetractLoadFilT2.Text = "Heating Nozzle!";
+                text_T2_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T2_On = true;
+                changeTempButtonsToOn(btnT2_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = false;
+                btnT3.Enabled = true;
+                host.Connection.injectManualCommand("T2");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+
+        }
+
+        private void btnLoadT3_Click(object sender, EventArgs e)
+        {
+            if (txtBoxTemp.Text != string.Empty)
+            {
+                timerRetractCount = 0;
+                tempValue = txtBoxTemp.Text;
+                btnLoadT0.Enabled = false;
+                btnLoadT1.Enabled = false;
+                btnLoadT2.Enabled = false;
+                btnLoadT3.Enabled = false;
+                btnRetractT0.Enabled = false;
+                btnRetractT1.Enabled = false;
+                btnRetractT2.Enabled = false;
+                btnRetractT3.Enabled = false;
+                T3LoadRetractClicked = true;
+                retractT3 = false;
+                loadT3 = true;
+                //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
+                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                lblRetractLoadFilT3.Visible = true;
+                lblRetractLoadFilT3.Text = "Heating Nozzle!";
+                text_T3_ziel.Text = tempValue;
+                host.Connection.injectManualCommand("G222");
+                T3_On = true;
+                changeTempButtonsToOn(btnT3_OnOff);
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = false;
+                host.Connection.injectManualCommand("T3");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E700.0 F1800");
+                host.Connection.injectManualCommand("G92 E0");
+                host.Connection.injectManualCommand("G1 E200.0 F120");
+                host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
+            }
+        }
+
+        private void btnRetractT0_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT0.Enabled)
+                btnRetractT0.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT0.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT1.Enabled)
+                btnRetractT1.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT1.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT2.Enabled)
+                btnRetractT2.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT2.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT3.Enabled)
+                btnRetractT3.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT3.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnLoadT0_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT0.Enabled)
+                btnLoadT0.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT0.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT1.Enabled)
+                btnLoadT1.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT1.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT2.Enabled)
+                btnLoadT2.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT2.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT3.Enabled)
+                btnLoadT3.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT3.Image = Properties.Resources.Laden;
         }
     }
 

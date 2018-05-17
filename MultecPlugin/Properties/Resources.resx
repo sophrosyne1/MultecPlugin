@@ -121,11 +121,14 @@
   <data name="extrude_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Eplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="retract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\retract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="zMinusKal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zMinusKal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Laden" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="T3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,6 +141,9 @@
   </data>
   <data name="eMinusKal_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eMinusKal_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="retract_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\retract_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -213,6 +219,9 @@
   </data>
   <data name="PP_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PP_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warnung" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warnung2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="T0_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T0_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -346,6 +355,9 @@
   <data name="fiftymm_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fiftymm_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Laden_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Aktualizieren" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Aktualizieren1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -436,6 +448,9 @@
   <data name="MinusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MinusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Laden_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Xhome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Xhome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -469,8 +484,8 @@
   <data name="Xplus_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Xplus_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Zminus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zminus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WarnungGrey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarnungGrey2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HOME.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -544,10 +559,31 @@
   <data name="bottom_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\image006.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Warnung" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Warnung2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zuruck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WarnungGrey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WarnungGrey2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zuruck_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zuruck_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Laden_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Laden_g_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden_g_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Laden_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Laden_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zuruck_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zuruck_g_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck_g_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zuruck_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zuruck_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
