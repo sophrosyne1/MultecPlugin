@@ -38,7 +38,9 @@ namespace MultecPlugin
         private double yPosition = 0.0;
         private double zPosition = 0.0;
         private bool isPrinting = false;
-        private string tempValue;
+        private string tempValue = string.Empty;
+
+
 
         //private int G222count = 0;
         private bool doorOpenCalled;
@@ -78,15 +80,29 @@ namespace MultecPlugin
         private bool firstG222 = true;
         private int gCodeCheck = 0;
         private bool isG222Active = false;
-
+        private bool T0LoadRetractClicked = false;
+        private bool T1LoadRetractClicked = false;
+        private bool T2LoadRetractClicked = false;
+        private bool T3LoadRetractClicked = false;
+        private float GlobalTempVal = 0.00f;
+        private int timerRetractCount = 0;
+        private bool retractT0 = false;
+        private bool loadT0 = false;
+        private bool retractT1 = false;
+        private bool loadT1 = false;
+        private bool retractT2 = false;
+        private bool loadT2 = false;
+        private bool retractT3 = false;
+        private bool loadT3 = false;
+        private int resetTimer = 0;
         //private bool dontUpdateTemp = false;
-
+        private bool TempReached = false;
         #endregion
 
 
         public MultecTouchpanel()
         {
-            
+
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
@@ -94,7 +110,7 @@ namespace MultecPlugin
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
 
-            
+
 
 
 
@@ -106,14 +122,14 @@ namespace MultecPlugin
         /// 
         public void Connect(IHost _host)
         {
-           
+
             host = _host;
             T0_On = false;
             T1_On = false;
             T2_On = false;
             T3_On = false;
             Bed_On = false;
-            
+
             //reset_parameters(); //function to reset all parameters and text boxes
 
 
@@ -275,51 +291,52 @@ namespace MultecPlugin
         private void trackBar_NozzleTemp_ValueChanged(object sender, EventArgs e)
         {
 
-            try { 
-            var bar = (TrackBar)sender;
-            if (bar.Value % bar.SmallChange != 0)
+            try
             {
-                bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
-            }
-            if (host.Connection.connector.IsConnected())
-            {
-                temp_Zeil = trackBar_NozzleTemp.Value.ToString(CultureInfo.InvariantCulture);
-                if (selected_nozzle == "T0")
+                var bar = (TrackBar)sender;
+                if (bar.Value % bar.SmallChange != 0)
                 {
-                    text_T0_ziel.Text = temp_Zeil;
+                    bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
+                }
+                if (host.Connection.connector.IsConnected())
+                {
+                    temp_Zeil = trackBar_NozzleTemp.Value.ToString(CultureInfo.InvariantCulture);
+                    if (selected_nozzle == "T0")
+                    {
+                        text_T0_ziel.Text = temp_Zeil;
 
-                    if (T0_On == true)
-                    {
-                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                        if (T0_On == true)
+                        {
+                            host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                        }
                     }
-                }
-                else if (selected_nozzle == "T1")
-                {
-                    text_T1_ziel.Text = temp_Zeil;
-                    if (T1_On == true)
+                    else if (selected_nozzle == "T1")
                     {
-                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                        text_T1_ziel.Text = temp_Zeil;
+                        if (T1_On == true)
+                        {
+                            host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                        }
                     }
-                }
-                else if (selected_nozzle == "T2")
-                {
-                    text_T2_ziel.Text = temp_Zeil;
-                    if (T2_On == true)
-                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
-                }
-                else if (selected_nozzle == "T3")
-                {
-                    text_T3_ziel.Text = temp_Zeil;
-                    if (T3_On == true)
+                    else if (selected_nozzle == "T2")
                     {
-                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                        text_T2_ziel.Text = temp_Zeil;
+                        if (T2_On == true)
+                            host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
                     }
-                }
-                else
-                {
+                    else if (selected_nozzle == "T3")
+                    {
+                        text_T3_ziel.Text = temp_Zeil;
+                        if (T3_On == true)
+                        {
+                            host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                        }
+                    }
+                    else
+                    {
 
+                    }
                 }
-            }
             }
             catch (Exception ex)
             {
@@ -373,39 +390,41 @@ namespace MultecPlugin
 
         private void trackBar_BedTemp_ValueChanged(object sender, EventArgs e)
         {
-            try { 
-            var bar = (TrackBar)sender;
-            if (bar.Value % bar.SmallChange != 0)
+            try
             {
-                bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
-            }
-            if (host.Connection.connector.IsConnected())
-            {
-
-                temp_Zeil_bed = trackBar_BedTemp.Value.ToString(CultureInfo.InvariantCulture);
-                text_Bed_ziel.Text = temp_Zeil_bed;
-                if (Bed_On == true)
+                var bar = (TrackBar)sender;
+                if (bar.Value % bar.SmallChange != 0)
+                {
+                    bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
+                }
+                if (host.Connection.connector.IsConnected())
                 {
 
-                    host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
+                    temp_Zeil_bed = trackBar_BedTemp.Value.ToString(CultureInfo.InvariantCulture);
+                    text_Bed_ziel.Text = temp_Zeil_bed;
+                    if (Bed_On == true)
+                    {
+
+                        host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed + " T5");
+                    }
                 }
             }
-        }
             catch (Exception ex)
             {
                 MessageBox.Show("trackbar bed fail: " + ex);
             }
-}
+        }
 
         private void Connection_eventResponse(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
             // update position from analyzer
-            try { 
-            text_T0_Aktuell.Text = host.Connection.ExtruderTemp.ToString();
-            text_T1_Aktuell.Text = host.Connection.Analyzer.GetTemperature(1).ToString(CultureInfo.InvariantCulture);
-            text_T2_Aktuell.Text = host.Connection.Analyzer.GetTemperature(2).ToString(CultureInfo.InvariantCulture);
-            text_T3_Aktuell.Text = host.Connection.Analyzer.GetTemperature(3).ToString(CultureInfo.InvariantCulture);
-            text_Bed_Aktuell.Text = host.Connection.Analyzer.GetTemperature(5).ToString(CultureInfo.InvariantCulture);
+            try
+            {
+                text_T0_Aktuell.Text = host.Connection.ExtruderTemp.ToString();
+                text_T1_Aktuell.Text = host.Connection.Analyzer.GetTemperature(1).ToString(CultureInfo.InvariantCulture);
+                text_T2_Aktuell.Text = host.Connection.Analyzer.GetTemperature(2).ToString(CultureInfo.InvariantCulture);
+                text_T3_Aktuell.Text = host.Connection.Analyzer.GetTemperature(3).ToString(CultureInfo.InvariantCulture);
+                text_Bed_Aktuell.Text = host.Connection.Analyzer.GetTemperature(5).ToString(CultureInfo.InvariantCulture);
                 /*
                 if (!host.Connection.connector.IsConnected())
                 {
@@ -476,17 +495,18 @@ namespace MultecPlugin
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            try { 
-            if (host.Connection.connector.IsConnected())
+            try
             {
+                if (host.Connection.connector.IsConnected())
+                {
 
 
-                DoTheLoop();
-            }
-            else
-            {
-                reset_parameters();
-            }
+                    DoTheLoop();
+                }
+                else
+                {
+                    reset_parameters();
+                }
             }
             catch (Exception ex)
             {
@@ -495,7 +515,7 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
-          
+
             //dontUpdateTemp = false;
             isPrinting = false;
             firstG222 = true;
@@ -514,7 +534,26 @@ namespace MultecPlugin
             setTempT2 = 0;
             setTempT3 = 0;
             setTempBed = 0;
-
+            T0LoadRetractClicked = false;
+            T1LoadRetractClicked = false;
+            T2LoadRetractClicked = false;
+            T3LoadRetractClicked = false;
+            GlobalTempVal = 0.00f;
+            timerRetractCount = 0;
+            retractT0 = false;
+            loadT0 = false;
+            retractT1 = false;
+            loadT1 = false;
+            retractT2 = false;
+            loadT2 = false;
+            retractT3 = false;
+            loadT3 = false;
+            TempReached = false;
+            resetTimer = 0;
+            lblRetractLoadFilT0.Visible = false;
+            lblRetractLoadFilT1.Visible = false;
+            lblRetractLoadFilT2.Visible = false;
+            lblRetractLoadFilT3.Visible = false;
             Array.Clear(gCode, 0, gCode.Length);
 
             lblXPosition.Text = "NICHT INITIALISIERT";
@@ -540,7 +579,14 @@ namespace MultecPlugin
             btnM218T3.Enabled = true;
             selected_nozzle = string.Empty;
             tool_M218 = string.Empty;
-
+            btnLoadT0.Enabled = !loadT0;
+            btnRetractT0.Enabled = !retractT0;
+            btnLoadT1.Enabled = !loadT1;
+            btnRetractT1.Enabled = !retractT1;
+            btnLoadT2.Enabled = !loadT2;
+            btnRetractT2.Enabled = !retractT2;
+            btnRetractT3.Enabled = !retractT3;
+            btnLoadT3.Enabled = !loadT3;
             if (!is4Move)
             {
 
@@ -566,7 +612,7 @@ namespace MultecPlugin
 
 
             }
-            
+
 
 
 
@@ -574,12 +620,13 @@ namespace MultecPlugin
 
         public void changeTempButtonsToOn(PictureBox val)
         {
-            try { 
-            if (val.Image != Properties.Resources.ein)
+            try
             {
-                val.Image = Properties.Resources.ein;
+                if (val.Image != Properties.Resources.ein)
+                {
+                    val.Image = Properties.Resources.ein;
 
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -588,12 +635,13 @@ namespace MultecPlugin
         }
         public void changeTempButtonsToOff(PictureBox val)
         {
-            try { 
-            if (val.Image != Properties.Resources.AUS_2)
+            try
             {
-                val.Image = Properties.Resources.AUS_2;
+                if (val.Image != Properties.Resources.AUS_2)
+                {
+                    val.Image = Properties.Resources.AUS_2;
 
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -606,14 +654,14 @@ namespace MultecPlugin
             {
                 try
                 {
-                    btnLoadT0.Enabled = true;
-                    btnLoadT1.Enabled = true;
-                    btnLoadT2.Enabled = true;
-                    btnLoadT3.Enabled = true;
-                    btnRetractT0.Enabled = true;
-                    btnRetractT1.Enabled = true;
-                    btnRetractT2.Enabled = true;
-                    btnRetractT3.Enabled = true;
+                    btnLoadT0.Enabled = !loadT0;
+                    btnRetractT0.Enabled = !retractT0;
+                    btnLoadT1.Enabled = !loadT1;
+                    btnRetractT1.Enabled = !retractT1;
+                    btnLoadT2.Enabled = !loadT2;
+                    btnRetractT2.Enabled = !retractT2;
+                    btnRetractT3.Enabled = !retractT3;
+                    btnLoadT3.Enabled = !loadT3;
                 }
                 catch (Exception ex)
                 {
@@ -624,14 +672,14 @@ namespace MultecPlugin
             {
                 try
                 {
-                    btnLoadT0.Enabled = true;
-                    btnLoadT1.Enabled = true;
-                    btnLoadT2.Enabled = true;
-                    btnLoadT3.Enabled = true;
-                    btnRetractT0.Enabled = true;
-                    btnRetractT1.Enabled = true;
-                    btnRetractT2.Enabled = true;
-                    btnRetractT3.Enabled = true;
+                    btnLoadT0.Enabled = !loadT0;
+                    btnRetractT0.Enabled = !retractT0;
+                    btnLoadT1.Enabled = !loadT1;
+                    btnRetractT1.Enabled = !retractT1;
+                    btnLoadT2.Enabled = !loadT2;
+                    btnRetractT2.Enabled = !retractT2;
+                    btnRetractT3.Enabled = !retractT3;
+                    btnLoadT3.Enabled = !loadT3;
                 }
                 catch (Exception ex)
                 {
@@ -716,7 +764,7 @@ namespace MultecPlugin
                     try
                     {
 
-                        heaterOnTemp = Convert.ToInt32(isHeaterOn.Replace(".0"," ").Trim());
+                        heaterOnTemp = Convert.ToInt32(isHeaterOn.Replace(".0", " ").Trim());
                     }
                     catch (Exception ex6)
                     {
@@ -923,7 +971,7 @@ namespace MultecPlugin
 
 
                 }
-                               
+
             }
 
             if (response.IndexOf("X_Position DV", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1080,13 +1128,13 @@ namespace MultecPlugin
             }
             if (response.IndexOf("G296 abgeschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                
-                    MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 +
-                           " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine +
-                           "\t\tT3: " + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
-                           Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
-                           "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+                MessageBox.Show("Move Rotationsoffset: " + rotationOffset + " mm" + Environment.NewLine + Environment.NewLine + "Z-Offsets:" + "\t\tT0: " + zOffset_T0 +
+                       " mm" + Environment.NewLine + "\t\tT1: " + zOffset_T1 + " mm" + Environment.NewLine + "\t\tT2: " + zOffset_T2 + " mm" + Environment.NewLine +
+                       "\t\tT3: " + zOffset_T3 + " mm" + Environment.NewLine + Environment.NewLine + "Abstand T0 <-> Multisense: " + abstand + " mm" +
+                       Environment.NewLine + "Optimaler Abstand T0 <-> Multisense: " + optimal_Abstand + " mm" + Environment.NewLine +
+                       "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
 
@@ -1602,30 +1650,39 @@ namespace MultecPlugin
             }
             else if (response.IndexOf("Sicherheitskreis geschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                
+                try
+                {
                     //doorOpen = false;
-                    dialogBox.Close();
+                    if (dialogBox != null)
+                    {
+                        dialogBox.Close();
+                    }
+
                     doorOpen = false;
                     doorOpenCalled = true;
-                
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error in Sicherheitskreis geschlossen: " + ex);
+                }
             }
 
 
             if (response.IndexOf("FIRMWARE", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-               
-                    startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                    lblFirmware.Text = response.Substring(startindex + 1);
-                    if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        is4Move = true;
-                    }
-                    else if (response.IndexOf("2Move", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        is4Move = false;
-                    }
-                
-                
+
+                startindex = response.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                lblFirmware.Text = response.Substring(startindex + 1);
+                if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    is4Move = true;
+                }
+                else if (response.IndexOf("2Move", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    is4Move = false;
+                }
+
+
             }
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -2215,102 +2272,102 @@ namespace MultecPlugin
         //function to add temperature readings to the textboxes
         public void DoTheLoop()
         {
-           
-                text_T0_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(0));
-                text_T1_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(1));
-                text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
-                text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
-                text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
+
+            text_T0_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(0));
+            text_T1_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(1));
+            text_T2_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(2));
+            text_T3_Aktuell.Text = string.Format("{0:N2}", host.Connection.getTemperature(3));
+            text_Bed_Aktuell.Text = string.Format("{0:N2}", host.Connection.CurrentBedTemp);
 
 
-                if (!isFormActive)
+            if (!isFormActive)
+            {
+                enableDisableControls(true, this);
+                isFormActive = true;
+                if (!isInitialised)
                 {
-                    enableDisableControls(true, this);
-                    isFormActive = true;
-                    if (!isInitialised)
-                    {
-                        lblBanner.Text = "Connected- Move Nicht Initialisiert";
-                    }
-                    if (isInitialised)
-                    {
-                        lblBanner.Text = "Connected";
-                    }
+                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
                 }
-                if (!doorOpen)
+                if (isInitialised)
                 {
-                    if (doorOpenCalled)
-                    {
-
-
-                        enablDisablWhenDoorOpen(true);
-                        doorOpenCalled = false;
-
-                    }
+                    lblBanner.Text = "Connected";
                 }
-
-                if (!isPrinting)
+            }
+            if (!doorOpen)
+            {
+                if (doorOpenCalled)
                 {
-                    if (printEnableCalled)
-                    {
-                        enablDisablWhenPrinting(true);
-                        printEnableCalled = false;
-                    }
-                }
-                if (isPrinting)
-                {
-                    if (!printEnableCalled)
-                    {
-                        enablDisablWhenPrinting(false);
-                        xPosition = 0;
-                        yPosition = 0;
-                        zPosition = 0;
-                        lblXPosition.Text = "Printing";
-                        lblYPosition.Text = "Printing";
-                        lblZPosition.Text = "Printing";
-                        printEnableCalled = true;
-                    }
-                }
-                if (doorOpen)
-                {
-                    if (!doorOpenCalled)
-                    {
-                        enablDisablWhenDoorOpen(false);
-
-                        doorOpenCalled = true;
-                    }
-                }
 
 
-                if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
-                {
-                    btnXoffsetSend.Enabled = true;
-                    btnYoffsetSend.Enabled = true;
-                }
-                else
-                {
-                    btnXoffsetSend.Enabled = false;
-                    btnYoffsetSend.Enabled = false;
-                }
+                    enablDisablWhenDoorOpen(true);
+                    doorOpenCalled = false;
 
-                if (fineAdjustment)
-                {
-                    btnZOffsetPlus.Enabled = true;
-                    btnZOffsetMinus.Enabled = true;
-                    btnZOffsetSend.Enabled = true;
                 }
-                else
-                {
-                    btnZOffsetPlus.Enabled = false;
-                    btnZOffsetMinus.Enabled = false;
-                    btnZOffsetSend.Enabled = false;
-                }
+            }
 
-           
+            if (!isPrinting)
+            {
+                if (printEnableCalled)
+                {
+                    enablDisablWhenPrinting(true);
+                    printEnableCalled = false;
+                }
+            }
+            if (isPrinting)
+            {
+                if (!printEnableCalled)
+                {
+                    enablDisablWhenPrinting(false);
+                    xPosition = 0;
+                    yPosition = 0;
+                    zPosition = 0;
+                    lblXPosition.Text = "Printing";
+                    lblYPosition.Text = "Printing";
+                    lblZPosition.Text = "Printing";
+                    printEnableCalled = true;
+                }
+            }
+            if (doorOpen)
+            {
+                if (!doorOpenCalled)
+                {
+                    enablDisablWhenDoorOpen(false);
+
+                    doorOpenCalled = true;
+                }
+            }
+
+
+            if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
+            {
+                btnXoffsetSend.Enabled = true;
+                btnYoffsetSend.Enabled = true;
+            }
+            else
+            {
+                btnXoffsetSend.Enabled = false;
+                btnYoffsetSend.Enabled = false;
+            }
+
+            if (fineAdjustment)
+            {
+                btnZOffsetPlus.Enabled = true;
+                btnZOffsetMinus.Enabled = true;
+                btnZOffsetSend.Enabled = true;
+            }
+            else
+            {
+                btnZOffsetPlus.Enabled = false;
+                btnZOffsetMinus.Enabled = false;
+                btnZOffsetSend.Enabled = false;
+            }
+
+            
 
         }
         private void CheckIfFourMove(bool val)
         {
-          
+
             label9.Visible = val;
             label10.Visible = val;
             btnRetractT2.Visible = val;
@@ -2364,13 +2421,13 @@ namespace MultecPlugin
             btnEplus.Visible = val;
             btnRotOffsetSend.Visible = val;
             LblMoveCoverOffset.Visible = val;
-        
-            
+
+
 
         }
         public void enablDisablWhenDoorOpen(bool val)
         {
-            
+
             btnMotorOff.Enabled = val;
             btnHome.Enabled = val;
             btnXhome.Enabled = val;
@@ -2397,57 +2454,57 @@ namespace MultecPlugin
             btnZOffsetMinus.Enabled = val;
             btnZOffsetPlus.Enabled = val;
             btnZOffsetSend.Enabled = val;
-                //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
-                //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
-                //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
-                //btnMove.Visible = val;
-            
+            //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
+            //btnMove.Visible = val;
+
 
         }
         private void enablDisablWhenPrinting(bool val)
         {
-            
-                btnParkMove.Enabled = val;
-                btnHomeMove.Enabled = val;
-                btnMotorOff.Enabled = val;
-                btnHome.Enabled = val;
-                btnXhome.Enabled = val;
-                btnYhome.Enabled = val;
-                //btnZhome.Enabled = val;
-                btnXMinus.Enabled = val;
-                btnXPlus.Enabled = val;
-                btnYMinus.Enabled = val;
-                btnYPlus.Enabled = val;
-                btnZminus.Enabled = val;
-                btnZPlus.Enabled = val;
-                btnExtrude.Enabled = val;
-                btnRetract.Enabled = val;
-                btnDusevermessung.Enabled = val;
-                btnPositionPrufen.Enabled = val;
-                btnFineAdjustment.Enabled = val;
-                btnHomeMoveKal.Enabled = val;
-                btnParkMoveKal.Enabled = val;
-                btnXOffsetMinus.Enabled = val;
-                btnXOffsetPlus.Enabled = val;
-                btnXoffsetSend.Enabled = val;
-                btnYoffsetMinus.Enabled = val;
-                btnYoffsetPlus.Enabled = val;
-                btnYoffsetSend.Enabled = val;
-                btnZOffsetMinus.Enabled = val;
-                btnZOffsetPlus.Enabled = val;
-                btnZOffsetSend.Enabled = val;
-                //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
-                //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
-                //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
-                //btnMove.Visible = val;
-                btnEminus.Enabled = val;
-                btnEplus.Enabled = val;
-                btnRotOffsetSend.Enabled = val;
-           
-}
+
+            btnParkMove.Enabled = val;
+            btnHomeMove.Enabled = val;
+            btnMotorOff.Enabled = val;
+            btnHome.Enabled = val;
+            btnXhome.Enabled = val;
+            btnYhome.Enabled = val;
+            //btnZhome.Enabled = val;
+            btnXMinus.Enabled = val;
+            btnXPlus.Enabled = val;
+            btnYMinus.Enabled = val;
+            btnYPlus.Enabled = val;
+            btnZminus.Enabled = val;
+            btnZPlus.Enabled = val;
+            btnExtrude.Enabled = val;
+            btnRetract.Enabled = val;
+            btnDusevermessung.Enabled = val;
+            btnPositionPrufen.Enabled = val;
+            btnFineAdjustment.Enabled = val;
+            btnHomeMoveKal.Enabled = val;
+            btnParkMoveKal.Enabled = val;
+            btnXOffsetMinus.Enabled = val;
+            btnXOffsetPlus.Enabled = val;
+            btnXoffsetSend.Enabled = val;
+            btnYoffsetMinus.Enabled = val;
+            btnYoffsetPlus.Enabled = val;
+            btnYoffsetSend.Enabled = val;
+            btnZOffsetMinus.Enabled = val;
+            btnZOffsetPlus.Enabled = val;
+            btnZOffsetSend.Enabled = val;
+            //btnM218T1.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T2.Enabled = val;                              //Not Sure if should be disabled
+            //btnM218T3.Enabled = val;                              //Not Sure if should be disabled
+            //btnMove.Visible = val;
+            btnEminus.Enabled = val;
+            btnEplus.Enabled = val;
+            btnRotOffsetSend.Enabled = val;
+
+        }
         private void enableDisableControls(bool val, Control container)
         {
-            
+
             foreach (Control c in container.Controls)
             {
                 if (c is Panel || c is GroupBox)
@@ -2458,39 +2515,39 @@ namespace MultecPlugin
                 {
                     c.Enabled = val;
                 }
-                }
-            
-            
+            }
+
+
         }
 
         //resets all parameters and textboxes to default
         public void reset_parameters()
         {
-           
-                text_T0_Aktuell.Text = String.Empty;
-                text_T1_Aktuell.Text = String.Empty;
-                text_T2_Aktuell.Text = String.Empty;
-                text_T3_Aktuell.Text = String.Empty;
-                text_Bed_Aktuell.Text = String.Empty;
-                trackBar_NozzleTemp.Value = 205;
-                trackBar_BedTemp.Value = 60;
-                temp_Zeil = trackBar_NozzleTemp.Value.ToString(CultureInfo.InvariantCulture);
-                temp_Zeil_bed = trackBar_BedTemp.Value.ToString(CultureInfo.InvariantCulture);
-                text_T0_ziel.Text = "205";
-                text_T1_ziel.Text = "205";
-                text_T2_ziel.Text = "205";
-                text_T3_ziel.Text = "205";
-                text_Bed_ziel.Text = "60";
-                if (isFormActive)
-                {
-                    enableDisableControls(false, this);
-                    isFormActive = false;
-                    lblBanner.Text = "Disconnected";
-                }
 
-           
+            text_T0_Aktuell.Text = String.Empty;
+            text_T1_Aktuell.Text = String.Empty;
+            text_T2_Aktuell.Text = String.Empty;
+            text_T3_Aktuell.Text = String.Empty;
+            text_Bed_Aktuell.Text = String.Empty;
+            trackBar_NozzleTemp.Value = 205;
+            trackBar_BedTemp.Value = 60;
+            temp_Zeil = trackBar_NozzleTemp.Value.ToString(CultureInfo.InvariantCulture);
+            temp_Zeil_bed = trackBar_BedTemp.Value.ToString(CultureInfo.InvariantCulture);
+            text_T0_ziel.Text = "205";
+            text_T1_ziel.Text = "205";
+            text_T2_ziel.Text = "205";
+            text_T3_ziel.Text = "205";
+            text_Bed_ziel.Text = "60";
+            if (isFormActive)
+            {
+                enableDisableControls(false, this);
+                isFormActive = false;
+                lblBanner.Text = "Disconnected";
+            }
+
+
         }
-    private void myCustomButton1_MouseClick(object sender, MouseEventArgs e)
+        private void myCustomButton1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnXMinus, e.X, e.Y))
             {
@@ -2567,7 +2624,7 @@ namespace MultecPlugin
 
         //public static Bitmap CombineAndResizeTwoImages(Image image1, Image image2, int width, int height)
         //{
-    
+
         //    //a holder for the result
         //    Bitmap result = new Bitmap(width, height);
 
@@ -2690,7 +2747,7 @@ namespace MultecPlugin
 
         }
 
-        
+
 
         private void btnZminus_MouseClick(object sender, MouseEventArgs e)
         {
@@ -4314,10 +4371,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
-
-
+                T0LoadRetractClicked = true;
+                retractT0 = true;
+                loadT0 = false;
                 //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                lblRetractLoadFilT0.Visible = true;
+                lblRetractLoadFilT0.Text = "Heating Nozzle!";
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
@@ -4338,6 +4398,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4354,8 +4415,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T0LoadRetractClicked = true;
+                retractT0 = false;
+                loadT0 = true;
                 //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                lblRetractLoadFilT0.Visible = true;
+                lblRetractLoadFilT0.Text = "Heating Nozzle!";
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
@@ -4373,6 +4439,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4389,8 +4456,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T1LoadRetractClicked = true;
+                retractT1 = true;
+                loadT1 = false;
                 //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                lblRetractLoadFilT1.Visible = true;
+                lblRetractLoadFilT1.Text = "Heating Nozzle!";
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
@@ -4409,6 +4481,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4425,8 +4498,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T1LoadRetractClicked = true;
+                retractT1 = false;
+                loadT1 = true;
                 //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                lblRetractLoadFilT1.Visible = true;
+                lblRetractLoadFilT1.Text = "Heating Nozzle!";
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
@@ -4443,6 +4521,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4459,8 +4538,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T2LoadRetractClicked = true;
+                retractT2 = true;
+                loadT2 = false;
                 //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                lblRetractLoadFilT2.Visible = true;
+                lblRetractLoadFilT2.Text = "Heating Nozzle!";
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
@@ -4479,6 +4563,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4495,8 +4580,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T2LoadRetractClicked = true;
+                retractT2 = false;
+                loadT2 = true;
                 //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                lblRetractLoadFilT2.Visible = true;
+                lblRetractLoadFilT2.Text = "Heating Nozzle!";
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
@@ -4513,6 +4603,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4529,8 +4620,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T3LoadRetractClicked = true;
+                retractT3 = true;
+                loadT3 = false;
                 //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                lblRetractLoadFilT3.Visible = true;
+                lblRetractLoadFilT3.Text = "Heating Nozzle!";
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
@@ -4549,6 +4645,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4565,8 +4662,13 @@ namespace MultecPlugin
                 btnRetractT1.Enabled = false;
                 btnRetractT2.Enabled = false;
                 btnRetractT3.Enabled = false;
+                T3LoadRetractClicked = true;
+                retractT3 = false;
+                loadT3 = true;
                 //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                lblRetractLoadFilT3.Visible = true;
+                lblRetractLoadFilT3.Text = "Heating Nozzle!";
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
@@ -4583,6 +4685,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+                timerRetractLoad.Start();
             }
         }
 
@@ -4682,15 +4785,15 @@ namespace MultecPlugin
 
         private void wrkrOpenDialogBox_DoWork(object sender, DoWorkEventArgs e)
         {
-           
+
             dialogBox = new DoorOpenDialogBox()
             {
                 StartPosition = FormStartPosition.Manual
             };
             dialogBox.Location = new Point(48, 150);
             dialogBox.ShowDialog();
-            
-            
+
+
         }
 
         private void text_T0_ziel_KeyDown(object sender, KeyEventArgs e)
@@ -4790,18 +4893,256 @@ namespace MultecPlugin
 
         private void wrkrHomeXY_DoWork(object sender, DoWorkEventArgs e)
         {
-           
-    var newMsg = MessageBox.Show(this, "Home X/Y before Z", "Warnung!",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            var newMsg = MessageBox.Show(this, "Home X/Y before Z", "Warnung!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             if (newMsg == DialogResult.OK)
             {
                 homeXYActive = false;
             }
-            
+
         }
 
+        private void timerRetractLoad_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                tempValue = txtBoxTemp.Text.Replace(",", ".");
+                if(tempValue.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) == -1)
+                {
+                    tempValue = tempValue.Insert(tempValue.Length, ".00");
+                }
+               
+                float f;
 
+                float.TryParse(tempValue, out f);
+                f = (float)(Math.Round(f, 2));
+                ++resetTimer;
+                if (resetTimer == 10)
+                {
+                    timerRetractLoad.Stop();
+                    timerRetractLoad.Start();
+                }
+                if (T0LoadRetractClicked)
+                {
+                    float.TryParse(text_T0_Aktuell.Text.Replace(",", "."), out GlobalTempVal);
+                    GlobalTempVal = (float)(Math.Round(GlobalTempVal, 2));
+                    if (GlobalTempVal >= f)
+                    {
+                        TempReached = true;
+                    }
+                    if (TempReached)
+                    {
+                        ++timerRetractCount;
+                        if (retractT0)
+                        {
+                            lblRetractLoadFilT0.Text = "Heating Complete. Retracting";
+                            if (timerRetractCount == 14)
+                            {
+                                lblRetractLoadFilT0.Text = "Retracting Complete nozzle T0";
+                                
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                
+                                
+                               
+                               
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+
+                            }
+                        }
+                        if (loadT0)
+                        {
+                            lblRetractLoadFilT0.Text = "Heating Complete. Loading";
+                            if (timerRetractCount == 30)
+                            {
+                                lblRetractLoadFilT0.Text = "Loading Complete nozzle T0";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                    }
+                }
+                else if (T1LoadRetractClicked)
+                {
+                    float.TryParse(text_T1_Aktuell.Text.Replace(",", "."), out GlobalTempVal);
+                    GlobalTempVal = (float)(Math.Round(GlobalTempVal, 2));
+                    if (GlobalTempVal >= f)
+                    {
+                        TempReached = true;
+                    }
+                    if (TempReached)
+                    {
+
+                        ++timerRetractCount;
+                        if (retractT1)
+                        {
+                            lblRetractLoadFilT1.Text = "Heating Complete. Retracting";
+                            if (timerRetractCount == 14)
+                            {
+                                lblRetractLoadFilT1.Text = "Retracting Complete nozzle T1";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                        if (loadT1)
+                        {
+                            lblRetractLoadFilT1.Text = "Heating Complete. Loading";
+                            if (timerRetractCount == 30)
+                            {
+                                lblRetractLoadFilT1.Text = "Loading Complete nozzle T1";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                    }
+                }
+                else if (T2LoadRetractClicked)
+                {
+                    float.TryParse(text_T2_Aktuell.Text.Replace(",", "."), out GlobalTempVal);
+                    GlobalTempVal = (float)(Math.Round(GlobalTempVal, 2));
+                    if (GlobalTempVal >= f)
+                    {
+                        TempReached = true;
+                    }
+                    if (TempReached)
+                    {
+
+                        ++timerRetractCount;
+                        if (retractT2)
+                        {
+                            lblRetractLoadFilT2.Text = "Heating Complete. Retracting";
+                            if (timerRetractCount == 14)
+                            {
+                                lblRetractLoadFilT2.Text = "Retracting Complete nozzle T2";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                        if (loadT2)
+                        {
+                            lblRetractLoadFilT2.Text = "Heating Complete. Loading";
+                            if (timerRetractCount == 30)
+                            {
+                                lblRetractLoadFilT2.Text = "Loading Complete nozzle T2";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                    }
+                }
+                else if (T3LoadRetractClicked)
+                {
+
+                    float.TryParse(text_T3_Aktuell.Text.Replace(",", "."), out GlobalTempVal);
+                    GlobalTempVal = (float)(Math.Round(GlobalTempVal, 2));
+                    if (GlobalTempVal >= f)
+                    {
+                        TempReached = true;
+                    }
+                    if (TempReached)
+                    {
+
+                        ++timerRetractCount;
+                        if (retractT3)
+                        {
+                            lblRetractLoadFilT3.Text = "Heating Complete. Retracting";
+                            if (timerRetractCount == 14)
+                            {
+                                lblRetractLoadFilT3.Text = "Retracting Complete nozzle T3";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                        if (loadT3)
+                        {
+                            lblRetractLoadFilT3.Text = "Heating Complete. Loading";
+                            if (timerRetractCount == 30)
+                            {
+                                lblRetractLoadFilT3.Text = "Loading Complete nozzle T3";
+
+                                btnLoadT0.Enabled = !loadT0;
+                                btnRetractT0.Enabled = !retractT0;
+                                btnLoadT1.Enabled = !loadT1;
+                                btnRetractT1.Enabled = !retractT1;
+                                btnLoadT2.Enabled = !loadT2;
+                                btnRetractT2.Enabled = !retractT2;
+                                btnRetractT3.Enabled = !retractT3;
+                                btnLoadT3.Enabled = !loadT3;
+                                TempReached = false;
+                                timerRetractLoad.Stop();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error in Retracting or Loading" + ex);
+            }
+        }
     }
 
 
