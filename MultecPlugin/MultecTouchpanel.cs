@@ -4621,10 +4621,10 @@ namespace MultecPlugin
                         ++timerRetractCount;
                         if (retractT0)
                         {
-                            lblRetractLoadFilT0.Text = "Heating Complete. Retracting";
+                            lblRetractLoadFilT0.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
                             if (timerRetractCount == 14)
                             {
-                                lblRetractLoadFilT0.Text = "Retracting Complete nozzle T0";
+                                lblRetractLoadFilT0.Text = "Zurückziehen abgeschlossen ist, Düse T0";
                                 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4639,16 +4639,17 @@ namespace MultecPlugin
                                
                                
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T0");
                                 timerRetractLoad.Stop();
 
                             }
                         }
                         if (loadT0)
                         {
-                            lblRetractLoadFilT0.Text = "Heating Complete. Loading";
+                            lblRetractLoadFilT0.Text = "Aufheizen abgeschlossen. Lädt";
                             if (timerRetractCount == 30)
                             {
-                                lblRetractLoadFilT0.Text = "Loading Complete nozzle T0";
+                                lblRetractLoadFilT0.Text = "Laden abgeschlossen, Düse T0";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4659,6 +4660,7 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T0");
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -4678,10 +4680,10 @@ namespace MultecPlugin
                         ++timerRetractCount;
                         if (retractT1)
                         {
-                            lblRetractLoadFilT1.Text = "Heating Complete. Retracting";
+                            lblRetractLoadFilT1.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
                             if (timerRetractCount == 14)
                             {
-                                lblRetractLoadFilT1.Text = "Retracting Complete nozzle T1";
+                                lblRetractLoadFilT1.Text = "Zurückziehen abgeschlossen ist, Düse T1";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4692,15 +4694,16 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T1");
                                 timerRetractLoad.Stop();
                             }
                         }
                         if (loadT1)
                         {
-                            lblRetractLoadFilT1.Text = "Heating Complete. Loading";
+                            lblRetractLoadFilT1.Text = "Aufheizen abgeschlossen. Lädt";
                             if (timerRetractCount == 30)
                             {
-                                lblRetractLoadFilT1.Text = "Loading Complete nozzle T1";
+                                lblRetractLoadFilT1.Text = "Laden abgeschlossen, Düse T1";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4711,6 +4714,7 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T1");
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -4730,10 +4734,10 @@ namespace MultecPlugin
                         ++timerRetractCount;
                         if (retractT2)
                         {
-                            lblRetractLoadFilT2.Text = "Heating Complete. Retracting";
+                            lblRetractLoadFilT2.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
                             if (timerRetractCount == 14)
                             {
-                                lblRetractLoadFilT2.Text = "Retracting Complete nozzle T2";
+                                lblRetractLoadFilT2.Text = "Zurückziehen abgeschlossen ist, Düse T2";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4744,15 +4748,16 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T2");
                                 timerRetractLoad.Stop();
                             }
                         }
                         if (loadT2)
                         {
-                            lblRetractLoadFilT2.Text = "Heating Complete. Loading";
+                            lblRetractLoadFilT2.Text = "Aufheizen abgeschlossen. Lädt";
                             if (timerRetractCount == 30)
                             {
-                                lblRetractLoadFilT2.Text = "Loading Complete nozzle T2";
+                                lblRetractLoadFilT2.Text = "Laden abgeschlossen, Düse T2";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4763,6 +4768,7 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T2");
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -4783,10 +4789,10 @@ namespace MultecPlugin
                         ++timerRetractCount;
                         if (retractT3)
                         {
-                            lblRetractLoadFilT3.Text = "Heating Complete. Retracting";
+                            lblRetractLoadFilT3.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
                             if (timerRetractCount == 14)
                             {
-                                lblRetractLoadFilT3.Text = "Retracting Complete nozzle T3";
+                                lblRetractLoadFilT3.Text = "Zurückziehen abgeschlossen ist, Düse T3";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4797,15 +4803,16 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T3");
                                 timerRetractLoad.Stop();
                             }
                         }
                         if (loadT3)
                         {
-                            lblRetractLoadFilT3.Text = "Heating Complete. Loading";
+                            lblRetractLoadFilT3.Text = "Aufheizen abgeschlossen. Lädt";
                             if (timerRetractCount == 30)
                             {
-                                lblRetractLoadFilT3.Text = "Loading Complete nozzle T3";
+                                lblRetractLoadFilT3.Text = "Laden abgeschlossen, Düse T3";
 
                                 btnLoadT0.Enabled = !loadT0;
                                 btnRetractT0.Enabled = !retractT0;
@@ -4816,6 +4823,7 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                host.Connection.injectManualCommand("M104 S0 T3");
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -4848,7 +4856,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 lblRetractLoadFilT0.Visible = true;
-                lblRetractLoadFilT0.Text = "Heating Nozzle!";
+                lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
@@ -4869,6 +4877,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                
                 timerRetractLoad.Start();
             }
         }
@@ -4893,7 +4902,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 lblRetractLoadFilT1.Visible = true;
-                lblRetractLoadFilT1.Text = "Heating Nozzle!";
+                lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
@@ -4912,6 +4921,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                
                 timerRetractLoad.Start();
             }
         }
@@ -4936,7 +4946,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 lblRetractLoadFilT2.Visible = true;
-                lblRetractLoadFilT2.Text = "Heating Nozzle!";
+                lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
@@ -4955,6 +4965,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+            
                 timerRetractLoad.Start();
             }
         }
@@ -4979,7 +4990,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                 lblRetractLoadFilT3.Visible = true;
-                lblRetractLoadFilT3.Text = "Heating Nozzle!";
+                lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
@@ -4998,6 +5009,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E-800.0 F1800");
                 host.Connection.injectManualCommand("G92 E0");
+                
                 timerRetractLoad.Start();
             }
         }
@@ -5022,7 +5034,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 lblRetractLoadFilT0.Visible = true;
-                lblRetractLoadFilT0.Text = "Heating Nozzle!";
+                lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
                 text_T0_ziel.Text = tempValue;
                 changeTempButtonsToOn(btnT0_OnOff);
                 btnT0.Enabled = false;
@@ -5040,6 +5052,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+              
                 timerRetractLoad.Start();
             }
         }
@@ -5064,7 +5077,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 lblRetractLoadFilT1.Visible = true;
-                lblRetractLoadFilT1.Text = "Heating Nozzle!";
+                lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                 text_T1_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T1_On = true;
@@ -5081,6 +5094,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+              
                 timerRetractLoad.Start();
             }
         }
@@ -5105,7 +5119,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 lblRetractLoadFilT2.Visible = true;
-                lblRetractLoadFilT2.Text = "Heating Nozzle!";
+                lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                 text_T2_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T2_On = true;
@@ -5122,6 +5136,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+              
                 timerRetractLoad.Start();
             }
 
@@ -5147,7 +5162,7 @@ namespace MultecPlugin
                 //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                 lblRetractLoadFilT3.Visible = true;
-                lblRetractLoadFilT3.Text = "Heating Nozzle!";
+                lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                 text_T3_ziel.Text = tempValue;
                 host.Connection.injectManualCommand("G222");
                 T3_On = true;
@@ -5164,6 +5179,7 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E200.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
+               
                 timerRetractLoad.Start();
             }
         }
