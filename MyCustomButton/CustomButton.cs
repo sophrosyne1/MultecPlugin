@@ -77,15 +77,14 @@ namespace MyCustomButton
             return result;
         }
 
-        private void MyCustomButton_MouseMove(object sender, MouseEventArgs e)
+        private void MyCustomButton_MouseEnter(object sender, EventArgs e)
         {
-            {
-                if (HitTest(this, e.X, e.Y))
-                    this.Cursor = Cursors.Hand;
-                else
-                    this.Cursor = Cursors.Default;
-            }
+            this.Cursor = Cursors.Hand;
         }
 
+        private void MyCustomButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
+        }
     }
 }

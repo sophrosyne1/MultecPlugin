@@ -34,9 +34,9 @@
             // MyCustomButton
             // 
             this.BackColor = System.Drawing.Color.Transparent;
-          
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MyCustomButton_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MyCustomButton_MouseMove);
+            this.MouseEnter += new System.EventHandler(this.MyCustomButton_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.MyCustomButton_MouseLeave);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MyCustomButton_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

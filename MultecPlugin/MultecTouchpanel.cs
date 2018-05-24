@@ -76,9 +76,9 @@ namespace MultecPlugin
         private int getPrev_gCodeDown = 0;
         private bool coldextrusionActive = false;
         private bool homeXYActive = false;
-        private bool firstG222 = true;
+
         private int gCodeCheck = 0;
-        private bool isG222Active = false;
+
         private bool T0LoadRetractClicked = false;
         private bool T1LoadRetractClicked = false;
         private bool T2LoadRetractClicked = false;
@@ -130,8 +130,7 @@ namespace MultecPlugin
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
 
-
-
+            
 
 
         }
@@ -357,6 +356,7 @@ namespace MultecPlugin
 
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -517,7 +517,7 @@ namespace MultecPlugin
             Bed_On = false;
             //dontUpdateTemp = false;
             isPrinting = false;
-            firstG222 = true;
+
             gCodeCheck = 0;
             gCodeIndex = 0;
             getPrev_gCodeDown = 0;
@@ -527,7 +527,7 @@ namespace MultecPlugin
             zOffsetMultiplyer = 0;
             rotOffsetMultiplyer = 0;
             newOffset = 0;
-            isInitialised = false;
+            isInitialised = true;
             setTempT0 = 0;
             setTempT1 = 0;
             setTempT2 = 0;
@@ -1039,6 +1039,15 @@ namespace MultecPlugin
             if (response.IndexOf("Move Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 radBtnMove.Checked = true;
+                isInitialised = false;
+                lblBanner.Text = "Connected";
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+                //wasNozSelected = false;
+                //btnMove.Enabled = true;
+
             }
             if (response.IndexOf("Move Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1054,39 +1063,16 @@ namespace MultecPlugin
             }
             if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                try
-                {
-
-
-                    if (!firstG222)
-                    {
-
-                        if (wrkrCallG222.IsBusy != true)
-                        {
-                            if (!isG222Active)
-                            {
-
-                                isG222Active = true;
-                                wrkrCallG222.RunWorkerAsync();
-                            }
-                        }
-
-                    }
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ein Fehler ist aufgetreten! " + ex + " Call G222 first wird nicht aktualisiert!");
-                }
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
+                isInitialised = false;
+                lblBanner.Text = "Connected- Move Nicht Initialisiert";
+                btnT0.Enabled = false;
+                btnT1.Enabled = false;
+                btnT2.Enabled = false;
+                btnT3.Enabled = false;
                 //wasNozSelected = false;
                 //btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
-                firstG222 = false;
+
             }
 
             if (response.IndexOf("Cold extrusion prevented", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1287,354 +1273,7 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in RunOutMonitoringActive: " + ex);
                 }
             }
-            //if (response.IndexOf("ok", StringComparison.Ordinal) == -1)
-            //{
-            //    if (dontUpdateTemp)
-            //    {
-            //        dontUpdateTemp = false;
-            //    }
-            //}
 
-            //if (response.IndexOf("Setting M104", StringComparison.CurrentCultureIgnoreCase) == -1)
-            //{
-            //    dontUpdateTemp = true;
-            //}
-
-            //if (response.IndexOf("M104", StringComparison.Ordinal) != -1)
-            //{
-            //    if (!dontUpdateTemp)
-
-            //    {
-            //        if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-
-
-            //            if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-
-            //                startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //                endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //                nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //                try
-            //                {
-            //                    nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //                }
-            //                catch (OverflowException)
-            //                {
-            //                    MessageBox.Show("Value is outside the range of the Int32 type.");
-            //                }
-            //                catch (FormatException)
-            //                {
-            //                    MessageBox.Show("The value  is not in a recognizable format.");
-            //                }
-            //                if (nozzleTempValue == 0)
-            //                {
-
-            //                    changeTempButtonsToOff(btnT0_OnOff);
-            //                }
-            //                else
-            //                {
-            //                    changeTempButtonsToOn(btnT0_OnOff);
-            //                }
-
-            //            }
-            //        }
-            //        else if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-            //                startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //                endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //                nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //                try
-            //                {
-            //                    nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //                }
-            //                catch (OverflowException)
-            //                {
-            //                    MessageBox.Show("Value is outside the range of the Int32 type.");
-            //                }
-            //                catch (FormatException)
-            //                {
-            //                    MessageBox.Show("The value is not in a recognizable format.");
-            //                }
-
-            //                if (nozzleTempValue > 0)
-            //                {
-            //                    changeTempButtonsToOff(btnT1_OnOff);
-
-            //                }
-            //                else
-            //                {
-            //                    changeTempButtonsToOn(btnT1_OnOff);
-            //                }
-            //            }
-            //        }
-            //        else if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-            //                startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //                endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //                nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //                try
-            //                {
-            //                    nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //                }
-            //                catch (OverflowException)
-            //                {
-            //                    MessageBox.Show("Value is outside the range of the Int32 type.");
-            //                }
-            //                catch (FormatException)
-            //                {
-            //                    MessageBox.Show("The value is not in a recognizable format.");
-            //                }
-
-            //                if (nozzleTempValue == 0)
-            //                {
-            //                    changeTempButtonsToOn(btnT2_OnOff);
-
-            //                }
-            //                else
-            //                {
-            //                    changeTempButtonsToOff(btnT2_OnOff);
-            //                }
-            //            }
-            //        }
-            //        else if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-            //                startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //                endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //                nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //                try
-            //                {
-            //                    nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //                }
-            //                catch (OverflowException)
-            //                {
-            //                    MessageBox.Show("Value is outside the range of the Int32 type.");
-            //                }
-            //                catch (FormatException)
-            //                {
-            //                    MessageBox.Show("The value is not in a recognizable format.");
-            //                }
-
-            //                if (nozzleTempValue == 0)
-            //                {
-            //                    changeTempButtonsToOff(btnT3_OnOff);
-            //                }
-            //                else
-            //                {
-
-            //                    changeTempButtonsToOn(btnT3_OnOff);
-            //                }
-            //            }
-            //        }
-
-            //        else
-            //        {
-            //            if (response.IndexOf("Setting", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-
-            //                MessageBox.Show("Setting shouldnt have gone throw. There is an error!!");
-            //            }
-            //            else if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //            {
-            //                startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //                endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //                nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //                try
-            //                {
-            //                    nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //                }
-            //                catch (OverflowException)
-            //                {
-            //                    MessageBox.Show("Value is outside the range of the Int32 type.");
-            //                }
-            //                catch (FormatException)
-            //                {
-            //                    MessageBox.Show("The value is not in a recognizable format.");
-            //                }
-
-            //                if (nozzleTempValue == 0)
-            //                {
-            //                    changeTempButtonsToOff(btnT0_OnOff);
-
-            //                }
-            //                else
-            //                {
-            //                    changeTempButtonsToOn(btnT0_OnOff);
-            //                }
-            //            }
-            //        }
-
-            //    }
-            //}
-            //if (response.IndexOf("M109", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //{
-            //    if (response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //    {
-            //        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //            endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //            nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-
-            //            try
-            //            {
-            //                nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //            }
-            //            catch (OverflowException)
-            //            {
-            //                MessageBox.Show("Value is outside the range of the Int32 type.");
-            //            }
-            //            catch (FormatException)
-            //            {
-            //                MessageBox.Show("The value is not in a recognizable format.");
-            //            }
-
-            //            if (nozzleTempValue == 0)
-            //            {
-            //                changeTempButtonsToOff(btnT0_OnOff);
-
-            //            }
-            //            else
-            //            {
-            //                changeTempButtonsToOn(btnT0_OnOff);
-            //            }
-
-            //        }
-            //    }
-            //    else if (response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //    {
-            //        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //            endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //            nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //            try
-            //            {
-            //                nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //            }
-            //            catch (OverflowException)
-            //            {
-            //                MessageBox.Show("Value is outside the range of the Int32 type.");
-            //            }
-            //            catch (FormatException)
-            //            {
-            //                MessageBox.Show("The value is not in a recognizable format.");
-            //            }
-
-            //            if (nozzleTempValue == 0)
-            //            {
-            //                changeTempButtonsToOff(btnT1_OnOff);
-
-            //            }
-            //            else
-            //            {
-            //                changeTempButtonsToOn(btnT1_OnOff);
-            //            }
-            //        }
-            //    }
-            //    else if (response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //    {
-            //        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //            endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //            nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //            try
-            //            {
-            //                nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //            }
-            //            catch (OverflowException)
-            //            {
-            //                MessageBox.Show("Value is outside the range of the Int32 type.");
-            //            }
-            //            catch (FormatException)
-            //            {
-            //                MessageBox.Show("The value is not in a recognizable format.");
-            //            }
-
-            //            if (nozzleTempValue == 0)
-            //            {
-            //                changeTempButtonsToOff(btnT2_OnOff);
-
-            //            }
-            //            else
-            //            {
-            //                changeTempButtonsToOn(btnT2_OnOff);
-            //            }
-            //        }
-            //    }
-            //    else if (response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //    {
-            //        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //            endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //            nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //            try
-            //            {
-            //                nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //            }
-            //            catch (OverflowException)
-            //            {
-            //                MessageBox.Show("Value is outside the range of the Int32 type.");
-            //            }
-            //            catch (FormatException)
-            //            {
-            //                MessageBox.Show("The value is not in a recognizable format.");
-            //            }
-
-            //            if (nozzleTempValue == 0)
-            //            {
-            //                changeTempButtonsToOff(btnT3_OnOff);
-
-            //            }
-            //            else
-            //            {
-            //                changeTempButtonsToOn(btnT3_OnOff);
-            //            }
-            //        }
-            //    }
-
-            //    else
-            //    {
-            //        if (response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //        {
-            //            startindex = response.IndexOf("S", StringComparison.CurrentCultureIgnoreCase);
-            //            endindex1 = response.IndexOf("*", startindex, StringComparison.CurrentCultureIgnoreCase);
-            //            nozzleSwitch = response.Substring(startindex + 1, endindex1 - (startindex + 1));
-            //            try
-            //            {
-            //                nozzleTempValue = Convert.ToInt32(nozzleSwitch);
-            //            }
-            //            catch (OverflowException)
-            //            {
-            //                MessageBox.Show("Value is outside the range of the Int32 type.");
-            //            }
-            //            catch (FormatException)
-            //            {
-            //                MessageBox.Show("The value is not in a recognizable format.");
-            //            }
-
-            //            if (nozzleTempValue == 0)
-            //            {
-            //                changeTempButtonsToOff(btnT0_OnOff);
-
-            //            }
-            //            else
-            //            {
-            //                changeTempButtonsToOn(btnT0_OnOff);
-            //            }
-            //        }
-            //    }
-
-
-            //}
             if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 if (!wrkrOpenDialogBox.IsBusy)
@@ -1644,14 +1283,11 @@ namespace MultecPlugin
                     doorOpenCalled = false;
 
                 }
-                //doorOpen = true;
-
             }
             else if (response.IndexOf("Sicherheitskreis geschlossen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
                 {
-                    //doorOpen = false;
                     if (dialogBox != null)
                     {
                         dialogBox.Close();
@@ -2644,6 +2280,7 @@ namespace MultecPlugin
         //    return result;
         //}
 
+
         public bool HitTest(PictureBox control, int x, int y)
         {
             var result = false;
@@ -3232,18 +2869,7 @@ namespace MultecPlugin
                 btnT3.Image = Properties.Resources.T3_2;
         }
 
-        private void wrkrCallG222_DoWork(object sender, DoWorkEventArgs e)
-        {
 
-            var newMsg = MessageBox.Show("Move-Extruder ist nicht initialisiert. Bitte initialisieren („Home Move“).", "Warnung!",
-                          MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            if (newMsg == DialogResult.OK)
-            {
-                isG222Active = false;
-            }
-
-
-        }
 
         private void btnMotorOff_MouseClick(object sender, MouseEventArgs e)
         {
@@ -3274,10 +2900,12 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G224");
-                    btnT0.Enabled = true;
-                    btnT1.Enabled = true;
-                    btnT2.Enabled = true;
-                    btnT3.Enabled = true;
+                    btnT0.Enabled = false;
+                    btnT1.Enabled = false;
+                    btnT2.Enabled = false;
+                    btnT3.Enabled = false;
+                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
+                    isInitialised = false;
                     selected_nozzle = string.Empty;
                 }
             }
@@ -3341,13 +2969,7 @@ namespace MultecPlugin
             }
         }
 
-        private void btnT0_OnOff_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnT0_OnOff, e.X, e.Y))
-                this.Cursor = Cursors.Hand;
-            else
-                this.Cursor = Cursors.Default;
-        }
+       
 
         private void btnT1_OnOff_Click(object sender, EventArgs e)
         {
@@ -3461,38 +3083,12 @@ namespace MultecPlugin
             }
         }
 
-        private void btnT1_OnOff_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnT1_OnOff, e.X, e.Y))
-                this.Cursor = Cursors.Hand;
-            else
-                this.Cursor = Cursors.Default;
-        }
+    
 
-        private void btnT2_OnOff_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnT2_OnOff, e.X, e.Y))
-                this.Cursor = Cursors.Hand;
-            else
-                this.Cursor = Cursors.Default;
-        }
 
-        private void btnT3_OnOff_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnT3_OnOff, e.X, e.Y))
-                this.Cursor = Cursors.Hand;
-            else
-                this.Cursor = Cursors.Default;
-        }
+    
 
-        private void btnBed_OnOff_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnBed_OnOff, e.X, e.Y))
-                this.Cursor = Cursors.Hand;
-            else
-                this.Cursor = Cursors.Default;
-        }
-
+  
         private void btnStep1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnStep1, e.X, e.Y))
@@ -3916,8 +3512,8 @@ namespace MultecPlugin
 
         private void btnFineAdjustment_Click(object sender, EventArgs e)
         {
-            var ms = MessageBox.Show("Warnung! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
-                "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult ms = MessageBox.Show("Warnung! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
+                 "Drücken Sie OK, um fortzufahren", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (ms == DialogResult.OK)
             {
                 //host.Connection.injectManualCommand("G991");
@@ -4662,13 +4258,13 @@ namespace MultecPlugin
                     if (IsValidBedTemp(text_Bed_ziel.Text.Replace(",", ".")))
                     {
                         if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        trackBar_BedTemp.Value = Convert.ToInt32(text_Bed_ziel.Text.Replace(",0", " ").Trim());
-                    }
-                    else
-                    {
-                        trackBar_BedTemp.Value = Convert.ToInt32(text_Bed_ziel.Text.Replace(".0", " ").Trim());
-                    }
+                        {
+                            trackBar_BedTemp.Value = Convert.ToInt32(text_Bed_ziel.Text.Replace(",0", " ").Trim());
+                        }
+                        else
+                        {
+                            trackBar_BedTemp.Value = Convert.ToInt32(text_Bed_ziel.Text.Replace(".0", " ").Trim());
+                        }
                     }
                     else
                     {
@@ -5135,171 +4731,199 @@ namespace MultecPlugin
 
         private void btnLoadT0_Click(object sender, EventArgs e)
         {
-            if (txtBoxTemp.Text != string.Empty)
+
+            DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
+                "und noch nicht bis an den Extruder gefördert wurde." + Environment.NewLine +
+                "Durch Bestätigung mit „OK“ wird die selektierte Düse erhitzt und das Filament an den Druckkopf gefördert",
+                "Filament Laden!!", MessageBoxButtons.OKCancel);
+            if (ms == DialogResult.OK)
             {
-                timerRetractCount = 0;
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T0LoadRetractClicked = true;
-                retractT0 = false;
-                loadT0 = true;
-                //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-                lblRetractLoadFilT0.Visible = true;
-                lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
-                text_T0_ziel.Text = tempValue;
-                changeTempButtonsToOn(btnT0_OnOff);
-                btnT0.Enabled = false;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("G222");
-                T0_On = true;
+                if (txtBoxTemp.Text != string.Empty)
+                {
+                    timerRetractCount = 0;
+                    tempValue = txtBoxTemp.Text;
+                    btnLoadT0.Enabled = false;
+                    btnLoadT1.Enabled = false;
+                    btnLoadT2.Enabled = false;
+                    btnLoadT3.Enabled = false;
+                    btnRetractT0.Enabled = false;
+                    btnRetractT1.Enabled = false;
+                    btnRetractT2.Enabled = false;
+                    btnRetractT3.Enabled = false;
+                    T0LoadRetractClicked = true;
+                    retractT0 = false;
+                    loadT0 = true;
+                    //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
+                    host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                    lblRetractLoadFilT0.Visible = true;
+                    lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
+                    text_T0_ziel.Text = tempValue;
+                    changeTempButtonsToOn(btnT0_OnOff);
+                    btnT0.Enabled = false;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    host.Connection.injectManualCommand("G222");
+                    T0_On = true;
 
-                host.Connection.injectManualCommand("T0");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("T0");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E200.0 F120");
+                    host.Connection.injectManualCommand("G92 E0");
 
-                timerRetractLoad.Start();
+                    timerRetractLoad.Start();
+                }
             }
         }
 
         private void btnLoadT1_Click(object sender, EventArgs e)
         {
-            if (txtBoxTemp.Text != string.Empty)
+            DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
+                "und noch nicht bis an den Extruder gefördert wurde." + Environment.NewLine +
+                "Durch Bestätigung mit „OK“ wird die selektierte Düse erhitzt und das Filament an den Druckkopf gefördert",
+                "Filament Laden!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (ms == DialogResult.OK)
             {
-                timerRetractCount = 0;
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T1LoadRetractClicked = true;
-                retractT1 = false;
-                loadT1 = true;
-                //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
-                lblRetractLoadFilT1.Visible = true;
-                lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
-                text_T1_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T1_On = true;
-                changeTempButtonsToOn(btnT1_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = false;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T1");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
+                if (txtBoxTemp.Text != string.Empty)
+                {
+                    timerRetractCount = 0;
+                    tempValue = txtBoxTemp.Text;
+                    btnLoadT0.Enabled = false;
+                    btnLoadT1.Enabled = false;
+                    btnLoadT2.Enabled = false;
+                    btnLoadT3.Enabled = false;
+                    btnRetractT0.Enabled = false;
+                    btnRetractT1.Enabled = false;
+                    btnRetractT2.Enabled = false;
+                    btnRetractT3.Enabled = false;
+                    T1LoadRetractClicked = true;
+                    retractT1 = false;
+                    loadT1 = true;
+                    //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
+                    host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                    lblRetractLoadFilT1.Visible = true;
+                    lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
+                    text_T1_ziel.Text = tempValue;
+                    host.Connection.injectManualCommand("G222");
+                    T1_On = true;
+                    changeTempButtonsToOn(btnT1_OnOff);
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = false;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = true;
+                    host.Connection.injectManualCommand("T1");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E200.0 F120");
+                    host.Connection.injectManualCommand("G92 E0");
 
-                timerRetractLoad.Start();
+                    timerRetractLoad.Start();
+                }
             }
         }
 
         private void btnLoadT2_Click(object sender, EventArgs e)
         {
-            if (txtBoxTemp.Text != string.Empty)
+            DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
+                "und noch nicht bis an den Extruder gefördert wurde." + Environment.NewLine +
+                "Durch Bestätigung mit „OK“ wird die selektierte Düse erhitzt und das Filament an den Druckkopf gefördert",
+                "Filament Laden!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (ms == DialogResult.OK)
             {
-                timerRetractCount = 0;
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T2LoadRetractClicked = true;
-                retractT2 = false;
-                loadT2 = true;
-                //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
-                lblRetractLoadFilT2.Visible = true;
-                lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
-                text_T2_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T2_On = true;
-                changeTempButtonsToOn(btnT2_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = false;
-                btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T2");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
+                if (txtBoxTemp.Text != string.Empty)
+                {
+                    timerRetractCount = 0;
+                    tempValue = txtBoxTemp.Text;
+                    btnLoadT0.Enabled = false;
+                    btnLoadT1.Enabled = false;
+                    btnLoadT2.Enabled = false;
+                    btnLoadT3.Enabled = false;
+                    btnRetractT0.Enabled = false;
+                    btnRetractT1.Enabled = false;
+                    btnRetractT2.Enabled = false;
+                    btnRetractT3.Enabled = false;
+                    T2LoadRetractClicked = true;
+                    retractT2 = false;
+                    loadT2 = true;
+                    //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
+                    host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                    lblRetractLoadFilT2.Visible = true;
+                    lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
+                    text_T2_ziel.Text = tempValue;
+                    host.Connection.injectManualCommand("G222");
+                    T2_On = true;
+                    changeTempButtonsToOn(btnT2_OnOff);
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = false;
+                    btnT3.Enabled = true;
+                    host.Connection.injectManualCommand("T2");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E200.0 F120");
+                    host.Connection.injectManualCommand("G92 E0");
 
-                timerRetractLoad.Start();
+                    timerRetractLoad.Start();
+                }
             }
-
         }
 
         private void btnLoadT3_Click(object sender, EventArgs e)
         {
-            if (txtBoxTemp.Text != string.Empty)
+            DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
+                "und noch nicht bis an den Extruder gefördert wurde." + Environment.NewLine +
+                "Durch Bestätigung mit „OK“ wird die selektierte Düse erhitzt und das Filament an den Druckkopf gefördert",
+                "Filament Laden!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (ms == DialogResult.OK)
             {
-                timerRetractCount = 0;
-                tempValue = txtBoxTemp.Text;
-                btnLoadT0.Enabled = false;
-                btnLoadT1.Enabled = false;
-                btnLoadT2.Enabled = false;
-                btnLoadT3.Enabled = false;
-                btnRetractT0.Enabled = false;
-                btnRetractT1.Enabled = false;
-                btnRetractT2.Enabled = false;
-                btnRetractT3.Enabled = false;
-                T3LoadRetractClicked = true;
-                retractT3 = false;
-                loadT3 = true;
-                //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
-                host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
-                lblRetractLoadFilT3.Visible = true;
-                lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
-                text_T3_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
-                T3_On = true;
-                changeTempButtonsToOn(btnT3_OnOff);
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = false;
-                host.Connection.injectManualCommand("T3");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E700.0 F1800");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G1 E200.0 F120");
-                host.Connection.injectManualCommand("G92 E0");
+                if (txtBoxTemp.Text != string.Empty)
+                {
+                    timerRetractCount = 0;
+                    tempValue = txtBoxTemp.Text;
+                    btnLoadT0.Enabled = false;
+                    btnLoadT1.Enabled = false;
+                    btnLoadT2.Enabled = false;
+                    btnLoadT3.Enabled = false;
+                    btnRetractT0.Enabled = false;
+                    btnRetractT1.Enabled = false;
+                    btnRetractT2.Enabled = false;
+                    btnRetractT3.Enabled = false;
+                    T3LoadRetractClicked = true;
+                    retractT3 = false;
+                    loadT3 = true;
+                    //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
+                    host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                    lblRetractLoadFilT3.Visible = true;
+                    lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
+                    text_T3_ziel.Text = tempValue;
+                    host.Connection.injectManualCommand("G222");
+                    T3_On = true;
+                    changeTempButtonsToOn(btnT3_OnOff);
+                    btnT0.Enabled = true;
+                    btnT1.Enabled = true;
+                    btnT2.Enabled = true;
+                    btnT3.Enabled = false;
+                    host.Connection.injectManualCommand("T3");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E200.0 F120");
+                    host.Connection.injectManualCommand("G92 E0");
 
-                timerRetractLoad.Start();
+                    timerRetractLoad.Start();
+                }
             }
         }
 
@@ -5396,10 +5020,28 @@ namespace MultecPlugin
             }
 
         }
+
+        private void btnT0_OnOff_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void btnT0_OnOff_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
+        }
+
+     
     }
 
+    public class AnalyseLog
+    {
 
+    }
+    public class TemperatureControl
+    {
 
+    }
 }
 
 
