@@ -19,7 +19,7 @@ using System.Timers;
 using System.Threading;
 using System.Globalization;
 using System.Runtime.InteropServices;
-
+using System.Drawing.Drawing2D;
 
 namespace MultecPlugin
 {
@@ -554,7 +554,7 @@ namespace MultecPlugin
             lblRetractLoadFilT2.Visible = false;
             lblRetractLoadFilT3.Visible = false;
             Array.Clear(gCode, 0, gCode.Length);
-
+            ChckboxMoveInitialised.Checked = true;
             lblXPosition.Text = "NICHT INITIALISIERT";
             lblYPosition.Text = "NICHT INITIALISIERT";
             lblZPosition.Text = "NICHT INITIALISIERT";
@@ -1038,8 +1038,8 @@ namespace MultecPlugin
             }
             if (response.IndexOf("Move Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                radBtnMove.Checked = true;
-                isInitialised = false;
+                ChckboxMoveInitialised.Checked = true;
+                isInitialised = true;
                 lblBanner.Text = "Connected";
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
@@ -1051,15 +1051,15 @@ namespace MultecPlugin
             }
             if (response.IndexOf("Move Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                radBtnMove.Checked = false;
+                ChckboxMoveInitialised.Checked = false;
             }
             if (response.IndexOf("Drucker Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                radioBtnDrucker.Checked = true;
+                ChckboxDruckerInitialised.Checked = true;
             }
             if (response.IndexOf("Drucker Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                radioBtnDrucker.Checked = false;
+                ChckboxDruckerInitialised.Checked = false;
             }
             if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1069,6 +1069,7 @@ namespace MultecPlugin
                 btnT1.Enabled = false;
                 btnT2.Enabled = false;
                 btnT3.Enabled = false;
+                ChckboxMoveInitialised.Checked = false;
                 //wasNozSelected = false;
                 //btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
@@ -2906,6 +2907,7 @@ namespace MultecPlugin
                     btnT3.Enabled = false;
                     lblBanner.Text = "Connected- Move Nicht Initialisiert";
                     isInitialised = false;
+                    ChckboxMoveInitialised.Checked = false;
                     selected_nozzle = string.Empty;
                 }
             }
@@ -5033,7 +5035,7 @@ namespace MultecPlugin
 
      
     }
-
+   
     public class AnalyseLog
     {
 

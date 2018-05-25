@@ -35,8 +35,8 @@ namespace MultecPlugin
             System.Windows.Forms.TabPage tabpage2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultecTouchpanel));
             this.druckPermissives = new System.Windows.Forms.GroupBox();
-            this.radioBtnDrucker = new System.Windows.Forms.RadioButton();
-            this.radBtnMove = new System.Windows.Forms.RadioButton();
+            this.ChckboxDruckerInitialised = new System.Windows.Forms.CheckBox();
+            this.ChckboxMoveInitialised = new System.Windows.Forms.CheckBox();
             this.lblKalRotOffsetFilament = new System.Windows.Forms.Label();
             this.lblWhen4Move_1 = new System.Windows.Forms.Label();
             this.lblRotOffFillVal = new System.Windows.Forms.Label();
@@ -404,8 +404,8 @@ namespace MultecPlugin
             // 
             // druckPermissives
             // 
-            this.druckPermissives.Controls.Add(this.radioBtnDrucker);
-            this.druckPermissives.Controls.Add(this.radBtnMove);
+            this.druckPermissives.Controls.Add(this.ChckboxDruckerInitialised);
+            this.druckPermissives.Controls.Add(this.ChckboxMoveInitialised);
             this.druckPermissives.Location = new System.Drawing.Point(5, 237);
             this.druckPermissives.Name = "druckPermissives";
             this.druckPermissives.Size = new System.Drawing.Size(133, 94);
@@ -413,30 +413,31 @@ namespace MultecPlugin
             this.druckPermissives.TabStop = false;
             this.druckPermissives.Text = "Druckerstatus";
             // 
-            // radioBtnDrucker
+            // ChckboxDruckerInitialised
             // 
-            this.radioBtnDrucker.AutoSize = true;
-            this.radioBtnDrucker.Enabled = false;
-            this.radioBtnDrucker.Location = new System.Drawing.Point(7, 58);
-            this.radioBtnDrucker.Name = "radioBtnDrucker";
-            this.radioBtnDrucker.Size = new System.Drawing.Size(111, 17);
-            this.radioBtnDrucker.TabIndex = 1;
-            this.radioBtnDrucker.TabStop = true;
-            this.radioBtnDrucker.Text = "Drucker Initialisiert";
-            this.radioBtnDrucker.UseVisualStyleBackColor = true;
-            this.radioBtnDrucker.Visible = false;
+            this.ChckboxDruckerInitialised.AutoCheck = false;
+            this.ChckboxDruckerInitialised.AutoSize = true;
+            this.ChckboxDruckerInitialised.ForeColor = System.Drawing.Color.Gray;
+            this.ChckboxDruckerInitialised.Location = new System.Drawing.Point(7, 61);
+            this.ChckboxDruckerInitialised.Name = "ChckboxDruckerInitialised";
+            this.ChckboxDruckerInitialised.Size = new System.Drawing.Size(112, 17);
+            this.ChckboxDruckerInitialised.TabIndex = 1;
+            this.ChckboxDruckerInitialised.Text = "Drucker Initializiert";
+            this.ChckboxDruckerInitialised.UseVisualStyleBackColor = true;
             // 
-            // radBtnMove
+            // ChckboxMoveInitialised
             // 
-            this.radBtnMove.AutoSize = true;
-            this.radBtnMove.Enabled = false;
-            this.radBtnMove.Location = new System.Drawing.Point(7, 29);
-            this.radBtnMove.Name = "radBtnMove";
-            this.radBtnMove.Size = new System.Drawing.Size(100, 17);
-            this.radBtnMove.TabIndex = 0;
-            this.radBtnMove.TabStop = true;
-            this.radBtnMove.Text = "Move Initialisiert";
-            this.radBtnMove.UseVisualStyleBackColor = true;
+            this.ChckboxMoveInitialised.AutoCheck = false;
+            this.ChckboxMoveInitialised.AutoSize = true;
+            this.ChckboxMoveInitialised.Checked = true;
+            this.ChckboxMoveInitialised.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChckboxMoveInitialised.ForeColor = System.Drawing.Color.Gray;
+            this.ChckboxMoveInitialised.Location = new System.Drawing.Point(7, 30);
+            this.ChckboxMoveInitialised.Name = "ChckboxMoveInitialised";
+            this.ChckboxMoveInitialised.Size = new System.Drawing.Size(101, 17);
+            this.ChckboxMoveInitialised.TabIndex = 0;
+            this.ChckboxMoveInitialised.Text = "Move Initializiert";
+            this.ChckboxMoveInitialised.UseVisualStyleBackColor = true;
             // 
             // lblKalRotOffsetFilament
             // 
@@ -1125,6 +1126,7 @@ namespace MultecPlugin
             // chckBoxDruckerende
             // 
             this.chckBoxDruckerende.AutoSize = true;
+            this.chckBoxDruckerende.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chckBoxDruckerende.Location = new System.Drawing.Point(104, 73);
             this.chckBoxDruckerende.Name = "chckBoxDruckerende";
             this.chckBoxDruckerende.Size = new System.Drawing.Size(222, 17);
@@ -2928,7 +2930,6 @@ namespace MultecPlugin
             this.btnHomeMove.TabIndex = 55;
             this.btnHomeMove.TabStop = false;
             this.btnHomeMove.EnabledChanged += new System.EventHandler(this.btnHomeMove_EnabledChanged);
-       
             this.btnHomeMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHomeMove_MouseClick);
             // 
             // btnExtrude
@@ -3878,8 +3879,6 @@ namespace MultecPlugin
         private Label lblXPosition;
         private Label lblX;
         private GroupBox druckPermissives;
-        private RadioButton radBtnMove;
-        private RadioButton radioBtnDrucker;
         private MyCustomButton.MyCustomButton btnNozzlePlus;
         private MyCustomButton.MyCustomButton btnNozzleMinus;
         private MyCustomButton.MyCustomButton btnBedMinus;
@@ -3960,5 +3959,7 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnRetractT1;
         private MyCustomButton.MyCustomButton btnRetractT2;
         private MyCustomButton.MyCustomButton btnRetractT3;
+        private CheckBox ChckboxDruckerInitialised;
+        private CheckBox ChckboxMoveInitialised;
     }
 }
