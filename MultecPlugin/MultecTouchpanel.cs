@@ -117,6 +117,11 @@ namespace MultecPlugin
         private int setTempT3 = 0;
         private int setTempBed = 0;
         private int extruderNumber;
+
+        private int parkPositionMultiplyer = 0;
+        private double parkPositionOffset = 0;
+        private string parkPositionMove;
+       
         #endregion
 
 
@@ -556,6 +561,10 @@ namespace MultecPlugin
             relativOffset = 0;
             zOffsetMultiplyer = 0;
             rotOffsetMultiplyer = 0;
+            parkPositionOffset = 0;
+            parkPositionMove = string.Empty;
+            parkPositionMultiplyer = 0;
+           
             newOffset = 0;
             isInitialised = true;
             setTempT0 = 0;
@@ -1123,18 +1132,7 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in M51 T: " + ex);
                 }
             }
-            if (response.IndexOf("M701 P", StringComparison.CurrentCultureIgnoreCase) != -1)
-            {
-                try
-                {
-                    startindex = response.IndexOf("P", StringComparison.CurrentCultureIgnoreCase);
-                    LblMoveCoverOffset.Text = response.Substring(startindex + 1);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in X_Position DV: " + ex);
-                }
-            }
+            
 
             if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1658,6 +1656,22 @@ namespace MultecPlugin
                         lblRotOffsetFilament.Text = rotationOffsetFilament;
                         lblRotOffFillVal.Text = rotationOffsetFilament;
 
+                    }
+                    else if (response.IndexOf("P", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        try
+                        {
+                            startindex = response.IndexOf("P", StringComparison.CurrentCultureIgnoreCase);
+                            
+                            //\\ Change
+                            parkPositionMove = response.Substring(startindex + 1);
+                            LblMoveCoverOffset.Text = parkPositionMove;
+                            lblParkPositionVal.Text = parkPositionMove;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("There was an error in X_Position DV: " + ex);
+                        }
                     }
 
 
@@ -2225,8 +2239,13 @@ namespace MultecPlugin
             btnEplus.Visible = val;
             btnRotOffsetSend.Visible = val;
             LblMoveCoverOffset.Visible = val;
-
-
+            //\\ Change this
+            lblKalParkPosition.Visible = val;
+            lblParkPositionVal.Visible = val;
+            lblWhen4Move_2.Visible = val;
+            btnPminus.Visible = val;
+            btnPplus.Visible = val;
+            btnParkPositionSend.Visible = val;
 
         }
         public void enablDisablWhenDoorOpen(bool val)
@@ -2305,6 +2324,10 @@ namespace MultecPlugin
             btnEplus.Enabled = val;
             btnRotOffsetSend.Enabled = val;
 
+            //\\ ///Change the following
+            btnPminus.Enabled = val;
+            btnPplus.Enabled = val;
+            btnParkPositionSend.Enabled = val;
         }
         private void enableDisableControls(bool val, Control container)
         {
@@ -5280,12 +5303,64 @@ namespace MultecPlugin
 
         private void btnFilAktualise_EnabledChanged_1(object sender, EventArgs e)
         {
-            if (!btnInfoAktualise.Enabled)
-                btnInfoAktualise.Image = Properties.Resources.Aktualizieren_g;
+            if (!btnFilAktualise.Enabled)
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
             else
-                btnInfoAktualise.Image = Properties.Resources.Aktualizieren;
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+
+        private void btnPplus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnPplus, e.X, e.Y))
+            {
+                parkPositionMultiplyer = parkPositionMultiplyer + 1;
+                lblParkPositionVal.Text.Replace(",", ".");
+                newOffset = Convert.ToDouble(lblParkPositionVal.Text, CultureInfo.InvariantCulture) + 0.1;
+                if (newOffset <= 6)
+                {
+                    lblParkPositionVal.Text = newOffset.ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    MessageBox.Show("Der Parkposition Move kann nicht größer als 6 mm sein.", "WARNUNG!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void btnPminus_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnPminus, e.X, e.Y))
+            {
+                parkPositionMultiplyer = parkPositionMultiplyer - 1;
+                lblParkPositionVal.Text.Replace(",", ".");
+                newOffset = Convert.ToDouble(lblParkPositionVal.Text, CultureInfo.InvariantCulture) - 0.1;
+                if (newOffset >= 2)
+                {
+                    lblParkPositionVal.Text = newOffset.ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    MessageBox.Show("Der Parkposition Move kann nicht kleiner als 2 mm sein.", "WARNUNG!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void btnParkPositionSend_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnParkPositionSend, e.X, e.Y))
+            {
+                parkPositionOffset = parkPositionMultiplyer * 0.1;
+
+
+                host.Connection.injectManualCommand("M701 " + "P" + parkPositionOffset.ToString(CultureInfo.InvariantCulture));
+                host.Connection.injectManualCommand("G222");
+                parkPositionMultiplyer = 0;
+            }
         }
     }
+
 
     public class AnalyseLog
     {

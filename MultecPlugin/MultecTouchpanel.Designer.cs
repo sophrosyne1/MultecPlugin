@@ -34,6 +34,12 @@ namespace MultecPlugin
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabpage2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultecTouchpanel));
+            this.lblKalParkPosition = new System.Windows.Forms.Label();
+            this.lblWhen4Move_2 = new System.Windows.Forms.Label();
+            this.lblParkPositionVal = new System.Windows.Forms.Label();
+            this.btnPminus = new MyCustomButton.MyCustomButton();
+            this.btnPplus = new MyCustomButton.MyCustomButton();
+            this.btnParkPositionSend = new MyCustomButton.MyCustomButton();
             this.druckPermissives = new System.Windows.Forms.GroupBox();
             this.ChckboxDruckerInitialised = new System.Windows.Forms.CheckBox();
             this.ChckboxMoveInitialised = new System.Windows.Forms.CheckBox();
@@ -275,6 +281,9 @@ namespace MultecPlugin
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             tabpage2 = new System.Windows.Forms.TabPage();
             tabpage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPminus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPplus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkPositionSend)).BeginInit();
             this.druckPermissives.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnM218T3)).BeginInit();
@@ -362,6 +371,12 @@ namespace MultecPlugin
             // tabpage2
             // 
             tabpage2.BackColor = System.Drawing.Color.White;
+            tabpage2.Controls.Add(this.lblKalParkPosition);
+            tabpage2.Controls.Add(this.lblWhen4Move_2);
+            tabpage2.Controls.Add(this.lblParkPositionVal);
+            tabpage2.Controls.Add(this.btnPminus);
+            tabpage2.Controls.Add(this.btnPplus);
+            tabpage2.Controls.Add(this.btnParkPositionSend);
             tabpage2.Controls.Add(this.druckPermissives);
             tabpage2.Controls.Add(this.lblKalRotOffsetFilament);
             tabpage2.Controls.Add(this.lblWhen4Move_1);
@@ -401,6 +416,80 @@ namespace MultecPlugin
             tabpage2.Size = new System.Drawing.Size(599, 535);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
+            // 
+            // lblKalParkPosition
+            // 
+            this.lblKalParkPosition.AutoSize = true;
+            this.lblKalParkPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblKalParkPosition.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblKalParkPosition.Location = new System.Drawing.Point(294, 309);
+            this.lblKalParkPosition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKalParkPosition.Name = "lblKalParkPosition";
+            this.lblKalParkPosition.Size = new System.Drawing.Size(97, 15);
+            this.lblKalParkPosition.TabIndex = 92;
+            this.lblKalParkPosition.Text = "Parkposition Move";
+            // 
+            // lblWhen4Move_2
+            // 
+            this.lblWhen4Move_2.AutoSize = true;
+            this.lblWhen4Move_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhen4Move_2.Location = new System.Drawing.Point(343, 344);
+            this.lblWhen4Move_2.Name = "lblWhen4Move_2";
+            this.lblWhen4Move_2.Size = new System.Drawing.Size(34, 18);
+            this.lblWhen4Move_2.TabIndex = 91;
+            this.lblWhen4Move_2.Text = "mm";
+            // 
+            // lblParkPositionVal
+            // 
+            this.lblParkPositionVal.AutoSize = true;
+            this.lblParkPositionVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParkPositionVal.Location = new System.Drawing.Point(343, 329);
+            this.lblParkPositionVal.Name = "lblParkPositionVal";
+            this.lblParkPositionVal.Size = new System.Drawing.Size(32, 16);
+            this.lblParkPositionVal.TabIndex = 90;
+            this.lblParkPositionVal.Text = "0.00";
+            // 
+            // btnPminus
+            // 
+            this.btnPminus.BackColor = System.Drawing.Color.Transparent;
+            this.btnPminus.Image = global::MultecPlugin.Properties.Resources.minus;
+            this.btnPminus.ImageClicked = global::MultecPlugin.Properties.Resources.minus_p;
+            this.btnPminus.ImangeNormal = global::MultecPlugin.Properties.Resources.minus;
+            this.btnPminus.Location = new System.Drawing.Point(287, 327);
+            this.btnPminus.Name = "btnPminus";
+            this.btnPminus.Size = new System.Drawing.Size(36, 33);
+            this.btnPminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnPminus.TabIndex = 95;
+            this.btnPminus.TabStop = false;
+            this.btnPminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPminus_MouseClick);
+            // 
+            // btnPplus
+            // 
+            this.btnPplus.BackColor = System.Drawing.Color.Transparent;
+            this.btnPplus.Image = global::MultecPlugin.Properties.Resources.plus;
+            this.btnPplus.ImageClicked = global::MultecPlugin.Properties.Resources.plus_p;
+            this.btnPplus.ImangeNormal = global::MultecPlugin.Properties.Resources.plus;
+            this.btnPplus.Location = new System.Drawing.Point(397, 327);
+            this.btnPplus.Name = "btnPplus";
+            this.btnPplus.Size = new System.Drawing.Size(36, 33);
+            this.btnPplus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnPplus.TabIndex = 94;
+            this.btnPplus.TabStop = false;
+            this.btnPplus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPplus_MouseClick);
+            // 
+            // btnParkPositionSend
+            // 
+            this.btnParkPositionSend.BackColor = System.Drawing.Color.Transparent;
+            this.btnParkPositionSend.Image = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnParkPositionSend.ImageClicked = global::MultecPlugin.Properties.Resources.Schicken_p;
+            this.btnParkPositionSend.ImangeNormal = global::MultecPlugin.Properties.Resources.Schicken;
+            this.btnParkPositionSend.Location = new System.Drawing.Point(439, 329);
+            this.btnParkPositionSend.Name = "btnParkPositionSend";
+            this.btnParkPositionSend.Size = new System.Drawing.Size(89, 31);
+            this.btnParkPositionSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnParkPositionSend.TabIndex = 93;
+            this.btnParkPositionSend.TabStop = false;
+            this.btnParkPositionSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkPositionSend_MouseClick);
             // 
             // druckPermissives
             // 
@@ -3623,6 +3712,9 @@ namespace MultecPlugin
             this.Size = new System.Drawing.Size(647, 580);
             tabpage2.ResumeLayout(false);
             tabpage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPminus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPplus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnParkPositionSend)).EndInit();
             this.druckPermissives.ResumeLayout(false);
             this.druckPermissives.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -3962,5 +4054,11 @@ namespace MultecPlugin
         private MyCustomButton.MyCustomButton btnRetractT3;
         private CheckBox ChckboxDruckerInitialised;
         private CheckBox ChckboxMoveInitialised;
+        private Label lblKalParkPosition;
+        private Label lblWhen4Move_2;
+        private Label lblParkPositionVal;
+        private MyCustomButton.MyCustomButton btnPminus;
+        private MyCustomButton.MyCustomButton btnPplus;
+        private MyCustomButton.MyCustomButton btnParkPositionSend;
     }
 }
