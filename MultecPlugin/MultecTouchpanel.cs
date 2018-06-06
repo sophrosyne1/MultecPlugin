@@ -1180,6 +1180,11 @@ namespace MultecPlugin
                 btnT1.Enabled = false;
                 btnT2.Enabled = false;
                 btnT3.Enabled = false;
+
+                btnT0.Image = Properties.Resources.T0_g;
+                btnT1.Image = Properties.Resources.T1_g;
+                btnT2.Image = Properties.Resources.T2_g;
+                btnT3.Image = Properties.Resources.T3_g;
                 ChckboxMoveInitialised.Checked = false;
                 //wasNozSelected = false;
                 //btnMove.Enabled = true;
@@ -5359,6 +5364,32 @@ namespace MultecPlugin
                 parkPositionMultiplyer = 0;
             }
         }
+
+        private void btnParkPositionSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkPositionSend.Enabled)
+                btnParkPositionSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnParkPositionSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnPplus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnPplus.Enabled)
+                btnPplus.Image = Properties.Resources.plus_g;
+            else
+                btnPplus.Image = Properties.Resources.plus;
+        }
+
+        private void btnPminus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnPminus.Enabled)
+                btnPminus.Image = Properties.Resources.minus_g;
+            else
+                btnPminus.Image = Properties.Resources.minus;
+        }
+
+        
     }
 
 

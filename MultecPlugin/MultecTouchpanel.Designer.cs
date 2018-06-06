@@ -461,6 +461,7 @@ namespace MultecPlugin
             this.btnPminus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnPminus.TabIndex = 95;
             this.btnPminus.TabStop = false;
+            this.btnPminus.EnabledChanged += new System.EventHandler(this.btnPminus_EnabledChanged);
             this.btnPminus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPminus_MouseClick);
             // 
             // btnPplus
@@ -475,6 +476,7 @@ namespace MultecPlugin
             this.btnPplus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnPplus.TabIndex = 94;
             this.btnPplus.TabStop = false;
+            this.btnPplus.EnabledChanged += new System.EventHandler(this.btnPplus_EnabledChanged);
             this.btnPplus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnPplus_MouseClick);
             // 
             // btnParkPositionSend
@@ -489,6 +491,7 @@ namespace MultecPlugin
             this.btnParkPositionSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnParkPositionSend.TabIndex = 93;
             this.btnParkPositionSend.TabStop = false;
+            this.btnParkPositionSend.EnabledChanged += new System.EventHandler(this.btnParkPositionSend_EnabledChanged);
             this.btnParkPositionSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParkPositionSend_MouseClick);
             // 
             // druckPermissives
