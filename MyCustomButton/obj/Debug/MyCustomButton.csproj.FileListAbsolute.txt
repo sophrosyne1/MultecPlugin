@@ -1,10 +1,3 @@
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.dll
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.pdb
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.MyCustomButton.resources
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csproj.GenerateResource.cache
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csproj.CoreCompileInputs.cache
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.dll
-C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.MyCustomButton.resources
@@ -13,4 +6,11 @@ C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustom
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.pdb
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csprojResolveAssemblyReference.cache
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.dll
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\bin\Debug\MyCustomButton.pdb
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.MyCustomButton.resources
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csproj.GenerateResource.cache
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csproj.CoreCompileInputs.cache
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.dll
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.pdb
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MyCustomButton\obj\Debug\MyCustomButton.csprojAssemblyReference.cache

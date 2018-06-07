@@ -121,7 +121,7 @@ namespace MultecPlugin
         private int parkPositionMultiplyer = 0;
         private double parkPositionOffset = 0;
         private string parkPositionMove;
-       
+
         #endregion
 
 
@@ -135,7 +135,7 @@ namespace MultecPlugin
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
 
-            
+
 
 
         }
@@ -544,6 +544,25 @@ namespace MultecPlugin
         }
         public void PrinterConnectionChange(string msg)
         {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             T0_On = false;
             T1_On = false;
             T2_On = false;
@@ -564,7 +583,7 @@ namespace MultecPlugin
             parkPositionOffset = 0;
             parkPositionMove = string.Empty;
             parkPositionMultiplyer = 0;
-           
+
             newOffset = 0;
             isInitialised = true;
             setTempT0 = 0;
@@ -627,6 +646,7 @@ namespace MultecPlugin
             btnLoadT3.Enabled = !loadT3;
             text_M218_X.Text = string.Empty;
             text_M218_Y.Text = string.Empty;
+            printEnableCalled = false;
             fineAdjustment = false;
             if (!is4Move)
             {
@@ -640,7 +660,7 @@ namespace MultecPlugin
 
             }
 
-        
+
 
             chckBoxDruckerende.Checked = false;
             if (msg.IndexOf("Disconnected", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1132,7 +1152,7 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in M51 T: " + ex);
                 }
             }
-            
+
 
             if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1244,7 +1264,7 @@ namespace MultecPlugin
             {
                 try
                 {
-                   
+
                     if (response.IndexOf("0", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         selected_nozzle = "T0";
@@ -1252,7 +1272,7 @@ namespace MultecPlugin
                         btnT1.Enabled = true;
                         btnT2.Enabled = true;
                         btnT3.Enabled = true;
-                       
+
 
                         //btnMove.Enabled = true;
                         try
@@ -1667,7 +1687,7 @@ namespace MultecPlugin
                         try
                         {
                             startindex = response.IndexOf("P", StringComparison.CurrentCultureIgnoreCase);
-                            
+
                             //\\ Change
                             parkPositionMove = response.Substring(startindex + 1);
                             LblMoveCoverOffset.Text = parkPositionMove;
@@ -3238,7 +3258,7 @@ namespace MultecPlugin
             }
         }
 
-       
+
 
         private void btnT1_OnOff_Click(object sender, EventArgs e)
         {
@@ -3352,12 +3372,12 @@ namespace MultecPlugin
             }
         }
 
-    
 
 
-    
 
-  
+
+
+
         private void btnStep1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnStep1, e.X, e.Y))
@@ -4701,7 +4721,7 @@ namespace MultecPlugin
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T1");
-                                
+
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -5389,7 +5409,7 @@ namespace MultecPlugin
                 btnPminus.Image = Properties.Resources.minus;
         }
 
-        
+
     }
 
 
