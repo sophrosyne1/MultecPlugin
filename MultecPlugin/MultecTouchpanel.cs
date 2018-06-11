@@ -612,6 +612,7 @@ namespace MultecPlugin
             lblRetractLoadFilT2.Visible = false;
             lblRetractLoadFilT3.Visible = false;
             Array.Clear(gCode, 0, gCode.Length);
+            ChckboxDruckerInitialised.Checked = false;
             ChckboxMoveInitialised.Checked = true;
             lblXPosition.Text = "NICHT INITIALISIERT";
             lblYPosition.Text = "NICHT INITIALISIERT";
@@ -4885,7 +4886,7 @@ namespace MultecPlugin
                 T0_On = true;
 
                 host.Connection.injectManualCommand("T0");
-
+                host.Connection.injectManualCommand("G1 X645 Y10 F8000");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -5110,6 +5111,7 @@ namespace MultecPlugin
                     T0_On = true;
 
                     host.Connection.injectManualCommand("T0");
+                    host.Connection.injectManualCommand("G1 X645 Y10 F8000");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
