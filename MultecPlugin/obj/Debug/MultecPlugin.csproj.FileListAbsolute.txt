@@ -33,7 +33,6 @@ C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\OpenTK.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\DotNetZip.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\websocket-sharp.dll
 C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MyCustomButton.pdb
-C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\Build\Newtonsoft.Json.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MultecPlugin.dll.config
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MultecPlugin.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\Build\MultecPlugin.pdb
@@ -55,3 +54,4 @@ C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Mul
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csproj.CopyComplete
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.pdb
+C:\Users\Patrick\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.DoorOpenDialogBox.resources

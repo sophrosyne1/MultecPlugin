@@ -4862,6 +4862,15 @@ namespace MultecPlugin
                 T0LoadRetractClicked = true;
                 retractT0 = true;
                 loadT0 = false;
+                if (ChckboxDruckerInitialised.Checked == true)
+                {
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("G28");
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
                 //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 lblRetractLoadFilT0.Visible = true;
@@ -4909,6 +4918,15 @@ namespace MultecPlugin
                 T1LoadRetractClicked = true;
                 retractT1 = true;
                 loadT1 = false;
+                if (ChckboxDruckerInitialised.Checked == true)
+                {
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("G28");
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
                 //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 lblRetractLoadFilT1.Visible = true;
@@ -4922,6 +4940,7 @@ namespace MultecPlugin
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T1");
+                host.Connection.injectManualCommand("G0 X665 Y10 F8000");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4953,6 +4972,15 @@ namespace MultecPlugin
                 T2LoadRetractClicked = true;
                 retractT2 = true;
                 loadT2 = false;
+                if (ChckboxDruckerInitialised.Checked == true)
+                {
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("G28");
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
                 //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 lblRetractLoadFilT2.Visible = true;
@@ -4966,6 +4994,7 @@ namespace MultecPlugin
                 btnT2.Enabled = false;
                 btnT3.Enabled = true;
                 host.Connection.injectManualCommand("T2");
+                host.Connection.injectManualCommand("G0 X665 Y20 F8000");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4997,6 +5026,15 @@ namespace MultecPlugin
                 T3LoadRetractClicked = true;
                 retractT3 = true;
                 loadT3 = false;
+                if (ChckboxDruckerInitialised.Checked == true)
+                {
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
+                else
+                {
+                    host.Connection.injectManualCommand("G28");
+                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                }
                 //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                 lblRetractLoadFilT3.Visible = true;
@@ -5010,6 +5048,7 @@ namespace MultecPlugin
                 btnT2.Enabled = true;
                 btnT3.Enabled = false;
                 host.Connection.injectManualCommand("T3");
+                host.Connection.injectManualCommand("G0 X645 Y20 F8000");
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -5048,6 +5087,15 @@ namespace MultecPlugin
                     T0LoadRetractClicked = true;
                     retractT0 = false;
                     loadT0 = true;
+                    if (ChckboxDruckerInitialised.Checked == true)
+                    {
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
+                    else
+                    {
+                        host.Connection.injectManualCommand("G28");
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
                     //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                     lblRetractLoadFilT0.Visible = true;
@@ -5098,6 +5146,15 @@ namespace MultecPlugin
                     T1LoadRetractClicked = true;
                     retractT1 = false;
                     loadT1 = true;
+                    if (ChckboxDruckerInitialised.Checked == true)
+                    {
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
+                    else
+                    {
+                        host.Connection.injectManualCommand("G28");
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
                     //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                     lblRetractLoadFilT1.Visible = true;
@@ -5111,6 +5168,7 @@ namespace MultecPlugin
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
                     host.Connection.injectManualCommand("T1");
+                    host.Connection.injectManualCommand("G0 X665 Y10 F8000");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -5147,6 +5205,15 @@ namespace MultecPlugin
                     T2LoadRetractClicked = true;
                     retractT2 = false;
                     loadT2 = true;
+                    if (ChckboxDruckerInitialised.Checked == true)
+                    {
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
+                    else
+                    {
+                        host.Connection.injectManualCommand("G28");
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
                     //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                     lblRetractLoadFilT2.Visible = true;
@@ -5160,6 +5227,7 @@ namespace MultecPlugin
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
                     host.Connection.injectManualCommand("T2");
+                    host.Connection.injectManualCommand("G0 X665 Y20 F8000");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -5196,6 +5264,15 @@ namespace MultecPlugin
                     T3LoadRetractClicked = true;
                     retractT3 = false;
                     loadT3 = true;
+                    if (ChckboxDruckerInitialised.Checked == true)
+                    {
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
+                    else
+                    {
+                        host.Connection.injectManualCommand("G28");
+                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    }
                     //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                     lblRetractLoadFilT3.Visible = true;
@@ -5209,6 +5286,7 @@ namespace MultecPlugin
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
                     host.Connection.injectManualCommand("T3");
+                    host.Connection.injectManualCommand("G0 X645 Y20 F8000");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
