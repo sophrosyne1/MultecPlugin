@@ -545,24 +545,6 @@ namespace MultecPlugin
         public void PrinterConnectionChange(string msg)
         {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             T0_On = false;
             T1_On = false;
             T2_On = false;
@@ -613,7 +595,8 @@ namespace MultecPlugin
             lblRetractLoadFilT3.Visible = false;
             Array.Clear(gCode, 0, gCode.Length);
             ChckboxDruckerInitialised.Checked = false;
-            ChckboxMoveInitialised.Checked = true;
+            ChckboxMoveInitialised.Checked = true;    // this is set to true because on connection, if we get Call G222, the move is set to not 
+                                                     //initialised, or esle it is always shown as initialised. For connection through server
             lblXPosition.Text = "NICHT INITIALISIERT";
             lblYPosition.Text = "NICHT INITIALISIERT";
             lblZPosition.Text = "NICHT INITIALISIERT";
@@ -1170,20 +1153,14 @@ namespace MultecPlugin
             }
             if (response.IndexOf("Move Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                ChckboxMoveInitialised.Checked = true;
-                isInitialised = true;
-                lblBanner.Text = "Connected";
-                btnT0.Enabled = true;
-                btnT1.Enabled = true;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
+                IsMoveInitialised(true);
                 //wasNozSelected = false;
                 //btnMove.Enabled = true;
 
             }
             if (response.IndexOf("Move Nicht Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                ChckboxMoveInitialised.Checked = false;
+                IsMoveInitialised(false);
             }
             if (response.IndexOf("Drucker Initializiert", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1195,21 +1172,7 @@ namespace MultecPlugin
             }
             if (response.IndexOf("Call G222", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                isInitialised = false;
-                lblBanner.Text = "Connected- Move Nicht Initialisiert";
-                btnT0.Enabled = false;
-                btnT1.Enabled = false;
-                btnT2.Enabled = false;
-                btnT3.Enabled = false;
-
-                btnT0.Image = Properties.Resources.T0_g;
-                btnT1.Image = Properties.Resources.T1_g;
-                btnT2.Image = Properties.Resources.T2_g;
-                btnT3.Image = Properties.Resources.T3_g;
-                ChckboxMoveInitialised.Checked = false;
-                //wasNozSelected = false;
-                //btnMove.Enabled = true;
-                selected_nozzle = string.Empty;
+                IsMoveInitialised(false);
 
             }
 
@@ -2312,7 +2275,14 @@ namespace MultecPlugin
         }
         private void enablDisablWhenPrinting(bool val)
         {
-
+            btnLoadT0.Enabled = val;
+            btnLoadT1.Enabled = val;
+            btnLoadT2.Enabled = val;
+            btnLoadT3.Enabled = val;
+            btnRetractT0.Enabled = val;
+            btnRetractT1.Enabled = val;
+            btnRetractT2.Enabled = val;
+            btnRetractT3.Enabled = val;
             btnParkMove.Enabled = val;
             btnHomeMove.Enabled = val;
             btnMotorOff.Enabled = val;
@@ -2670,7 +2640,7 @@ namespace MultecPlugin
                 {
                     host.Connection.injectManualCommand("G222");
                     lblBanner.Text = "Connected";
-                    isInitialised = true;
+                   
                 }
             }
         }
@@ -3189,18 +3159,41 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G224");
-                    btnT0.Enabled = false;
-                    btnT1.Enabled = false;
-                    btnT2.Enabled = false;
-                    btnT3.Enabled = false;
-                    lblBanner.Text = "Connected- Move Nicht Initialisiert";
-                    isInitialised = false;
-                    ChckboxMoveInitialised.Checked = false;
-                    selected_nozzle = string.Empty;
                 }
             }
         }
+        public void IsMoveInitialised(bool status)
+        {
+            isInitialised = status;
+            if (!isInitialised)
+            {
+                
+                lblBanner.Text = "Connected- Move Nicht Initialisiert";
+                btnT0.Enabled = false;
+                btnT1.Enabled = false;
+                btnT2.Enabled = false;
+                btnT3.Enabled = false;
 
+                btnT0.Image = Properties.Resources.T0_g;
+                btnT1.Image = Properties.Resources.T1_g;
+                btnT2.Image = Properties.Resources.T2_g;
+                btnT3.Image = Properties.Resources.T3_g;
+                ChckboxMoveInitialised.Checked = false;
+                //wasNozSelected = false;
+                //btnMove.Enabled = true;
+                selected_nozzle = string.Empty;
+            }
+            else
+            {
+                ChckboxMoveInitialised.Checked = true;
+                isInitialised = true;
+                lblBanner.Text = "Connected";
+                btnT0.Enabled = true;
+                btnT1.Enabled = true;
+                btnT2.Enabled = true;
+                btnT3.Enabled = true;
+            }
+        }
         /* private void btnMove_MouseClick(object sender, MouseEventArgs e)
          {
              if (HitTest(btnMove, e.X, e.Y))
