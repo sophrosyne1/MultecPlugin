@@ -595,37 +595,7 @@
     <None Include="Resources\Warnung.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MinusV.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MinusV_g.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MinusV_p.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlusV.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlusV_g.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlusV_p.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MinusV1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MinusV_g1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\MinusV_p1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlusV1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlusV_g1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlusV_p1.png" />
@@ -698,6 +668,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\T3_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinusV_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinusV_g1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinusV_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinusV1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusV_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusV_g1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusV_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusV1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinusV.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

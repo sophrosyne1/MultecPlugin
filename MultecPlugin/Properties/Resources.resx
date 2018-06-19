@@ -163,9 +163,6 @@
   <data name="up_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\image002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MinusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="minus5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minus5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -249,9 +246,6 @@
   </data>
   <data name="T0_p_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T0_p_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlusV_p1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlusV_p1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -385,9 +379,6 @@
   <data name="HOME_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HOME_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MinusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Xplus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Xplus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -445,9 +436,6 @@
   <data name="MOVE_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MOVE_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MinusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Laden_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Laden_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -498,9 +486,6 @@
   </data>
   <data name="zplus_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zplus_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinusV_g1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinusV_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ZF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -597,5 +582,20 @@
   </data>
   <data name="T3_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\T3_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_g1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_g1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinusV_p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MinusV_p.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
