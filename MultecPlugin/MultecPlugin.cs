@@ -16,6 +16,8 @@ namespace MultecPlugin
         {
             host = _host;
         }
+
+    
         /// <summary>
         /// Called after everything is initalized to finish parts, that rely on other initializations.
         /// Here you must create and register new Controls and Windows.
