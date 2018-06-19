@@ -139,8 +139,7 @@ namespace MultecPlugin
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
-
-
+            
 
 
         }
@@ -540,7 +539,15 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
-            if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                string message = response.Remove(0, 4);
+                ErrorMessage errorMessage = new ErrorMessage(message);
+                
+
+                errorMessage.ShowDialog();
+            }
+           if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
                 {
@@ -1157,6 +1164,7 @@ namespace MultecPlugin
                 {
                     if (dialogBox != null)
                     {
+                        dialogBox.PreventClosing = false;
                         dialogBox.Close();
                     }
 
@@ -3940,7 +3948,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Temperatur muss zwischen 170 und 270 sein!!");
+                        MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
                         text_T0_ziel.Text = "205";
                     }
                 }
@@ -3978,7 +3986,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Temperatur muss zwischen 170 und 270 sein!!");
+                        MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
 
                         text_T1_ziel.Text = "205";
                     }
@@ -4018,7 +4026,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Temperatur muss zwischen 170 und 270 sein!!");
+                        MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
                         text_T2_ziel.Text = "205";
                     }
                 }
@@ -4057,7 +4065,7 @@ namespace MultecPlugin
                     }
                     else
                     {
-                        MessageBox.Show("Temperatur muss zwischen 170 und 270 sein!!");
+                        MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
                         text_T3_ziel.Text = "205";
                     }
                 }
@@ -4906,7 +4914,7 @@ namespace MultecPlugin
 
         public static bool IsValidNozzleTemp(string str)
         {
-            return int.TryParse(str, out int i) && i >= 170 && i <= 270;
+            return int.TryParse(str, out int i) && i >= 0 && i <= 270;
         }
 
         private void text_T0_ziel_KeyPress(object sender, KeyPressEventArgs e)
@@ -5033,22 +5041,30 @@ namespace MultecPlugin
         {
             if (HitTest(btnBedTempPlus, e.X, e.Y))
             {
-                if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_Bed_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                    if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
+                    }
+                    text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
+                    if (Bed_On)
+                    {
+                        host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
+                    }
                 }
                 else
                 {
-                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
-                }
-                if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
-                }
-                text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
-                if (Bed_On)
-                {
-                    host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_Bed_ziel.Text = "205";
                 }
             }
 
@@ -5058,23 +5074,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnBedTempMinus, e.X, e.Y))
             {
-                if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_Bed_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                    if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
+                    }
+                    text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+                    if (Bed_On)
+                    {
+                        host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
+                    }
                 }
                 else
                 {
-                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
-                }
-                if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
-                }
-                text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil_bed = text_Bed_ziel.Text.Trim();
-                if (Bed_On)
-                {
-                    host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_Bed_ziel.Text = "205";
                 }
             }
         }
@@ -5083,23 +5107,32 @@ namespace MultecPlugin
         {
             if (HitTest(btnT3TempPlus, e.X, e.Y))
             {
-                if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+
+                if (IsValidNozzleTemp(text_T3_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T3_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T3_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T3_ziel.Text.Trim();
+                    if (T3_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T3_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T3_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T3_ziel.Text.Trim();
-                if (T3_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T3_ziel.Text = "205";
                 }
             }
         }
@@ -5108,23 +5141,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnT3TempMinus, e.X, e.Y))
             {
-                if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T3_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T3_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T3_ziel.Text.Trim();
+                    if (T3_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T3_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T3_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T3_ziel.Text.Trim();
-                if (T3_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T3_ziel.Text = "205";
                 }
             }
         }
@@ -5133,23 +5174,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnT2TempPlus, e.X, e.Y))
             {
-                if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T2_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T2_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T2_ziel.Text.Trim();
+                    if (T2_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T2_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T2_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T2_ziel.Text.Trim();
-                if (T2_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T2_ziel.Text = "205";
                 }
             }
         }
@@ -5158,24 +5207,33 @@ namespace MultecPlugin
         {
             if (HitTest(btnT1TempPlus, e.X, e.Y))
             {
-                if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+
+                if (IsValidNozzleTemp(text_T1_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
-                }
-                else
-                {
+                    if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T1_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T1_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T1_ziel.Text.Trim();
+                    if (T1_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    }
                 }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T1_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T1_ziel.Text.Trim();
-                if (T1_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                text_T1_ziel.Text = "205";
             }
         }
 
@@ -5183,23 +5241,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnT0TempPlus, e.X, e.Y))
             {
-                if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T0_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T0_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T0_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T0_ziel.Text.Trim();
+                    if (T0_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T0_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T0_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T0_ziel.Text.Trim();
-                if (T0_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T0_ziel.Text = "205";
                 }
             }
         }
@@ -5208,23 +5274,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnT0TempMinus, e.X, e.Y))
             {
-                if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T0_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T0_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T0_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T0_ziel.Text.Trim();
+                    if (T0_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T0_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T0_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T0_ziel.Text.Trim();
-                if (T0_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T0_ziel.Text = "205";
                 }
             }
         }
@@ -5233,23 +5307,31 @@ namespace MultecPlugin
         {
             if (HitTest(btnT1TempMinus, e.X, e.Y))
             {
-                if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T1_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T1_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+                    text_T1_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T1_ziel.Text.Trim();
+                    if (T1_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T1_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-                text_T1_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T1_ziel.Text.Trim();
-                if (T1_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T1_ziel.Text = "205";
                 }
             }
         }
@@ -5259,25 +5341,33 @@ namespace MultecPlugin
 
             if (HitTest(btnT2TempMinus, e.X, e.Y))
             {
-                if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
                 {
-                    temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
+                    if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
 
+                    }
+                    else
+                    {
+                        temp_Zeil = text_T2_ziel.Text.Trim();
+                    }
+                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                    }
+
+                    text_T2_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T2_ziel.Text.Trim();
+                    if (T2_On)
+                    {
+                        host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
+                    }
                 }
                 else
                 {
-                    temp_Zeil = text_T2_ziel.Text.Trim();
-                }
-                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                }
-
-                text_T2_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                temp_Zeil = text_T2_ziel.Text.Trim();
-                if (T2_On)
-                {
-                    host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
+                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
+                    text_T2_ziel.Text = "205";
                 }
             }
         }
@@ -5404,183 +5494,14 @@ namespace MultecPlugin
         }
     }
 
-    //public class ServerConnector : PrinterConnectorBase, INotifyPropertyChanged, IDisposable, IPrintJob
-    //{
-    //    public float PercentDone => throw new NotImplementedException();
-
-    //    public int LinesSend => throw new NotImplementedException();
-
-    //    public int TotalLines => throw new NotImplementedException();
-
-    //    public DateTime JobStarted => throw new NotImplementedException();
-
-    //    public DateTime JobFinished => throw new NotImplementedException();
-
-    //    public PrintJobMode Mode => throw new NotImplementedException();
-
-    //    public string LastPrintingTime => throw new NotImplementedException();
-
-    //    public bool Caching => throw new NotImplementedException();
-
-    //    public bool Exclusive => throw new NotImplementedException();
-
-    //    public override string Name => throw new NotImplementedException();
-
-    //    public override string Id => throw new NotImplementedException();
-
-    //    public override bool IsPaused => throw new NotImplementedException();
-
-    //    public override int MaxLayer => throw new NotImplementedException();
-
-    //    public override string ETA => throw new NotImplementedException();
-
-    //    public override bool ETAModeNormal { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    //    public override IPrintJob Job => throw new NotImplementedException();
-
-    //    public override int InjectedCommands => throw new NotImplementedException();
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-
-    //    public override void Activate()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void AnalyzeResponse(string res)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override bool Connect(bool failSilent = false)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override UserControl ConnectionDialog()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void ContinueJob()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void Deactivate()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override bool Disconnect(bool force)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public void Dispose()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void Emergency()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void GetInjectLock()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override bool HasInjectedMCommand(int code)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void InjectManualCommand(string command)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void InjectManualCommandFirst(string command)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void InjectManualCommandReplace(string command)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override bool IsConnected()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override bool IsJobRunning()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void KillJob()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void LoadFromRegistry()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void PauseJob(string text)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void ResendLine(int line)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void ReturnInjectLock()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void RunJob()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void RunPeriodicalTasks()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void SaveToRegistry()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void SetConfiguration(IRegMemoryFolder key)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void ToggleETAMode()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void TrySendNextLine()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
-    public class AnalyseLog
+    
+    public class AnalyseLogFatalError
     {
-
+        
+       
     }
+    
+   
     public class TemperatureControl
     {
 

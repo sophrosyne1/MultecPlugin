@@ -54,6 +54,12 @@
     <Compile Include="DoorOpenDialogBox.Designer.cs">
       <DependentUpon>DoorOpenDialogBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErrorMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorMessage.Designer.cs">
+      <DependentUpon>ErrorMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultecTouchpanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +77,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DoorOpenDialogBox.resx">
       <DependentUpon>DoorOpenDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorMessage.resx">
+      <DependentUpon>ErrorMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultecTouchpanel.resx">
       <DependentUpon>MultecTouchpanel.cs</DependentUpon>

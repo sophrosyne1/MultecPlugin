@@ -61,6 +61,7 @@
             this.Text = "DoorOpenDialogBox";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoorOpenDialogBox_FormClosing);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DoorOpenDialogBox_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

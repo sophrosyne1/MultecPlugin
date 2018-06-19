@@ -55,3 +55,4 @@ C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\Mul
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.csproj.CopyComplete
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.dll
 C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.pdb
+C:\Users\Werkstudent-01\Documents\GitHub\MultecPlugin\MultecPlugin\obj\Debug\MultecPlugin.ErrorMessage.resources

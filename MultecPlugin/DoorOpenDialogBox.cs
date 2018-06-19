@@ -12,13 +12,15 @@ namespace MultecPlugin
 {
     public partial class DoorOpenDialogBox : Form
     {
+        public bool PreventClosing { get; set; } = true;
         private bool redPictureActive;
         private int count;
         public DoorOpenDialogBox()
         {
-            this.ControlBox = false;
+          
             InitializeComponent();
             redPictureActive = false;
+            this.ControlBox = false;
             timerChangePic.Start();
         }
 
@@ -46,10 +48,27 @@ namespace MultecPlugin
 
         private void DoorOpenDialogBox_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timerChangePic.Stop();
+            if (PreventClosing)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                timerChangePic.Stop();
+            }
+           
             
         }
 
-        
+        private void DoorOpenDialogBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (e.Button == MouseButtons.Left)
+            {
+                Capture = false;
+                Message msg = Message.Create(Handle, 0XA1, new IntPtr(2), IntPtr.Zero);
+                WndProc(ref msg);
+            }
+        }
     }
 }
