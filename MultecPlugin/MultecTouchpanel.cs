@@ -139,7 +139,7 @@ namespace MultecPlugin
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
-            
+
 
 
         }
@@ -539,15 +539,28 @@ namespace MultecPlugin
         }
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
+
+            if (response.IndexOf("successfully connected", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    lblBanner.Text = "Connected to the Server";
+                }
+                else
+                {
+                    lblBanner.Text = "Not Connected to the Server";
+                }
+            }
+
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 string message = response.Remove(0, 4);
                 ErrorMessage errorMessage = new ErrorMessage(message);
-                
+
 
                 errorMessage.ShowDialog();
             }
-           if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
+            if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 try
                 {
@@ -2387,6 +2400,7 @@ namespace MultecPlugin
                         host.Connection.injectManualCommand("T0");
 
                     }
+                    selected_nozzle = "T0";
                     selected_nozzle = "T0";
                     btnT0.Enabled = false;
                     btnT1.Enabled = true;
@@ -5494,14 +5508,14 @@ namespace MultecPlugin
         }
     }
 
-    
+
     public class AnalyseLogFatalError
     {
-        
-       
+
+
     }
-    
-   
+
+
     public class TemperatureControl
     {
 
