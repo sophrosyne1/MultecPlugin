@@ -41,7 +41,7 @@ namespace MultecPlugin
         private double zPosition = 0.0;
         private bool isPrinting = false;
         private string tempValue = string.Empty;
-
+        
 
         private string Version = string.Empty;
 
@@ -124,7 +124,7 @@ namespace MultecPlugin
         private int parkPositionMultiplyer = 0;
         private double parkPositionOffset = 0;
         private string parkPositionMove;
-
+        private string filePath;
         #endregion
 
 
@@ -139,7 +139,8 @@ namespace MultecPlugin
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
-
+            filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            filePath = Path.Combine(filePath, "NozzleList.tx");
 
 
         }
@@ -484,7 +485,7 @@ namespace MultecPlugin
             }
 
 
-
+            
             chckBoxDruckerende.Checked = false;
             if (msg.IndexOf("Disconnected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -540,21 +541,15 @@ namespace MultecPlugin
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
 
-            if (response.IndexOf("successfully connected", StringComparison.CurrentCultureIgnoreCase) != -1)
-            {
-                if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
-                {
-                    lblBanner.Text = "Connected to the Server";
-                }
-                else
-                {
-                    lblBanner.Text = "Not Connected to the Server";
-                }
-            }
-
+            //if (response.IndexOf("successfully connected", StringComparison.CurrentCultureIgnoreCase) != -1)
+            //{
+                
+            //    connectedViaServer = true;
+            //}
+            
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                string message = response.Remove(0, 4);
+                string message = response.Remove(0, 5);
                 ErrorMessage errorMessage = new ErrorMessage(message);
 
 
@@ -596,6 +591,20 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in Filament zurückgezogen: " + ex);
                 }
             }
+            //if (connectedViaServer)
+            //{
+            //    if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
+            //    {
+            //        lblBanner.Text = "Connected with the Server";
+            //        connectedViaServer = false;
+            //    }
+            //    else
+            //    {
+            //        lblBanner.Text = "Not Connected with the Server";
+            //        connectedViaServer = false;
+            //    }
+
+            //}
 
             if (response.IndexOf("T:", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1914,11 +1923,14 @@ namespace MultecPlugin
         }
         private void CheckIfFourMove(bool val)
         {
+            textT2NozzleSize.Visible = val;
+            textT3NozzleSize.Visible = val;
             btnT2TempPlus.Visible = val;
             btnT3TempPlus.Visible = val;
             btnT2TempMinus.Visible = val;
             btnT3TempMinus.Visible = val;
-
+            label5.Visible = val;
+            label6.Visible = val;
             label9.Visible = val;
             label10.Visible = val;
             btnRetractT2.Visible = val;
@@ -2241,6 +2253,7 @@ namespace MultecPlugin
         {
             if (tabControl1.SelectedIndex == 1)
             {
+                UpdateNozzleSize(filePath);
                 host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
             }
@@ -2248,6 +2261,7 @@ namespace MultecPlugin
             {
                 host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
+                
             }
             if (tabControl1.SelectedIndex == 3)
             {
@@ -5505,6 +5519,83 @@ namespace MultecPlugin
                 btnFlowrateMinus.Image = Properties.Resources.MinusV_g;
             else
                 btnFlowrateMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void BtnNozzleSizeSave_Click(object sender, EventArgs e)
+        {
+            StreamWriter writer = new StreamWriter(filePath);
+            
+            if (textT0NozzleSize.Text != string.Empty)
+            {
+                writer.WriteLine("T0:" + textT0NozzleSize.Text);
+            }
+            if (textT1NozzleSize.Text != string.Empty)
+            {
+                writer.WriteLine("T1:" + textT1NozzleSize.Text);
+            }
+            if (textT2NozzleSize.Text != string.Empty)
+            {
+                writer.WriteLine("T2:" + textT2NozzleSize.Text);
+            }
+            if (textT3NozzleSize.Text != string.Empty)
+            {
+                writer.WriteLine("T3:" + textT3NozzleSize.Text);
+            }
+            writer.WriteLine();
+            writer.Close();
+        }
+        private void UpdateNozzleSize(string path)
+        {
+            if (!File.Exists(path))
+            {
+                
+                File.Create(path);
+                
+            }
+            else
+            {
+                
+                string[] Lines = File.ReadAllLines(path);
+                int metaindex;
+                foreach (string line in Lines)
+                {
+                    if (line.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                        textT0NozzleSize.Text = line.Substring(metaindex + 1);
+                    }
+                    if (line.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                        textT1NozzleSize.Text = line.Substring(metaindex + 1);
+                    }
+                    if (line.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                        textT2NozzleSize.Text = line.Substring(metaindex + 1);
+                    }
+                    if (line.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
+                        textT3NozzleSize.Text = line.Substring(metaindex + 1);
+                    }
+                }
+            }
+        }
+
+        private void textT1NozzleSize_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                    (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 
