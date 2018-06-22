@@ -135,7 +135,7 @@ namespace MultecPlugin
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
             //ServerConnector server = 
-            Version = "Version: v1.0.2";
+            Version = "Version: v1.0.3";
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;

@@ -23,7 +23,7 @@ namespace MultecPlugin
             base.Dispose(disposing);
         }
 
-        #region Vom Komponenten-Designer generierter Code
+   #region Vom Komponenten-Designer generierter Code
 
         /// <summary> 
         /// Erforderliche Methode für die Designerunterstützung. 
