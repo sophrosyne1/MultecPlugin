@@ -5069,6 +5069,7 @@ namespace MultecPlugin
         {
             if (HitTest(btnBedTempPlus, e.X, e.Y))
             {
+
                 if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
@@ -5081,9 +5082,10 @@ namespace MultecPlugin
                 {
                     temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
                 }
-                if (IsValidNozzleTemp(temp_Zeil))
+                temp_Zeil_bed = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
+                if (IsValidBedTemp(temp_Zeil_bed))
                 {
-                    text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
+                    text_Bed_ziel.Text = temp_Zeil_bed;
                     if (Bed_On)
                     {
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
@@ -5091,8 +5093,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
-                    text_Bed_ziel.Text = "205";
+                    MessageBox.Show("Temperatur muss zwischen 0 und 100 sein!!");
+                    text_Bed_ziel.Text = "60";
                 }
             }
 
@@ -5114,11 +5116,12 @@ namespace MultecPlugin
                 {
                     temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
                 }
-                if (IsValidNozzleTemp(temp_Zeil))
+                temp_Zeil_bed = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
+                if (IsValidBedTemp(temp_Zeil_bed))
                 {
-                    
-                    text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+
+                    text_Bed_ziel.Text = temp_Zeil_bed;
+                  
                     if (Bed_On)
                     {
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
@@ -5126,8 +5129,8 @@ namespace MultecPlugin
                 }
                 else
                 {
-                    MessageBox.Show("Temperatur muss zwischen 0 und 270 sein!!");
-                    text_Bed_ziel.Text = "205";
+                    MessageBox.Show("Temperatur muss zwischen 0 und 100 sein!!");
+                    text_Bed_ziel.Text = "60";
                 }
             }
         }
@@ -5148,12 +5151,12 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
-
+                temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
                    
-                    text_T3_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T3_ziel.Text.Trim();
+                    text_T3_ziel.Text = temp_Zeil;
+                   
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
@@ -5183,11 +5186,14 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
+
+                    text_T3_ziel.Text = temp_Zeil;
+
+                   
                     
-                    text_T3_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T3_ziel.Text.Trim();
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
@@ -5217,11 +5223,13 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                    
-                    text_T2_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T2_ziel.Text.Trim();
+
+                    text_T2_ziel.Text = temp_Zeil;
+                  
+                   
                     if (T2_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
@@ -5251,11 +5259,13 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                   
-                    text_T1_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T1_ziel.Text.Trim();
+
+                    text_T1_ziel.Text = temp_Zeil;
+
+
                     if (T1_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
@@ -5286,11 +5296,12 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                   
-                   text_T0_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T0_ziel.Text.Trim();
+
+                    text_T0_ziel.Text = temp_Zeil;
+                    
                     if (T0_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
@@ -5320,11 +5331,13 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                   
-                    text_T0_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T0_ziel.Text.Trim();
+
+                    text_T0_ziel.Text = temp_Zeil;
+
+
                     if (T0_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
@@ -5354,11 +5367,13 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                   
-                    text_T1_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T1_ziel.Text.Trim();
+
+                    text_T1_ziel.Text = temp_Zeil;
+
+
                     if (T1_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
@@ -5390,12 +5405,13 @@ namespace MultecPlugin
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
                 }
+                temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                    
 
-                    text_T2_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
-                    temp_Zeil = text_T2_ziel.Text.Trim();
+                    text_T2_ziel.Text = temp_Zeil;
+
+
                     if (T2_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
