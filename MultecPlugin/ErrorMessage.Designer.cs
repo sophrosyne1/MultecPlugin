@@ -104,6 +104,7 @@
             this.DynamicText.ReadOnly = true;
             this.DynamicText.Size = new System.Drawing.Size(321, 69);
             this.DynamicText.TabIndex = 5;
+            this.DynamicText.Text = "Fatal Error!! Printer Halted. Failure-ID";
             // 
             // ErrorMessage
             // 

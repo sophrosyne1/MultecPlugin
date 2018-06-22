@@ -5069,20 +5069,20 @@ namespace MultecPlugin
         {
             if (HitTest(btnBedTempPlus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_Bed_ziel.Text.Replace(",", ".")))
+                if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil_bed = text_Bed_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+                }
+                if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
                     text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
                     if (Bed_On)
                     {
@@ -5102,20 +5102,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnBedTempMinus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_Bed_ziel.Text.Replace(",", ".")))
+                if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_Bed_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil_bed = text_Bed_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil_bed = text_Bed_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil_bed = text_Bed_ziel.Text.Trim();
+                }
+                if (temp_Zeil_bed.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil_bed = temp_Zeil_bed.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                    
                     text_Bed_ziel.Text = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil_bed = text_Bed_ziel.Text.Trim();
                     if (Bed_On)
@@ -5135,21 +5136,22 @@ namespace MultecPlugin
         {
             if (HitTest(btnT3TempPlus, e.X, e.Y))
             {
-
-                if (IsValidNozzleTemp(text_T3_ziel.Text.Replace(",", ".")))
+                if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T3_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T3_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                   
                     text_T3_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T3_ziel.Text.Trim();
                     if (T3_On)
@@ -5169,20 +5171,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnT3TempMinus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
+                if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T3_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T3_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T3_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T3_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                    
                     text_T3_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T3_ziel.Text.Trim();
                     if (T3_On)
@@ -5202,20 +5205,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnT2TempPlus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
+                if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T2_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T2_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                    
                     text_T2_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T2_ziel.Text.Trim();
                     if (T2_On)
@@ -5235,21 +5239,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnT1TempPlus, e.X, e.Y))
             {
-
-                if (IsValidNozzleTemp(text_T1_ziel.Text.Replace(",", ".")))
+                if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T1_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T1_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                   
                     text_T1_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T1_ziel.Text.Trim();
                     if (T1_On)
@@ -5269,21 +5273,23 @@ namespace MultecPlugin
         {
             if (HitTest(btnT0TempPlus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T0_ziel.Text.Replace(",", ".")))
+                if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T0_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
-                    text_T0_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
+                    temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T0_ziel.Text.Trim();
+                }
+                
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                   
+                   text_T0_ziel.Text = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T0_ziel.Text.Trim();
                     if (T0_On)
                     {
@@ -5302,20 +5308,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnT0TempMinus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T0_ziel.Text.Replace(",", ".")))
+                if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T0_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T0_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T0_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T0_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                   
                     text_T0_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T0_ziel.Text.Trim();
                     if (T0_On)
@@ -5335,20 +5342,21 @@ namespace MultecPlugin
         {
             if (HitTest(btnT1TempMinus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T1_ziel.Text.Replace(",", ".")))
+                if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T1_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T1_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                    temp_Zeil = text_T1_ziel.Text.Replace(",", ".").Trim();
+                }
+                else
+                {
+                    temp_Zeil = text_T1_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                   
                     text_T1_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T1_ziel.Text.Trim();
                     if (T1_On)
@@ -5369,21 +5377,22 @@ namespace MultecPlugin
 
             if (HitTest(btnT2TempMinus, e.X, e.Y))
             {
-                if (IsValidNozzleTemp(text_T2_ziel.Text.Replace(",", ".")))
+                if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    if (text_T2_ziel.Text.IndexOf(",", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
+                    temp_Zeil = text_T2_ziel.Text.Replace(",", ".").Trim();
 
-                    }
-                    else
-                    {
-                        temp_Zeil = text_T2_ziel.Text.Trim();
-                    }
-                    if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
-                    }
+                }
+                else
+                {
+                    temp_Zeil = text_T2_ziel.Text.Trim();
+                }
+                if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                {
+                    temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
+                }
+                if (IsValidNozzleTemp(temp_Zeil))
+                {
+                    
 
                     text_T2_ziel.Text = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                     temp_Zeil = text_T2_ziel.Text.Trim();
