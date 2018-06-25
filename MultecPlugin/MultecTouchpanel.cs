@@ -41,7 +41,12 @@ namespace MultecPlugin
         private double zPosition = 0.0;
         private bool isPrinting = false;
         private string tempValue = string.Empty;
-        
+
+        private string nozzleSizeT0 = string.Empty;
+        private string nozzleSizeT1 = string.Empty;
+        private string nozzleSizeT2 = string.Empty;
+        private string nozzleSizeT3 = string.Empty;
+
 
         private string Version = string.Empty;
 
@@ -112,7 +117,12 @@ namespace MultecPlugin
         private int rotOffsetMultiplyer = 0;
         private double relativOffset = 0;
         private string filamentVal = string.Empty;
-
+        private bool T0T1equal;
+        private bool T0T2equal;
+        private bool T0T3equal;
+        private bool T1T2equal;
+        private bool T1T3equal;
+        private bool T2T3equal;
         private bool doorOpen;
         private int setTempT0 = 0;
         private int setTempT1 = 0;
@@ -485,7 +495,7 @@ namespace MultecPlugin
             }
 
 
-            
+
             chckBoxDruckerende.Checked = false;
             if (msg.IndexOf("Disconnected", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -543,10 +553,10 @@ namespace MultecPlugin
 
             //if (response.IndexOf("successfully connected", StringComparison.CurrentCultureIgnoreCase) != -1)
             //{
-                
+
             //    connectedViaServer = true;
             //}
-            
+
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 string message = response.Remove(0, 5);
@@ -1923,8 +1933,8 @@ namespace MultecPlugin
         }
         private void CheckIfFourMove(bool val)
         {
-            textT2NozzleSize.Visible = val;
-            textT3NozzleSize.Visible = val;
+            ComboNozzleSizeT2.Visible = val;
+            ComboNozzleSizeT3.Visible = val;
             btnT2TempPlus.Visible = val;
             btnT3TempPlus.Visible = val;
             btnT2TempMinus.Visible = val;
@@ -2254,6 +2264,9 @@ namespace MultecPlugin
             if (tabControl1.SelectedIndex == 1)
             {
                 UpdateNozzleSize(filePath);
+                GetNozzleSizeString();
+                EndlessNozzleCheck();
+
                 host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
             }
@@ -2261,7 +2274,7 @@ namespace MultecPlugin
             {
                 host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
-                
+
             }
             if (tabControl1.SelectedIndex == 3)
             {
@@ -5121,7 +5134,7 @@ namespace MultecPlugin
                 {
 
                     text_Bed_ziel.Text = temp_Zeil_bed;
-                  
+
                     if (Bed_On)
                     {
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
@@ -5154,9 +5167,9 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-                   
+
                     text_T3_ziel.Text = temp_Zeil;
-                   
+
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
@@ -5192,8 +5205,8 @@ namespace MultecPlugin
 
                     text_T3_ziel.Text = temp_Zeil;
 
-                   
-                    
+
+
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
@@ -5228,8 +5241,8 @@ namespace MultecPlugin
                 {
 
                     text_T2_ziel.Text = temp_Zeil;
-                  
-                   
+
+
                     if (T2_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
@@ -5291,7 +5304,7 @@ namespace MultecPlugin
                 {
                     temp_Zeil = text_T0_ziel.Text.Trim();
                 }
-                
+
                 if (temp_Zeil.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     temp_Zeil = temp_Zeil.Replace(".0", " ").Trim();
@@ -5301,7 +5314,7 @@ namespace MultecPlugin
                 {
 
                     text_T0_ziel.Text = temp_Zeil;
-                    
+
                     if (T0_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
@@ -5546,25 +5559,25 @@ namespace MultecPlugin
                 btnFlowrateMinus.Image = Properties.Resources.MinusV1;
         }
 
-        private void BtnNozzleSizeSave_Click(object sender, EventArgs e)
+        private void UpdateNozzleSizeFile()
         {
             StreamWriter writer = new StreamWriter(filePath);
-            
-            if (textT0NozzleSize.Text != string.Empty)
+
+            if (nozzleSizeT0 != string.Empty)
             {
-                writer.WriteLine("T0:" + textT0NozzleSize.Text);
+                writer.WriteLine("T0:" + nozzleSizeT0);
             }
-            if (textT1NozzleSize.Text != string.Empty)
+            if (nozzleSizeT1 != string.Empty)
             {
-                writer.WriteLine("T1:" + textT1NozzleSize.Text);
+                writer.WriteLine("T1:" + nozzleSizeT1);
             }
-            if (textT2NozzleSize.Text != string.Empty)
+            if (nozzleSizeT2 != string.Empty)
             {
-                writer.WriteLine("T2:" + textT2NozzleSize.Text);
+                writer.WriteLine("T2:" + nozzleSizeT2);
             }
-            if (textT3NozzleSize.Text != string.Empty)
+            if (nozzleSizeT3 != string.Empty)
             {
-                writer.WriteLine("T3:" + textT3NozzleSize.Text);
+                writer.WriteLine("T3:" + nozzleSizeT3);
             }
             writer.WriteLine();
             writer.Close();
@@ -5573,13 +5586,13 @@ namespace MultecPlugin
         {
             if (!File.Exists(path))
             {
-                
+
                 File.Create(path);
-                
+
             }
             else
             {
-                
+
                 string[] Lines = File.ReadAllLines(path);
                 int metaindex;
                 foreach (string line in Lines)
@@ -5587,22 +5600,83 @@ namespace MultecPlugin
                     if (line.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                        textT0NozzleSize.Text = line.Substring(metaindex + 1);
+                        nozzleSizeT0 = line.Substring(metaindex + 1);
+                        switch (nozzleSizeT0)
+                        {
+                            case "0.35 mm":
+                                ComboNozzleSizeT0.SelectedIndex = 0;
+                                break;
+                            case "0.5 mm":
+                                ComboNozzleSizeT0.SelectedIndex = 1;
+                                break;
+                            case "0.8 mm":
+                                ComboNozzleSizeT0.SelectedIndex = 2;
+                                break;
+                            default:
+                                ComboNozzleSizeT0.SelectedIndex = -1;
+                                break;
+                        }
                     }
                     if (line.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                        textT1NozzleSize.Text = line.Substring(metaindex + 1);
+
+                        nozzleSizeT1 = line.Substring(metaindex + 1);
+                        switch (nozzleSizeT1)
+                        {
+                            case "0.35 mm":
+                                ComboNozzleSizeT1.SelectedIndex = 0;
+                                break;
+                            case "0.5 mm":
+                                ComboNozzleSizeT1.SelectedIndex = 1;
+                                break;
+                            case "0.8 mm":
+                                ComboNozzleSizeT1.SelectedIndex = 2;
+                                break;
+                            default:
+                                ComboNozzleSizeT1.SelectedIndex = -1;
+                                break;
+                        }
                     }
                     if (line.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                        textT2NozzleSize.Text = line.Substring(metaindex + 1);
+                        nozzleSizeT2 = line.Substring(metaindex + 1);
+                        switch (nozzleSizeT2)
+                        {
+                            case "0.35 mm":
+                                ComboNozzleSizeT2.SelectedIndex = 0;
+                                break;
+                            case "0.5 mm":
+                                ComboNozzleSizeT2.SelectedIndex = 1;
+                                break;
+                            case "0.8 mm":
+                                ComboNozzleSizeT2.SelectedIndex = 2;
+                                break;
+                            default:
+                                ComboNozzleSizeT2.SelectedIndex = -1;
+                                break;
+                        }
                     }
                     if (line.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         metaindex = line.IndexOf(":", StringComparison.CurrentCultureIgnoreCase);
-                        textT3NozzleSize.Text = line.Substring(metaindex + 1);
+                        nozzleSizeT3 = line.Substring(metaindex + 1);
+                        switch (nozzleSizeT3)
+                        {
+                            case "0.35 mm":
+                                ComboNozzleSizeT3.SelectedIndex = 0;
+                                break;
+                            case "0.5 mm":
+                                ComboNozzleSizeT3.SelectedIndex = 1;
+                                break;
+                            case "0.8 mm":
+                                ComboNozzleSizeT3.SelectedIndex = 2;
+                                break;
+                            default:
+                                ComboNozzleSizeT3.SelectedIndex = -1;
+                                break;
+                        }
                     }
                 }
             }
@@ -5638,176 +5712,372 @@ namespace MultecPlugin
             btnActivate.Enabled = true;
             btnActivate.Text = "Activate";
         }
-
-        private void backupT0furT1_CheckedChanged(object sender, EventArgs e)
+        private bool columnT0 = true;
+        private bool columnT1 = true;
+        private bool columnT2 = true;
+        private bool columnT3 = true;
+        private bool RowT0= true;
+        private bool RowT1 = true;
+        private bool RowT2 = true;
+        private bool RowT3 = true;
+        private void BackupT0Column(bool val)
         {
-             if(backupT0furT1.Checked)
+            if (val == false)
             {
-                backupT0furT2.Enabled = false;
-                backupT0furT3.Enabled = false;
+                columnT0 = false;
             }
             else
             {
-                backupT0furT2.Enabled = true;
-                backupT0furT3.Enabled = true;
+                columnT0 = true;
             }
+            backupT0furT1.Enabled = val && T0T1equal && RowT1&& !T2T0 && !T3T0;
+            backupT0furT2.Enabled = val && T0T2equal && RowT2 && !T1T0 && !T3T0;
+            backupT0furT3.Enabled = val && T0T3equal && RowT3 && !T1T0 && !T2T0;
+
+
+        }
+        private void BackupT0Row(bool val)
+        {
+            if (val == false)
+            {
+                RowT0 = false;
+            }
+            else
+            {
+                RowT0 = true;
+            }
+            backupT1furT0.Enabled = val && T0T1equal && columnT1 && !T2T1 && !T3T1;
+            backupT2furT0.Enabled = val && T0T2equal && columnT2 && !T1T2 && !T3T2;
+            backupT3furT0.Enabled = val && T0T3equal && columnT3 && !T1T3 && !T2T3; 
+        }
+        private void BackupT1Column(bool val)
+        {
+            if (val == false)
+            {
+                columnT1 = false;
+            }
+            else
+            {
+                columnT1 = true;
+            }
+          backupT1furT0.Enabled = val && T0T1equal && RowT0 && !T2T1 && !T3T1; 
+            backupT1furT2.Enabled = val && T1T2equal && RowT2 && !T0T1 && !T3T1; 
+            backupT1furT3.Enabled = val && T1T3equal && RowT3 && !T0T1 && !T2T1; 
+        }
+        private void BackupT1Row(bool val)
+        {
+            if (val == false)
+            {
+                RowT1 = false;
+            }
+            else
+            {
+                RowT1 = true;
+            }
+            backupT0furT1.Enabled = val && T0T1equal && columnT0 && !T2T0 && !T3T0;
+            backupT2furT1.Enabled = val && T1T2equal  && columnT2 && !T0T2 && !T3T2;
+            backupT3furT1.Enabled = val && T1T3equal  && columnT3 && !T0T3 && !T2T3;
+
+        }
+        private void BackupT2Column(bool val)
+        {
+            if (val == false)
+            {
+                columnT2 = false;
+            }
+            else
+            {
+                columnT2 = true;
+            }
+            backupT2furT0.Enabled = val && T0T2equal && RowT0 && !T1T2 && !T3T2;
+            backupT2furT1.Enabled = val && T1T2equal && RowT1 && !T0T2 && !T3T2;
+            backupT2furT3.Enabled = val && T2T3equal && RowT3 && !T0T2 && !T1T2;
+        }
+        private void BackupT2Row(bool val)
+        {
+            if (val == false)
+            {
+                RowT2 = false;
+            }
+            else
+            {
+                RowT2 = true;
+            }
+            backupT0furT2.Enabled = val && T0T2equal && columnT0 && !T1T0 && !T3T0;
+            backupT1furT2.Enabled = val && T1T2equal  && columnT1 && !T0T1 && !T3T1;
+            backupT3furT2.Enabled = val && T2T3equal  && columnT3 && !T0T3 && !T1T3;
+        }
+        private void BackupT3Column(bool val)
+        {
+            if (val == false)
+            {
+                columnT3 = false;
+            }
+            else
+            {
+                columnT3 = true;
+            }
+            backupT3furT0.Enabled = val && T0T3equal && RowT0 && !T1T3 && !T2T3;
+            backupT3furT1.Enabled = val && T1T3equal && RowT1 && !T0T3 && !T2T3;
+            backupT3furT2.Enabled = val && T2T3equal && RowT2 && !T0T3 && !T1T3;
+
+        }
+        private void BackupT3Row(bool val)
+        {
+            if (val == false)
+            {
+                RowT3 = false;
+            }
+            else
+            {
+                RowT3 = true;
+            }
+            backupT0furT3.Enabled = val && T0T3equal  && columnT0 && !T1T0 && !T2T0;
+            backupT1furT3.Enabled = val && T1T3equal  && columnT1 && !T0T1 && !T2T1;
+            backupT2furT3.Enabled = val && T2T3equal  && columnT2 && !T0T2 && !T1T2;
+        }
+        private bool T1T0;
+        private bool T1T2;
+        private bool T1T3;
+        private bool T0T1;
+        private bool T0T2;
+        private bool T0T3;
+        private bool T2T0;
+        private bool T2T1;
+        private bool T2T3;
+        private bool T3T0;
+        private bool T3T1;
+        private bool T3T2;
+
+        private void backupT0furT1_CheckedChanged(object sender, EventArgs e)
+        {
+            T1T0 = !T1T0;
+            
+            backupT0furT2.Enabled = !backupT0furT1.Checked && T0T2equal && RowT2 && columnT0;
+            backupT0furT3.Enabled = !backupT0furT1.Checked && T0T3equal && RowT3 && columnT0;
+            BackupT1Column(!backupT0furT1.Checked);
+            BackupT0Row(!backupT0furT1.Checked);
+
         }
 
         private void backupT0furT2_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT0furT2.Checked)
-            {
-                backupT0furT1.Enabled = false;
-                backupT0furT3.Enabled = false;
-            }
-            else
-            {
-                backupT0furT1.Enabled = true;
-                backupT0furT3.Enabled = true;
-            }
+            T2T0 = !T2T0;
+            backupT0furT1.Enabled = !backupT0furT2.Checked && T0T1equal && RowT1 && columnT0;
+            backupT0furT3.Enabled = !backupT0furT2.Checked && T0T3equal && RowT3 && columnT0;
+            BackupT2Column(!backupT0furT2.Checked);
+            BackupT0Row(!backupT0furT2.Checked);
+
         }
 
         private void backupT0furT3_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT0furT3.Checked)
-            {
-                backupT0furT2.Enabled = false;
-                backupT0furT1.Enabled = false;
-            }
-            else
-            {
-                backupT0furT2.Enabled = true;
-                backupT0furT1.Enabled = true;
-            }
+            T3T0 = !T3T0;
+            backupT0furT2.Enabled = !backupT0furT3.Checked && T0T2equal && RowT2 && columnT0;
+            backupT0furT1.Enabled = !backupT0furT3.Checked && T0T1equal && RowT1 && columnT0;
+            BackupT3Column(!backupT0furT3.Checked);
+            BackupT0Row(!backupT0furT3.Checked);
+
         }
 
         private void backupT1furT0_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT1furT0.Checked)
-            {
-                backupT1furT2.Enabled = false;
-                backupT1furT3.Enabled = false;
-            }
-            else
-            {
-                backupT1furT2.Enabled = true;
-                backupT1furT3.Enabled = true;
-            }
+            T0T1 = !T0T1;
+            backupT1furT2.Enabled = !backupT1furT0.Checked && T1T2equal && RowT2 && columnT1;
+            backupT1furT3.Enabled = !backupT1furT0.Checked && T1T3equal && RowT3 && columnT1;
+            BackupT0Column(!backupT1furT0.Checked);
+            BackupT1Row(!backupT1furT0.Checked);
+
         }
 
         private void backupT1furT2_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT1furT2.Checked)
-            {
-                backupT1furT0.Enabled = false;
-                backupT1furT3.Enabled = false;
-            }
-            else
-            {
-                backupT1furT0.Enabled = true;
-                backupT1furT3.Enabled = true;
-            }
+            T2T1 = !T2T1;
+           
+            backupT1furT0.Enabled = !backupT1furT2.Checked && T0T1equal && RowT0 && columnT1;
+            backupT1furT3.Enabled = !backupT1furT2.Checked && T1T3equal && RowT3 && columnT1;
+            BackupT2Column(!backupT1furT2.Checked);
+            BackupT1Row(!backupT1furT2.Checked);
+
         }
 
         private void backupT1furT3_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT1furT3.Checked)
-            {
-                backupT1furT2.Enabled = false;
-                backupT1furT0.Enabled = false;
-            }
-            else
-            {
-                backupT1furT2.Enabled = true;
-                backupT1furT0.Enabled = true;
-            }
+            T3T1 = !T3T1;
+            backupT1furT2.Enabled = !backupT1furT3.Checked && T1T2equal && RowT2 && columnT1;
+            backupT1furT0.Enabled = !backupT1furT3.Checked && T0T1equal && RowT0 && columnT1;
+            BackupT3Column(!backupT1furT3.Checked);
+            BackupT1Row(!backupT1furT3.Checked);
+
         }
 
         private void backupT2furT0_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT2furT0.Checked)
-            {
-                backupT2furT1.Enabled = false;
-                backupT2furT3.Enabled = false;
-            }
-            else
-            {
-                backupT2furT1.Enabled = true;
-                backupT2furT3.Enabled = true;
-            }
+            T0T2 = !T0T2;
+            backupT2furT1.Enabled = !backupT2furT0.Checked && T1T2equal && RowT1 && columnT2;
+            backupT2furT3.Enabled = !backupT2furT0.Checked && T2T3equal && RowT3 && columnT2;
+            BackupT0Column(!backupT2furT0.Checked);
+            BackupT2Row(!backupT2furT0.Checked);
+
         }
 
         private void backupT2furT1_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT2furT1.Checked)
-            {
-                backupT2furT0.Enabled = false;
-                backupT2furT3.Enabled = false;
-            }
-            else
-            {
-                backupT2furT0.Enabled = true;
-                backupT2furT3.Enabled = true;
-            }
+            T1T2 = !T1T2;
+            backupT2furT0.Enabled = !backupT2furT1.Checked && T0T2equal && RowT0 && columnT2;
+            backupT2furT3.Enabled = !backupT2furT1.Checked && T2T3equal && RowT3 && columnT2;
+            BackupT1Column(!backupT2furT1.Checked);
+            BackupT2Row(!backupT2furT1.Checked);
+
         }
 
         private void backupT2furT3_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT2furT3.Checked)
-            {
-                backupT2furT0.Enabled = false;
-                backupT2furT1.Enabled = false;
-            }
-            else
-            {
-                backupT2furT0.Enabled = true;
-                backupT2furT1.Enabled = true;
-            }
+            T3T2 = !T3T2;
+            backupT2furT0.Enabled = !backupT2furT3.Checked && T0T2equal && RowT0 && columnT2;
+            backupT2furT1.Enabled = !backupT2furT3.Checked && T1T2equal && RowT1 && columnT2;
+            BackupT3Column(!backupT2furT3.Checked);
+            BackupT2Row(!backupT2furT3.Checked);
 
         }
 
         private void backupT3furT0_CheckedChanged(object sender, EventArgs e)
         {
-            if (backupT3furT0.Checked)
-            {
-                backupT3furT1.Enabled = false;
-                backupT3furT2.Enabled = false;
-            }
-            else
-            {
-                backupT3furT1.Enabled = true;
-                backupT3furT2.Enabled = true;
-            }
+            T0T3 = !T0T3;
+            
+            backupT3furT1.Enabled = !backupT3furT0.Checked && T1T3equal && RowT1 && columnT3;
+            backupT3furT2.Enabled = !backupT3furT0.Checked && T2T3equal && RowT2 && columnT3;
+            BackupT0Column(!backupT3furT0.Checked);
+            BackupT3Row(!backupT3furT0.Checked);
+
+
         }
 
         private void backupT3furT1_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (backupT3furT1.Checked)
-            {
-                backupT3furT0.Enabled = false;
-                backupT3furT2.Enabled = false;
-            }
-            else
-            {
-                backupT3furT0.Enabled = true;
-                backupT3furT2.Enabled = true;
-            }
+            T1T3 = !T1T3;
+            backupT3furT0.Enabled = !backupT3furT1.Checked && T0T3equal && RowT0 && columnT3;
+            backupT3furT2.Enabled = !backupT3furT1.Checked && T2T3equal && RowT2 && columnT3;
+            BackupT1Column(!backupT3furT1.Checked);
+            BackupT3Row(!backupT3furT1.Checked);
+
+
+
         }
 
         private void backupT3furT2_CheckedChanged(object sender, EventArgs e)
         {
+            T2T3 = !T2T3;
 
-            if (backupT3furT2.Checked)
+            
+            backupT3furT1.Enabled = !backupT3furT2.Checked && T1T3equal && RowT1 && columnT3;
+            backupT3furT0.Enabled = !backupT3furT2.Checked && T0T3equal && RowT0 && columnT3;
+            BackupT2Column(!backupT3furT2.Checked);
+            BackupT3Row(!backupT3furT2.Checked);
+
+
+        }
+
+        private void ComboNozzleSizeT0_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (ComboNozzleSizeT0.SelectedIndex != -1)
             {
-                backupT3furT1.Enabled = false;
-                backupT3furT0.Enabled = false;
+                nozzleSizeT0 = this.ComboNozzleSizeT0.GetItemText(this.ComboNozzleSizeT0.SelectedItem);
             }
             else
             {
-                backupT3furT1.Enabled = true;
-                backupT3furT0.Enabled = true;
+                nozzleSizeT0 = string.Empty;
             }
+
+            if (nozzleSizeT0 != nozzleSizeT2)
+            UpdateNozzleSizeFile();
+            EndlessNozzleCheck();
+        }
+
+        private void ComboNozzleSizeT1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboNozzleSizeT1.SelectedIndex != -1)
+            {
+                nozzleSizeT1 = this.ComboNozzleSizeT1.GetItemText(this.ComboNozzleSizeT1.SelectedItem);
+            }
+            else
+            {
+                nozzleSizeT1 = string.Empty;
+            }
+            UpdateNozzleSizeFile();
+            EndlessNozzleCheck();
+        }
+
+        private void ComboNozzleSizeT2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboNozzleSizeT2.SelectedIndex != -1)
+            {
+                nozzleSizeT2 = this.ComboNozzleSizeT2.GetItemText(this.ComboNozzleSizeT2.SelectedItem);
+            }
+            else
+            {
+                nozzleSizeT2 = string.Empty;
+            }
+            UpdateNozzleSizeFile();
+            EndlessNozzleCheck();
+        }
+
+        private void ComboNozzleSizeT3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboNozzleSizeT3.SelectedIndex != -1)
+            {
+                nozzleSizeT3 = this.ComboNozzleSizeT3.GetItemText(this.ComboNozzleSizeT3.SelectedItem);
+            }
+            else
+            {
+                nozzleSizeT3 = string.Empty;
+            }
+            UpdateNozzleSizeFile();
+            EndlessNozzleCheck();
+        }
+
+
+        private void EndlessNozzleCheck()
+        {
+
+            foreach (Control c in Filament.Controls)
+            {
+                foreach (Control ctrl in c.Controls)
+                {
+                    if (ctrl is CheckBox)
+                    {
+                        ((CheckBox)ctrl).Enabled = true;
+                        ((CheckBox)ctrl).CheckState = CheckState.Unchecked;
+                    }
+                }
+            }
+            T0T1equal = (nozzleSizeT0 == nozzleSizeT1);
+            backupT0furT1.Enabled = T0T1equal;
+            backupT1furT0.Enabled = T0T1equal;
+            T0T2equal = (nozzleSizeT0 == nozzleSizeT2);
+            backupT0furT2.Enabled = T0T2equal;
+            backupT2furT0.Enabled = T0T2equal;
+            T0T3equal = (nozzleSizeT0 == nozzleSizeT3);
+            backupT0furT3.Enabled = T0T3equal;
+            backupT3furT0.Enabled = T0T3equal;
+            T1T2equal = (nozzleSizeT1 == nozzleSizeT2);
+            backupT1furT2.Enabled = T1T2equal;
+            backupT2furT1.Enabled = T1T2equal;
+            T1T3equal = (nozzleSizeT1 == nozzleSizeT3);
+            backupT1furT3.Enabled = T1T3equal;
+            backupT3furT1.Enabled = T1T3equal;
+            T2T3equal = (nozzleSizeT2 == nozzleSizeT3);
+            backupT2furT3.Enabled = T2T3equal;
+            backupT3furT2.Enabled = T2T3equal;
+        }
+        private void GetNozzleSizeString()
+        {
+            nozzleSizeT0 = this.ComboNozzleSizeT0.GetItemText(this.ComboNozzleSizeT0.SelectedItem);
+            nozzleSizeT1 = this.ComboNozzleSizeT1.GetItemText(this.ComboNozzleSizeT1.SelectedItem);
+            nozzleSizeT2 = this.ComboNozzleSizeT2.GetItemText(this.ComboNozzleSizeT2.SelectedItem);
+            nozzleSizeT3 = this.ComboNozzleSizeT3.GetItemText(this.ComboNozzleSizeT3.SelectedItem);
         }
     }
 

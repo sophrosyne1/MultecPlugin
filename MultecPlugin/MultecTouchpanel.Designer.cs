@@ -96,18 +96,13 @@ namespace MultecPlugin
             this.txtManualGcode = new System.Windows.Forms.TextBox();
             this.Filament = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnDeactivate = new System.Windows.Forms.Button();
             this.btnActivate = new System.Windows.Forms.Button();
+            this.btnDeactivate = new System.Windows.Forms.Button();
             this.NozzleSizeKal = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.BtnNozzleSizeSave = new System.Windows.Forms.Button();
-            this.textT0NozzleSize = new System.Windows.Forms.TextBox();
-            this.textT2NozzleSize = new System.Windows.Forms.TextBox();
-            this.textT1NozzleSize = new System.Windows.Forms.TextBox();
-            this.textT3NozzleSize = new System.Windows.Forms.TextBox();
             this.backupT2furT3 = new System.Windows.Forms.CheckBox();
             this.backupT0furT3 = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
@@ -243,6 +238,10 @@ namespace MultecPlugin
             this.wrkrHomeXY = new System.ComponentModel.BackgroundWorker();
             this.timerRetractLoad = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ComboNozzleSizeT0 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT1 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT2 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT3 = new System.Windows.Forms.ComboBox();
             this.btnBedTempPlus = new MyCustomButton.MyCustomButton();
             this.btnBedTempMinus = new MyCustomButton.MyCustomButton();
             this.btnT3TempPlus = new MyCustomButton.MyCustomButton();
@@ -1262,16 +1261,6 @@ namespace MultecPlugin
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Endless Druck";
             // 
-            // btnDeactivate
-            // 
-            this.btnDeactivate.Location = new System.Drawing.Point(140, 435);
-            this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(102, 31);
-            this.btnDeactivate.TabIndex = 22;
-            this.btnDeactivate.Text = "Deactivate";
-            this.btnDeactivate.UseVisualStyleBackColor = true;
-            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
-            // 
             // btnActivate
             // 
             this.btnActivate.Location = new System.Drawing.Point(22, 435);
@@ -1282,21 +1271,30 @@ namespace MultecPlugin
             this.btnActivate.UseVisualStyleBackColor = true;
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 
+            // btnDeactivate
+            // 
+            this.btnDeactivate.Location = new System.Drawing.Point(140, 435);
+            this.btnDeactivate.Name = "btnDeactivate";
+            this.btnDeactivate.Size = new System.Drawing.Size(102, 31);
+            this.btnDeactivate.TabIndex = 22;
+            this.btnDeactivate.Text = "Deactivate";
+            this.btnDeactivate.UseVisualStyleBackColor = true;
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
+            // 
             // NozzleSizeKal
             // 
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT3);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT2);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT1);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT0);
             this.NozzleSizeKal.Controls.Add(this.label5);
             this.NozzleSizeKal.Controls.Add(this.label6);
             this.NozzleSizeKal.Controls.Add(this.label4);
             this.NozzleSizeKal.Controls.Add(this.label3);
-            this.NozzleSizeKal.Controls.Add(this.BtnNozzleSizeSave);
-            this.NozzleSizeKal.Controls.Add(this.textT0NozzleSize);
-            this.NozzleSizeKal.Controls.Add(this.textT2NozzleSize);
-            this.NozzleSizeKal.Controls.Add(this.textT1NozzleSize);
-            this.NozzleSizeKal.Controls.Add(this.textT3NozzleSize);
             this.NozzleSizeKal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NozzleSizeKal.Location = new System.Drawing.Point(0, 32);
+            this.NozzleSizeKal.Location = new System.Drawing.Point(6, 63);
             this.NozzleSizeKal.Name = "NozzleSizeKal";
-            this.NozzleSizeKal.Size = new System.Drawing.Size(259, 157);
+            this.NozzleSizeKal.Size = new System.Drawing.Size(247, 157);
             this.NozzleSizeKal.TabIndex = 124;
             this.NozzleSizeKal.TabStop = false;
             this.NozzleSizeKal.Text = "Nozze Size";
@@ -1305,7 +1303,7 @@ namespace MultecPlugin
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(165, 69);
+            this.label5.Location = new System.Drawing.Point(169, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 16);
             this.label5.TabIndex = 128;
@@ -1315,7 +1313,7 @@ namespace MultecPlugin
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(41, 69);
+            this.label6.Location = new System.Drawing.Point(57, 69);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 16);
             this.label6.TabIndex = 127;
@@ -1325,7 +1323,7 @@ namespace MultecPlugin
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(165, 19);
+            this.label4.Location = new System.Drawing.Point(169, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 16);
             this.label4.TabIndex = 126;
@@ -1335,53 +1333,11 @@ namespace MultecPlugin
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(41, 19);
+            this.label3.Location = new System.Drawing.Point(57, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 16);
             this.label3.TabIndex = 125;
             this.label3.Text = "T0";
-            // 
-            // BtnNozzleSizeSave
-            // 
-            this.BtnNozzleSizeSave.Location = new System.Drawing.Point(78, 120);
-            this.BtnNozzleSizeSave.Name = "BtnNozzleSizeSave";
-            this.BtnNozzleSizeSave.Size = new System.Drawing.Size(75, 23);
-            this.BtnNozzleSizeSave.TabIndex = 124;
-            this.BtnNozzleSizeSave.Text = "Save";
-            this.BtnNozzleSizeSave.UseVisualStyleBackColor = true;
-            this.BtnNozzleSizeSave.Click += new System.EventHandler(this.BtnNozzleSizeSave_Click);
-            // 
-            // textT0NozzleSize
-            // 
-            this.textT0NozzleSize.Location = new System.Drawing.Point(22, 38);
-            this.textT0NozzleSize.Name = "textT0NozzleSize";
-            this.textT0NozzleSize.Size = new System.Drawing.Size(61, 20);
-            this.textT0NozzleSize.TabIndex = 120;
-            this.textT0NozzleSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textT1NozzleSize_KeyPress);
-            // 
-            // textT2NozzleSize
-            // 
-            this.textT2NozzleSize.Location = new System.Drawing.Point(22, 87);
-            this.textT2NozzleSize.Name = "textT2NozzleSize";
-            this.textT2NozzleSize.Size = new System.Drawing.Size(61, 20);
-            this.textT2NozzleSize.TabIndex = 123;
-            this.textT2NozzleSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textT1NozzleSize_KeyPress);
-            // 
-            // textT1NozzleSize
-            // 
-            this.textT1NozzleSize.Location = new System.Drawing.Point(147, 38);
-            this.textT1NozzleSize.Name = "textT1NozzleSize";
-            this.textT1NozzleSize.Size = new System.Drawing.Size(61, 20);
-            this.textT1NozzleSize.TabIndex = 121;
-            this.textT1NozzleSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textT1NozzleSize_KeyPress);
-            // 
-            // textT3NozzleSize
-            // 
-            this.textT3NozzleSize.Location = new System.Drawing.Point(147, 87);
-            this.textT3NozzleSize.Name = "textT3NozzleSize";
-            this.textT3NozzleSize.Size = new System.Drawing.Size(61, 20);
-            this.textT3NozzleSize.TabIndex = 122;
-            this.textT3NozzleSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textT1NozzleSize_KeyPress);
             // 
             // backupT2furT3
             // 
@@ -3086,6 +3042,62 @@ namespace MultecPlugin
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
+            // ComboNozzleSizeT0
+            // 
+            this.ComboNozzleSizeT0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT0.FormattingEnabled = true;
+            this.ComboNozzleSizeT0.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT0.Location = new System.Drawing.Point(31, 38);
+            this.ComboNozzleSizeT0.Name = "ComboNozzleSizeT0";
+            this.ComboNozzleSizeT0.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT0.TabIndex = 129;
+            this.ComboNozzleSizeT0.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT0_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT1
+            // 
+            this.ComboNozzleSizeT1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT1.FormattingEnabled = true;
+            this.ComboNozzleSizeT1.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT1.Location = new System.Drawing.Point(145, 38);
+            this.ComboNozzleSizeT1.Name = "ComboNozzleSizeT1";
+            this.ComboNozzleSizeT1.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT1.TabIndex = 130;
+            this.ComboNozzleSizeT1.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT1_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT2
+            // 
+            this.ComboNozzleSizeT2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT2.FormattingEnabled = true;
+            this.ComboNozzleSizeT2.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT2.Location = new System.Drawing.Point(31, 88);
+            this.ComboNozzleSizeT2.Name = "ComboNozzleSizeT2";
+            this.ComboNozzleSizeT2.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT2.TabIndex = 131;
+            this.ComboNozzleSizeT2.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT2_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT3
+            // 
+            this.ComboNozzleSizeT3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT3.FormattingEnabled = true;
+            this.ComboNozzleSizeT3.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT3.Location = new System.Drawing.Point(145, 88);
+            this.ComboNozzleSizeT3.Name = "ComboNozzleSizeT3";
+            this.ComboNozzleSizeT3.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT3.TabIndex = 132;
+            this.ComboNozzleSizeT3.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT3_SelectedIndexChanged);
+            // 
             // btnBedTempPlus
             // 
             this.btnBedTempPlus.BackColor = System.Drawing.Color.Transparent;
@@ -4495,11 +4507,6 @@ namespace MultecPlugin
         private Label label6;
         private Label label4;
         private Label label3;
-        private Button BtnNozzleSizeSave;
-        private TextBox textT0NozzleSize;
-        private TextBox textT2NozzleSize;
-        private TextBox textT1NozzleSize;
-        private TextBox textT3NozzleSize;
         private GroupBox FilamentWechseln;
         private GroupBox groupBox6;
         private Label label44;
@@ -4525,5 +4532,9 @@ namespace MultecPlugin
         private CheckBox backupT0furT1;
         private CheckBox backupT3furT0;
         private CheckBox backupT2furT0;
+        private ComboBox ComboNozzleSizeT0;
+        private ComboBox ComboNozzleSizeT3;
+        private ComboBox ComboNozzleSizeT2;
+        private ComboBox ComboNozzleSizeT1;
     }
 }
