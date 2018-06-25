@@ -5622,6 +5622,193 @@ namespace MultecPlugin
                 e.Handled = true;
             }
         }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            btnActivate.Text = "Activated";
+            btnActivate.Enabled = false;
+            btnDeactivate.Enabled = true;
+            btnDeactivate.Text = "Deactivate";
+        }
+
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            btnDeactivate.Text = "Deactivated";
+            btnDeactivate.Enabled = false;
+            btnActivate.Enabled = true;
+            btnActivate.Text = "Activate";
+        }
+
+        private void backupT0furT1_CheckedChanged(object sender, EventArgs e)
+        {
+             if(backupT0furT1.Checked)
+            {
+                backupT0furT2.Enabled = false;
+                backupT0furT3.Enabled = false;
+            }
+            else
+            {
+                backupT0furT2.Enabled = true;
+                backupT0furT3.Enabled = true;
+            }
+        }
+
+        private void backupT0furT2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT0furT2.Checked)
+            {
+                backupT0furT1.Enabled = false;
+                backupT0furT3.Enabled = false;
+            }
+            else
+            {
+                backupT0furT1.Enabled = true;
+                backupT0furT3.Enabled = true;
+            }
+        }
+
+        private void backupT0furT3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT0furT3.Checked)
+            {
+                backupT0furT2.Enabled = false;
+                backupT0furT1.Enabled = false;
+            }
+            else
+            {
+                backupT0furT2.Enabled = true;
+                backupT0furT1.Enabled = true;
+            }
+        }
+
+        private void backupT1furT0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT1furT0.Checked)
+            {
+                backupT1furT2.Enabled = false;
+                backupT1furT3.Enabled = false;
+            }
+            else
+            {
+                backupT1furT2.Enabled = true;
+                backupT1furT3.Enabled = true;
+            }
+        }
+
+        private void backupT1furT2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT1furT2.Checked)
+            {
+                backupT1furT0.Enabled = false;
+                backupT1furT3.Enabled = false;
+            }
+            else
+            {
+                backupT1furT0.Enabled = true;
+                backupT1furT3.Enabled = true;
+            }
+        }
+
+        private void backupT1furT3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT1furT3.Checked)
+            {
+                backupT1furT2.Enabled = false;
+                backupT1furT0.Enabled = false;
+            }
+            else
+            {
+                backupT1furT2.Enabled = true;
+                backupT1furT0.Enabled = true;
+            }
+        }
+
+        private void backupT2furT0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT2furT0.Checked)
+            {
+                backupT2furT1.Enabled = false;
+                backupT2furT3.Enabled = false;
+            }
+            else
+            {
+                backupT2furT1.Enabled = true;
+                backupT2furT3.Enabled = true;
+            }
+        }
+
+        private void backupT2furT1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT2furT1.Checked)
+            {
+                backupT2furT0.Enabled = false;
+                backupT2furT3.Enabled = false;
+            }
+            else
+            {
+                backupT2furT0.Enabled = true;
+                backupT2furT3.Enabled = true;
+            }
+        }
+
+        private void backupT2furT3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT2furT3.Checked)
+            {
+                backupT2furT0.Enabled = false;
+                backupT2furT1.Enabled = false;
+            }
+            else
+            {
+                backupT2furT0.Enabled = true;
+                backupT2furT1.Enabled = true;
+            }
+
+        }
+
+        private void backupT3furT0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (backupT3furT0.Checked)
+            {
+                backupT3furT1.Enabled = false;
+                backupT3furT2.Enabled = false;
+            }
+            else
+            {
+                backupT3furT1.Enabled = true;
+                backupT3furT2.Enabled = true;
+            }
+        }
+
+        private void backupT3furT1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (backupT3furT1.Checked)
+            {
+                backupT3furT0.Enabled = false;
+                backupT3furT2.Enabled = false;
+            }
+            else
+            {
+                backupT3furT0.Enabled = true;
+                backupT3furT2.Enabled = true;
+            }
+        }
+
+        private void backupT3furT2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (backupT3furT2.Checked)
+            {
+                backupT3furT1.Enabled = false;
+                backupT3furT0.Enabled = false;
+            }
+            else
+            {
+                backupT3furT1.Enabled = true;
+                backupT3furT0.Enabled = true;
+            }
+        }
     }
 
 
