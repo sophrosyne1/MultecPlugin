@@ -154,18 +154,11 @@ namespace MultecPlugin
             this.btnXPlus = new MyCustomButton.MyCustomButton();
             this.btnXMinus = new MyCustomButton.MyCustomButton();
             this.Filament = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnFilAktualise = new MyCustomButton.MyCustomButton();
+            this.grpEndlosDruck = new System.Windows.Forms.GroupBox();
+            this.lblEndlosDruck = new System.Windows.Forms.Label();
             this.btnActivate = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
-            this.NozzleSizeKal = new System.Windows.Forms.GroupBox();
-            this.ComboNozzleSizeT3 = new System.Windows.Forms.ComboBox();
-            this.ComboNozzleSizeT2 = new System.Windows.Forms.ComboBox();
-            this.ComboNozzleSizeT1 = new System.Windows.Forms.ComboBox();
-            this.ComboNozzleSizeT0 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.backupT2furT3 = new System.Windows.Forms.CheckBox();
             this.backupT0furT3 = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
@@ -206,8 +199,16 @@ namespace MultecPlugin
             this.btnRetractT2 = new MyCustomButton.MyCustomButton();
             this.lblT0 = new System.Windows.Forms.Label();
             this.lblT1 = new System.Windows.Forms.Label();
+            this.NozzleSizeKal = new System.Windows.Forms.GroupBox();
+            this.ComboNozzleSizeT3 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT2 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT1 = new System.Windows.Forms.ComboBox();
+            this.ComboNozzleSizeT0 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.filamentUberwachung = new System.Windows.Forms.GroupBox();
-            this.btnFilAktualise = new MyCustomButton.MyCustomButton();
             this.lblT3_1 = new System.Windows.Forms.Label();
             this.lblT2_1 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -387,8 +388,8 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).BeginInit();
             this.Filament.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.NozzleSizeKal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).BeginInit();
+            this.grpEndlosDruck.SuspendLayout();
             this.FilamentWechseln.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadT0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadT3)).BeginInit();
@@ -398,8 +399,8 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadT2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRetractT1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRetractT2)).BeginInit();
+            this.NozzleSizeKal.SuspendLayout();
             this.filamentUberwachung.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoAktualise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -2104,8 +2105,10 @@ namespace MultecPlugin
             // Filament
             // 
             this.Filament.BackColor = System.Drawing.Color.White;
-            this.Filament.Controls.Add(this.groupBox6);
+            this.Filament.Controls.Add(this.btnFilAktualise);
+            this.Filament.Controls.Add(this.grpEndlosDruck);
             this.Filament.Controls.Add(this.FilamentWechseln);
+            this.Filament.Controls.Add(this.NozzleSizeKal);
             this.Filament.Controls.Add(this.filamentUberwachung);
             this.Filament.Location = new System.Drawing.Point(44, 4);
             this.Filament.Name = "Filament";
@@ -2113,43 +2116,69 @@ namespace MultecPlugin
             this.Filament.TabIndex = 3;
             this.Filament.Text = "Filament";
             // 
-            // groupBox6
+            // btnFilAktualise
             // 
-            this.groupBox6.Controls.Add(this.btnActivate);
-            this.groupBox6.Controls.Add(this.btnDeactivate);
-            this.groupBox6.Controls.Add(this.NozzleSizeKal);
-            this.groupBox6.Controls.Add(this.backupT2furT3);
-            this.groupBox6.Controls.Add(this.backupT0furT3);
-            this.groupBox6.Controls.Add(this.label49);
-            this.groupBox6.Controls.Add(this.backupT1furT3);
-            this.groupBox6.Controls.Add(this.backupT3furT2);
-            this.groupBox6.Controls.Add(this.backupT0furT2);
-            this.groupBox6.Controls.Add(this.label48);
-            this.groupBox6.Controls.Add(this.backupT1furT2);
-            this.groupBox6.Controls.Add(this.backupT3furT1);
-            this.groupBox6.Controls.Add(this.backupT2furT1);
-            this.groupBox6.Controls.Add(this.label45);
-            this.groupBox6.Controls.Add(this.backupT0furT1);
-            this.groupBox6.Controls.Add(this.backupT3furT0);
-            this.groupBox6.Controls.Add(this.backupT2furT0);
-            this.groupBox6.Controls.Add(this.label44);
-            this.groupBox6.Controls.Add(this.label36);
-            this.groupBox6.Controls.Add(this.label31);
-            this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.label20);
-            this.groupBox6.Controls.Add(this.backupT1furT0);
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(301, 10);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(259, 487);
-            this.groupBox6.TabIndex = 126;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Endless Druck";
+            this.btnFilAktualise.BackColor = System.Drawing.Color.Transparent;
+            this.btnFilAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.Image")));
+            this.btnFilAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImageClicked")));
+            this.btnFilAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImangeNormal")));
+            this.btnFilAktualise.Location = new System.Drawing.Point(449, 22);
+            this.btnFilAktualise.Name = "btnFilAktualise";
+            this.btnFilAktualise.Size = new System.Drawing.Size(97, 31);
+            this.btnFilAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFilAktualise.TabIndex = 82;
+            this.btnFilAktualise.TabStop = false;
+            this.btnFilAktualise.EnabledChanged += new System.EventHandler(this.btnFilAktualise_EnabledChanged_1);
+            this.btnFilAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFilAktualise_MouseClick);
+            // 
+            // grpEndlosDruck
+            // 
+            this.grpEndlosDruck.Controls.Add(this.lblEndlosDruck);
+            this.grpEndlosDruck.Controls.Add(this.btnActivate);
+            this.grpEndlosDruck.Controls.Add(this.btnDeactivate);
+            this.grpEndlosDruck.Controls.Add(this.backupT2furT3);
+            this.grpEndlosDruck.Controls.Add(this.backupT0furT3);
+            this.grpEndlosDruck.Controls.Add(this.label49);
+            this.grpEndlosDruck.Controls.Add(this.backupT1furT3);
+            this.grpEndlosDruck.Controls.Add(this.backupT3furT2);
+            this.grpEndlosDruck.Controls.Add(this.backupT0furT2);
+            this.grpEndlosDruck.Controls.Add(this.label48);
+            this.grpEndlosDruck.Controls.Add(this.backupT1furT2);
+            this.grpEndlosDruck.Controls.Add(this.backupT3furT1);
+            this.grpEndlosDruck.Controls.Add(this.backupT2furT1);
+            this.grpEndlosDruck.Controls.Add(this.label45);
+            this.grpEndlosDruck.Controls.Add(this.backupT0furT1);
+            this.grpEndlosDruck.Controls.Add(this.backupT3furT0);
+            this.grpEndlosDruck.Controls.Add(this.backupT2furT0);
+            this.grpEndlosDruck.Controls.Add(this.label44);
+            this.grpEndlosDruck.Controls.Add(this.label36);
+            this.grpEndlosDruck.Controls.Add(this.label31);
+            this.grpEndlosDruck.Controls.Add(this.label22);
+            this.grpEndlosDruck.Controls.Add(this.label21);
+            this.grpEndlosDruck.Controls.Add(this.label20);
+            this.grpEndlosDruck.Controls.Add(this.backupT1furT0);
+            this.grpEndlosDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpEndlosDruck.Location = new System.Drawing.Point(298, 222);
+            this.grpEndlosDruck.Name = "grpEndlosDruck";
+            this.grpEndlosDruck.Size = new System.Drawing.Size(259, 290);
+            this.grpEndlosDruck.TabIndex = 126;
+            this.grpEndlosDruck.TabStop = false;
+            this.grpEndlosDruck.Text = "Endless Druck";
+            // 
+            // lblEndlosDruck
+            // 
+            this.lblEndlosDruck.AutoSize = true;
+            this.lblEndlosDruck.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblEndlosDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEndlosDruck.Location = new System.Drawing.Point(12, 26);
+            this.lblEndlosDruck.Name = "lblEndlosDruck";
+            this.lblEndlosDruck.Size = new System.Drawing.Size(52, 22);
+            this.lblEndlosDruck.TabIndex = 10;
+            this.lblEndlosDruck.Text = "NULL";
             // 
             // btnActivate
             // 
-            this.btnActivate.Location = new System.Drawing.Point(22, 435);
+            this.btnActivate.Location = new System.Drawing.Point(22, 243);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(102, 31);
             this.btnActivate.TabIndex = 21;
@@ -2159,7 +2188,7 @@ namespace MultecPlugin
             // 
             // btnDeactivate
             // 
-            this.btnDeactivate.Location = new System.Drawing.Point(140, 435);
+            this.btnDeactivate.Location = new System.Drawing.Point(140, 243);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(102, 31);
             this.btnDeactivate.TabIndex = 22;
@@ -2167,125 +2196,11 @@ namespace MultecPlugin
             this.btnDeactivate.UseVisualStyleBackColor = true;
             this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
-            // NozzleSizeKal
-            // 
-            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT3);
-            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT2);
-            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT1);
-            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT0);
-            this.NozzleSizeKal.Controls.Add(this.label5);
-            this.NozzleSizeKal.Controls.Add(this.label6);
-            this.NozzleSizeKal.Controls.Add(this.label4);
-            this.NozzleSizeKal.Controls.Add(this.label3);
-            this.NozzleSizeKal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NozzleSizeKal.Location = new System.Drawing.Point(6, 21);
-            this.NozzleSizeKal.Name = "NozzleSizeKal";
-            this.NozzleSizeKal.Size = new System.Drawing.Size(247, 157);
-            this.NozzleSizeKal.TabIndex = 124;
-            this.NozzleSizeKal.TabStop = false;
-            this.NozzleSizeKal.Text = "Nozze Size";
-            // 
-            // ComboNozzleSizeT3
-            // 
-            this.ComboNozzleSizeT3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboNozzleSizeT3.FormattingEnabled = true;
-            this.ComboNozzleSizeT3.Items.AddRange(new object[] {
-            "0.35 mm",
-            "0.5 mm",
-            "0.8 mm"});
-            this.ComboNozzleSizeT3.Location = new System.Drawing.Point(145, 88);
-            this.ComboNozzleSizeT3.Name = "ComboNozzleSizeT3";
-            this.ComboNozzleSizeT3.Size = new System.Drawing.Size(75, 21);
-            this.ComboNozzleSizeT3.TabIndex = 132;
-            this.ComboNozzleSizeT3.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT3_SelectedIndexChanged);
-            // 
-            // ComboNozzleSizeT2
-            // 
-            this.ComboNozzleSizeT2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboNozzleSizeT2.FormattingEnabled = true;
-            this.ComboNozzleSizeT2.Items.AddRange(new object[] {
-            "0.35 mm",
-            "0.5 mm",
-            "0.8 mm"});
-            this.ComboNozzleSizeT2.Location = new System.Drawing.Point(31, 88);
-            this.ComboNozzleSizeT2.Name = "ComboNozzleSizeT2";
-            this.ComboNozzleSizeT2.Size = new System.Drawing.Size(75, 21);
-            this.ComboNozzleSizeT2.TabIndex = 131;
-            this.ComboNozzleSizeT2.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT2_SelectedIndexChanged);
-            // 
-            // ComboNozzleSizeT1
-            // 
-            this.ComboNozzleSizeT1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboNozzleSizeT1.FormattingEnabled = true;
-            this.ComboNozzleSizeT1.Items.AddRange(new object[] {
-            "0.35 mm",
-            "0.5 mm",
-            "0.8 mm"});
-            this.ComboNozzleSizeT1.Location = new System.Drawing.Point(145, 38);
-            this.ComboNozzleSizeT1.Name = "ComboNozzleSizeT1";
-            this.ComboNozzleSizeT1.Size = new System.Drawing.Size(75, 21);
-            this.ComboNozzleSizeT1.TabIndex = 130;
-            this.ComboNozzleSizeT1.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT1_SelectedIndexChanged);
-            // 
-            // ComboNozzleSizeT0
-            // 
-            this.ComboNozzleSizeT0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboNozzleSizeT0.FormattingEnabled = true;
-            this.ComboNozzleSizeT0.Items.AddRange(new object[] {
-            "0.35 mm",
-            "0.5 mm",
-            "0.8 mm"});
-            this.ComboNozzleSizeT0.Location = new System.Drawing.Point(31, 38);
-            this.ComboNozzleSizeT0.Name = "ComboNozzleSizeT0";
-            this.ComboNozzleSizeT0.Size = new System.Drawing.Size(75, 21);
-            this.ComboNozzleSizeT0.TabIndex = 129;
-            this.ComboNozzleSizeT0.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT0_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(169, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 16);
-            this.label5.TabIndex = 128;
-            this.label5.Text = "T3";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(57, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 16);
-            this.label6.TabIndex = 127;
-            this.label6.Text = "T2";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(169, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 16);
-            this.label4.TabIndex = 126;
-            this.label4.Text = "T1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(57, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 16);
-            this.label3.TabIndex = 125;
-            this.label3.Text = "T0";
-            // 
             // backupT2furT3
             // 
             this.backupT2furT3.AutoSize = true;
             this.backupT2furT3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT2furT3.Location = new System.Drawing.Point(185, 382);
+            this.backupT2furT3.Location = new System.Drawing.Point(185, 190);
             this.backupT2furT3.Name = "backupT2furT3";
             this.backupT2furT3.Size = new System.Drawing.Size(15, 14);
             this.backupT2furT3.TabIndex = 20;
@@ -2296,7 +2211,7 @@ namespace MultecPlugin
             // 
             this.backupT0furT3.AutoSize = true;
             this.backupT0furT3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT0furT3.Location = new System.Drawing.Point(101, 382);
+            this.backupT0furT3.Location = new System.Drawing.Point(101, 190);
             this.backupT0furT3.Name = "backupT0furT3";
             this.backupT0furT3.Size = new System.Drawing.Size(15, 14);
             this.backupT0furT3.TabIndex = 19;
@@ -2307,7 +2222,7 @@ namespace MultecPlugin
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(6, 380);
+            this.label49.Location = new System.Drawing.Point(6, 188);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(82, 15);
             this.label49.TabIndex = 18;
@@ -2317,7 +2232,7 @@ namespace MultecPlugin
             // 
             this.backupT1furT3.AutoSize = true;
             this.backupT1furT3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT1furT3.Location = new System.Drawing.Point(143, 382);
+            this.backupT1furT3.Location = new System.Drawing.Point(143, 190);
             this.backupT1furT3.Name = "backupT1furT3";
             this.backupT1furT3.Size = new System.Drawing.Size(15, 14);
             this.backupT1furT3.TabIndex = 17;
@@ -2328,7 +2243,7 @@ namespace MultecPlugin
             // 
             this.backupT3furT2.AutoSize = true;
             this.backupT3furT2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT3furT2.Location = new System.Drawing.Point(227, 347);
+            this.backupT3furT2.Location = new System.Drawing.Point(227, 155);
             this.backupT3furT2.Name = "backupT3furT2";
             this.backupT3furT2.Size = new System.Drawing.Size(15, 14);
             this.backupT3furT2.TabIndex = 16;
@@ -2339,7 +2254,7 @@ namespace MultecPlugin
             // 
             this.backupT0furT2.AutoSize = true;
             this.backupT0furT2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT0furT2.Location = new System.Drawing.Point(101, 347);
+            this.backupT0furT2.Location = new System.Drawing.Point(101, 155);
             this.backupT0furT2.Name = "backupT0furT2";
             this.backupT0furT2.Size = new System.Drawing.Size(15, 14);
             this.backupT0furT2.TabIndex = 15;
@@ -2350,7 +2265,7 @@ namespace MultecPlugin
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(6, 345);
+            this.label48.Location = new System.Drawing.Point(6, 153);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(82, 15);
             this.label48.TabIndex = 14;
@@ -2360,7 +2275,7 @@ namespace MultecPlugin
             // 
             this.backupT1furT2.AutoSize = true;
             this.backupT1furT2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT1furT2.Location = new System.Drawing.Point(143, 347);
+            this.backupT1furT2.Location = new System.Drawing.Point(143, 155);
             this.backupT1furT2.Name = "backupT1furT2";
             this.backupT1furT2.Size = new System.Drawing.Size(15, 14);
             this.backupT1furT2.TabIndex = 13;
@@ -2371,7 +2286,7 @@ namespace MultecPlugin
             // 
             this.backupT3furT1.AutoSize = true;
             this.backupT3furT1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT3furT1.Location = new System.Drawing.Point(227, 312);
+            this.backupT3furT1.Location = new System.Drawing.Point(227, 120);
             this.backupT3furT1.Name = "backupT3furT1";
             this.backupT3furT1.Size = new System.Drawing.Size(15, 14);
             this.backupT3furT1.TabIndex = 12;
@@ -2382,7 +2297,7 @@ namespace MultecPlugin
             // 
             this.backupT2furT1.AutoSize = true;
             this.backupT2furT1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT2furT1.Location = new System.Drawing.Point(185, 312);
+            this.backupT2furT1.Location = new System.Drawing.Point(185, 120);
             this.backupT2furT1.Name = "backupT2furT1";
             this.backupT2furT1.Size = new System.Drawing.Size(15, 14);
             this.backupT2furT1.TabIndex = 11;
@@ -2393,7 +2308,7 @@ namespace MultecPlugin
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(6, 310);
+            this.label45.Location = new System.Drawing.Point(6, 118);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(82, 15);
             this.label45.TabIndex = 10;
@@ -2403,7 +2318,7 @@ namespace MultecPlugin
             // 
             this.backupT0furT1.AutoSize = true;
             this.backupT0furT1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT0furT1.Location = new System.Drawing.Point(101, 312);
+            this.backupT0furT1.Location = new System.Drawing.Point(101, 120);
             this.backupT0furT1.Name = "backupT0furT1";
             this.backupT0furT1.Size = new System.Drawing.Size(15, 14);
             this.backupT0furT1.TabIndex = 9;
@@ -2414,7 +2329,7 @@ namespace MultecPlugin
             // 
             this.backupT3furT0.AutoSize = true;
             this.backupT3furT0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT3furT0.Location = new System.Drawing.Point(227, 278);
+            this.backupT3furT0.Location = new System.Drawing.Point(227, 86);
             this.backupT3furT0.Name = "backupT3furT0";
             this.backupT3furT0.Size = new System.Drawing.Size(15, 14);
             this.backupT3furT0.TabIndex = 8;
@@ -2425,7 +2340,7 @@ namespace MultecPlugin
             // 
             this.backupT2furT0.AutoSize = true;
             this.backupT2furT0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT2furT0.Location = new System.Drawing.Point(185, 278);
+            this.backupT2furT0.Location = new System.Drawing.Point(185, 86);
             this.backupT2furT0.Name = "backupT2furT0";
             this.backupT2furT0.Size = new System.Drawing.Size(15, 14);
             this.backupT2furT0.TabIndex = 7;
@@ -2436,7 +2351,7 @@ namespace MultecPlugin
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(6, 276);
+            this.label44.Location = new System.Drawing.Point(6, 84);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(82, 15);
             this.label44.TabIndex = 6;
@@ -2446,7 +2361,7 @@ namespace MultecPlugin
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(224, 250);
+            this.label36.Location = new System.Drawing.Point(224, 58);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(21, 15);
             this.label36.TabIndex = 5;
@@ -2456,7 +2371,7 @@ namespace MultecPlugin
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(182, 250);
+            this.label31.Location = new System.Drawing.Point(182, 58);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(21, 15);
             this.label31.TabIndex = 4;
@@ -2466,7 +2381,7 @@ namespace MultecPlugin
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(140, 250);
+            this.label22.Location = new System.Drawing.Point(140, 58);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(21, 15);
             this.label22.TabIndex = 3;
@@ -2476,7 +2391,7 @@ namespace MultecPlugin
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(98, 250);
+            this.label21.Location = new System.Drawing.Point(98, 58);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(21, 15);
             this.label21.TabIndex = 2;
@@ -2486,7 +2401,7 @@ namespace MultecPlugin
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(6, 250);
+            this.label20.Location = new System.Drawing.Point(6, 58);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(36, 15);
             this.label20.TabIndex = 1;
@@ -2496,7 +2411,7 @@ namespace MultecPlugin
             // 
             this.backupT1furT0.AutoSize = true;
             this.backupT1furT0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backupT1furT0.Location = new System.Drawing.Point(143, 278);
+            this.backupT1furT0.Location = new System.Drawing.Point(143, 86);
             this.backupT1furT0.Name = "backupT1furT0";
             this.backupT1furT0.Size = new System.Drawing.Size(15, 14);
             this.backupT1furT0.TabIndex = 0;
@@ -2526,7 +2441,7 @@ namespace MultecPlugin
             this.FilamentWechseln.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilamentWechseln.Location = new System.Drawing.Point(3, 222);
             this.FilamentWechseln.Name = "FilamentWechseln";
-            this.FilamentWechseln.Size = new System.Drawing.Size(289, 275);
+            this.FilamentWechseln.Size = new System.Drawing.Size(289, 290);
             this.FilamentWechseln.TabIndex = 125;
             this.FilamentWechseln.TabStop = false;
             this.FilamentWechseln.Text = "Filament Wechseln";
@@ -2754,9 +2669,122 @@ namespace MultecPlugin
             this.lblT1.TabIndex = 98;
             this.lblT1.Text = "T1";
             // 
+            // NozzleSizeKal
+            // 
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT3);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT2);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT1);
+            this.NozzleSizeKal.Controls.Add(this.ComboNozzleSizeT0);
+            this.NozzleSizeKal.Controls.Add(this.label5);
+            this.NozzleSizeKal.Controls.Add(this.label6);
+            this.NozzleSizeKal.Controls.Add(this.label4);
+            this.NozzleSizeKal.Controls.Add(this.label3);
+            this.NozzleSizeKal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NozzleSizeKal.Location = new System.Drawing.Point(304, 59);
+            this.NozzleSizeKal.Name = "NozzleSizeKal";
+            this.NozzleSizeKal.Size = new System.Drawing.Size(247, 157);
+            this.NozzleSizeKal.TabIndex = 124;
+            this.NozzleSizeKal.TabStop = false;
+            this.NozzleSizeKal.Text = "Nozze Size";
+            // 
+            // ComboNozzleSizeT3
+            // 
+            this.ComboNozzleSizeT3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT3.FormattingEnabled = true;
+            this.ComboNozzleSizeT3.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT3.Location = new System.Drawing.Point(145, 88);
+            this.ComboNozzleSizeT3.Name = "ComboNozzleSizeT3";
+            this.ComboNozzleSizeT3.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT3.TabIndex = 132;
+            this.ComboNozzleSizeT3.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT3_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT2
+            // 
+            this.ComboNozzleSizeT2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT2.FormattingEnabled = true;
+            this.ComboNozzleSizeT2.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT2.Location = new System.Drawing.Point(31, 88);
+            this.ComboNozzleSizeT2.Name = "ComboNozzleSizeT2";
+            this.ComboNozzleSizeT2.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT2.TabIndex = 131;
+            this.ComboNozzleSizeT2.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT2_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT1
+            // 
+            this.ComboNozzleSizeT1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT1.FormattingEnabled = true;
+            this.ComboNozzleSizeT1.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT1.Location = new System.Drawing.Point(145, 38);
+            this.ComboNozzleSizeT1.Name = "ComboNozzleSizeT1";
+            this.ComboNozzleSizeT1.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT1.TabIndex = 130;
+            this.ComboNozzleSizeT1.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT1_SelectedIndexChanged);
+            // 
+            // ComboNozzleSizeT0
+            // 
+            this.ComboNozzleSizeT0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboNozzleSizeT0.FormattingEnabled = true;
+            this.ComboNozzleSizeT0.Items.AddRange(new object[] {
+            "0.35 mm",
+            "0.5 mm",
+            "0.8 mm"});
+            this.ComboNozzleSizeT0.Location = new System.Drawing.Point(31, 38);
+            this.ComboNozzleSizeT0.Name = "ComboNozzleSizeT0";
+            this.ComboNozzleSizeT0.Size = new System.Drawing.Size(75, 21);
+            this.ComboNozzleSizeT0.TabIndex = 129;
+            this.ComboNozzleSizeT0.SelectedIndexChanged += new System.EventHandler(this.ComboNozzleSizeT0_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(169, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 16);
+            this.label5.TabIndex = 128;
+            this.label5.Text = "T3";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(57, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 16);
+            this.label6.TabIndex = 127;
+            this.label6.Text = "T2";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(169, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(24, 16);
+            this.label4.TabIndex = 126;
+            this.label4.Text = "T1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(57, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 16);
+            this.label3.TabIndex = 125;
+            this.label3.Text = "T0";
+            // 
             // filamentUberwachung
             // 
-            this.filamentUberwachung.Controls.Add(this.btnFilAktualise);
             this.filamentUberwachung.Controls.Add(this.lblT3_1);
             this.filamentUberwachung.Controls.Add(this.lblT2_1);
             this.filamentUberwachung.Controls.Add(this.label47);
@@ -2773,21 +2801,6 @@ namespace MultecPlugin
             this.filamentUberwachung.TabIndex = 92;
             this.filamentUberwachung.TabStop = false;
             this.filamentUberwachung.Text = "Filament Überwachung";
-            // 
-            // btnFilAktualise
-            // 
-            this.btnFilAktualise.BackColor = System.Drawing.Color.Transparent;
-            this.btnFilAktualise.Image = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.Image")));
-            this.btnFilAktualise.ImageClicked = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImageClicked")));
-            this.btnFilAktualise.ImangeNormal = ((System.Drawing.Image)(resources.GetObject("btnFilAktualise.ImangeNormal")));
-            this.btnFilAktualise.Location = new System.Drawing.Point(186, 18);
-            this.btnFilAktualise.Name = "btnFilAktualise";
-            this.btnFilAktualise.Size = new System.Drawing.Size(97, 31);
-            this.btnFilAktualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFilAktualise.TabIndex = 82;
-            this.btnFilAktualise.TabStop = false;
-            this.btnFilAktualise.EnabledChanged += new System.EventHandler(this.btnFilAktualise_EnabledChanged_1);
-            this.btnFilAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFilAktualise_MouseClick);
             // 
             // lblT3_1
             // 
@@ -4226,10 +4239,9 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnXPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXMinus)).EndInit();
             this.Filament.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.NozzleSizeKal.ResumeLayout(false);
-            this.NozzleSizeKal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).EndInit();
+            this.grpEndlosDruck.ResumeLayout(false);
+            this.grpEndlosDruck.PerformLayout();
             this.FilamentWechseln.ResumeLayout(false);
             this.FilamentWechseln.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadT0)).EndInit();
@@ -4240,9 +4252,10 @@ namespace MultecPlugin
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadT2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRetractT1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRetractT2)).EndInit();
+            this.NozzleSizeKal.ResumeLayout(false);
+            this.NozzleSizeKal.PerformLayout();
             this.filamentUberwachung.ResumeLayout(false);
             this.filamentUberwachung.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFilAktualise)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnInfoAktualise)).EndInit();
@@ -4508,7 +4521,7 @@ namespace MultecPlugin
         private Label label4;
         private Label label3;
         private GroupBox FilamentWechseln;
-        private GroupBox groupBox6;
+        private GroupBox grpEndlosDruck;
         private Label label44;
         private Label label36;
         private Label label31;
@@ -4536,5 +4549,6 @@ namespace MultecPlugin
         private ComboBox ComboNozzleSizeT3;
         private ComboBox ComboNozzleSizeT2;
         private ComboBox ComboNozzleSizeT1;
+        private Label lblEndlosDruck;
     }
 }

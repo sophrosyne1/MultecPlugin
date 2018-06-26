@@ -1179,6 +1179,28 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in RunOutMonitoringActive: " + ex);
                 }
             }
+            if (response.IndexOf("Endlosdruck", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                try
+                {
+
+                    if (response.IndexOf("aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    {
+                        lblEndlosDruck.Text = "AKTIV";
+                        lblEndlosDruck.BackColor = Color.Yellow;
+                        
+                    }
+                    else
+                    {
+                        lblEndlosDruck.Text = "NICHT AKTIV";
+                        lblEndlosDruck.BackColor = SystemColors.Control;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("There was an error in Endlosdruck Status: " + ex);
+                }
+            }
 
             if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -6003,17 +6025,7 @@ namespace MultecPlugin
         private void EndlessNozzleCheck()
         {
 
-            foreach (Control c in Filament.Controls)
-            {
-                foreach (Control ctrl in c.Controls)
-                {
-                    if (ctrl is CheckBox)
-                    {
-                        ((CheckBox)ctrl).Enabled = true;
-                        ((CheckBox)ctrl).CheckState = CheckState.Unchecked;
-                    }
-                }
-            }
+            ResetFilamentCheckBox();
             T0T1equal = (nozzleSizeT0 == nozzleSizeT1);
             backupT0furT1.Enabled = T0T1equal;
             backupT1furT0.Enabled = T0T1equal;
@@ -6039,6 +6051,21 @@ namespace MultecPlugin
             nozzleSizeT1 = this.ComboNozzleSizeT1.GetItemText(this.ComboNozzleSizeT1.SelectedItem);
             nozzleSizeT2 = this.ComboNozzleSizeT2.GetItemText(this.ComboNozzleSizeT2.SelectedItem);
             nozzleSizeT3 = this.ComboNozzleSizeT3.GetItemText(this.ComboNozzleSizeT3.SelectedItem);
+        }
+
+        private void ResetFilamentCheckBox()
+        {
+            foreach (Control c in Filament.Controls)
+            {
+                foreach (Control ctrl in c.Controls)
+                {
+                    if (ctrl is CheckBox)
+                    {
+                        ((CheckBox)ctrl).Enabled = true;
+                        ((CheckBox)ctrl).CheckState = CheckState.Unchecked;
+                    }
+                }
+            }
         }
     }
 
