@@ -2002,6 +2002,16 @@ namespace MultecPlugin
             btnPminus.Visible = val;
             btnPplus.Visible = val;
             btnParkPositionSend.Visible = val;
+            label48.Visible = val;
+            label49.Visible = val;
+            backupT0furT2.Visible = val;
+            backupT1furT2.Visible = val;
+            backupT3furT2.Visible = val;
+            backupT0furT3.Visible = val;
+            backupT1furT3.Visible = val;
+            backupT2furT3.Visible = val;
+            
+
 
         }
         public void enablDisablWhenDoorOpen(bool val)
@@ -4231,6 +4241,7 @@ namespace MultecPlugin
                                 host.Connection.injectManualCommand("M104 S0 T0");
                                 host.Connection.injectManualCommand("T1");
                                 timerRetractLoad.Stop();
+                                T0LoadRetractClicked = false;
 
                             }
                         }
@@ -4252,6 +4263,7 @@ namespace MultecPlugin
                                 TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T0");
                                 timerRetractLoad.Stop();
+                                T0LoadRetractClicked = false;
                             }
                         }
                     }
@@ -4287,6 +4299,7 @@ namespace MultecPlugin
                                 host.Connection.injectManualCommand("M104 S0 T1");
                                 host.Connection.injectManualCommand("T0");
                                 timerRetractLoad.Stop();
+                                T1LoadRetractClicked = false;
                             }
                         }
                         if (loadT1)
@@ -4306,7 +4319,7 @@ namespace MultecPlugin
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T1");
-
+                                T1LoadRetractClicked = false;
                                 timerRetractLoad.Stop();
                             }
                         }
@@ -4343,6 +4356,7 @@ namespace MultecPlugin
                                 host.Connection.injectManualCommand("M104 S0 T2");
                                 host.Connection.injectManualCommand("T0");
                                 timerRetractLoad.Stop();
+                                T2LoadRetractClicked = false;
                             }
                         }
                         if (loadT2)
@@ -4363,6 +4377,7 @@ namespace MultecPlugin
                                 TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T2");
                                 timerRetractLoad.Stop();
+                                T2LoadRetractClicked = false;
                             }
                         }
                     }
@@ -4399,6 +4414,7 @@ namespace MultecPlugin
                                 host.Connection.injectManualCommand("M104 S0 T3");
                                 host.Connection.injectManualCommand("T0");
                                 timerRetractLoad.Stop();
+                                T3LoadRetractClicked = false;
                             }
                         }
                         if (loadT3)
@@ -4419,6 +4435,7 @@ namespace MultecPlugin
                                 TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T3");
                                 timerRetractLoad.Stop();
+                                T3LoadRetractClicked = false;
                             }
                         }
                     }
