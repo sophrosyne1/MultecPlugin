@@ -5716,125 +5716,69 @@ namespace MultecPlugin
         private bool columnT1 = true;
         private bool columnT2 = true;
         private bool columnT3 = true;
-        private bool RowT0= true;
+        private bool RowT0 = true;
         private bool RowT1 = true;
         private bool RowT2 = true;
         private bool RowT3 = true;
         private void BackupT0Column(bool val)
         {
-            if (val == false)
-            {
-                columnT0 = false;
-            }
-            else
-            {
-                columnT0 = true;
-            }
-            backupT0furT1.Enabled = val && T0T1equal && RowT1&& !T2T0 && !T3T0;
-            backupT0furT2.Enabled = val && T0T2equal && RowT2 && !T1T0 && !T3T0;
-            backupT0furT3.Enabled = val && T0T3equal && RowT3 && !T1T0 && !T2T0;
+            columnT0 = val;
+            backupT0furT1.Enabled = val && T0T1equal && RowT1 && !T2T0 && !T3T0 && !T0T1 && !T0T2 && !T0T3;
+            backupT0furT2.Enabled = val && T0T2equal && RowT2 && !T1T0 && !T3T0 && !T0T1 && !T0T2 && !T0T3;
+            backupT0furT3.Enabled = val && T0T3equal && RowT3 && !T1T0 && !T2T0 && !T0T1 && !T0T2 && !T0T3;
 
 
         }
         private void BackupT0Row(bool val)
         {
-            if (val == false)
-            {
-                RowT0 = false;
-            }
-            else
-            {
-                RowT0 = true;
-            }
-            backupT1furT0.Enabled = val && T0T1equal && columnT1 && !T2T1 && !T3T1;
-            backupT2furT0.Enabled = val && T0T2equal && columnT2 && !T1T2 && !T3T2;
-            backupT3furT0.Enabled = val && T0T3equal && columnT3 && !T1T3 && !T2T3; 
+            RowT0 = val;
+            backupT1furT0.Enabled = val && T0T1equal && columnT1 && !T2T1 && !T3T1 && !T1T0 && !T2T0 && !T3T0 && !T1T2 && !T1T3;
+            backupT2furT0.Enabled = val && T0T2equal && columnT2 && !T1T2 && !T3T2 && !T1T0 && !T2T0 && !T3T0 && !T2T1 && !T2T3;
+            backupT3furT0.Enabled = val && T0T3equal && columnT3 && !T1T3 && !T2T3 && !T1T0 && !T2T0 && !T3T0 && !T3T1 && !T3T2;
         }
         private void BackupT1Column(bool val)
         {
-            if (val == false)
-            {
-                columnT1 = false;
-            }
-            else
-            {
-                columnT1 = true;
-            }
-          backupT1furT0.Enabled = val && T0T1equal && RowT0 && !T2T1 && !T3T1; 
-            backupT1furT2.Enabled = val && T1T2equal && RowT2 && !T0T1 && !T3T1; 
-            backupT1furT3.Enabled = val && T1T3equal && RowT3 && !T0T1 && !T2T1; 
+            columnT1 = val;
+            backupT1furT0.Enabled = val && T0T1equal && RowT0 && !T2T1 && !T3T1 && !T1T0 && !T1T2 && !T1T3;
+            backupT1furT2.Enabled = val && T1T2equal && RowT2 && !T0T1 && !T3T1 && !T1T0 && !T1T2 && !T1T3;
+            backupT1furT3.Enabled = val && T1T3equal && RowT3 && !T0T1 && !T2T1 && !T1T0 && !T1T2 && !T1T3;
         }
         private void BackupT1Row(bool val)
         {
-            if (val == false)
-            {
-                RowT1 = false;
-            }
-            else
-            {
-                RowT1 = true;
-            }
-            backupT0furT1.Enabled = val && T0T1equal && columnT0 && !T2T0 && !T3T0;
-            backupT2furT1.Enabled = val && T1T2equal  && columnT2 && !T0T2 && !T3T2;
-            backupT3furT1.Enabled = val && T1T3equal  && columnT3 && !T0T3 && !T2T3;
+            RowT1 = val;
+            backupT0furT1.Enabled = val && T0T1equal && columnT0 && !T2T0 && !T3T0 && !T0T1 && !T2T1 && !T3T1 && !T0T2 && !T0T3;
+            backupT2furT1.Enabled = val && T1T2equal && columnT2 && !T0T2 && !T3T2 && !T0T1 && !T2T1 && !T3T1 && !T2T0 && !T2T3;
+            backupT3furT1.Enabled = val && T1T3equal && columnT3 && !T0T3 && !T2T3 && !T0T1 && !T2T1 && !T3T1 && !T3T0 && !T3T2;
 
         }
         private void BackupT2Column(bool val)
         {
-            if (val == false)
-            {
-                columnT2 = false;
-            }
-            else
-            {
-                columnT2 = true;
-            }
-            backupT2furT0.Enabled = val && T0T2equal && RowT0 && !T1T2 && !T3T2;
-            backupT2furT1.Enabled = val && T1T2equal && RowT1 && !T0T2 && !T3T2;
-            backupT2furT3.Enabled = val && T2T3equal && RowT3 && !T0T2 && !T1T2;
+            columnT2 = val;
+            backupT2furT0.Enabled = val && T0T2equal && RowT0 && !T1T2 && !T3T2 && !T2T0 && !T2T1 && !T2T3;
+            backupT2furT1.Enabled = val && T1T2equal && RowT1 && !T0T2 && !T3T2 && !T2T0 && !T2T1 && !T2T3;
+            backupT2furT3.Enabled = val && T2T3equal && RowT3 && !T0T2 && !T1T2 && !T2T0 && !T2T1 && !T2T3;
         }
         private void BackupT2Row(bool val)
         {
-            if (val == false)
-            {
-                RowT2 = false;
-            }
-            else
-            {
-                RowT2 = true;
-            }
-            backupT0furT2.Enabled = val && T0T2equal && columnT0 && !T1T0 && !T3T0;
-            backupT1furT2.Enabled = val && T1T2equal  && columnT1 && !T0T1 && !T3T1;
-            backupT3furT2.Enabled = val && T2T3equal  && columnT3 && !T0T3 && !T1T3;
+            RowT2 = val;
+            backupT0furT2.Enabled = val && T0T2equal && columnT0 && !T1T0 && !T3T0 && !T0T2 && !T1T2 && !T3T2 && !T0T1 && !T0T3;
+            backupT1furT2.Enabled = val && T1T2equal && columnT1 && !T0T1 && !T3T1 && !T0T2 && !T1T2 && !T3T2 && !T1T0 && !T1T3;
+            backupT3furT2.Enabled = val && T2T3equal && columnT3 && !T0T3 && !T1T3 && !T0T2 && !T1T2 && !T3T2 && !T3T0 && !T3T2;
         }
         private void BackupT3Column(bool val)
         {
-            if (val == false)
-            {
-                columnT3 = false;
-            }
-            else
-            {
-                columnT3 = true;
-            }
-            backupT3furT0.Enabled = val && T0T3equal && RowT0 && !T1T3 && !T2T3;
-            backupT3furT1.Enabled = val && T1T3equal && RowT1 && !T0T3 && !T2T3;
-            backupT3furT2.Enabled = val && T2T3equal && RowT2 && !T0T3 && !T1T3;
+            columnT3 = val;
+            backupT3furT0.Enabled = val && T0T3equal && RowT0 && !T1T3 && !T2T3 && !T3T0 && !T3T1 && !T3T2;
+            backupT3furT1.Enabled = val && T1T3equal && RowT1 && !T0T3 && !T2T3 && !T3T0 && !T3T1 && !T3T2;
+            backupT3furT2.Enabled = val && T2T3equal && RowT2 && !T0T3 && !T1T3 && !T3T0 && !T3T1 && !T3T2;
 
         }
         private void BackupT3Row(bool val)
         {
-            if (val == false)
-            {
-                RowT3 = false;
-            }
-            else
-            {
-                RowT3 = true;
-            }
-            backupT0furT3.Enabled = val && T0T3equal  && columnT0 && !T1T0 && !T2T0;
-            backupT1furT3.Enabled = val && T1T3equal  && columnT1 && !T0T1 && !T2T1;
-            backupT2furT3.Enabled = val && T2T3equal  && columnT2 && !T0T2 && !T1T2;
+            RowT3 = val;
+            backupT0furT3.Enabled = val && T0T3equal && columnT0 && !T1T0 && !T2T0 && !T0T3 && !T1T3 && !T2T3 && !T0T1 && !T0T2;
+            backupT1furT3.Enabled = val && T1T3equal && columnT1 && !T0T1 && !T2T1 && !T0T3 && !T1T3 && !T2T3 && !T1T0 && !T1T2;
+            backupT2furT3.Enabled = val && T2T3equal && columnT2 && !T0T2 && !T1T2 && !T0T3 && !T1T3 && !T2T3 && !T2T0 && !T2T1;
         }
         private bool T1T0;
         private bool T1T2;
@@ -5852,9 +5796,9 @@ namespace MultecPlugin
         private void backupT0furT1_CheckedChanged(object sender, EventArgs e)
         {
             T1T0 = !T1T0;
-            
-            backupT0furT2.Enabled = !backupT0furT1.Checked && T0T2equal && RowT2 && columnT0;
-            backupT0furT3.Enabled = !backupT0furT1.Checked && T0T3equal && RowT3 && columnT0;
+
+            backupT0furT2.Enabled = !backupT0furT1.Checked && T0T2equal && RowT2 && columnT0 && !T3T0;
+            backupT0furT3.Enabled = !backupT0furT1.Checked && T0T3equal && RowT3 && columnT0 && !T2T0;
             BackupT1Column(!backupT0furT1.Checked);
             BackupT0Row(!backupT0furT1.Checked);
 
@@ -5863,8 +5807,8 @@ namespace MultecPlugin
         private void backupT0furT2_CheckedChanged(object sender, EventArgs e)
         {
             T2T0 = !T2T0;
-            backupT0furT1.Enabled = !backupT0furT2.Checked && T0T1equal && RowT1 && columnT0;
-            backupT0furT3.Enabled = !backupT0furT2.Checked && T0T3equal && RowT3 && columnT0;
+            backupT0furT1.Enabled = !backupT0furT2.Checked && T0T1equal && RowT1 && columnT0 && !T3T0;
+            backupT0furT3.Enabled = !backupT0furT2.Checked && T0T3equal && RowT3 && columnT0 && !T1T0;
             BackupT2Column(!backupT0furT2.Checked);
             BackupT0Row(!backupT0furT2.Checked);
 
@@ -5873,8 +5817,8 @@ namespace MultecPlugin
         private void backupT0furT3_CheckedChanged(object sender, EventArgs e)
         {
             T3T0 = !T3T0;
-            backupT0furT2.Enabled = !backupT0furT3.Checked && T0T2equal && RowT2 && columnT0;
-            backupT0furT1.Enabled = !backupT0furT3.Checked && T0T1equal && RowT1 && columnT0;
+            backupT0furT2.Enabled = !backupT0furT3.Checked && T0T2equal && RowT2 && columnT0 && !T1T0;
+            backupT0furT1.Enabled = !backupT0furT3.Checked && T0T1equal && RowT1 && columnT0 && !T2T0;
             BackupT3Column(!backupT0furT3.Checked);
             BackupT0Row(!backupT0furT3.Checked);
 
@@ -5883,8 +5827,8 @@ namespace MultecPlugin
         private void backupT1furT0_CheckedChanged(object sender, EventArgs e)
         {
             T0T1 = !T0T1;
-            backupT1furT2.Enabled = !backupT1furT0.Checked && T1T2equal && RowT2 && columnT1;
-            backupT1furT3.Enabled = !backupT1furT0.Checked && T1T3equal && RowT3 && columnT1;
+            backupT1furT2.Enabled = !backupT1furT0.Checked && T1T2equal && RowT2 && columnT1 && !T3T1;
+            backupT1furT3.Enabled = !backupT1furT0.Checked && T1T3equal && RowT3 && columnT1 && !T2T1;
             BackupT0Column(!backupT1furT0.Checked);
             BackupT1Row(!backupT1furT0.Checked);
 
@@ -5893,9 +5837,9 @@ namespace MultecPlugin
         private void backupT1furT2_CheckedChanged(object sender, EventArgs e)
         {
             T2T1 = !T2T1;
-           
-            backupT1furT0.Enabled = !backupT1furT2.Checked && T0T1equal && RowT0 && columnT1;
-            backupT1furT3.Enabled = !backupT1furT2.Checked && T1T3equal && RowT3 && columnT1;
+
+            backupT1furT0.Enabled = !backupT1furT2.Checked && T0T1equal && RowT0 && columnT1 && !T3T1;
+            backupT1furT3.Enabled = !backupT1furT2.Checked && T1T3equal && RowT3 && columnT1 && !T0T1;
             BackupT2Column(!backupT1furT2.Checked);
             BackupT1Row(!backupT1furT2.Checked);
 
@@ -5904,8 +5848,8 @@ namespace MultecPlugin
         private void backupT1furT3_CheckedChanged(object sender, EventArgs e)
         {
             T3T1 = !T3T1;
-            backupT1furT2.Enabled = !backupT1furT3.Checked && T1T2equal && RowT2 && columnT1;
-            backupT1furT0.Enabled = !backupT1furT3.Checked && T0T1equal && RowT0 && columnT1;
+            backupT1furT2.Enabled = !backupT1furT3.Checked && T1T2equal && RowT2 && columnT1 && !T0T1;
+            backupT1furT0.Enabled = !backupT1furT3.Checked && T0T1equal && RowT0 && columnT1 && !T2T1;
             BackupT3Column(!backupT1furT3.Checked);
             BackupT1Row(!backupT1furT3.Checked);
 
@@ -5914,8 +5858,8 @@ namespace MultecPlugin
         private void backupT2furT0_CheckedChanged(object sender, EventArgs e)
         {
             T0T2 = !T0T2;
-            backupT2furT1.Enabled = !backupT2furT0.Checked && T1T2equal && RowT1 && columnT2;
-            backupT2furT3.Enabled = !backupT2furT0.Checked && T2T3equal && RowT3 && columnT2;
+            backupT2furT1.Enabled = !backupT2furT0.Checked && T1T2equal && RowT1 && columnT2 && !T3T2;
+            backupT2furT3.Enabled = !backupT2furT0.Checked && T2T3equal && RowT3 && columnT2 && !T1T2;
             BackupT0Column(!backupT2furT0.Checked);
             BackupT2Row(!backupT2furT0.Checked);
 
@@ -5924,8 +5868,8 @@ namespace MultecPlugin
         private void backupT2furT1_CheckedChanged(object sender, EventArgs e)
         {
             T1T2 = !T1T2;
-            backupT2furT0.Enabled = !backupT2furT1.Checked && T0T2equal && RowT0 && columnT2;
-            backupT2furT3.Enabled = !backupT2furT1.Checked && T2T3equal && RowT3 && columnT2;
+            backupT2furT0.Enabled = !backupT2furT1.Checked && T0T2equal && RowT0 && columnT2 && !T3T2;
+            backupT2furT3.Enabled = !backupT2furT1.Checked && T2T3equal && RowT3 && columnT2 && !T0T2;
             BackupT1Column(!backupT2furT1.Checked);
             BackupT2Row(!backupT2furT1.Checked);
 
@@ -5934,8 +5878,8 @@ namespace MultecPlugin
         private void backupT2furT3_CheckedChanged(object sender, EventArgs e)
         {
             T3T2 = !T3T2;
-            backupT2furT0.Enabled = !backupT2furT3.Checked && T0T2equal && RowT0 && columnT2;
-            backupT2furT1.Enabled = !backupT2furT3.Checked && T1T2equal && RowT1 && columnT2;
+            backupT2furT0.Enabled = !backupT2furT3.Checked && T0T2equal && RowT0 && columnT2 && !T1T2;
+            backupT2furT1.Enabled = !backupT2furT3.Checked && T1T2equal && RowT1 && columnT2 && !T0T2;
             BackupT3Column(!backupT2furT3.Checked);
             BackupT2Row(!backupT2furT3.Checked);
 
@@ -5944,9 +5888,9 @@ namespace MultecPlugin
         private void backupT3furT0_CheckedChanged(object sender, EventArgs e)
         {
             T0T3 = !T0T3;
-            
-            backupT3furT1.Enabled = !backupT3furT0.Checked && T1T3equal && RowT1 && columnT3;
-            backupT3furT2.Enabled = !backupT3furT0.Checked && T2T3equal && RowT2 && columnT3;
+
+            backupT3furT1.Enabled = !backupT3furT0.Checked && T1T3equal && RowT1 && columnT3 && !T2T3;
+            backupT3furT2.Enabled = !backupT3furT0.Checked && T2T3equal && RowT2 && columnT3 && !T1T3;
             BackupT0Column(!backupT3furT0.Checked);
             BackupT3Row(!backupT3furT0.Checked);
 
@@ -5957,8 +5901,8 @@ namespace MultecPlugin
         {
 
             T1T3 = !T1T3;
-            backupT3furT0.Enabled = !backupT3furT1.Checked && T0T3equal && RowT0 && columnT3;
-            backupT3furT2.Enabled = !backupT3furT1.Checked && T2T3equal && RowT2 && columnT3;
+            backupT3furT0.Enabled = !backupT3furT1.Checked && T0T3equal && RowT0 && columnT3 && !T2T3;
+            backupT3furT2.Enabled = !backupT3furT1.Checked && T2T3equal && RowT2 && columnT3 && !T0T3;
             BackupT1Column(!backupT3furT1.Checked);
             BackupT3Row(!backupT3furT1.Checked);
 
@@ -5970,9 +5914,9 @@ namespace MultecPlugin
         {
             T2T3 = !T2T3;
 
-            
-            backupT3furT1.Enabled = !backupT3furT2.Checked && T1T3equal && RowT1 && columnT3;
-            backupT3furT0.Enabled = !backupT3furT2.Checked && T0T3equal && RowT0 && columnT3;
+
+            backupT3furT1.Enabled = !backupT3furT2.Checked && T1T3equal && RowT1 && columnT3 && !T0T3;
+            backupT3furT0.Enabled = !backupT3furT2.Checked && T0T3equal && RowT0 && columnT3 && !T1T3;
             BackupT2Column(!backupT3furT2.Checked);
             BackupT3Row(!backupT3furT2.Checked);
 
@@ -5991,7 +5935,7 @@ namespace MultecPlugin
                 nozzleSizeT0 = string.Empty;
             }
 
-            if (nozzleSizeT0 != nozzleSizeT2)
+            
             UpdateNozzleSizeFile();
             EndlessNozzleCheck();
         }
