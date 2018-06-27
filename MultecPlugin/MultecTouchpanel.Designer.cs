@@ -2164,6 +2164,7 @@ namespace MultecPlugin
             this.grpEndlosDruck.TabIndex = 126;
             this.grpEndlosDruck.TabStop = false;
             this.grpEndlosDruck.Text = "Endless Druck";
+            this.grpEndlosDruck.Visible = false;
             // 
             // lblEndlosDruck
             // 

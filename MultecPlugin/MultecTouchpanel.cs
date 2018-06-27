@@ -145,7 +145,7 @@ namespace MultecPlugin
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
             //ServerConnector server = 
-            Version = "Version: v1.0.3";
+            Version = "Version: v1.0.4";
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
@@ -563,7 +563,7 @@ namespace MultecPlugin
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 string message = response.Remove(0, 5);
-                ErrorMessage errorMessage = new ErrorMessage("SAMPLE")
+                ErrorMessage errorMessage = new ErrorMessage(message)
                 {
                     StartPosition = FormStartPosition.Manual
                 };
@@ -4749,6 +4749,8 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E200.0 F120");
                     host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G224");
+
 
                     timerRetractLoad.Start();
                 }
@@ -4808,7 +4810,7 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E200.0 F120");
                     host.Connection.injectManualCommand("G92 E0");
-
+                    host.Connection.injectManualCommand("G224");
                     timerRetractLoad.Start();
                 }
             }
@@ -4867,7 +4869,7 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E200.0 F120");
                     host.Connection.injectManualCommand("G92 E0");
-
+                    host.Connection.injectManualCommand("G224");
                     timerRetractLoad.Start();
                 }
             }
@@ -4926,7 +4928,7 @@ namespace MultecPlugin
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E200.0 F120");
                     host.Connection.injectManualCommand("G92 E0");
-
+                    host.Connection.injectManualCommand("G224");
                     timerRetractLoad.Start();
                 }
             }
