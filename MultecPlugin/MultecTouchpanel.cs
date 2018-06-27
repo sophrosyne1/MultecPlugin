@@ -151,8 +151,11 @@ namespace MultecPlugin
             txtBoxTemp.Text = tempValue;
             filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             filePath = Path.Combine(filePath, "NozzleList.tx");
+           
 
-
+       
+           
+        
         }
         /// <summary>
         /// Store reference to host for later use
@@ -560,9 +563,12 @@ namespace MultecPlugin
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 string message = response.Remove(0, 5);
-                ErrorMessage errorMessage = new ErrorMessage(message);
+                ErrorMessage errorMessage = new ErrorMessage("SAMPLE")
+                {
+                    StartPosition = FormStartPosition.Manual
+                };
 
-
+                errorMessage.Location = new Point(750, 150);
                 errorMessage.ShowDialog();
             }
             if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -3988,12 +3994,11 @@ namespace MultecPlugin
 
         private void wrkrOpenDialogBox_DoWork(object sender, DoWorkEventArgs e)
         {
-
             dialogBox = new DoorOpenDialogBox()
             {
                 StartPosition = FormStartPosition.Manual
             };
-            dialogBox.Location = new Point(48, 150);
+            dialogBox.Location = new Point(35, 110);
             dialogBox.ShowDialog();
 
 
