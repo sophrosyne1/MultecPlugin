@@ -18,15 +18,8 @@ namespace MyCustomButton
             
         }
 
-        
-
         private Image NormalImage;
         private Image ClickedImage;
-        //private Image DisabledImage;
-
-        //private Image HoverImage;
-        
-       
 
         public Image ImangeNormal
         {
@@ -38,12 +31,7 @@ namespace MyCustomButton
             get { return ClickedImage; }
             set { ClickedImage = value; }
         }
-        /*public Image ImangeDisabled
-        {
-            get { return DisabledImage; }
-            set { DisabledImage = value; }
-        }*/
-
+      
         private void MyCustomButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (HitTest(this, e.X, e.Y))

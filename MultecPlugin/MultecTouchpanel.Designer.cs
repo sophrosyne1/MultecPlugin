@@ -158,7 +158,6 @@ namespace MultecPlugin
             this.grpEndlosDruck = new System.Windows.Forms.GroupBox();
             this.lblEndlosDruck = new System.Windows.Forms.Label();
             this.btnActivate = new System.Windows.Forms.Button();
-            this.btnDeactivate = new System.Windows.Forms.Button();
             this.backupT2furT3 = new System.Windows.Forms.CheckBox();
             this.backupT0furT3 = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
@@ -2135,7 +2134,6 @@ namespace MultecPlugin
             // 
             this.grpEndlosDruck.Controls.Add(this.lblEndlosDruck);
             this.grpEndlosDruck.Controls.Add(this.btnActivate);
-            this.grpEndlosDruck.Controls.Add(this.btnDeactivate);
             this.grpEndlosDruck.Controls.Add(this.backupT2furT3);
             this.grpEndlosDruck.Controls.Add(this.backupT0furT3);
             this.grpEndlosDruck.Controls.Add(this.label49);
@@ -2164,7 +2162,6 @@ namespace MultecPlugin
             this.grpEndlosDruck.TabIndex = 126;
             this.grpEndlosDruck.TabStop = false;
             this.grpEndlosDruck.Text = "Endless Druck";
-            this.grpEndlosDruck.Visible = false;
             // 
             // lblEndlosDruck
             // 
@@ -2173,29 +2170,19 @@ namespace MultecPlugin
             this.lblEndlosDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEndlosDruck.Location = new System.Drawing.Point(12, 26);
             this.lblEndlosDruck.Name = "lblEndlosDruck";
-            this.lblEndlosDruck.Size = new System.Drawing.Size(52, 22);
+            this.lblEndlosDruck.Size = new System.Drawing.Size(109, 22);
             this.lblEndlosDruck.TabIndex = 10;
-            this.lblEndlosDruck.Text = "NULL";
+            this.lblEndlosDruck.Text = "NICHT AKTIV";
             // 
             // btnActivate
             // 
-            this.btnActivate.Location = new System.Drawing.Point(22, 243);
+            this.btnActivate.Location = new System.Drawing.Point(86, 236);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(102, 31);
             this.btnActivate.TabIndex = 21;
             this.btnActivate.Text = "Activate";
             this.btnActivate.UseVisualStyleBackColor = true;
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
-            // 
-            // btnDeactivate
-            // 
-            this.btnDeactivate.Location = new System.Drawing.Point(140, 243);
-            this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(102, 31);
-            this.btnDeactivate.TabIndex = 22;
-            this.btnDeactivate.Text = "Deactivate";
-            this.btnDeactivate.UseVisualStyleBackColor = true;
-            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // backupT2furT3
             // 
@@ -4136,7 +4123,7 @@ namespace MultecPlugin
             // 
             // timerRetractLoad
             // 
-            this.timerRetractLoad.Interval = 5000;
+            this.timerRetractLoad.Interval = 1000;
             this.timerRetractLoad.Tick += new System.EventHandler(this.timerRetractLoad_Tick);
             // 
             // pictureBox1
@@ -4530,7 +4517,6 @@ namespace MultecPlugin
         private Label label21;
         private Label label20;
         private CheckBox backupT1furT0;
-        private Button btnDeactivate;
         private Button btnActivate;
         private CheckBox backupT2furT3;
         private CheckBox backupT0furT3;

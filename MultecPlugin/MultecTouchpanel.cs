@@ -130,7 +130,7 @@ namespace MultecPlugin
         private int setTempT3 = 0;
         private int setTempBed = 0;
         private int extruderNumber;
-
+        private bool endlosAktiv;
         private int parkPositionMultiplyer = 0;
         private double parkPositionOffset = 0;
         private string parkPositionMove;
@@ -151,11 +151,11 @@ namespace MultecPlugin
             txtBoxTemp.Text = tempValue;
             filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             filePath = Path.Combine(filePath, "NozzleList.tx");
-           
 
-       
-           
-        
+
+
+
+
         }
         /// <summary>
         /// Store reference to host for later use
@@ -371,19 +371,6 @@ namespace MultecPlugin
                 {
                     DoTheLoop();
 
-                    //{
-                    //    lblBanner.Text = "Connect Through Server";
-                    //    isServerActive = true;
-
-                    //}
-                    //else if (!connectorBase.ServerConnection)
-                    //{
-                    //    isServerActive = false;
-                    //    lblBanner.Text = "Server Disconnected";
-                    //    reset_parameters();
-                    //}
-
-
                 }
                 else
                 {
@@ -568,7 +555,7 @@ namespace MultecPlugin
                     StartPosition = FormStartPosition.Manual
                 };
 
-                errorMessage.Location = new Point(750, 150);
+                errorMessage.Location = new Point(750, 158);
                 errorMessage.ShowDialog();
             }
             if (response.IndexOf("Filament geladen", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1066,7 +1053,7 @@ namespace MultecPlugin
                 try
                 {
 
-                    if (response.IndexOf("0", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (response.IndexOf("0", StringComparison.CurrentCultureIgnoreCase) != -1 || response.IndexOf("T0", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         selected_nozzle = "T0";
                         btnT0.Enabled = false;
@@ -1079,7 +1066,7 @@ namespace MultecPlugin
 
                     }
 
-                    if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (response.IndexOf("1", StringComparison.CurrentCultureIgnoreCase) != -1 || response.IndexOf("T1", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         selected_nozzle = "T1";
                         btnT0.Enabled = true;
@@ -1090,7 +1077,7 @@ namespace MultecPlugin
                         //btnMove.Enabled = true;
 
                     }
-                    if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (response.IndexOf("2", StringComparison.CurrentCultureIgnoreCase) != -1 || response.IndexOf("T2", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         selected_nozzle = "T2";
                         btnT0.Enabled = true;
@@ -1102,7 +1089,7 @@ namespace MultecPlugin
 
 
                     }
-                    if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (response.IndexOf("3", StringComparison.CurrentCultureIgnoreCase) != -1 || response.IndexOf("T3", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         selected_nozzle = "T3";
                         btnT0.Enabled = true;
@@ -1194,12 +1181,16 @@ namespace MultecPlugin
                     {
                         lblEndlosDruck.Text = "AKTIV";
                         lblEndlosDruck.BackColor = Color.Yellow;
-                        
+                        btnActivate.Text = "Aktiv";
+                        endlosAktiv = true;
+
                     }
                     else
                     {
                         lblEndlosDruck.Text = "NICHT AKTIV";
+                        btnActivate.Text = "Nicht Aktiv";
                         lblEndlosDruck.BackColor = SystemColors.Control;
+                        endlosAktiv = false;
                     }
                 }
                 catch (Exception ex)
@@ -2038,7 +2029,7 @@ namespace MultecPlugin
             backupT0furT3.Visible = val;
             backupT1furT3.Visible = val;
             backupT2furT3.Visible = val;
-            
+
 
 
         }
@@ -4216,23 +4207,31 @@ namespace MultecPlugin
                 {
                     tempValue = txtBoxTemp.Text.Replace(",", ".");
                 }
-                else
+                else if (txtBoxTemp.Text.IndexOf(".", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     tempValue = txtBoxTemp.Text.Replace(".0", ".00");
+                }
+                else
+                {
+                    tempValue = txtBoxTemp.Text;
                 }
                 if (tempValue.IndexOf(".0", StringComparison.CurrentCultureIgnoreCase) == -1)
                 {
                     tempValue = tempValue.Insert(tempValue.Length, ".00");
                 }
 
-
                 float.TryParse(tempValue, out float f);
+                float y = (float)(Math.Round(3f, 2));
                 f = (float)(Math.Round(f, 2));
+                f -= y;
+                
                 ++resetTimer;
-                if (resetTimer == 10)
+                if (resetTimer == 50)
                 {
+                    resetTimer = 0;
                     timerRetractLoad.Stop();
                     timerRetractLoad.Start();
+
                 }
                 if (T0LoadRetractClicked)
                 {
@@ -4248,7 +4247,7 @@ namespace MultecPlugin
                         if (retractT0)
                         {
                             lblRetractLoadFilT0.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
-                            if (timerRetractCount == 14)
+                            if (timerRetractCount == 70)
                             {
                                 lblRetractLoadFilT0.Text = "Zurückziehen abgeschlossen ist, Düse T0";
 
@@ -4261,13 +4260,10 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
 
-
-
-
-                                TempReached = false;
                                 host.Connection.injectManualCommand("M104 S0 T0");
                                 host.Connection.injectManualCommand("T1");
                                 timerRetractLoad.Stop();
+                                TempReached = false;
                                 T0LoadRetractClicked = false;
 
                             }
@@ -4275,7 +4271,7 @@ namespace MultecPlugin
                         if (loadT0)
                         {
                             lblRetractLoadFilT0.Text = "Aufheizen abgeschlossen. Lädt";
-                            if (timerRetractCount == 30)
+                            if (timerRetractCount == 158)
                             {
                                 lblRetractLoadFilT0.Text = "Laden abgeschlossen, Düse T0";
 
@@ -4288,9 +4284,10 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                T0LoadRetractClicked = false;
                                 host.Connection.injectManualCommand("M104 S0 T0");
                                 timerRetractLoad.Stop();
-                                T0LoadRetractClicked = false;
+
                             }
                         }
                     }
@@ -4310,7 +4307,7 @@ namespace MultecPlugin
                         if (retractT1)
                         {
                             lblRetractLoadFilT1.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
-                            if (timerRetractCount == 14)
+                            if (timerRetractCount == 70)
                             {
                                 lblRetractLoadFilT1.Text = "Zurückziehen abgeschlossen ist, Düse T1";
 
@@ -4323,16 +4320,17 @@ namespace MultecPlugin
                                 btnRetractT3.Enabled = !retractT3;
                                 btnLoadT3.Enabled = !loadT3;
                                 TempReached = false;
+                                T1LoadRetractClicked = false;
                                 host.Connection.injectManualCommand("M104 S0 T1");
                                 host.Connection.injectManualCommand("T0");
                                 timerRetractLoad.Stop();
-                                T1LoadRetractClicked = false;
+
                             }
                         }
                         if (loadT1)
                         {
                             lblRetractLoadFilT1.Text = "Aufheizen abgeschlossen. Lädt";
-                            if (timerRetractCount == 30)
+                            if (timerRetractCount == 158)
                             {
                                 lblRetractLoadFilT1.Text = "Laden abgeschlossen, Düse T1";
 
@@ -4367,7 +4365,7 @@ namespace MultecPlugin
                         if (retractT2)
                         {
                             lblRetractLoadFilT2.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
-                            if (timerRetractCount == 14)
+                            if (timerRetractCount == 70)
                             {
                                 lblRetractLoadFilT2.Text = "Zurückziehen abgeschlossen ist, Düse T2";
 
@@ -4389,7 +4387,7 @@ namespace MultecPlugin
                         if (loadT2)
                         {
                             lblRetractLoadFilT2.Text = "Aufheizen abgeschlossen. Lädt";
-                            if (timerRetractCount == 30)
+                            if (timerRetractCount == 158)
                             {
                                 lblRetractLoadFilT2.Text = "Laden abgeschlossen, Düse T2";
 
@@ -4425,7 +4423,7 @@ namespace MultecPlugin
                         if (retractT3)
                         {
                             lblRetractLoadFilT3.Text = "Heizung abgeschlossen. Jetzt zurückziehen";
-                            if (timerRetractCount == 14)
+                            if (timerRetractCount == 70)
                             {
                                 lblRetractLoadFilT3.Text = "Zurückziehen abgeschlossen ist, Düse T3";
 
@@ -4447,7 +4445,7 @@ namespace MultecPlugin
                         if (loadT3)
                         {
                             lblRetractLoadFilT3.Text = "Aufheizen abgeschlossen. Lädt";
-                            if (timerRetractCount == 30)
+                            if (timerRetractCount == 158)
                             {
                                 lblRetractLoadFilT3.Text = "Laden abgeschlossen, Düse T3";
 
@@ -4493,16 +4491,19 @@ namespace MultecPlugin
                 loadT0 = false;
                 if (ChckboxDruckerInitialised.Checked == true)
                 {
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
                 else
                 {
                     host.Connection.injectManualCommand("G28");
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
+                host.Connection.injectManualCommand("G222");
+                host.Connection.injectManualCommand("T0");
+                
                 //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
-
+                host.Connection.injectManualCommand("M105");
                 lblRetractLoadFilT0.Visible = true;
                 lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
                 text_T0_ziel.Text = tempValue;
@@ -4511,11 +4512,10 @@ namespace MultecPlugin
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                host.Connection.injectManualCommand("G222");
+                
                 T0_On = true;
 
-                host.Connection.injectManualCommand("T0");
-                host.Connection.injectManualCommand("G1 X645 Y10 F8000");
+            
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4550,28 +4550,31 @@ namespace MultecPlugin
                 loadT1 = false;
                 if (ChckboxDruckerInitialised.Checked == true)
                 {
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
                 else
                 {
                     host.Connection.injectManualCommand("G28");
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
+                host.Connection.injectManualCommand("G222");
+                host.Connection.injectManualCommand("T1");
+               
                 //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                host.Connection.injectManualCommand("M105");
 
                 lblRetractLoadFilT1.Visible = true;
                 lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                 text_T1_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
+               
                 T1_On = true;
                 changeTempButtonsToOn(btnT1_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = false;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T1");
-                host.Connection.injectManualCommand("G0 X665 Y10 F8000");
+            
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4605,27 +4608,30 @@ namespace MultecPlugin
                 loadT2 = false;
                 if (ChckboxDruckerInitialised.Checked == true)
                 {
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
                 else
                 {
                     host.Connection.injectManualCommand("G28");
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
+                host.Connection.injectManualCommand("G222");
+                host.Connection.injectManualCommand("T2");
+               
                 //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                host.Connection.injectManualCommand("M105");
                 lblRetractLoadFilT2.Visible = true;
                 lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                 text_T2_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
+               
                 T2_On = true;
                 changeTempButtonsToOn(btnT2_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = false;
                 btnT3.Enabled = true;
-                host.Connection.injectManualCommand("T2");
-                host.Connection.injectManualCommand("G0 X665 Y20 F8000");
+              
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4659,27 +4665,30 @@ namespace MultecPlugin
                 loadT3 = false;
                 if (ChckboxDruckerInitialised.Checked == true)
                 {
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
                 else
                 {
                     host.Connection.injectManualCommand("G28");
-                    host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                    host.Connection.injectManualCommand("G225");
                 }
+                host.Connection.injectManualCommand("G222");
+                host.Connection.injectManualCommand("T3");
                 //host.Connection.injectManualCommand("G993 T3 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                host.Connection.injectManualCommand("M105");
                 lblRetractLoadFilT3.Visible = true;
                 lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                 text_T3_ziel.Text = tempValue;
-                host.Connection.injectManualCommand("G222");
+                
                 T3_On = true;
                 changeTempButtonsToOn(btnT3_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = false;
-                host.Connection.injectManualCommand("T3");
-                host.Connection.injectManualCommand("G0 X645 Y20 F8000");
+               
+            
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4720,15 +4729,19 @@ namespace MultecPlugin
                     loadT0 = true;
                     if (ChckboxDruckerInitialised.Checked == true)
                     {
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     else
                     {
                         host.Connection.injectManualCommand("G28");
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
+                    host.Connection.injectManualCommand("G222");
+                    host.Connection.injectManualCommand("T0");
+                    
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
+                    host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT0.Visible = true;
                     lblRetractLoadFilT0.Text = "Düse wird aufgeheizt";
                     text_T0_ziel.Text = tempValue;
@@ -4737,13 +4750,13 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    host.Connection.injectManualCommand("G222");
+                    
                     T0_On = true;
 
-                    host.Connection.injectManualCommand("T0");
-                    host.Connection.injectManualCommand("G1 X645 Y10 F8000");
                     host.Connection.injectManualCommand("G92 E0");
-                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G1 E300.0 F900");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E400.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -4782,29 +4795,34 @@ namespace MultecPlugin
                     loadT1 = true;
                     if (ChckboxDruckerInitialised.Checked == true)
                     {
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     else
                     {
                         host.Connection.injectManualCommand("G28");
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
+                    host.Connection.injectManualCommand("G222");
+                    host.Connection.injectManualCommand("T1");
+                   
                     //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
+                    host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT1.Visible = true;
                     lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                     text_T1_ziel.Text = tempValue;
-                    host.Connection.injectManualCommand("G222");
+                   
                     T1_On = true;
                     changeTempButtonsToOn(btnT1_OnOff);
                     btnT0.Enabled = true;
                     btnT1.Enabled = false;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    host.Connection.injectManualCommand("T1");
-                    host.Connection.injectManualCommand("G0 X665 Y10 F8000");
+
                     host.Connection.injectManualCommand("G92 E0");
-                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G1 E300.0 F900");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E400.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -4841,29 +4859,34 @@ namespace MultecPlugin
                     loadT2 = true;
                     if (ChckboxDruckerInitialised.Checked == true)
                     {
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     else
                     {
                         host.Connection.injectManualCommand("G28");
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
+                    host.Connection.injectManualCommand("G222");
+                    host.Connection.injectManualCommand("T2");
+                   
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
+                    host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT2.Visible = true;
                     lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                     text_T2_ziel.Text = tempValue;
-                    host.Connection.injectManualCommand("G222");
+                    
                     T2_On = true;
                     changeTempButtonsToOn(btnT2_OnOff);
                     btnT0.Enabled = true;
                     btnT1.Enabled = true;
                     btnT2.Enabled = false;
                     btnT3.Enabled = true;
-                    host.Connection.injectManualCommand("T2");
-                    host.Connection.injectManualCommand("G0 X665 Y20 F8000");
+
                     host.Connection.injectManualCommand("G92 E0");
-                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G1 E300.0 F900");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E400.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -4900,29 +4923,34 @@ namespace MultecPlugin
                     loadT3 = true;
                     if (ChckboxDruckerInitialised.Checked == true)
                     {
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     else
                     {
                         host.Connection.injectManualCommand("G28");
-                        host.Connection.injectManualCommand("G1 X645 Y10 Z3 F8000");
+                        host.Connection.injectManualCommand("G225");
                     }
                     //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
+                    host.Connection.injectManualCommand("G222");
+                    host.Connection.injectManualCommand("T3");
+                    
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
+                    host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT3.Visible = true;
                     lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                     text_T3_ziel.Text = tempValue;
-                    host.Connection.injectManualCommand("G222");
+                   
                     T3_On = true;
                     changeTempButtonsToOn(btnT3_OnOff);
                     btnT0.Enabled = true;
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = false;
-                    host.Connection.injectManualCommand("T3");
-                    host.Connection.injectManualCommand("G0 X645 Y20 F8000");
+
                     host.Connection.injectManualCommand("G92 E0");
-                    host.Connection.injectManualCommand("G1 E700.0 F1800");
+                    host.Connection.injectManualCommand("G1 E300.0 F900");
+                    host.Connection.injectManualCommand("G92 E0");
+                    host.Connection.injectManualCommand("G1 E400.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G1 E700.0 F1800");
                     host.Connection.injectManualCommand("G92 E0");
@@ -5745,18 +5773,64 @@ namespace MultecPlugin
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            btnActivate.Text = "Activated";
-            btnActivate.Enabled = false;
-            btnDeactivate.Enabled = true;
-            btnDeactivate.Text = "Deactivate";
+            int b;
+            int c;
+            int d;
+            endlosAktiv = !endlosAktiv;
+            if (endlosAktiv)
+            {
+                if (T0T1 || T0T2 || T0T3)
+                {
+                    b = T0T1 ? 1 : 0;
+                    c = T0T2 ? 1 : 0;
+                    d = T0T3 ? 1 : 0;
+
+                    host.Connection.injectManualCommand("M52 T0 " + "B" + b + " C" + c + " D" + d);
+                    //MessageBox.Show("M52 T0 " + "B" + b + " C" + c + " D" + d);
+                }
+                if (T1T0 || T1T2 || T1T3)
+                {
+                    b = T1T0 ? 1 : 0;
+                    c = T1T2 ? 1 : 0;
+                    d = T1T3 ? 1 : 0;
+
+                    host.Connection.injectManualCommand("M52 T1 " + "B" + b + " C" + c + " D" + d);
+                    //MessageBox.Show("M52 T1 " + "B" + b + " C" + c + " D" + d);
+                }
+                if (T2T1 || T2T0 || T2T3)
+                {
+                    b = T2T1 ? 1 : 0;
+                    c = T2T0 ? 1 : 0;
+                    d = T2T3 ? 1 : 0;
+
+                    host.Connection.injectManualCommand("M52 T2 " + "B" + b + " C" + c + " D" + d);
+                    // MessageBox.Show("M52 T2 " + "B" + b + " C" + c + " D" + d);
+                }
+                if (T3T1 || T3T2 || T3T0)
+                {
+                    b = T3T1 ? 1 : 0;
+                    c = T3T2 ? 1 : 0;
+                    d = T3T0 ? 1 : 0;
+
+                    host.Connection.injectManualCommand("M52 T3 " + "B" + b + " C" + c + " D" + d);
+                    //MessageBox.Show("M52 T3 " + "B" + b + " C" + c + " D" + d);
+                }
+
+            }
+            else
+            {
+                host.Connection.injectManualCommand("M52 T0 B0 C0 D0");
+                host.Connection.injectManualCommand("M52 T1 B0 C0 D0");
+                host.Connection.injectManualCommand("M52 T2 B0 C0 D0");
+                host.Connection.injectManualCommand("M52 T3 B0 C0 D0");
+
+            }
+
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            btnDeactivate.Text = "Deactivated";
-            btnDeactivate.Enabled = false;
-            btnActivate.Enabled = true;
-            btnActivate.Text = "Activate";
+
         }
         private bool columnT0 = true;
         private bool columnT1 = true;
@@ -5981,7 +6055,7 @@ namespace MultecPlugin
                 nozzleSizeT0 = string.Empty;
             }
 
-            
+
             UpdateNozzleSizeFile();
             EndlessNozzleCheck();
         }
