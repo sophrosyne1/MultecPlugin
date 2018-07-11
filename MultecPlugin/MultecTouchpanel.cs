@@ -945,7 +945,7 @@ namespace MultecPlugin
                 try
                 {
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                    X_Position_DV =response.Substring(startindex + 4);
+                    X_Position_DV = response.Substring(startindex + 4);
                     lblDV.Text = "X:" + response.Substring(startindex + 4);
                 }
                 catch (Exception ex)
@@ -991,7 +991,7 @@ namespace MultecPlugin
             {
                 isPrinting = false;
                 printEnableCalled = true;
-              
+
 
             }
 
@@ -1083,17 +1083,17 @@ namespace MultecPlugin
             }
             if (startCopyingEPROMtoFile)
             {
-               string TrimResponse = string.Empty;
-               TrimResponse = response.Replace("echo:", " ");
+                string TrimResponse = string.Empty;
+                TrimResponse = response.Replace("echo:", " ");
                 TrimResponse = TrimResponse.Replace("T0.00", "T0");
                 TrimResponse = TrimResponse.Replace("T1.00", "T1");
                 TrimResponse = TrimResponse.Replace("T2.00", "T2");
                 TrimResponse = TrimResponse.Replace("T3.00", "T3");
 
-                TrimResponse =TrimResponse.Trim();
+                TrimResponse = TrimResponse.Trim();
                 if (linesCopiedToFile == 0)
                 {
-                    
+
                     M503Lines.Clear();
                     ++linesCopiedToFile;
                     M503Lines.Add(TrimResponse.Trim());
@@ -1310,7 +1310,7 @@ namespace MultecPlugin
                     NoOfEPROM_Lines = 26;
                 }
 
-               
+
             }
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -5832,56 +5832,91 @@ namespace MultecPlugin
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            int b;
-            int c;
-            int d;
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
+            bool group1Selected = false;
             endlosAktiv = !endlosAktiv;
             if (endlosAktiv)
             {
                 if (T0T1 || T0T2 || T0T3)
                 {
+                    a = 1;
                     b = T0T1 ? 1 : 0;
                     c = T0T2 ? 1 : 0;
                     d = T0T3 ? 1 : 0;
-
-                    host.Connection.injectManualCommand("M52 T0 " + "B" + b + " C" + c + " D" + d);
-                    //MessageBox.Show("M52 T0 " + "B" + b + " C" + c + " D" + d);
+                    group1Selected = true;
                 }
                 if (T1T0 || T1T2 || T1T3)
                 {
-                    b = T1T0 ? 1 : 0;
-                    c = T1T2 ? 1 : 0;
-                    d = T1T3 ? 1 : 0;
 
-                    host.Connection.injectManualCommand("M52 T1 " + "B" + b + " C" + c + " D" + d);
-                    //MessageBox.Show("M52 T1 " + "B" + b + " C" + c + " D" + d);
+                    if (group1Selected)
+                    {
+                        b = 2;
+                        a = T1T0 ? 2 : a;
+                        c = T1T2 ? 2 : b;
+                        d = T1T3 ? 2 : d;
+                    }
+                    else
+                    {
+                        b = 1;
+                        a = T1T0 ? 1 : 0;
+                        c = T1T2 ? 1 : 0;
+                        d = T1T3 ? 1 : 0;
+                        group1Selected = true;
+                    }
+
+
                 }
                 if (T2T1 || T2T0 || T2T3)
                 {
-                    b = T2T1 ? 1 : 0;
-                    c = T2T0 ? 1 : 0;
-                    d = T2T3 ? 1 : 0;
+                    if (group1Selected)
+                    {
+                        c = 2;
+                        b = T2T1 ? 2 : b;
+                        a = T2T0 ? 2 : a;
+                        d = T2T3 ? 2 : d;
+                    }
+                    else
+                    {
+                        c = 1;
+                        b = T2T1 ? 1 : 0;
+                        a = T2T0 ? 1 : 0;
+                        d = T2T3 ? 1 : 0;
+                        group1Selected = true;
+                    }
 
-                    host.Connection.injectManualCommand("M52 T2 " + "B" + b + " C" + c + " D" + d);
-                    // MessageBox.Show("M52 T2 " + "B" + b + " C" + c + " D" + d);
+
                 }
                 if (T3T1 || T3T2 || T3T0)
                 {
-                    b = T3T1 ? 1 : 0;
-                    c = T3T2 ? 1 : 0;
-                    d = T3T0 ? 1 : 0;
+                    if (group1Selected)
+                    {
+                        d = 2;
+                        b = T3T1 ? 2 : b;
+                        c = T3T2 ? 2 : c;
+                        a = T3T0 ? 2 : a;
+                    }
+                    else
+                    {
+                        d = 1;
+                        b = T3T1 ? 1 : 0;
+                        c = T3T2 ? 1 : 0;
+                        a = T3T0 ? 1 : 0;
+                        group1Selected = true;
+                    }
 
-                    host.Connection.injectManualCommand("M52 T3 " + "B" + b + " C" + c + " D" + d);
-                    //MessageBox.Show("M52 T3 " + "B" + b + " C" + c + " D" + d);
+
                 }
-
+                host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
+                MessageBox.Show("M52 A" + a + " B" + b + " C" + c + " D" + d);
             }
             else
             {
-                host.Connection.injectManualCommand("M52 T0 B0 C0 D0");
-                host.Connection.injectManualCommand("M52 T1 B0 C0 D0");
-                host.Connection.injectManualCommand("M52 T2 B0 C0 D0");
-                host.Connection.injectManualCommand("M52 T3 B0 C0 D0");
+                host.Connection.injectManualCommand("M52 A0 B0 C0 D0");
+
 
             }
 
@@ -6210,9 +6245,9 @@ namespace MultecPlugin
 
         private void SaveToEPROM_Click(object sender, EventArgs e)
         {
-            
+
             string[] EPROMLines = M503Lines.ToArray();
-            
+
             File.WriteAllLines(EPROM_FilePath, EPROMLines);
         }
 
@@ -6287,11 +6322,11 @@ namespace MultecPlugin
                             {
                                 if (Lines[line].IndexOf("opt", StringComparison.CurrentCultureIgnoreCase) == -1)
                                 {
-                                   
-                                        startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                                        abstand = Lines[line].Substring(startindex + 4);
-                                        lblDisatance.Text = abstand;
-                                
+
+                                    startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                    abstand = Lines[line].Substring(startindex + 4);
+                                    lblDisatance.Text = abstand;
+
                                 }
                                 else
                                 {
@@ -6310,9 +6345,9 @@ namespace MultecPlugin
                         {
                             try
                             {
-                                    startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                                    zKorrektur = Lines[line].Substring(startindex + 4);
-                                    lblZKorrektur.Text = zKorrektur;
+                                startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                zKorrektur = Lines[line].Substring(startindex + 4);
+                                lblZKorrektur.Text = zKorrektur;
 
 
                             }
@@ -6339,7 +6374,7 @@ namespace MultecPlugin
     }
 
 
-    
+
 }
 
 
