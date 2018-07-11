@@ -1235,31 +1235,27 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in RunOutMonitoringActive: " + ex);
                 }
             }
-            if (response.IndexOf("Endlosdruck", StringComparison.CurrentCultureIgnoreCase) != -1)
+            if (response.IndexOf("Endlosdruck nicht aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
-                try
-                {
 
-                    if (response.IndexOf("aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
-                    {
-                        lblEndlosDruck.Text = "AKTIV";
-                        lblEndlosDruck.BackColor = Color.Yellow;
-                        btnActivate.Text = "Aktiv";
-                        endlosAktiv = true;
+                lblEndlosDruck.Text = "NICHT AKTIV";
+                btnActivate.Text = "Nicht Aktiv";
+                lblEndlosDruck.BackColor = SystemColors.Control;
+                endlosAktiv = false;
 
-                    }
-                    else
-                    {
-                        lblEndlosDruck.Text = "NICHT AKTIV";
-                        btnActivate.Text = "Nicht Aktiv";
-                        lblEndlosDruck.BackColor = SystemColors.Control;
-                        endlosAktiv = false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("There was an error in Endlosdruck Status: " + ex);
-                }
+               
+                
+            }
+            if (response.IndexOf("Endlosdruck aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+
+
+                lblEndlosDruck.Text = "AKTIV";
+                lblEndlosDruck.BackColor = Color.Yellow;
+                btnActivate.Text = "Aktiv";
+                endlosAktiv = true;
+
+
             }
 
             if (response.IndexOf("Sicherheitskreis offen", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -2477,7 +2473,7 @@ namespace MultecPlugin
                 if (host.Connection.connector.IsConnected())
                 {
                     host.Connection.injectManualCommand("G91");
-                    host.Connection.injectManualCommand("G1 E" + step_dist + " F300");
+                    host.Connection.injectManualCommand("G1 E" + step_dist + " F120");
                     host.Connection.injectManualCommand("G92 E0");
                     host.Connection.injectManualCommand("G90");
                 }
