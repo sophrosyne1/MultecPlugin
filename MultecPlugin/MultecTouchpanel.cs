@@ -5911,7 +5911,7 @@ namespace MultecPlugin
 
                 }
                 host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
-                MessageBox.Show("M52 A" + a + " B" + b + " C" + c + " D" + d);
+                
             }
             else
             {
@@ -5919,7 +5919,7 @@ namespace MultecPlugin
 
 
             }
-
+            MessageBox.Show("M52 A" + a + " B" + b + " C" + c + " D" + d);
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
