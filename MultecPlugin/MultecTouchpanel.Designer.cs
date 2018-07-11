@@ -34,6 +34,8 @@ namespace MultecPlugin
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabpage2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultecTouchpanel));
+            this.UploadToEPROM = new System.Windows.Forms.Button();
+            this.SaveToEPROM = new System.Windows.Forms.Button();
             this.lblKalParkPosition = new System.Windows.Forms.Label();
             this.lblWhen4Move_2 = new System.Windows.Forms.Label();
             this.lblParkPositionVal = new System.Windows.Forms.Label();
@@ -408,6 +410,8 @@ namespace MultecPlugin
             // tabpage2
             // 
             tabpage2.BackColor = System.Drawing.Color.White;
+            tabpage2.Controls.Add(this.UploadToEPROM);
+            tabpage2.Controls.Add(this.SaveToEPROM);
             tabpage2.Controls.Add(this.lblKalParkPosition);
             tabpage2.Controls.Add(this.lblWhen4Move_2);
             tabpage2.Controls.Add(this.lblParkPositionVal);
@@ -453,6 +457,26 @@ namespace MultecPlugin
             tabpage2.Size = new System.Drawing.Size(570, 526);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
+            // 
+            // UploadToEPROM
+            // 
+            this.UploadToEPROM.Location = new System.Drawing.Point(384, 403);
+            this.UploadToEPROM.Name = "UploadToEPROM";
+            this.UploadToEPROM.Size = new System.Drawing.Size(130, 42);
+            this.UploadToEPROM.TabIndex = 97;
+            this.UploadToEPROM.Text = "Upoad from File to EPROM";
+            this.UploadToEPROM.UseVisualStyleBackColor = true;
+            this.UploadToEPROM.Click += new System.EventHandler(this.UploadToEPROM_Click);
+            // 
+            // SaveToEPROM
+            // 
+            this.SaveToEPROM.Location = new System.Drawing.Point(219, 403);
+            this.SaveToEPROM.Name = "SaveToEPROM";
+            this.SaveToEPROM.Size = new System.Drawing.Size(130, 42);
+            this.SaveToEPROM.TabIndex = 96;
+            this.SaveToEPROM.Text = "Save EPROM values to file";
+            this.SaveToEPROM.UseVisualStyleBackColor = true;
+            this.SaveToEPROM.Click += new System.EventHandler(this.SaveToEPROM_Click);
             // 
             // lblKalParkPosition
             // 
@@ -4538,5 +4562,7 @@ namespace MultecPlugin
         private ComboBox ComboNozzleSizeT2;
         private ComboBox ComboNozzleSizeT1;
         private Label lblEndlosDruck;
+        private Button SaveToEPROM;
+        private Button UploadToEPROM;
     }
 }

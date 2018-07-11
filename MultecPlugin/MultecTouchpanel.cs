@@ -36,6 +36,7 @@ namespace MultecPlugin
         //private bool isServerActive;
         private bool fineAdjustment;        //
         private bool is4Move = true;
+        private int NoOfEPROM_Lines = 0;
         private double xPosition = 0.0;
         private double yPosition = 0.0;
         private double zPosition = 0.0;
@@ -47,6 +48,8 @@ namespace MultecPlugin
         private string nozzleSizeT2 = string.Empty;
         private string nozzleSizeT3 = string.Empty;
 
+        private string X_Position_DV = string.Empty;
+        private string Y_Position_DV = string.Empty;
 
         private string Version = string.Empty;
 
@@ -134,7 +137,12 @@ namespace MultecPlugin
         private int parkPositionMultiplyer = 0;
         private double parkPositionOffset = 0;
         private string parkPositionMove;
-        private string filePath;
+        private string nozzleSizeFilePath;
+        private string EPROM_FilePath;
+        private bool startCopyingEPROMtoFile = false;
+        private int linesCopiedToFile = 0;
+        private List<string> M503Lines = new List<string>();
+
         #endregion
 
 
@@ -149,9 +157,15 @@ namespace MultecPlugin
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
-            filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            filePath = Path.Combine(filePath, "NozzleList.tx");
+            nozzleSizeFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "MultecPlugin");
+            if (!Directory.Exists(nozzleSizeFilePath))
+            {
+                Directory.CreateDirectory(nozzleSizeFilePath);
 
+            }
+            EPROM_FilePath = Path.Combine(nozzleSizeFilePath, "EPROM_File.txt");
+            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "NozzleList.txt");
 
 
 
@@ -538,6 +552,7 @@ namespace MultecPlugin
                 MessageBox.Show("Change temp button off fail: " + ex);
             }
         }
+
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
 
@@ -546,6 +561,10 @@ namespace MultecPlugin
 
             //    connectedViaServer = true;
             //}
+            if (response.IndexOf("Steps per unit:", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                startCopyingEPROMtoFile = true;
+            }
 
             if (response.IndexOf("Printer halted. Firmware kill called!", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -926,6 +945,7 @@ namespace MultecPlugin
                 try
                 {
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                    X_Position_DV =response.Substring(startindex + 4);
                     lblDV.Text = "X:" + response.Substring(startindex + 4);
                 }
                 catch (Exception ex)
@@ -939,6 +959,7 @@ namespace MultecPlugin
                 try
                 {
                     startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                    Y_Position_DV = response.Substring(startindex + 4);
                     lblDV.Text = lblDV.Text + " Y:" + response.Substring(startindex + 4);
                 }
                 catch (Exception ex)
@@ -958,7 +979,21 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in M51 T: " + ex);
                 }
             }
+            if (response.IndexOf("Druckjob aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                isPrinting = true;
+                printEnableCalled = false;
+                lblBanner.Text = "Is Printing";
 
+            }
+
+            if (response.IndexOf("Druckjob nicht aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
+            {
+                isPrinting = false;
+                printEnableCalled = true;
+              
+
+            }
 
             if (response.IndexOf("Druck gestartet", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1046,7 +1081,35 @@ namespace MultecPlugin
                        "Z-Korrektur: " + zKorrektur + " mm", "Düsenvermessung", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
+            if (startCopyingEPROMtoFile)
+            {
+               string TrimResponse = string.Empty;
+               TrimResponse = response.Replace("echo:", " ");
+                TrimResponse = TrimResponse.Replace("T0.00", "T0");
+                TrimResponse = TrimResponse.Replace("T1.00", "T1");
+                TrimResponse = TrimResponse.Replace("T2.00", "T2");
+                TrimResponse = TrimResponse.Replace("T3.00", "T3");
 
+                TrimResponse =TrimResponse.Trim();
+                if (linesCopiedToFile == 0)
+                {
+                    
+                    M503Lines.Clear();
+                    ++linesCopiedToFile;
+                    M503Lines.Add(TrimResponse.Trim());
+                }
+                else if (linesCopiedToFile < NoOfEPROM_Lines)
+                {
+                    ++linesCopiedToFile;
+                    M503Lines.Add(TrimResponse.Trim());
+                }
+                else
+                {
+                    startCopyingEPROMtoFile = false;
+                    linesCopiedToFile = 0;
+                }
+
+            }
 
             if (response.IndexOf("Active Extruder", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1237,23 +1300,17 @@ namespace MultecPlugin
                 if (response.IndexOf("4Move", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     is4Move = true;
+                    CheckIfFourMove(true);
+                    NoOfEPROM_Lines = 30;
                 }
                 else if (response.IndexOf("2Move", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     is4Move = false;
-                }
-
-                if (!is4Move)
-                {
-
                     CheckIfFourMove(false);
-
+                    NoOfEPROM_Lines = 26;
                 }
-                if (is4Move)
-                {
-                    CheckIfFourMove(true);
 
-                }
+               
             }
 
             if (response.IndexOf("M218", StringComparison.CurrentCultureIgnoreCase) != -1)
@@ -1394,7 +1451,7 @@ namespace MultecPlugin
                     if (response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         startindex = response.IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
-                        zKorrektur = response.Substring(startindex + 5);
+                        zKorrektur = response.Substring(startindex + 4);
                         lblZKorrektur.Text = zKorrektur;
 
 
@@ -1935,18 +1992,13 @@ namespace MultecPlugin
                 btnYoffsetSend.Enabled = false;
             }
 
-            if (fineAdjustment)
-            {
-                btnZOffsetPlus.Enabled = true;
-                btnZOffsetMinus.Enabled = true;
-                btnZOffsetSend.Enabled = true;
-            }
-            else
-            {
-                btnZOffsetPlus.Enabled = false;
-                btnZOffsetMinus.Enabled = false;
-                btnZOffsetSend.Enabled = false;
-            }
+
+            btnZOffsetPlus.Enabled = fineAdjustment;
+            btnZOffsetMinus.Enabled = fineAdjustment;
+            btnZOffsetSend.Enabled = fineAdjustment;
+            lbl_zOffset.Enabled = fineAdjustment;
+            label37.Enabled = fineAdjustment;
+            lbl_mm.Enabled = fineAdjustment;
 
 
         }
@@ -2292,7 +2344,7 @@ namespace MultecPlugin
         {
             if (tabControl1.SelectedIndex == 1)
             {
-                UpdateNozzleSize(filePath);
+                UpdateNozzleSize(nozzleSizeFilePath);
                 GetNozzleSizeString();
                 EndlessNozzleCheck();
 
@@ -4224,7 +4276,7 @@ namespace MultecPlugin
                 float y = (float)(Math.Round(3f, 2));
                 f = (float)(Math.Round(f, 2));
                 f -= y;
-                
+
                 ++resetTimer;
                 if (resetTimer == 50)
                 {
@@ -4500,7 +4552,7 @@ namespace MultecPlugin
                 }
                 host.Connection.injectManualCommand("G222");
                 host.Connection.injectManualCommand("T0");
-                
+
                 //host.Connection.injectManualCommand("G993 T0 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                 host.Connection.injectManualCommand("M105");
@@ -4512,10 +4564,10 @@ namespace MultecPlugin
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-                
+
                 T0_On = true;
 
-            
+
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4559,7 +4611,7 @@ namespace MultecPlugin
                 }
                 host.Connection.injectManualCommand("G222");
                 host.Connection.injectManualCommand("T1");
-               
+
                 //host.Connection.injectManualCommand("G993 T1 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                 host.Connection.injectManualCommand("M105");
@@ -4567,14 +4619,14 @@ namespace MultecPlugin
                 lblRetractLoadFilT1.Visible = true;
                 lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                 text_T1_ziel.Text = tempValue;
-               
+
                 T1_On = true;
                 changeTempButtonsToOn(btnT1_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = false;
                 btnT2.Enabled = true;
                 btnT3.Enabled = true;
-            
+
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4617,21 +4669,21 @@ namespace MultecPlugin
                 }
                 host.Connection.injectManualCommand("G222");
                 host.Connection.injectManualCommand("T2");
-               
+
                 //host.Connection.injectManualCommand("G993 T2 S" + tempValue);
                 host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                 host.Connection.injectManualCommand("M105");
                 lblRetractLoadFilT2.Visible = true;
                 lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                 text_T2_ziel.Text = tempValue;
-               
+
                 T2_On = true;
                 changeTempButtonsToOn(btnT2_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = false;
                 btnT3.Enabled = true;
-              
+
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4680,15 +4732,15 @@ namespace MultecPlugin
                 lblRetractLoadFilT3.Visible = true;
                 lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                 text_T3_ziel.Text = tempValue;
-                
+
                 T3_On = true;
                 changeTempButtonsToOn(btnT3_OnOff);
                 btnT0.Enabled = true;
                 btnT1.Enabled = true;
                 btnT2.Enabled = true;
                 btnT3.Enabled = false;
-               
-            
+
+
                 host.Connection.injectManualCommand("G92 E0");
                 host.Connection.injectManualCommand("G1 E20.0 F120");
                 host.Connection.injectManualCommand("G92 E0");
@@ -4739,7 +4791,7 @@ namespace MultecPlugin
                     //host.Connection.injectManualCommand("G992 T0 S" + tempValue);
                     host.Connection.injectManualCommand("G222");
                     host.Connection.injectManualCommand("T0");
-                    
+
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T0");
                     host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT0.Visible = true;
@@ -4750,7 +4802,7 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    
+
                     T0_On = true;
 
                     host.Connection.injectManualCommand("G92 E0");
@@ -4804,14 +4856,14 @@ namespace MultecPlugin
                     }
                     host.Connection.injectManualCommand("G222");
                     host.Connection.injectManualCommand("T1");
-                   
+
                     //host.Connection.injectManualCommand("G992 T1 S" + tempValue);
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T1");
                     host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT1.Visible = true;
                     lblRetractLoadFilT1.Text = "Düse wird aufgeheizt";
                     text_T1_ziel.Text = tempValue;
-                   
+
                     T1_On = true;
                     changeTempButtonsToOn(btnT1_OnOff);
                     btnT0.Enabled = true;
@@ -4869,13 +4921,13 @@ namespace MultecPlugin
                     //host.Connection.injectManualCommand("G992 T2 S" + tempValue);
                     host.Connection.injectManualCommand("G222");
                     host.Connection.injectManualCommand("T2");
-                   
+
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T2");
                     host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT2.Visible = true;
                     lblRetractLoadFilT2.Text = "Düse wird aufgeheizt";
                     text_T2_ziel.Text = tempValue;
-                    
+
                     T2_On = true;
                     changeTempButtonsToOn(btnT2_OnOff);
                     btnT0.Enabled = true;
@@ -4933,13 +4985,13 @@ namespace MultecPlugin
                     //host.Connection.injectManualCommand("G992 T3 S" + tempValue);
                     host.Connection.injectManualCommand("G222");
                     host.Connection.injectManualCommand("T3");
-                    
+
                     host.Connection.injectManualCommand("M109 S" + tempValue + " T3");
                     host.Connection.injectManualCommand("M105");
                     lblRetractLoadFilT3.Visible = true;
                     lblRetractLoadFilT3.Text = "Düse wird aufgeheizt";
                     text_T3_ziel.Text = tempValue;
-                   
+
                     T3_On = true;
                     changeTempButtonsToOn(btnT3_OnOff);
                     btnT0.Enabled = true;
@@ -5635,39 +5687,46 @@ namespace MultecPlugin
 
         private void UpdateNozzleSizeFile()
         {
-            StreamWriter writer = new StreamWriter(filePath);
+            using (StreamWriter writer = new StreamWriter(nozzleSizeFilePath))
+            {
+                // Use stream
 
-            if (nozzleSizeT0 != string.Empty)
-            {
-                writer.WriteLine("T0:" + nozzleSizeT0);
+                if (nozzleSizeT0 != string.Empty)
+                {
+                    writer.WriteLine("T0:" + nozzleSizeT0);
+                }
+                if (nozzleSizeT1 != string.Empty)
+                {
+                    writer.WriteLine("T1:" + nozzleSizeT1);
+                }
+                if (nozzleSizeT2 != string.Empty)
+                {
+                    writer.WriteLine("T2:" + nozzleSizeT2);
+                }
+                if (nozzleSizeT3 != string.Empty)
+                {
+                    writer.WriteLine("T3:" + nozzleSizeT3);
+                }
+                writer.WriteLine();
+                writer.Close();
             }
-            if (nozzleSizeT1 != string.Empty)
-            {
-                writer.WriteLine("T1:" + nozzleSizeT1);
-            }
-            if (nozzleSizeT2 != string.Empty)
-            {
-                writer.WriteLine("T2:" + nozzleSizeT2);
-            }
-            if (nozzleSizeT3 != string.Empty)
-            {
-                writer.WriteLine("T3:" + nozzleSizeT3);
-            }
-            writer.WriteLine();
-            writer.Close();
+
+
         }
         private void UpdateNozzleSize(string path)
         {
             if (!File.Exists(path))
             {
 
-                File.Create(path);
+                var myFile = File.Create(path);
+                myFile.Close();
 
             }
             else
             {
 
                 string[] Lines = File.ReadAllLines(path);
+
                 int metaindex;
                 foreach (string line in Lines)
                 {
@@ -6148,20 +6207,139 @@ namespace MultecPlugin
                 }
             }
         }
+
+        private void SaveToEPROM_Click(object sender, EventArgs e)
+        {
+            
+            string[] EPROMLines = M503Lines.ToArray();
+            
+            File.WriteAllLines(EPROM_FilePath, EPROMLines);
+        }
+
+        private void UploadToEPROM_Click(object sender, EventArgs e)
+        {
+            DialogResult ms = MessageBox.Show("Warnung! ", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (ms == DialogResult.OK)
+            {
+                if (File.Exists(EPROM_FilePath))
+                {
+                    string[] Lines = File.ReadAllLines(EPROM_FilePath);
+
+
+
+                    for (int line = 0; line < Lines.Length; line++)
+                    {
+                        if (Lines[line].IndexOf("M2", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            host.Connection.injectManualCommand(Lines[line]);
+
+                        }
+                        else if (Lines[line].IndexOf("M701", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            host.Connection.injectManualCommand(Lines[line]);
+
+                        }
+                        else if (Lines[line].IndexOf("M92", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            host.Connection.injectManualCommand(Lines[line]);
+
+                        }
+                        else if (Lines[line].IndexOf("M51", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            host.Connection.injectManualCommand(Lines[line]);
+
+                        }
+                        else if (Lines[line].IndexOf("M301", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            host.Connection.injectManualCommand(Lines[line]);
+
+                        }
+                        else if (Lines[line].IndexOf("X_Position DV", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            try
+                            {
+                                startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                X_Position_DV = Lines[line].Substring(startindex + 4);
+                                lblDV.Text = "X:" + Lines[line].Substring(startindex + 4);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There was an error in X_Position DV: " + ex);
+                            }
+                        }
+
+                        else if (Lines[line].IndexOf("Y_Position DV", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            try
+                            {
+                                startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                Y_Position_DV = Lines[line].Substring(startindex + 4);
+                                lblDV.Text = lblDV.Text + " Y:" + Lines[line].Substring(startindex + 4);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There was an error in Y_Position DV: " + ex);
+                            }
+                        }
+                        else if (Lines[line].IndexOf("dz_T0_MS", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            try
+                            {
+                                if (Lines[line].IndexOf("opt", StringComparison.CurrentCultureIgnoreCase) == -1)
+                                {
+                                   
+                                        startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                        abstand = Lines[line].Substring(startindex + 4);
+                                        lblDisatance.Text = abstand;
+                                
+                                }
+                                else
+                                {
+                                    startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                    optimal_Abstand = Lines[line].Substring(startindex + 4);
+                                    lbl_zOffset.Text = optimal_Abstand;
+                                    lblOptimalDistance.Text = optimal_Abstand;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There was an error in dz_T0_MS(without opt): " + ex);
+                            }
+                        }
+                        else if (Lines[line].IndexOf("Z-Probe Offset", StringComparison.CurrentCultureIgnoreCase) != -1)
+                        {
+                            try
+                            {
+                                    startindex = Lines[line].IndexOf("(mm)", StringComparison.CurrentCultureIgnoreCase);
+                                    zKorrektur = Lines[line].Substring(startindex + 4);
+                                    lblZKorrektur.Text = zKorrektur;
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("There was an error in Z-Probe Offset: " + ex);
+                            }
+                        }
+                    }
+
+                    host.Connection.injectManualCommand("M50 " + "X" + X_Position_DV + " Y" + Y_Position_DV);
+                    host.Connection.injectManualCommand("M851 A" + abstand);
+                    host.Connection.injectManualCommand("M851 B" + optimal_Abstand);
+                    host.Connection.injectManualCommand("M851 Z" + zKorrektur);
+                }
+                else
+                {
+                    MessageBox.Show("Die Datei existiert nicht. Bitte speichern Sie die Werte zuerst.", "Warnung! File existiert nich!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+        }
     }
 
 
-    public class AnalyseLogFatalError
-    {
-
-
-    }
-
-
-    public class TemperatureControl
-    {
-
-    }
+    
 }
 
 
