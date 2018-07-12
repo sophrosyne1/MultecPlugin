@@ -1239,7 +1239,8 @@ namespace MultecPlugin
             {
 
                 lblEndlosDruck.Text = "NICHT AKTIV";
-                btnActivate.Text = "Nicht Aktiv";
+                BtnDeactivateEndlos.Enabled = false;
+                BtnActivateEndlos.Enabled = true;
                 lblEndlosDruck.BackColor = SystemColors.Control;
                 endlosAktiv = false;
 
@@ -1252,7 +1253,8 @@ namespace MultecPlugin
 
                 lblEndlosDruck.Text = "AKTIV";
                 lblEndlosDruck.BackColor = Color.Yellow;
-                btnActivate.Text = "Aktiv";
+                BtnActivateEndlos.Enabled = false;
+                BtnDeactivateEndlos.Enabled = true;
                 endlosAktiv = true;
 
 
@@ -5194,10 +5196,7 @@ namespace MultecPlugin
                 btnPminus.Image = Properties.Resources.minus;
         }
 
-        private void trackBar_NozzleTemp_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
+       
 
         private void btnBedTempPlus_MouseClick(object sender, MouseEventArgs e)
         {
@@ -5219,11 +5218,12 @@ namespace MultecPlugin
                 temp_Zeil_bed = (double.Parse(temp_Zeil_bed) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidBedTemp(temp_Zeil_bed))
                 {
-                    text_Bed_ziel.Text = temp_Zeil_bed;
                     if (Bed_On)
                     {
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
                     }
+                    text_Bed_ziel.Text = temp_Zeil_bed;
+                  
                 }
                 else
                 {
@@ -5253,13 +5253,14 @@ namespace MultecPlugin
                 temp_Zeil_bed = (double.Parse(temp_Zeil_bed) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidBedTemp(temp_Zeil_bed))
                 {
-
-                    text_Bed_ziel.Text = temp_Zeil_bed;
-
                     if (Bed_On)
                     {
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
                     }
+
+                    text_Bed_ziel.Text = temp_Zeil_bed;
+
+                   
                 }
                 else
                 {
@@ -5288,13 +5289,14 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T3_ziel.Text = temp_Zeil;
-
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
                     }
+
+                    text_T3_ziel.Text = temp_Zeil;
+
+                   
                 }
                 else
                 {
@@ -5323,15 +5325,15 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T3_ziel.Text = temp_Zeil;
-
-
-
                     if (T3_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
                     }
+                    text_T3_ziel.Text = temp_Zeil;
+
+
+
+                    
                 }
                 else
                 {
@@ -5360,14 +5362,14 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T2_ziel.Text = temp_Zeil;
-
-
                     if (T2_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
                     }
+                    text_T2_ziel.Text = temp_Zeil;
+
+
+                    
                 }
                 else
                 {
@@ -5397,13 +5399,13 @@ namespace MultecPlugin
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
 
-                    text_T1_ziel.Text = temp_Zeil;
-
-
                     if (T1_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
                     }
+                    text_T1_ziel.Text = temp_Zeil;
+
+
                 }
             }
             else
@@ -5433,13 +5435,13 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) + 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T0_ziel.Text = temp_Zeil;
-
                     if (T0_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
                     }
+                    text_T0_ziel.Text = temp_Zeil;
+
+                    
                 }
                 else
                 {
@@ -5468,14 +5470,15 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T0_ziel.Text = temp_Zeil;
-
-
                     if (T0_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T0");
                     }
+
+                    text_T0_ziel.Text = temp_Zeil;
+
+
+                    
                 }
                 else
                 {
@@ -5504,14 +5507,14 @@ namespace MultecPlugin
                 temp_Zeil = (double.Parse(temp_Zeil) - 5).ToString(CultureInfo.InvariantCulture);
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
-
-                    text_T1_ziel.Text = temp_Zeil;
-
-
                     if (T1_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T1");
                     }
+                    text_T1_ziel.Text = temp_Zeil;
+
+
+                   
                 }
                 else
                 {
@@ -5543,13 +5546,13 @@ namespace MultecPlugin
                 if (IsValidNozzleTemp(temp_Zeil))
                 {
 
-                    text_T2_ziel.Text = temp_Zeil;
-
-
                     if (T2_On)
                     {
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T2");
                     }
+                    text_T2_ziel.Text = temp_Zeil;
+
+
                 }
                 else
                 {
@@ -5825,97 +5828,7 @@ namespace MultecPlugin
             }
         }
 
-        private void btnActivate_Click(object sender, EventArgs e)
-        {
-
-            int a = 0;
-            int b = 0;
-            int c = 0;
-            int d = 0;
-            bool group1Selected = false;
-            endlosAktiv = !endlosAktiv;
-            if (endlosAktiv)
-            {
-                if (T0T1 || T0T2 || T0T3)
-                {
-                    a = 1;
-                    b = T0T1 ? 1 : 0;
-                    c = T0T2 ? 1 : 0;
-                    d = T0T3 ? 1 : 0;
-                    group1Selected = true;
-                }
-                if (T1T0 || T1T2 || T1T3)
-                {
-
-                    if (group1Selected)
-                    {
-                        b = 2;
-                        a = T1T0 ? 2 : a;
-                        c = T1T2 ? 2 : b;
-                        d = T1T3 ? 2 : d;
-                    }
-                    else
-                    {
-                        b = 1;
-                        a = T1T0 ? 1 : 0;
-                        c = T1T2 ? 1 : 0;
-                        d = T1T3 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
-                }
-                if (T2T1 || T2T0 || T2T3)
-                {
-                    if (group1Selected)
-                    {
-                        c = 2;
-                        b = T2T1 ? 2 : b;
-                        a = T2T0 ? 2 : a;
-                        d = T2T3 ? 2 : d;
-                    }
-                    else
-                    {
-                        c = 1;
-                        b = T2T1 ? 1 : 0;
-                        a = T2T0 ? 1 : 0;
-                        d = T2T3 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
-                }
-                if (T3T1 || T3T2 || T3T0)
-                {
-                    if (group1Selected)
-                    {
-                        d = 2;
-                        b = T3T1 ? 2 : b;
-                        c = T3T2 ? 2 : c;
-                        a = T3T0 ? 2 : a;
-                    }
-                    else
-                    {
-                        d = 1;
-                        b = T3T1 ? 1 : 0;
-                        c = T3T2 ? 1 : 0;
-                        a = T3T0 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
-                }
-                host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
-                
-            }
-            else
-            {
-                host.Connection.injectManualCommand("M52 A0 B0 C0 D0");
-
-
-            }
-            MessageBox.Show("M52 A" + a + " B" + b + " C" + c + " D" + d);
-        }
+       
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
@@ -6370,6 +6283,116 @@ namespace MultecPlugin
             else
                 BtnUploadToEPROM.Image = Properties.Resources.Upload;
         }
+
+        private void BtnDeactivateEndlos_Click(object sender, EventArgs e)
+        {
+            host.Connection.injectManualCommand("M52 A0 B0 C0 D0");
+
+        }
+
+        private void BtnActivateEndlos_Click(object sender, EventArgs e)
+        {
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
+            bool group1Selected = false;
+            endlosAktiv = !endlosAktiv;
+            //if (endlosAktiv)
+            //{
+                if (T0T1 || T0T2 || T0T3)
+                {
+                    a = 1;
+                    b = T0T1 ? 1 : 0;
+                    c = T0T2 ? 1 : 0;
+                    d = T0T3 ? 1 : 0;
+                    group1Selected = true;
+                }
+                if (T1T0 || T1T2 || T1T3)
+                {
+
+                    if (group1Selected)
+                    {
+                        b = 2;
+                        a = T1T0 ? 2 : a;
+                        c = T1T2 ? 2 : b;
+                        d = T1T3 ? 2 : d;
+                    }
+                    else
+                    {
+                        b = 1;
+                        a = T1T0 ? 1 : 0;
+                        c = T1T2 ? 1 : 0;
+                        d = T1T3 ? 1 : 0;
+                        group1Selected = true;
+                    }
+
+
+                }
+                if (T2T1 || T2T0 || T2T3)
+                {
+                    if (group1Selected)
+                    {
+                        c = 2;
+                        b = T2T1 ? 2 : b;
+                        a = T2T0 ? 2 : a;
+                        d = T2T3 ? 2 : d;
+                    }
+                    else
+                    {
+                        c = 1;
+                        b = T2T1 ? 1 : 0;
+                        a = T2T0 ? 1 : 0;
+                        d = T2T3 ? 1 : 0;
+                        group1Selected = true;
+                    }
+
+
+                }
+                if (T3T1 || T3T2 || T3T0)
+                {
+                    if (group1Selected)
+                    {
+                        d = 2;
+                        b = T3T1 ? 2 : b;
+                        c = T3T2 ? 2 : c;
+                        a = T3T0 ? 2 : a;
+                    }
+                    else
+                    {
+                        d = 1;
+                        b = T3T1 ? 1 : 0;
+                        c = T3T2 ? 1 : 0;
+                        a = T3T0 ? 1 : 0;
+                        group1Selected = true;
+                    }
+
+
+                }
+                host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
+
+
+            //}
+        }
+
+        private void BtnActivateEndlos_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnActivateEndlos.Enabled)
+                BtnActivateEndlos.Image = Properties.Resources.Activieren_g;
+            else
+                BtnActivateEndlos.Image = Properties.Resources.Activieren;
+        }
+
+        private void BtnDeactivateEndlos_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnDeactivateEndlos.Enabled)
+                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren_g;
+            else
+                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren;
+        }
+
+        
     }
 
 

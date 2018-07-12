@@ -63,6 +63,36 @@ namespace MultecPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Activieren {
+            get {
+                object obj = ResourceManager.GetObject("Activieren", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Activieren_g {
+            get {
+                object obj = ResourceManager.GetObject("Activieren_g", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Activieren_p {
+            get {
+                object obj = ResourceManager.GetObject("Activieren_p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Aktualizieren {
             get {
                 object obj = ResourceManager.GetObject("Aktualizieren", resourceCulture);
@@ -156,6 +186,36 @@ namespace MultecPlugin.Properties {
         public static System.Drawing.Bitmap bottom_pressed {
             get {
                 object obj = ResourceManager.GetObject("bottom_pressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Deaktivieren {
+            get {
+                object obj = ResourceManager.GetObject("Deaktivieren", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Deaktivieren_g {
+            get {
+                object obj = ResourceManager.GetObject("Deaktivieren_g", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Deaktivieren_p {
+            get {
+                object obj = ResourceManager.GetObject("Deaktivieren_p", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
