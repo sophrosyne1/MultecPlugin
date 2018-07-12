@@ -153,7 +153,7 @@ namespace MultecPlugin
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
             //ServerConnector server = 
-            Version = "Version: v1.0.4";
+            Version = "Version: v1.0.5";
             VersionLabel.Text = Version;
             tempValue = "205";
             txtBoxTemp.Text = tempValue;
@@ -2103,7 +2103,7 @@ namespace MultecPlugin
             btnZPlus.Enabled = val;
 
             btnDusevermessung.Enabled = val;
-            btnPositionPrufen.Enabled = val;
+            btnSaveEPROMtoFile.Enabled = val;
             btnFineAdjustment.Enabled = val;
             //PictrBoxDoorOpen.Visible = !val;
 
@@ -2143,7 +2143,7 @@ namespace MultecPlugin
             btnExtrude.Enabled = val;
             btnRetract.Enabled = val;
             btnDusevermessung.Enabled = val;
-            btnPositionPrufen.Enabled = val;
+            btnSaveEPROMtoFile.Enabled = val;
             btnFineAdjustment.Enabled = val;
             btnHomeMoveKal.Enabled = val;
             btnParkMoveKal.Enabled = val;
@@ -3488,12 +3488,11 @@ namespace MultecPlugin
             }
         }
 
-        private void BtnPositionPrufen_Click(object sender, EventArgs e)
+        private void BtnSaveEPROMtoFile_Click(object sender, EventArgs e)
         {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G297");
-            }
+            string[] EPROMLines = M503Lines.ToArray();
+
+            File.WriteAllLines(EPROM_FilePath, EPROMLines);
         }
 
         private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
@@ -3514,10 +3513,10 @@ namespace MultecPlugin
 
         private void btnPositionPrufen_EnabledChanged(object sender, EventArgs e)
         {
-            if (!btnPositionPrufen.Enabled)
-                btnPositionPrufen.Image = Properties.Resources.PP_g;
+            if (!btnSaveEPROMtoFile.Enabled)
+                btnSaveEPROMtoFile.Image = Properties.Resources.Backup_g;
             else
-                btnPositionPrufen.Image = Properties.Resources.PP;
+                btnSaveEPROMtoFile.Image = Properties.Resources.Backup;
         }
 
         private void btnM218T1_Click(object sender, EventArgs e)
@@ -6239,15 +6238,11 @@ namespace MultecPlugin
             }
         }
 
-        private void SaveToEPROM_Click(object sender, EventArgs e)
-        {
+      
 
-            string[] EPROMLines = M503Lines.ToArray();
+        
 
-            File.WriteAllLines(EPROM_FilePath, EPROMLines);
-        }
-
-        private void UploadToEPROM_Click(object sender, EventArgs e)
+        private void BtnUploadToEPROM_Click(object sender, EventArgs e)
         {
             DialogResult ms = MessageBox.Show("Warnung! ", "WARNUNG!!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (ms == DialogResult.OK)
@@ -6366,6 +6361,14 @@ namespace MultecPlugin
                 }
 
             }
+        }
+
+        private void BtnUploadToEPROM_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnUploadToEPROM.Enabled)
+                BtnUploadToEPROM.Image = Properties.Resources.Upload_g;
+            else
+                BtnUploadToEPROM.Image = Properties.Resources.Upload;
         }
     }
 

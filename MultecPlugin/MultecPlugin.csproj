@@ -699,6 +699,27 @@
   <ItemGroup>
     <None Include="Resources\MinusV.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backup1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backup_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backup_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Upload_p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Upload_g.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
