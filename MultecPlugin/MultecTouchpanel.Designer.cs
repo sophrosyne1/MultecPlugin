@@ -34,8 +34,6 @@ namespace MultecPlugin
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabpage2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultecTouchpanel));
-            this.label50 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.lblKalParkPosition = new System.Windows.Forms.Label();
             this.lblWhen4Move_2 = new System.Windows.Forms.Label();
             this.lblParkPositionVal = new System.Windows.Forms.Label();
@@ -414,8 +412,6 @@ namespace MultecPlugin
             // tabpage2
             // 
             tabpage2.BackColor = System.Drawing.Color.White;
-            tabpage2.Controls.Add(this.label50);
-            tabpage2.Controls.Add(this.label12);
             tabpage2.Controls.Add(this.lblKalParkPosition);
             tabpage2.Controls.Add(this.lblWhen4Move_2);
             tabpage2.Controls.Add(this.lblParkPositionVal);
@@ -461,30 +457,6 @@ namespace MultecPlugin
             tabpage2.Size = new System.Drawing.Size(570, 526);
             tabpage2.TabIndex = 1;
             tabpage2.Text = "Kalibrierung";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Enabled = false;
-            this.label50.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label50.Location = new System.Drawing.Point(4, 218);
-            this.label50.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(20, 13);
-            this.label50.TabIndex = 101;
-            this.label50.Text = "#4";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Enabled = false;
-            this.label12.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label12.Location = new System.Drawing.Point(4, 146);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(20, 13);
-            this.label12.TabIndex = 99;
-            this.label12.Text = "#3";
             // 
             // lblKalParkPosition
             // 
@@ -2164,7 +2136,6 @@ namespace MultecPlugin
             this.btnFilAktualise.TabIndex = 82;
             this.btnFilAktualise.TabStop = false;
             this.btnFilAktualise.EnabledChanged += new System.EventHandler(this.btnFilAktualise_EnabledChanged_1);
-        
             this.btnFilAktualise.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFilAktualise_MouseClick);
             // 
             // grpEndlosDruck
@@ -4596,9 +4567,7 @@ namespace MultecPlugin
         private ComboBox ComboNozzleSizeT2;
         private ComboBox ComboNozzleSizeT1;
         private Label lblEndlosDruck;
-        private Label label50;
         private MyCustomButton.MyCustomButton BtnUploadToEPROM;
-        private Label label12;
         private MyCustomButton.MyCustomButton BtnDeactivateEndlos;
         private MyCustomButton.MyCustomButton BtnActivateEndlos;
     }
