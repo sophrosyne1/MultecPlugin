@@ -152,20 +152,23 @@ namespace MultecPlugin
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
-            //ServerConnector server = 
-            Version = "Version: v1.0.5";
+            
+            Version = "Version: v1.0.5";            //change version name here
             VersionLabel.Text = Version;
-            tempValue = "205";
+            
+            tempValue = "205";                      //set default ziel temperature here
             txtBoxTemp.Text = tempValue;
-            nozzleSizeFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "MultecPlugin");
+            nozzleSizeFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // find the default my documents folder
+            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "MultecPlugin");                  // add a new folder named MultecPlugin in mydocuments
+            //If the multecplugin folder is not existing, create it
             if (!Directory.Exists(nozzleSizeFilePath))
             {
                 Directory.CreateDirectory(nozzleSizeFilePath);
 
             }
-            EPROM_FilePath = Path.Combine(nozzleSizeFilePath, "EPROM_File.txt");
-            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "NozzleList.txt");
+            EPROM_FilePath = Path.Combine(nozzleSizeFilePath, "EPROM_File.txt");        //filename to save EPROM settings
+
+            nozzleSizeFilePath = Path.Combine(nozzleSizeFilePath, "NozzleList.txt");    //Filename to save Nozzle sizes
 
 
 
@@ -218,101 +221,12 @@ namespace MultecPlugin
 
 
 
-        private void but_Zplus_Click(object sender, EventArgs e)
-        {
-
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 Z" + step_dist);
-                host.Connection.injectManualCommand("G90");
-            }
-        }
-
-        private void but_Zminus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void but_Retract_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + -step_dist + " F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G90");
-            }
-        }
-
-        private void but_Extrude_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                host.Connection.injectManualCommand("G91");
-                host.Connection.injectManualCommand("G1 E" + step_dist + " F120");
-                host.Connection.injectManualCommand("G92 E0");
-                host.Connection.injectManualCommand("G90");
-            }
-        }
+      
 
 
 
 
 
-
-
-
-        //////////Nozzle Selection and Heating//////////
-
-        private void but_T0_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                if (!isPrinting)
-                {
-                    host.Connection.injectManualCommand("T0");
-
-                }
-                selected_nozzle = "T0";
-
-
-            }
-        }
-
-        private void but_T1_Click(object sender, EventArgs e)
-        {
-            if (host.Connection.connector.IsConnected())
-            {
-                if (!isPrinting)
-                {
-                    host.Connection.injectManualCommand("T1");
-
-                }
-                selected_nozzle = "T1";
-                btnT0.Enabled = true;
-                btnT1.Enabled = false;
-                btnT2.Enabled = true;
-                btnT3.Enabled = true;
-                //btnMove.Enabled = true;
-                TempTemp = Convert.ToInt32(text_T1_ziel.Text.Replace(".0", " ").Trim());
-
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //////////Heated Bed//////////
 
 
 
@@ -396,6 +310,8 @@ namespace MultecPlugin
                 MessageBox.Show("worker timer fail: " + ex);
             }
         }
+        // This region is triggered when there is connection change in the host
+        #region Printer Connection Chage  
         public void PrinterConnectionChange(string msg)
         {
 
@@ -521,6 +437,7 @@ namespace MultecPlugin
 
 
         }
+        #endregion
 
         public void changeTempButtonsToOn(PictureBox val)
         {
