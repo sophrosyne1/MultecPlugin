@@ -730,7 +730,6 @@ namespace MultecPlugin
             this.BtnUploadToEPROM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.BtnUploadToEPROM.TabIndex = 100;
             this.BtnUploadToEPROM.TabStop = false;
-            this.BtnUploadToEPROM.Visible = false;
             this.BtnUploadToEPROM.EnabledChanged += new System.EventHandler(this.BtnUploadToEPROM_EnabledChanged);
             this.BtnUploadToEPROM.Click += new System.EventHandler(this.BtnUploadToEPROM_Click);
             // 
@@ -1001,7 +1000,6 @@ namespace MultecPlugin
             this.btnSaveEPROMtoFile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSaveEPROMtoFile.TabIndex = 72;
             this.btnSaveEPROMtoFile.TabStop = false;
-            this.btnSaveEPROMtoFile.Visible = false;
             this.btnSaveEPROMtoFile.EnabledChanged += new System.EventHandler(this.btnPositionPrufen_EnabledChanged);
             this.btnSaveEPROMtoFile.Click += new System.EventHandler(this.BtnSaveEPROMtoFile_Click);
             // 

@@ -152,10 +152,10 @@ namespace MultecPlugin
             InitializeComponent();
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
-            
+
             Version = "Version: v1.0.5";            //change version name here
             VersionLabel.Text = Version;
-            
+
             tempValue = "205";                      //set default ziel temperature here
             txtBoxTemp.Text = tempValue;
             nozzleSizeFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // find the default my documents folder
@@ -195,7 +195,6 @@ namespace MultecPlugin
         }
 
 
-
         #region IHostComponent implementation
 
         // Name inside component repository
@@ -217,22 +216,6 @@ namespace MultecPlugin
         }
 
         #endregion
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void Connection_eventResponse(string response, ref RepetierHostExtender.basic.LogLevel level)
@@ -260,9 +243,8 @@ namespace MultecPlugin
             }
         }
 
-
-
-
+        //timer to set and reset the form if it is not connected and 
+        //update the temperatures on every timer tick
         private void timer_temp_Tick(object sender, EventArgs e)
         {
             try
@@ -277,7 +259,8 @@ namespace MultecPlugin
                         timer_temp.Start();
                         count = 0;
                     }
-                    worker.RunWorkerAsync();
+
+                    worker.RunWorkerAsync();            //back ground worker is call here
                 }
             }
             catch (Exception ex)
@@ -287,7 +270,8 @@ namespace MultecPlugin
         }
 
 
-
+        /*banground worker that controls the DoTheLoop function(when host connected) and 
+        reset_parameters function(which deactivates the plug in when host disconnected)*/
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -297,12 +281,12 @@ namespace MultecPlugin
 
                 if (host.Connection.connector.IsConnected())
                 {
-                    DoTheLoop();
+                    DoTheLoop();            //when host is connected activate plug in and update nozzle temps
 
                 }
                 else
                 {
-                    reset_parameters();
+                    reset_parameters();     //when host disconnected, deactivate the plugin
                 }
             }
             catch (Exception ex)
@@ -439,6 +423,7 @@ namespace MultecPlugin
         }
         #endregion
 
+        //function to change the picture in temp on buttons for T0-T3 and Bed to 'Ein' 
         public void changeTempButtonsToOn(PictureBox val)
         {
             try
@@ -454,6 +439,7 @@ namespace MultecPlugin
                 MessageBox.Show("Change temp button on fail: " + ex);
             }
         }
+        //function to change the picture in temp on buttons for T0-T3 and Bed to 'Aus' 
         public void changeTempButtonsToOff(PictureBox val)
         {
             try
@@ -470,14 +456,13 @@ namespace MultecPlugin
             }
         }
 
+        //////////////////////////////////****** VERY IMPORTANT SECTION *****\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        // This region is responsible to handle the log message that comes to the host:: read the log and do something
+        #region logReader
         public void AddtoListBox(string response, ref RepetierHostExtender.basic.LogLevel level)
         {
 
-            //if (response.IndexOf("successfully connected", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //{
 
-            //    connectedViaServer = true;
-            //}
             if (response.IndexOf("Steps per unit:", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
                 startCopyingEPROMtoFile = true;
@@ -530,20 +515,6 @@ namespace MultecPlugin
                     MessageBox.Show("There was an error in Filament zurückgezogen: " + ex);
                 }
             }
-            //if (connectedViaServer)
-            //{
-            //    if (response.IndexOf("Druckerposition", StringComparison.CurrentCultureIgnoreCase) != -1)
-            //    {
-            //        lblBanner.Text = "Connected with the Server";
-            //        connectedViaServer = false;
-            //    }
-            //    else
-            //    {
-            //        lblBanner.Text = "Not Connected with the Server";
-            //        connectedViaServer = false;
-            //    }
-
-            //}
 
             if (response.IndexOf("T:", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1161,8 +1132,8 @@ namespace MultecPlugin
                 lblEndlosDruck.BackColor = SystemColors.Control;
                 endlosAktiv = false;
 
-               
-                
+
+
             }
             if (response.IndexOf("Endlosdruck aktiv", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1825,10 +1796,10 @@ namespace MultecPlugin
                 }
 
             }
-        }
-        //function to remove temperature readings from textboxes
+        }       //read the log
+        #endregion
 
-        //function to add temperature readings to the textboxes
+        //function to update temperature and activate the plugin when host connected
         public void DoTheLoop()
         {
 
@@ -1917,6 +1888,10 @@ namespace MultecPlugin
 
 
         }
+
+        // function to deactivate or activate features depending if it 4 move or not
+        //the following buttons or controls are set visible or not visible
+        #region 4MoveOr2Move
         private void CheckIfFourMove(bool val)
         {
             ComboNozzleSizeT2.Visible = val;
@@ -1997,9 +1972,10 @@ namespace MultecPlugin
             backupT1furT3.Visible = val;
             backupT2furT3.Visible = val;
 
-
-
         }
+        #endregion
+
+        // function to disable or enable features if sicherheitkreis offen or not
         public void enablDisablWhenDoorOpen(bool val)
         {
 
@@ -2036,6 +2012,8 @@ namespace MultecPlugin
 
 
         }
+
+        // function to disable or enable features if printing or not
         private void enablDisablWhenPrinting(bool val)
         {
             btnLoadT0.Enabled = val;
@@ -2088,6 +2066,9 @@ namespace MultecPlugin
             btnPplus.Enabled = val;
             btnParkPositionSend.Enabled = val;
         }
+
+        //automatically enable or disable all buttons and controls in plugin when host connected or disconnected. 
+        //Doesnt need change
         private void enableDisableControls(bool val, Control container)
         {
 
@@ -2107,6 +2088,7 @@ namespace MultecPlugin
         }
 
         //resets all parameters and textboxes to default
+        // disables all controls and buttons
         public void reset_parameters()
         {
 
@@ -2132,6 +2114,9 @@ namespace MultecPlugin
 
 
         }
+
+        //The x axis minus button click'
+        //Move step_distance to the left
         private void myCustomButton1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnXMinus, e.X, e.Y))
@@ -2152,6 +2137,8 @@ namespace MultecPlugin
             }
         }
 
+        //The x axis plus button click'
+        //Move step_distance to the right
         private void myCustomButton3_Click(object sender, MouseEventArgs e)
         {
             if (HitTest(btnXPlus, e.X, e.Y))
@@ -2168,7 +2155,8 @@ namespace MultecPlugin
             }
         }
 
-
+        //The y axis plus button click'
+        //Move step_distance to forward in y axis
         private void myCustomButton2_Click(object sender, MouseEventArgs e)
         {
             if (HitTest(btnYPlus, e.X, e.Y))
@@ -2185,6 +2173,8 @@ namespace MultecPlugin
             }
         }
 
+        //The y axis minus button click'
+        //Move step_distance to the backward in y axis
         private void myCustomButton4_Click(object sender, MouseEventArgs e)
         {
             if (HitTest(btnYMinus, e.X, e.Y))
@@ -2205,32 +2195,8 @@ namespace MultecPlugin
             }
         }
 
-
-
-        //public static Bitmap CombineAndResizeTwoImages(Image image1, Image image2, int width, int height)
-        //{
-
-        //    //a holder for the result
-        //    Bitmap result = new Bitmap(width, height);
-
-        //    //use a graphics object to draw the resized image into the bitmap
-        //    using (Graphics graphics = Graphics.FromImage(result))
-        //    {
-        //        //set the resize quality modes to high quality
-        //        graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-        //        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-        //        graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-        //        //draw the images into the target bitmap
-        //        graphics.DrawImage(image1, 0, 0, result.Width, result.Height);
-        //        graphics.DrawImage(image2, 0, 0, result.Width, result.Height);
-
-        //    }
-
-        //    //return the resulting bitmap
-        //    return result;
-        //}
-
-
+        //function to check if the mouse is over the custom 3D buttons
+        //doesnt need change
         public bool HitTest(PictureBox control, int x, int y)
         {
             var result = false;
@@ -2249,19 +2215,15 @@ namespace MultecPlugin
             return result;
         }
 
-
-
-
-
-
-
+        // when the tab page is changed. the following codes executed depending on which tab is selected
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
             {
-                UpdateNozzleSize(nozzleSizeFilePath);
-                GetNozzleSizeString();
-                EndlessNozzleCheck();
+                UpdateNozzleSize(nozzleSizeFilePath);       // updates the nozzle sizes from the nozzle list file. which was configured or saved before
+                GetNozzleSizeString();                      // gets the value of nozzle sizes and saves them in respective string variables
+                EndlessNozzleCheck();      /*--------------> resets all checkboxes endlos druck to not selected. and check which nozzle sizes are same 
+                                                            and only enable their selection*/
 
                 host.Connection.injectManualCommand("M603");
                 host.Connection.injectManualCommand("M503");
@@ -2282,42 +2244,8 @@ namespace MultecPlugin
 
         }
 
-
-
-
-
-
-
-
-
-
-
-        private void btn_xOffset_send_Click(object sender, EventArgs e)
-        {
-            if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
-            {
-                host.Connection.injectManualCommand("M218 " + tool_M218 + "X " + text_M218_X.Text);
-            }
-        }
-
-        private void btn_yOffset_send_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_zOffset_plus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
-
-
+        //The z axis plus button click'
+        //Move step_distance to down
         private void myCustomButton1_MouseClick_1(object sender, MouseEventArgs e)
         {
             if (HitTest(btnZPlus, e.X, e.Y))
@@ -2332,14 +2260,10 @@ namespace MultecPlugin
                     lblZPosition.Text = lblZPosition.Text.Replace(",", ".");
                 }
             }
-
-
-
-
         }
 
-
-
+        //The z axis minus button click'
+        //Move step_distance to the up
         private void btnZminus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnZminus, e.X, e.Y))
@@ -2361,14 +2285,8 @@ namespace MultecPlugin
             }
         }
 
-
-
-
-        private void filamentAktualize_Click(object sender, EventArgs e)
-        {
-            host.Connection.injectManualCommand("M603");
-        }
-
+        //The retract button click'
+        //retracts the filament by step_distance
         private void myCustomButton1_MouseClick_2(object sender, MouseEventArgs e)
         {
             if (HitTest(btnRetract, e.X, e.Y))
@@ -2383,8 +2301,8 @@ namespace MultecPlugin
             }
         }
 
-
-
+        //The extrude button click'
+        //extreudes the filament by step_distance
         private void btnExtrude_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnExtrude, e.X, e.Y))
@@ -2399,6 +2317,7 @@ namespace MultecPlugin
             }
         }
 
+        //HomeMove button click
         private void btnHomeMove_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnHomeMove, e.X, e.Y))
@@ -2412,6 +2331,7 @@ namespace MultecPlugin
             }
         }
 
+        //Nozzle T0 selection button click
         private void btnT0_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT0, e.X, e.Y))
@@ -2429,15 +2349,11 @@ namespace MultecPlugin
                     btnT1.Enabled = true;
                     btnT2.Enabled = true;
                     btnT3.Enabled = true;
-                    //btnMove.Enabled = true;
-
-
                 }
             }
         }
 
-
-
+        // when key is pressed in the manual gcode text box. up, down arrow key press and enter and escape key press
         private void txtManualGcode_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -2466,7 +2382,6 @@ namespace MultecPlugin
                 {
                     getPrev_gCodeUp = gCodeCheck - 1;
                 }
-                //MessageBox.Show("the value of index is" + getPrev_gCodeUp.ToString(CultureInfo.InvariantCulture));
                 txtManualGcode.Text = gCode[getPrev_gCodeUp];
                 getPrev_gCodeUp--;
 
@@ -2497,6 +2412,8 @@ namespace MultecPlugin
 
 
         }
+
+        //when M109 or M190 is typed and entered in manual text box. run this and and set up the nozzle heating buttons
         private void M109M190Check(string val)
         {
             int regionalStartIndex = 0;
@@ -2605,6 +2522,9 @@ namespace MultecPlugin
                 }
             }
         }
+
+        //record the G1 and G0 commands from the manual gcode text box. and add the x, y and Z values in the plugin
+        //this function does the changing of the X, Y and Z values.
         private void G1G0Check(string val)
         {
             int regionalStartIndex = 0;
@@ -2715,6 +2635,8 @@ namespace MultecPlugin
                 }
             }
         }
+
+        //when cold extrusion is triggered, run this background worker do work, to give a pop up for "cold extrusion prevented"
         private void WrkerColdExtrusion_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -2728,6 +2650,7 @@ namespace MultecPlugin
             }
         }
 
+        // change picture of button TO(nozzle selection) from normal to pressed state, when selected
         private void btnT0_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT0.Enabled)
@@ -2736,6 +2659,7 @@ namespace MultecPlugin
                 btnT0.Image = Properties.Resources.T0_2;
         }
 
+        //Nozzle T1 selection button click
         private void BtnT1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT1, e.X, e.Y))
@@ -2758,6 +2682,7 @@ namespace MultecPlugin
             }
         }
 
+        // change picture of button T1(nozzle selection) from normal to pressed state, when selected
         private void BtnT1_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT1.Enabled)
@@ -2766,6 +2691,7 @@ namespace MultecPlugin
                 btnT1.Image = Properties.Resources.T1_2;
         }
 
+        //Nozzle T2 selection button click
         private void btnT2_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT2, e.X, e.Y))
@@ -2788,6 +2714,7 @@ namespace MultecPlugin
             }
         }
 
+        // change picture of button T2(nozzle selection) from normal to pressed state, when selected
         private void btnT2_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT2.Enabled)
@@ -2796,6 +2723,7 @@ namespace MultecPlugin
                 btnT2.Image = Properties.Resources.T2_2;
         }
 
+        //Nozzle T3 selection button click
         private void btnT3_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT3, e.X, e.Y))
@@ -2818,6 +2746,7 @@ namespace MultecPlugin
             }
         }
 
+        // change picture of button T3(nozzle selection) from normal to pressed state, when selected
         private void btnT3_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnT3.Enabled)
@@ -2826,8 +2755,7 @@ namespace MultecPlugin
                 btnT3.Image = Properties.Resources.T3_2;
         }
 
-
-
+        //  Motor Off Button click
         private void btnMotorOff_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnMotorOff, e.X, e.Y))
@@ -2839,6 +2767,7 @@ namespace MultecPlugin
             }
         }
 
+        // Home All button click
         private void btnHome_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnHome, e.X, e.Y))
@@ -2850,6 +2779,7 @@ namespace MultecPlugin
             }
         }
 
+        // Park Move Button click
         private void btnParkMove_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnParkMove, e.X, e.Y))
@@ -2860,6 +2790,8 @@ namespace MultecPlugin
                 }
             }
         }
+
+        // checks if move is intialised, and sets certain parameters accordingly
         public void IsMoveInitialised(bool status)
         {
             isInitialised = status;
@@ -2877,8 +2809,6 @@ namespace MultecPlugin
                 btnT2.Image = Properties.Resources.T2_g;
                 btnT3.Image = Properties.Resources.T3_g;
                 ChckboxMoveInitialised.Checked = false;
-                //wasNozSelected = false;
-                //btnMove.Enabled = true;
                 selected_nozzle = string.Empty;
             }
             else
@@ -2892,38 +2822,8 @@ namespace MultecPlugin
                 btnT3.Enabled = true;
             }
         }
-        /* private void btnMove_MouseClick(object sender, MouseEventArgs e)
-         {
-             if (HitTest(btnMove, e.X, e.Y))
-             {
-                 if (host.Connection.connector.IsConnected())
-                 {
-                     if (!isPrinting)
-                     {
-                         host.Connection.injectManualCommand("T4");
-                     }
-                     selected_nozzle = "T4";
-                     btnT0.Enabled = true;
-                     btnT1.Enabled = true;
-                     btnT2.Enabled = true;
-                     btnT3.Enabled = true;
-                     //btnMove.Enabled = false;
-                     trackBar_NozzleTemp.Value = trackBar_NozzleTemp.Minimum;
-                 }
-             }
-         }*/
-
-        //private void btnmove_enabledchanged(object sender, eventargs e)
-        //{
-        //    if (!isprinting)
-        //    {
-        //        if (!btnmove.enabled)
-        //            btnmove.image = properties.resources.move_p_2;
-        //        else
-        //            btnmove.image = properties.resources.move_2;
-        //    }
-        //}
-
+        
+        // Turn heater On/Off for nozzle T0
         private void btnT0_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -2950,8 +2850,7 @@ namespace MultecPlugin
             }
         }
 
-
-
+        // Turn heater On/Off for nozzle T1
         private void btnT1_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -2980,6 +2879,7 @@ namespace MultecPlugin
             }
         }
 
+        // Turn heater On/Off for nozzle T2
         private void btnT2_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3008,6 +2908,7 @@ namespace MultecPlugin
             }
         }
 
+        // Turn heater On/Off for nozzle T3
         private void btnT3_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3036,6 +2937,7 @@ namespace MultecPlugin
             }
         }
 
+        // Turn heater On/Off for Bed
         private void btnBed_OnOff_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3064,12 +2966,7 @@ namespace MultecPlugin
             }
         }
 
-
-
-
-
-
-
+        // Step Distance Selection: 1 mm button click
         private void btnStep1_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnStep1, e.X, e.Y))
@@ -3081,6 +2978,7 @@ namespace MultecPlugin
             }
         }
 
+        // Step Distance Selection: 1 mm button, picture change to pressed and not pressed stand when enabled or disabled
         private void btnStep1_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnStep1.Enabled)
@@ -3089,6 +2987,7 @@ namespace MultecPlugin
                 btnStep1.Image = Properties.Resources.onemm_2;
         }
 
+        // Step Distance Selection: 10 mm button click
         private void btnStep10_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnStep10, e.X, e.Y))
@@ -3100,6 +2999,7 @@ namespace MultecPlugin
             }
         }
 
+        // Step Distance Selection: 10 mm button, picture change to pressed and not pressed stand when enabled or disabled
         private void btnStep10_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnStep10.Enabled)
@@ -3108,6 +3008,7 @@ namespace MultecPlugin
                 btnStep10.Image = Properties.Resources.tenmm_2;
         }
 
+        // Step Distance Selection: 50 mm button click
         private void btnStep50_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnStep50, e.X, e.Y))
@@ -3119,6 +3020,7 @@ namespace MultecPlugin
             }
         }
 
+        // Step Distance Selection: 50 mm button, picture change to pressed and not pressed stand when enabled or disabled
         private void btnStep50_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnStep50.Enabled)
@@ -3127,14 +3029,8 @@ namespace MultecPlugin
                 btnStep50.Image = Properties.Resources.fiftymm_2;
         }
 
-
-
-
-
-
-
-
-
+        // Shutdown printer after print finished checkbox, 
+        // defines the gcode commands sent when the checkbox is checked and when the check box is not checked 
         private void chckBoxDruckerende_CheckedChanged(object sender, EventArgs e)
         {
             if (chckBoxDruckerende.Checked)
@@ -3149,17 +3045,7 @@ namespace MultecPlugin
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
+        // Send button click for Manual GCode text box
         private void btnManualGcodeSend_Click(object sender, EventArgs e)
         {
             if (txtManualGcode.Text != string.Empty)
@@ -3205,16 +3091,21 @@ namespace MultecPlugin
             }
         }
 
+        // Home Move in Kalibration tab Button click 
         private void btnHomeMoveKal_MouseClick(object sender, MouseEventArgs e)
         {
-            btnHomeMove_MouseClick(this, e);
+            btnHomeMove_MouseClick(this, e);        /* calls the home move click event from the manual control tab,
+                                                    so to make changes make in the tab 1 Home Move click event*/
         }
 
+        // Park Move in Kalibration tab Button click
         private void btnParkMoveKal_MouseClick(object sender, MouseEventArgs e)
         {
-            btnParkMove_MouseClick(this, e);
+            btnParkMove_MouseClick(this, e);        /* calls the Park move click event from the manual control tab,
+                                                    so to make changes make in the tab 1 Park Move click event*/
         }
 
+        // Button actualise click for Info Tab
         private void btnInfoAktualise_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnInfoAktualise, e.X, e.Y))
@@ -3229,6 +3120,7 @@ namespace MultecPlugin
             }
         }
 
+        //Button Actualise enable change in Info tab, Grey and normal state.
         private void btnInfoAktualise_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnInfoAktualise.Enabled)
@@ -3237,6 +3129,7 @@ namespace MultecPlugin
                 btnInfoAktualise.Image = Properties.Resources.Aktualizieren;
         }
 
+        // Button Actuslise click in Filament Tab
         private void btnFilAktualise_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnFilAktualise, e.X, e.Y))
@@ -3245,6 +3138,7 @@ namespace MultecPlugin
             }
         }
 
+        //Button Actualise enable change in filament tab, Grey and normal state.
         private void btnFilAktualise_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnFilAktualise.Enabled)
@@ -3253,6 +3147,7 @@ namespace MultecPlugin
                 btnFilAktualise.Image = Properties.Resources.Aktualizieren;
         }
 
+        // But Park Move Enabled changed in Kal Tab, Grey and normal state
         private void btnParkMoveKal_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnParkMoveKal.Enabled)
@@ -3261,6 +3156,7 @@ namespace MultecPlugin
                 btnParkMoveKal.Image = Properties.Resources.Park_Move;
         }
 
+        // But Home Move Enabled changed in Kal Tab, Grey and normal state
         private void btnHomeMoveKal_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnHomeMoveKal.Enabled)
@@ -3269,6 +3165,7 @@ namespace MultecPlugin
                 btnHomeMoveKal.Image = Properties.Resources.HOME_Move;
         }
 
+        // But Home Move Enabled changed in Manual Tab, Grey and normal state
         private void btnHomeMove_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnHomeMove.Enabled)
@@ -3277,6 +3174,7 @@ namespace MultecPlugin
                 btnHomeMove.Image = Properties.Resources.HOME_Move;
         }
 
+        // But Park Move Enabled changed in Manual Tab, Grey and normal state
         private void btnParkMove_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnParkMove.Enabled)
@@ -3285,6 +3183,7 @@ namespace MultecPlugin
                 btnParkMove.Image = Properties.Resources.Park_Move;
         }
 
+        // But Home All Enabled changed in Manual Tab, Grey and normal state
         private void btnHome_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnHome.Enabled)
@@ -3293,6 +3192,7 @@ namespace MultecPlugin
                 btnHome.Image = Properties.Resources.HOME;
         }
 
+        // But Park Move Enabled changed in Kal Tab, Grey and normal state
         private void btnMotorOff_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnMotorOff.Enabled)
@@ -3301,6 +3201,7 @@ namespace MultecPlugin
                 btnMotorOff.Image = Properties.Resources.MOTOR_OFF;
         }
 
+        // Rotation Offset send button click Kal Tab 
         private void btnRotOffsetSend_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnRotOffsetSend, e.X, e.Y))
@@ -3314,6 +3215,7 @@ namespace MultecPlugin
             }
         }
 
+        // Rotation Offset send button enable changed Kal Tab, grey and normal state
         private void btnRotOffsetSend_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnRotOffsetSend.Enabled)
@@ -3322,6 +3224,7 @@ namespace MultecPlugin
                 btnRotOffsetSend.Image = Properties.Resources.Schicken;
         }
 
+        // Y Offset send button enable changed Kal Tab, grey and normal state
         private void btnYoffsetSend_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnYoffsetSend.Enabled)
@@ -3330,6 +3233,7 @@ namespace MultecPlugin
                 btnYoffsetSend.Image = Properties.Resources.Schicken;
         }
 
+        // X Offset send button enable changed Kal Tab, grey and normal state
         private void btnXoffsetSend_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnXoffsetSend.Enabled)
@@ -3338,6 +3242,7 @@ namespace MultecPlugin
                 btnXoffsetSend.Image = Properties.Resources.Schicken;
         }
 
+        // Z Offset send button enable changed Kal Tab, grey and normal state
         private void btnZOffsetSend_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnZOffsetSend.Enabled)
@@ -3346,6 +3251,7 @@ namespace MultecPlugin
                 btnZOffsetSend.Image = Properties.Resources.Schicken;
         }
 
+        // Manual GCode send button enable changed Manual Tab, grey and normal state
         private void btnManualGcodeSend_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnManualGcodeSend.Enabled)
@@ -3354,6 +3260,7 @@ namespace MultecPlugin
                 btnManualGcodeSend.Image = Properties.Resources.Schicken;
         }
 
+        // Y Offset send button click Kal Tab
         private void btnYoffsetSend_Click(object sender, EventArgs e)
         {
             if (tool_M218 != string.Empty && text_M218_Y.Text != string.Empty)
@@ -3362,6 +3269,7 @@ namespace MultecPlugin
             }
         }
 
+        // X Offset send button click Kal Tab
         private void btnXoffsetSend_Click(object sender, EventArgs e)
         {
             if (tool_M218 != string.Empty && text_M218_X.Text != string.Empty)
@@ -3370,6 +3278,7 @@ namespace MultecPlugin
             }
         }
 
+        // Z Offset send button click Kal Tab
         private void btnZOffsetSend_Click(object sender, EventArgs e)
         {
             relativOffset = zOffsetMultiplyer * 0.05;
@@ -3380,6 +3289,7 @@ namespace MultecPlugin
             zOffsetMultiplyer = 0;
         }
 
+        // M702 D send button click Kal Tab
         private void btnFineAdjustment_Click(object sender, EventArgs e)
         {
             DialogResult ms = MessageBox.Show("Warnung! Der Drucker führt nun HOME ALL aus. Stellen Sie sicher, dass das Bett frei ist." + Environment.NewLine +
@@ -3396,6 +3306,7 @@ namespace MultecPlugin
             }
         }
 
+        // Düsevermessung Button Click Kal Tab
         private void btnDusevermessung_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3407,6 +3318,7 @@ namespace MultecPlugin
             }
         }
 
+        // button save Printer settings to File in myDocuments click
         private void BtnSaveEPROMtoFile_Click(object sender, EventArgs e)
         {
             string[] EPROMLines = M503Lines.ToArray();
@@ -3414,6 +3326,7 @@ namespace MultecPlugin
             File.WriteAllLines(EPROM_FilePath, EPROMLines);
         }
 
+        // button M702 D enable change, Normal and grey state
         private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnFineAdjustment.Enabled)
@@ -3422,6 +3335,7 @@ namespace MultecPlugin
                 btnFineAdjustment.Image = Properties.Resources.ZF;
         }
 
+        // button Düsevermessung enable change, Normal and grey state
         private void btnDusevermessung_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnDusevermessung.Enabled)
@@ -3430,6 +3344,7 @@ namespace MultecPlugin
                 btnDusevermessung.Image = Properties.Resources.DV;
         }
 
+        // button Save "printer settings to file" enable change, Normal and grey state
         private void btnPositionPrufen_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnSaveEPROMtoFile.Enabled)
@@ -3438,6 +3353,7 @@ namespace MultecPlugin
                 btnSaveEPROMtoFile.Image = Properties.Resources.Backup;
         }
 
+        // T1 nozzle selection button for M218
         private void btnM218T1_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3450,6 +3366,7 @@ namespace MultecPlugin
             }
         }
 
+        // T2 nozzle selection button for M218
         private void btnM218T2_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3462,6 +3379,7 @@ namespace MultecPlugin
             }
         }
 
+        // T3 nozzle selection button for M218
         private void btnM218T3_Click(object sender, EventArgs e)
         {
             if (host.Connection.connector.IsConnected())
@@ -3474,6 +3392,7 @@ namespace MultecPlugin
             }
         }
 
+        // M218_T1 button enable change, Grey and normal state.
         private void btnM218T1_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnM218T1.Enabled)
@@ -3482,6 +3401,7 @@ namespace MultecPlugin
                 btnM218T1.Image = Properties.Resources.T1_2;
         }
 
+        // M218_T2 button enable change, Grey and normal state.
         private void btnM218T2_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnM218T2.Enabled)
@@ -3490,6 +3410,7 @@ namespace MultecPlugin
                 btnM218T2.Image = Properties.Resources.T2_2;
         }
 
+        // M218_T3 button enable change, Grey and normal state.
         private void btnM218T3_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnM218T3.Enabled)
@@ -3498,6 +3419,7 @@ namespace MultecPlugin
                 btnM218T3.Image = Properties.Resources.T3_2;
         }
 
+        // Y offset plus button click: 0.05 increament
         private void btnYoffsetPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnYoffsetPlus, e.X, e.Y))
@@ -3511,6 +3433,7 @@ namespace MultecPlugin
             }
         }
 
+        // X offset plus button click: 0.05 increament
         private void btnXOffsetPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnXOffsetPlus, e.X, e.Y))
@@ -3524,6 +3447,7 @@ namespace MultecPlugin
             }
         }
 
+        // X offset Minus button click: 0.05 decreament
         private void btnXOffsetMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnXOffsetMinus, e.X, e.Y))
@@ -3537,6 +3461,7 @@ namespace MultecPlugin
             }
         }
 
+        // Y offset Minus button click: 0.05 decreament
         private void btnYoffsetMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnYoffsetMinus, e.X, e.Y))
@@ -3550,6 +3475,7 @@ namespace MultecPlugin
             }
         }
 
+        // Z offset plus button click: 0.05 increament
         private void btnZOffsetPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnZOffsetPlus, e.X, e.Y))
@@ -3570,6 +3496,7 @@ namespace MultecPlugin
             }
         }
 
+        // Z offset Minus button click: 0.05 decreament
         private void btnZOffsetMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnZOffsetMinus, e.X, e.Y))
@@ -3589,6 +3516,7 @@ namespace MultecPlugin
             }
         }
 
+        // Rotational Offset Filament Plus button click: 0.5 increament
         private void btnEplus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnEplus, e.X, e.Y))
@@ -3608,6 +3536,7 @@ namespace MultecPlugin
             }
         }
 
+        // Rotational Offset Filament Minus button click: 0.5 decreament
         private void btnEminus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnEminus, e.X, e.Y))
@@ -3627,8 +3556,7 @@ namespace MultecPlugin
             }
         }
 
-
-
+        // Z Plus button enable changed; Grey and normal state
         private void btnZPlus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnZPlus.Enabled)
@@ -3637,6 +3565,7 @@ namespace MultecPlugin
                 btnZPlus.Image = Properties.Resources.zPlus;
         }
 
+        // Z minus button enable changed; Grey and normal state
         private void btnZminus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnZminus.Enabled)
@@ -3645,8 +3574,7 @@ namespace MultecPlugin
                 btnZminus.Image = Properties.Resources.Zminus;
         }
 
-
-
+        // X offset Plus button enable changed; Grey and normal state
         private void btnXOffsetPlus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnXOffsetPlus.Enabled)
@@ -3655,6 +3583,7 @@ namespace MultecPlugin
                 btnXOffsetPlus.Image = Properties.Resources.plus;
         }
 
+        // Y offset Plus button enable changed; Grey and normal state
         private void btnYoffsetPlus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnYoffsetPlus.Enabled)
@@ -3663,6 +3592,7 @@ namespace MultecPlugin
                 btnYoffsetPlus.Image = Properties.Resources.plus;
         }
 
+        // X offset minus button enable changed; Grey and normal state
         private void btnXOffsetMinus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnXOffsetMinus.Enabled)
@@ -3671,6 +3601,7 @@ namespace MultecPlugin
                 btnXOffsetMinus.Image = Properties.Resources.minus;
         }
 
+        // Y offset Minus button enable changed; Grey and normal state
         private void btnYoffsetMinus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnYoffsetMinus.Enabled)
@@ -3679,6 +3610,7 @@ namespace MultecPlugin
                 btnYoffsetMinus.Image = Properties.Resources.minus;
         }
 
+        // Z offset Plus button enable changed; Grey and normal state
         private void btnZOffsetPlus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnZOffsetPlus.Enabled)
@@ -3687,6 +3619,7 @@ namespace MultecPlugin
                 btnZOffsetPlus.Image = Properties.Resources.zPlusKal;
         }
 
+        // Z offset Minus button enable changed; Grey and normal state
         private void btnZOffsetMinus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnZOffsetMinus.Enabled)
@@ -3695,6 +3628,7 @@ namespace MultecPlugin
                 btnZOffsetMinus.Image = Properties.Resources.zMinusKal;
         }
 
+        // E Plus button enable changed; Grey and normal state
         private void btnEplus_EnabledChanged(object sender, EventArgs e)
         {
             if (!btnEplus.Enabled)
@@ -3702,6 +3636,7 @@ namespace MultecPlugin
             else
                 btnEplus.Image = Properties.Resources.plus;
         }
+
 
         private void btnT0_OnOff_EnabledChanged(object sender, EventArgs e)
         {
@@ -3842,16 +3777,7 @@ namespace MultecPlugin
                 btnYhome.Image = Properties.Resources.Yhome;
         }
 
-        //private void btnZhome_EnabledChanged(object sender, EventArgs e)
-        //{
-        //    if (!btnZhome.Enabled)
-        //        btnZhome.Image = Properties.Resources.Zhome_g;
-        //    else
-        //        btnZhome.Image = Properties.Resources.Zhome;
-        //}
-
-        ///FILAMENT/////////
-
+       
         private void txtBoxTemp_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -3859,20 +3785,6 @@ namespace MultecPlugin
                 e.Handled = true;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void numericFeedrate_ValueChanged(object sender, EventArgs e)
@@ -5113,7 +5025,7 @@ namespace MultecPlugin
                 btnPminus.Image = Properties.Resources.minus;
         }
 
-       
+
 
         private void btnBedTempPlus_MouseClick(object sender, MouseEventArgs e)
         {
@@ -5140,7 +5052,7 @@ namespace MultecPlugin
                         host.Connection.injectManualCommand("M140 S" + temp_Zeil_bed);
                     }
                     text_Bed_ziel.Text = temp_Zeil_bed;
-                  
+
                 }
                 else
                 {
@@ -5177,7 +5089,7 @@ namespace MultecPlugin
 
                     text_Bed_ziel.Text = temp_Zeil_bed;
 
-                   
+
                 }
                 else
                 {
@@ -5213,7 +5125,7 @@ namespace MultecPlugin
 
                     text_T3_ziel.Text = temp_Zeil;
 
-                   
+
                 }
                 else
                 {
@@ -5250,7 +5162,7 @@ namespace MultecPlugin
 
 
 
-                    
+
                 }
                 else
                 {
@@ -5286,7 +5198,7 @@ namespace MultecPlugin
                     text_T2_ziel.Text = temp_Zeil;
 
 
-                    
+
                 }
                 else
                 {
@@ -5358,7 +5270,7 @@ namespace MultecPlugin
                     }
                     text_T0_ziel.Text = temp_Zeil;
 
-                    
+
                 }
                 else
                 {
@@ -5395,7 +5307,7 @@ namespace MultecPlugin
                     text_T0_ziel.Text = temp_Zeil;
 
 
-                    
+
                 }
                 else
                 {
@@ -5431,7 +5343,7 @@ namespace MultecPlugin
                     text_T1_ziel.Text = temp_Zeil;
 
 
-                   
+
                 }
                 else
                 {
@@ -5745,7 +5657,7 @@ namespace MultecPlugin
             }
         }
 
-       
+
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
@@ -6068,9 +5980,9 @@ namespace MultecPlugin
             }
         }
 
-      
 
-        
+
+
 
         private void BtnUploadToEPROM_Click(object sender, EventArgs e)
         {
@@ -6216,81 +6128,79 @@ namespace MultecPlugin
             int d = 0;
             bool group1Selected = false;
             endlosAktiv = !endlosAktiv;
-            //if (endlosAktiv)
-            //{
-                if (T0T1 || T0T2 || T0T3)
+            
+            if (T0T1 || T0T2 || T0T3)
+            {
+                a = 1;
+                b = T0T1 ? 1 : 0;
+                c = T0T2 ? 1 : 0;
+                d = T0T3 ? 1 : 0;
+                group1Selected = true;
+            }
+            if (T1T0 || T1T2 || T1T3)
+            {
+
+                if (group1Selected)
                 {
-                    a = 1;
-                    b = T0T1 ? 1 : 0;
-                    c = T0T2 ? 1 : 0;
-                    d = T0T3 ? 1 : 0;
+                    b = 2;
+                    a = T1T0 ? 2 : a;
+                    c = T1T2 ? 2 : b;
+                    d = T1T3 ? 2 : d;
+                }
+                else
+                {
+                    b = 1;
+                    a = T1T0 ? 1 : 0;
+                    c = T1T2 ? 1 : 0;
+                    d = T1T3 ? 1 : 0;
                     group1Selected = true;
                 }
-                if (T1T0 || T1T2 || T1T3)
+
+
+            }
+            if (T2T1 || T2T0 || T2T3)
+            {
+                if (group1Selected)
                 {
-
-                    if (group1Selected)
-                    {
-                        b = 2;
-                        a = T1T0 ? 2 : a;
-                        c = T1T2 ? 2 : b;
-                        d = T1T3 ? 2 : d;
-                    }
-                    else
-                    {
-                        b = 1;
-                        a = T1T0 ? 1 : 0;
-                        c = T1T2 ? 1 : 0;
-                        d = T1T3 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
+                    c = 2;
+                    b = T2T1 ? 2 : b;
+                    a = T2T0 ? 2 : a;
+                    d = T2T3 ? 2 : d;
                 }
-                if (T2T1 || T2T0 || T2T3)
+                else
                 {
-                    if (group1Selected)
-                    {
-                        c = 2;
-                        b = T2T1 ? 2 : b;
-                        a = T2T0 ? 2 : a;
-                        d = T2T3 ? 2 : d;
-                    }
-                    else
-                    {
-                        c = 1;
-                        b = T2T1 ? 1 : 0;
-                        a = T2T0 ? 1 : 0;
-                        d = T2T3 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
+                    c = 1;
+                    b = T2T1 ? 1 : 0;
+                    a = T2T0 ? 1 : 0;
+                    d = T2T3 ? 1 : 0;
+                    group1Selected = true;
                 }
-                if (T3T1 || T3T2 || T3T0)
+
+
+            }
+            if (T3T1 || T3T2 || T3T0)
+            {
+                if (group1Selected)
                 {
-                    if (group1Selected)
-                    {
-                        d = 2;
-                        b = T3T1 ? 2 : b;
-                        c = T3T2 ? 2 : c;
-                        a = T3T0 ? 2 : a;
-                    }
-                    else
-                    {
-                        d = 1;
-                        b = T3T1 ? 1 : 0;
-                        c = T3T2 ? 1 : 0;
-                        a = T3T0 ? 1 : 0;
-                        group1Selected = true;
-                    }
-
-
+                    d = 2;
+                    b = T3T1 ? 2 : b;
+                    c = T3T2 ? 2 : c;
+                    a = T3T0 ? 2 : a;
                 }
-                host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
+                else
+                {
+                    d = 1;
+                    b = T3T1 ? 1 : 0;
+                    c = T3T2 ? 1 : 0;
+                    a = T3T0 ? 1 : 0;
+                    group1Selected = true;
+                }
 
 
-            //}
+            }
+            host.Connection.injectManualCommand("M52 A" + a + " B" + b + " C" + c + " D" + d);
+
+
         }
 
         private void BtnActivateEndlos_EnabledChanged(object sender, EventArgs e)
@@ -6309,7 +6219,7 @@ namespace MultecPlugin
                 BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren;
         }
 
-        
+
     }
 
 
