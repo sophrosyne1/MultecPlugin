@@ -142,7 +142,7 @@ namespace MultecPlugin
         private bool startCopyingEPROMtoFile = false;
         private int linesCopiedToFile = 0;
         private List<string> M503Lines = new List<string>();
-
+        public DoorOpenDialogBox dialogBox;
         #endregion
 
 
@@ -2195,7 +2195,8 @@ namespace MultecPlugin
             }
         }
 
-        //function to check if the mouse is over the custom 3D buttons
+        //function to check if the mouse is over the custom 3D buttons( only allow click when 
+        //mouse is over the button itself and not the area)
         //doesnt need change
         public bool HitTest(PictureBox control, int x, int y)
         {
@@ -3120,14 +3121,7 @@ namespace MultecPlugin
             }
         }
 
-        //Button Actualise enable change in Info tab, Grey and normal state.
-        private void btnInfoAktualise_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnInfoAktualise.Enabled)
-                btnInfoAktualise.Image = Properties.Resources.Aktualizieren_g;
-            else
-                btnInfoAktualise.Image = Properties.Resources.Aktualizieren;
-        }
+        
 
         // Button Actuslise click in Filament Tab
         private void btnFilAktualise_MouseClick(object sender, MouseEventArgs e)
@@ -3138,68 +3132,6 @@ namespace MultecPlugin
             }
         }
 
-        //Button Actualise enable change in filament tab, Grey and normal state.
-        private void btnFilAktualise_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnFilAktualise.Enabled)
-                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
-            else
-                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
-        }
-
-        // But Park Move Enabled changed in Kal Tab, Grey and normal state
-        private void btnParkMoveKal_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnParkMoveKal.Enabled)
-                btnParkMoveKal.Image = Properties.Resources.Park_Move_g;
-            else
-                btnParkMoveKal.Image = Properties.Resources.Park_Move;
-        }
-
-        // But Home Move Enabled changed in Kal Tab, Grey and normal state
-        private void btnHomeMoveKal_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnHomeMoveKal.Enabled)
-                btnHomeMoveKal.Image = Properties.Resources.HOME_Move_g;
-            else
-                btnHomeMoveKal.Image = Properties.Resources.HOME_Move;
-        }
-
-        // But Home Move Enabled changed in Manual Tab, Grey and normal state
-        private void btnHomeMove_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnHomeMove.Enabled)
-                btnHomeMove.Image = Properties.Resources.HOME_Move_g;
-            else
-                btnHomeMove.Image = Properties.Resources.HOME_Move;
-        }
-
-        // But Park Move Enabled changed in Manual Tab, Grey and normal state
-        private void btnParkMove_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnParkMove.Enabled)
-                btnParkMove.Image = Properties.Resources.Park_Move_g;
-            else
-                btnParkMove.Image = Properties.Resources.Park_Move;
-        }
-
-        // But Home All Enabled changed in Manual Tab, Grey and normal state
-        private void btnHome_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnHome.Enabled)
-                btnHome.Image = Properties.Resources.HOME_g;
-            else
-                btnHome.Image = Properties.Resources.HOME;
-        }
-
-        // But Park Move Enabled changed in Kal Tab, Grey and normal state
-        private void btnMotorOff_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnMotorOff.Enabled)
-                btnMotorOff.Image = Properties.Resources.MOTOR_OFF_g;
-            else
-                btnMotorOff.Image = Properties.Resources.MOTOR_OFF;
-        }
 
         // Rotation Offset send button click Kal Tab 
         private void btnRotOffsetSend_MouseClick(object sender, MouseEventArgs e)
@@ -3215,50 +3147,7 @@ namespace MultecPlugin
             }
         }
 
-        // Rotation Offset send button enable changed Kal Tab, grey and normal state
-        private void btnRotOffsetSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnRotOffsetSend.Enabled)
-                btnRotOffsetSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnRotOffsetSend.Image = Properties.Resources.Schicken;
-        }
-
-        // Y Offset send button enable changed Kal Tab, grey and normal state
-        private void btnYoffsetSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnYoffsetSend.Enabled)
-                btnYoffsetSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnYoffsetSend.Image = Properties.Resources.Schicken;
-        }
-
-        // X Offset send button enable changed Kal Tab, grey and normal state
-        private void btnXoffsetSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnXoffsetSend.Enabled)
-                btnXoffsetSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnXoffsetSend.Image = Properties.Resources.Schicken;
-        }
-
-        // Z Offset send button enable changed Kal Tab, grey and normal state
-        private void btnZOffsetSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnZOffsetSend.Enabled)
-                btnZOffsetSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnZOffsetSend.Image = Properties.Resources.Schicken;
-        }
-
-        // Manual GCode send button enable changed Manual Tab, grey and normal state
-        private void btnManualGcodeSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnManualGcodeSend.Enabled)
-                btnManualGcodeSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnManualGcodeSend.Image = Properties.Resources.Schicken;
-        }
+     
 
         // Y Offset send button click Kal Tab
         private void btnYoffsetSend_Click(object sender, EventArgs e)
@@ -3326,32 +3215,7 @@ namespace MultecPlugin
             File.WriteAllLines(EPROM_FilePath, EPROMLines);
         }
 
-        // button M702 D enable change, Normal and grey state
-        private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnFineAdjustment.Enabled)
-                btnFineAdjustment.Image = Properties.Resources.ZF_g;
-            else
-                btnFineAdjustment.Image = Properties.Resources.ZF;
-        }
-
-        // button Düsevermessung enable change, Normal and grey state
-        private void btnDusevermessung_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnDusevermessung.Enabled)
-                btnDusevermessung.Image = Properties.Resources.DV_g;
-            else
-                btnDusevermessung.Image = Properties.Resources.DV;
-        }
-
-        // button Save "printer settings to file" enable change, Normal and grey state
-        private void btnPositionPrufen_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnSaveEPROMtoFile.Enabled)
-                btnSaveEPROMtoFile.Image = Properties.Resources.Backup_g;
-            else
-                btnSaveEPROMtoFile.Image = Properties.Resources.Backup;
-        }
+      
 
         // T1 nozzle selection button for M218
         private void btnM218T1_Click(object sender, EventArgs e)
@@ -3392,32 +3256,7 @@ namespace MultecPlugin
             }
         }
 
-        // M218_T1 button enable change, Grey and normal state.
-        private void btnM218T1_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnM218T1.Enabled)
-                btnM218T1.Image = Properties.Resources.T1_p_2;
-            else
-                btnM218T1.Image = Properties.Resources.T1_2;
-        }
-
-        // M218_T2 button enable change, Grey and normal state.
-        private void btnM218T2_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnM218T2.Enabled)
-                btnM218T2.Image = Properties.Resources.T2_p_2;
-            else
-                btnM218T2.Image = Properties.Resources.T2_2;
-        }
-
-        // M218_T3 button enable change, Grey and normal state.
-        private void btnM218T3_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnM218T3.Enabled)
-                btnM218T3.Image = Properties.Resources.T3_p_2;
-            else
-                btnM218T3.Image = Properties.Resources.T3_2;
-        }
+      
 
         // Y offset plus button click: 0.05 increament
         private void btnYoffsetPlus_MouseClick(object sender, MouseEventArgs e)
@@ -3554,6 +3393,177 @@ namespace MultecPlugin
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        // M218_T1 button enable change, Grey and normal state.
+        private void btnM218T1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T1.Enabled)
+                btnM218T1.Image = Properties.Resources.T1_p_2;
+            else
+                btnM218T1.Image = Properties.Resources.T1_2;
+        }
+
+        // M218_T2 button enable change, Grey and normal state.
+        private void btnM218T2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T2.Enabled)
+                btnM218T2.Image = Properties.Resources.T2_p_2;
+            else
+                btnM218T2.Image = Properties.Resources.T2_2;
+        }
+
+        // M218_T3 button enable change, Grey and normal state.
+        private void btnM218T3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnM218T3.Enabled)
+                btnM218T3.Image = Properties.Resources.T3_p_2;
+            else
+                btnM218T3.Image = Properties.Resources.T3_2;
+        }
+
+        #region Enable Changed for a lot of Buttons: grey and normal State
+        //Button Actualise enable change in Info tab, Grey and normal state.
+        private void btnInfoAktualise_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnInfoAktualise.Enabled)
+                btnInfoAktualise.Image = Properties.Resources.Aktualizieren_g;
+            else
+                btnInfoAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+        //Button Actualise enable change in filament tab, Grey and normal state.
+        private void btnFilAktualise_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnFilAktualise.Enabled)
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
+            else
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+
+        // But Park Move Enabled changed in Kal Tab, Grey and normal state
+        private void btnParkMoveKal_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkMoveKal.Enabled)
+                btnParkMoveKal.Image = Properties.Resources.Park_Move_g;
+            else
+                btnParkMoveKal.Image = Properties.Resources.Park_Move;
+        }
+
+        // But Home Move Enabled changed in Kal Tab, Grey and normal state
+        private void btnHomeMoveKal_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHomeMoveKal.Enabled)
+                btnHomeMoveKal.Image = Properties.Resources.HOME_Move_g;
+            else
+                btnHomeMoveKal.Image = Properties.Resources.HOME_Move;
+        }
+
+        // But Home Move Enabled changed in Manual Tab, Grey and normal state
+        private void btnHomeMove_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHomeMove.Enabled)
+                btnHomeMove.Image = Properties.Resources.HOME_Move_g;
+            else
+                btnHomeMove.Image = Properties.Resources.HOME_Move;
+        }
+
+        // But Park Move Enabled changed in Manual Tab, Grey and normal state
+        private void btnParkMove_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkMove.Enabled)
+                btnParkMove.Image = Properties.Resources.Park_Move_g;
+            else
+                btnParkMove.Image = Properties.Resources.Park_Move;
+        }
+
+        // But Home All Enabled changed in Manual Tab, Grey and normal state
+        private void btnHome_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnHome.Enabled)
+                btnHome.Image = Properties.Resources.HOME_g;
+            else
+                btnHome.Image = Properties.Resources.HOME;
+        }
+
+        // But Park Move Enabled changed in Kal Tab, Grey and normal state
+        private void btnMotorOff_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnMotorOff.Enabled)
+                btnMotorOff.Image = Properties.Resources.MOTOR_OFF_g;
+            else
+                btnMotorOff.Image = Properties.Resources.MOTOR_OFF;
+        }
+
+        // Rotation Offset send button enable changed Kal Tab, grey and normal state
+        private void btnRotOffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRotOffsetSend.Enabled)
+                btnRotOffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnRotOffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        // Y Offset send button enable changed Kal Tab, grey and normal state
+        private void btnYoffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnYoffsetSend.Enabled)
+                btnYoffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnYoffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        // X Offset send button enable changed Kal Tab, grey and normal state
+        private void btnXoffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnXoffsetSend.Enabled)
+                btnXoffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnXoffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        // Z Offset send button enable changed Kal Tab, grey and normal state
+        private void btnZOffsetSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnZOffsetSend.Enabled)
+                btnZOffsetSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnZOffsetSend.Image = Properties.Resources.Schicken;
+        }
+
+        // Manual GCode send button enable changed Manual Tab, grey and normal state
+        private void btnManualGcodeSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnManualGcodeSend.Enabled)
+                btnManualGcodeSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnManualGcodeSend.Image = Properties.Resources.Schicken;
+        }
+     
+        // button M702 D enable change, Normal and grey state
+        private void btnFineAdjustment_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnFineAdjustment.Enabled)
+                btnFineAdjustment.Image = Properties.Resources.ZF_g;
+            else
+                btnFineAdjustment.Image = Properties.Resources.ZF;
+        }
+
+        // button Düsevermessung enable change, Normal and grey state
+        private void btnDusevermessung_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnDusevermessung.Enabled)
+                btnDusevermessung.Image = Properties.Resources.DV_g;
+            else
+                btnDusevermessung.Image = Properties.Resources.DV;
+        }
+
+        // button Save "printer settings to file" enable change, Normal and grey state
+        private void btnPositionPrufen_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnSaveEPROMtoFile.Enabled)
+                btnSaveEPROMtoFile.Image = Properties.Resources.Backup_g;
+            else
+                btnSaveEPROMtoFile.Image = Properties.Resources.Backup;
         }
 
         // Z Plus button enable changed; Grey and normal state
@@ -3736,30 +3746,6 @@ namespace MultecPlugin
             else
                 btnEminus.Image = Properties.Resources.minus;
         }
-        private void btnXhome_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnXhome, e.X, e.Y))
-            {
-                if (host.Connection.connector.IsConnected())
-                {
-                    host.Connection.injectManualCommand("G28 X0");
-                }
-            }
-        }
-
-
-        private void btnYhome_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (HitTest(btnYhome, e.X, e.Y))
-            {
-                if (host.Connection.connector.IsConnected())
-                {
-                    host.Connection.injectManualCommand("G28 Y0");
-                }
-            }
-        }
-
-
 
         private void btnXhome_EnabledChanged(object sender, EventArgs e)
         {
@@ -3777,16 +3763,273 @@ namespace MultecPlugin
                 btnYhome.Image = Properties.Resources.Yhome;
         }
 
-       
+        private void btnRetractT0_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT0.Enabled)
+                btnRetractT0.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT0.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT1.Enabled)
+                btnRetractT1.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT1.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT2.Enabled)
+                btnRetractT2.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT2.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnRetractT3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnRetractT3.Enabled)
+                btnRetractT3.Image = Properties.Resources.Zuruck_g;
+            else
+                btnRetractT3.Image = Properties.Resources.Zuruck;
+        }
+
+        private void btnLoadT0_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT0.Enabled)
+                btnLoadT0.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT0.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT1.Enabled)
+                btnLoadT1.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT1.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT2.Enabled)
+                btnLoadT2.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT2.Image = Properties.Resources.Laden;
+        }
+
+        private void btnLoadT3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnLoadT3.Enabled)
+                btnLoadT3.Image = Properties.Resources.Laden_g;
+            else
+                btnLoadT3.Image = Properties.Resources.Laden;
+        }
+
+        private void btnParkPositionSend_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnParkPositionSend.Enabled)
+                btnParkPositionSend.Image = Properties.Resources.Schicken_g;
+            else
+                btnParkPositionSend.Image = Properties.Resources.Schicken;
+        }
+
+        private void btnPplus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnPplus.Enabled)
+                btnPplus.Image = Properties.Resources.plus_g;
+            else
+                btnPplus.Image = Properties.Resources.plus;
+        }
+
+        private void btnPminus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnPminus.Enabled)
+                btnPminus.Image = Properties.Resources.minus_g;
+            else
+                btnPminus.Image = Properties.Resources.minus;
+        }
+
+        private void btnFeedratePlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnFeedratePlus.Enabled)
+                btnFeedratePlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnFeedratePlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnFeedrateMinus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnFeedrateMinus.Enabled)
+                btnFeedrateMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnFeedrateMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void btnFlowratePlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnFlowratePlus.Enabled)
+                btnFlowratePlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnFlowratePlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnBedTempPlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnBedTempPlus.Enabled)
+                btnBedTempPlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnBedTempPlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnT3TempPlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnT3TempPlus.Enabled)
+                btnT3TempPlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnT3TempPlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnT2TempPlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnT2TempPlus.Enabled)
+                btnT2TempPlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnT2TempPlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnT1TempPlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnT1TempPlus.Enabled)
+                btnT1TempPlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnT1TempPlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnT0TempPlus_EnabledChanged(object sender, EventArgs e)
+        {
+
+            if (!btnT0TempPlus.Enabled)
+                btnT0TempPlus.Image = Properties.Resources.PlusV_g;
+            else
+                btnT0TempPlus.Image = Properties.Resources.PlusV1;
+        }
+
+        private void btnT0TempMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT0TempMinus.Enabled)
+                btnT0TempMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnT0TempMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void btnT1TempMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT1TempMinus.Enabled)
+                btnT1TempMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnT1TempMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void btnT2TempMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT2TempMinus.Enabled)
+                btnT2TempMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnT2TempMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void btnT3TempMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnT3TempMinus.Enabled)
+                btnT3TempMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnT3TempMinus.Image = Properties.Resources.MinusV1;
+
+        }
+
+        private void btnBedTempMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnBedTempMinus.Enabled)
+                btnBedTempMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnBedTempMinus.Image = Properties.Resources.MinusV1;
+        }
+
+        private void btnFlowrateMinus_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!btnFlowrateMinus.Enabled)
+                btnFlowrateMinus.Image = Properties.Resources.MinusV_g;
+            else
+                btnFlowrateMinus.Image = Properties.Resources.MinusV1;
+        }
+        private void BtnUploadToEPROM_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnUploadToEPROM.Enabled)
+                BtnUploadToEPROM.Image = Properties.Resources.Upload_g;
+            else
+                BtnUploadToEPROM.Image = Properties.Resources.Upload;
+        }
+        private void BtnActivateEndlos_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnActivateEndlos.Enabled)
+                BtnActivateEndlos.Image = Properties.Resources.Activieren_g;
+            else
+                BtnActivateEndlos.Image = Properties.Resources.Activieren;
+        }
+
+        private void BtnDeactivateEndlos_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!BtnDeactivateEndlos.Enabled)
+                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren_g;
+            else
+                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren;
+        }
+        #endregion
+
+        //Button X-Home Mouse Click
+        private void btnXhome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnXhome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28 X0");
+                }
+            }
+        }
+
+        //Button Y-Home Mouse Click
+        private void btnYhome_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(btnYhome, e.X, e.Y))
+            {
+                if (host.Connection.connector.IsConnected())
+                {
+                    host.Connection.injectManualCommand("G28 Y0");
+                }
+            }
+        }
+
+
+        //Only allow digits to be entered in Temp text boxes This handles that
         private void txtBoxTemp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) // checks the value entered is a number or not
             {
                 e.Handled = true;
             }
         }
 
-
+        //When the value is changed in the numeric. send M220 feedrate command
         private void numericFeedrate_ValueChanged(object sender, EventArgs e)
         {
             if (numericFeedrate.Value < 300 && numericFeedrate.Value > 25)
@@ -3799,6 +4042,7 @@ namespace MultecPlugin
             }
         }
 
+        //Sending FlowRate change when numeric for flowrate is changed
         private void numericFlowrate_ValueChanged(object sender, EventArgs e)
         {
 
@@ -3813,7 +4057,7 @@ namespace MultecPlugin
         }
 
 
-
+        //FlowRate plus button click
         private void btnFlowratePlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnFlowratePlus, e.X, e.Y))
@@ -3825,6 +4069,7 @@ namespace MultecPlugin
             }
         }
 
+        //FlowRate minus button click
         private void btnFlowrateMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnFlowrateMinus, e.X, e.Y))
@@ -3836,6 +4081,7 @@ namespace MultecPlugin
             }
         }
 
+        //FeedRate plus button click
         private void btnFeedratePlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnFeedratePlus, e.X, e.Y))
@@ -3846,7 +4092,7 @@ namespace MultecPlugin
                 }
             }
         }
-
+        //FeedRate minus button click
         private void btnFeedrateMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnFeedrateMinus, e.X, e.Y))
@@ -3857,10 +4103,10 @@ namespace MultecPlugin
                 }
             }
         }
-        public DoorOpenDialogBox dialogBox;
+      
 
 
-
+        //Background worker which opens the door open pop-up and sets a manual postion
         private void wrkrOpenDialogBox_DoWork(object sender, DoWorkEventArgs e)
         {
             dialogBox = new DoorOpenDialogBox()
@@ -3873,6 +4119,7 @@ namespace MultecPlugin
 
         }
 
+        // When enter/esc is clicked in the Temp Text box for T0 (enter sends temp command, esc clears text box) 
         private void text_T0_ziel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -3909,7 +4156,7 @@ namespace MultecPlugin
                 e.SuppressKeyPress = true;
             }
         }
-
+        // When enter/esc is clicked in the Temp Text box for T1 (enter sends temp command, esc clears text box) 
         private void text_T1_ziel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -3949,6 +4196,7 @@ namespace MultecPlugin
             }
         }
 
+        // When enter/esc is clicked in the Temp Text box for T2 (enter sends temp command, esc clears text box) 
         private void text_T2_ziel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -3988,6 +4236,7 @@ namespace MultecPlugin
             }
         }
 
+        // When enter/esc is clicked in the Temp Text box for T3 (enter sends temp command, esc clears text box) 
         private void text_T3_ziel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -4027,6 +4276,7 @@ namespace MultecPlugin
             }
         }
 
+        // When enter/esc is clicked in the Temp Text box for Bed (enter sends temp command, esc clears text box) 
         private void text_Bed_ziel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -4063,6 +4313,7 @@ namespace MultecPlugin
                 e.SuppressKeyPress = true;
             }
         }
+
 
         private void wrkrHomeXY_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -4840,70 +5091,8 @@ namespace MultecPlugin
             }
         }
 
-        private void btnRetractT0_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnRetractT0.Enabled)
-                btnRetractT0.Image = Properties.Resources.Zuruck_g;
-            else
-                btnRetractT0.Image = Properties.Resources.Zuruck;
-        }
 
-        private void btnRetractT1_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnRetractT1.Enabled)
-                btnRetractT1.Image = Properties.Resources.Zuruck_g;
-            else
-                btnRetractT1.Image = Properties.Resources.Zuruck;
-        }
-
-        private void btnRetractT2_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnRetractT2.Enabled)
-                btnRetractT2.Image = Properties.Resources.Zuruck_g;
-            else
-                btnRetractT2.Image = Properties.Resources.Zuruck;
-        }
-
-        private void btnRetractT3_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnRetractT3.Enabled)
-                btnRetractT3.Image = Properties.Resources.Zuruck_g;
-            else
-                btnRetractT3.Image = Properties.Resources.Zuruck;
-        }
-
-        private void btnLoadT0_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnLoadT0.Enabled)
-                btnLoadT0.Image = Properties.Resources.Laden_g;
-            else
-                btnLoadT0.Image = Properties.Resources.Laden;
-        }
-
-        private void btnLoadT1_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnLoadT1.Enabled)
-                btnLoadT1.Image = Properties.Resources.Laden_g;
-            else
-                btnLoadT1.Image = Properties.Resources.Laden;
-        }
-
-        private void btnLoadT2_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnLoadT2.Enabled)
-                btnLoadT2.Image = Properties.Resources.Laden_g;
-            else
-                btnLoadT2.Image = Properties.Resources.Laden;
-        }
-
-        private void btnLoadT3_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnLoadT3.Enabled)
-                btnLoadT3.Image = Properties.Resources.Laden_g;
-            else
-                btnLoadT3.Image = Properties.Resources.Laden;
-        }
-
+        
 
         public static bool IsValidNozzleTemp(string str)
         {
@@ -5001,30 +5190,7 @@ namespace MultecPlugin
             }
         }
 
-        private void btnParkPositionSend_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnParkPositionSend.Enabled)
-                btnParkPositionSend.Image = Properties.Resources.Schicken_g;
-            else
-                btnParkPositionSend.Image = Properties.Resources.Schicken;
-        }
-
-        private void btnPplus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnPplus.Enabled)
-                btnPplus.Image = Properties.Resources.plus_g;
-            else
-                btnPplus.Image = Properties.Resources.plus;
-        }
-
-        private void btnPminus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnPminus.Enabled)
-                btnPminus.Image = Properties.Resources.minus_g;
-            else
-                btnPminus.Image = Properties.Resources.minus;
-        }
-
+        
 
 
         private void btnBedTempPlus_MouseClick(object sender, MouseEventArgs e)
@@ -5391,126 +5557,7 @@ namespace MultecPlugin
             }
         }
 
-        private void btnFeedratePlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnFeedratePlus.Enabled)
-                btnFeedratePlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnFeedratePlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnFeedrateMinus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnFeedrateMinus.Enabled)
-                btnFeedrateMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnFeedrateMinus.Image = Properties.Resources.MinusV1;
-        }
-
-        private void btnFlowratePlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnFlowratePlus.Enabled)
-                btnFlowratePlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnFlowratePlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnBedTempPlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnBedTempPlus.Enabled)
-                btnBedTempPlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnBedTempPlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnT3TempPlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnT3TempPlus.Enabled)
-                btnT3TempPlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnT3TempPlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnT2TempPlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnT2TempPlus.Enabled)
-                btnT2TempPlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnT2TempPlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnT1TempPlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnT1TempPlus.Enabled)
-                btnT1TempPlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnT1TempPlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnT0TempPlus_EnabledChanged(object sender, EventArgs e)
-        {
-
-            if (!btnT0TempPlus.Enabled)
-                btnT0TempPlus.Image = Properties.Resources.PlusV_g;
-            else
-                btnT0TempPlus.Image = Properties.Resources.PlusV1;
-        }
-
-        private void btnT0TempMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnT0TempMinus.Enabled)
-                btnT0TempMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnT0TempMinus.Image = Properties.Resources.MinusV1;
-        }
-
-        private void btnT1TempMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnT1TempMinus.Enabled)
-                btnT1TempMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnT1TempMinus.Image = Properties.Resources.MinusV1;
-        }
-
-        private void btnT2TempMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnT2TempMinus.Enabled)
-                btnT2TempMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnT2TempMinus.Image = Properties.Resources.MinusV1;
-        }
-
-        private void btnT3TempMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnT3TempMinus.Enabled)
-                btnT3TempMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnT3TempMinus.Image = Properties.Resources.MinusV1;
-
-        }
-
-        private void btnBedTempMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnBedTempMinus.Enabled)
-                btnBedTempMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnBedTempMinus.Image = Properties.Resources.MinusV1;
-        }
-
-        private void btnFlowrateMinus_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!btnFlowrateMinus.Enabled)
-                btnFlowrateMinus.Image = Properties.Resources.MinusV_g;
-            else
-                btnFlowrateMinus.Image = Properties.Resources.MinusV1;
-        }
+        
 
         private void UpdateNozzleSizeFile()
         {
@@ -6104,14 +6151,7 @@ namespace MultecPlugin
 
             }
         }
-
-        private void BtnUploadToEPROM_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!BtnUploadToEPROM.Enabled)
-                BtnUploadToEPROM.Image = Properties.Resources.Upload_g;
-            else
-                BtnUploadToEPROM.Image = Properties.Resources.Upload;
-        }
+       
 
         private void BtnDeactivateEndlos_Click(object sender, EventArgs e)
         {
@@ -6203,21 +6243,7 @@ namespace MultecPlugin
 
         }
 
-        private void BtnActivateEndlos_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!BtnActivateEndlos.Enabled)
-                BtnActivateEndlos.Image = Properties.Resources.Activieren_g;
-            else
-                BtnActivateEndlos.Image = Properties.Resources.Activieren;
-        }
 
-        private void BtnDeactivateEndlos_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!BtnDeactivateEndlos.Enabled)
-                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren_g;
-            else
-                BtnDeactivateEndlos.Image = Properties.Resources.Deaktivieren;
-        }
 
 
     }
