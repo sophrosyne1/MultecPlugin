@@ -153,7 +153,7 @@ namespace MultecPlugin
             Trans.host.Connection.eventResponse += AddtoListBox;
             Trans.host.Connection.eventConnectionChange += PrinterConnectionChange;
 
-            Version = "Version: v1.0.5";            //change version name here
+            Version = "Version: v1.0.6";            //change version name here
             VersionLabel.Text = Version;
 
             tempValue = "205";                      //set default ziel temperature here
