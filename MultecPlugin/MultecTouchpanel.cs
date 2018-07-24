@@ -3121,8 +3121,6 @@ namespace MultecPlugin
             }
         }
 
-        
-
         // Button Actuslise click in Filament Tab
         private void btnFilAktualise_MouseClick(object sender, MouseEventArgs e)
         {
@@ -3131,7 +3129,6 @@ namespace MultecPlugin
                 host.Connection.injectManualCommand("M603");
             }
         }
-
 
         // Rotation Offset send button click Kal Tab 
         private void btnRotOffsetSend_MouseClick(object sender, MouseEventArgs e)
@@ -3146,8 +3143,6 @@ namespace MultecPlugin
                 rotOffsetMultiplyer = 0;
             }
         }
-
-     
 
         // Y Offset send button click Kal Tab
         private void btnYoffsetSend_Click(object sender, EventArgs e)
@@ -3215,8 +3210,6 @@ namespace MultecPlugin
             File.WriteAllLines(EPROM_FilePath, EPROMLines);
         }
 
-      
-
         // T1 nozzle selection button for M218
         private void btnM218T1_Click(object sender, EventArgs e)
         {
@@ -3254,9 +3247,7 @@ namespace MultecPlugin
                 btnM218T2.Enabled = true;
                 btnM218T3.Enabled = false;
             }
-        }
-
-      
+        }    
 
         // Y offset plus button click: 0.05 increament
         private void btnYoffsetPlus_MouseClick(object sender, MouseEventArgs e)
@@ -3423,6 +3414,15 @@ namespace MultecPlugin
         }
 
         #region Enable Changed for a lot of Buttons: grey and normal State
+
+        private void btnFilAktualise_EnabledChanged_1(object sender, EventArgs e)
+        {
+            if (!btnFilAktualise.Enabled)
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
+            else
+                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
+        }
+
         //Button Actualise enable change in Info tab, Grey and normal state.
         private void btnInfoAktualise_EnabledChanged(object sender, EventArgs e)
         {
@@ -4019,7 +4019,6 @@ namespace MultecPlugin
             }
         }
 
-
         //Only allow digits to be entered in Temp text boxes This handles that
         private void txtBoxTemp_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -4055,7 +4054,6 @@ namespace MultecPlugin
                 }
             }
         }
-
 
         //FlowRate plus button click
         private void btnFlowratePlus_MouseClick(object sender, MouseEventArgs e)
@@ -4103,8 +4101,6 @@ namespace MultecPlugin
                 }
             }
         }
-      
-
 
         //Background worker which opens the door open pop-up and sets a manual postion
         private void wrkrOpenDialogBox_DoWork(object sender, DoWorkEventArgs e)
@@ -4156,6 +4152,7 @@ namespace MultecPlugin
                 e.SuppressKeyPress = true;
             }
         }
+
         // When enter/esc is clicked in the Temp Text box for T1 (enter sends temp command, esc clears text box) 
         private void text_T1_ziel_KeyDown(object sender, KeyEventArgs e)
         {
@@ -4314,7 +4311,7 @@ namespace MultecPlugin
             }
         }
 
-
+        // Pop-up for 'Home X/Y before Z' back ground worker
         private void wrkrHomeXY_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -4328,6 +4325,7 @@ namespace MultecPlugin
 
         }
 
+        // Timer which handles the changing of label and status when load or retract is clicked 
         private void timerRetractLoad_Tick(object sender, EventArgs e)
         {
             try
@@ -4601,6 +4599,7 @@ namespace MultecPlugin
             }
         }
 
+        //Retract button click for T0 (handles the GCodes sent)
         private void btnRetractT0_Click_1(object sender, EventArgs e)
         {
             if (txtBoxTemp.Text != string.Empty)
@@ -4660,6 +4659,7 @@ namespace MultecPlugin
             }
         }
 
+        //Retract button click for T1 (handles the GCodes sent)
         private void btnRetractT1_Click(object sender, EventArgs e)
         {
             if (txtBoxTemp.Text != string.Empty)
@@ -4718,6 +4718,7 @@ namespace MultecPlugin
             }
         }
 
+        //Retract button click for T2 (handles the GCodes sent)
         private void btnRetractT2_Click_1(object sender, EventArgs e)
         {
             if (txtBoxTemp.Text != string.Empty)
@@ -4775,6 +4776,7 @@ namespace MultecPlugin
             }
         }
 
+        //Retract button click for T3 (handles the GCodes sent)
         private void btnRetractT3_Click(object sender, EventArgs e)
         {
             if (txtBoxTemp.Text != string.Empty)
@@ -4832,6 +4834,7 @@ namespace MultecPlugin
             }
         }
 
+        //Load button click for T0 (handles the GCodes sent)
         private void btnLoadT0_Click(object sender, EventArgs e)
         {
 
@@ -4899,6 +4902,7 @@ namespace MultecPlugin
             }
         }
 
+        //Load button click for T1 (handles the GCodes sent)
         private void btnLoadT1_Click(object sender, EventArgs e)
         {
             DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
@@ -4963,6 +4967,7 @@ namespace MultecPlugin
             }
         }
 
+        //Load button click for T2(handles the GCodes sent)
         private void btnLoadT2_Click(object sender, EventArgs e)
         {
             DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
@@ -5027,6 +5032,7 @@ namespace MultecPlugin
             }
         }
 
+        //Load button click for T3(handles the GCodes sent)
         private void btnLoadT3_Click(object sender, EventArgs e)
         {
             DialogResult ms = MessageBox.Show("Filament Laden: Stellen Sie sicher, dass das Filament korrekt eingeführt ist " +
@@ -5089,16 +5095,15 @@ namespace MultecPlugin
                     timerRetractLoad.Start();
                 }
             }
-        }
+        }        
 
-
-        
-
+        //Check if the temperature set is between 0 to 270 for Nozzles
         public static bool IsValidNozzleTemp(string str)
         {
             return int.TryParse(str, out int i) && i >= 0 && i <= 270;
         }
 
+        //Only allow numbers to be entered in the ziel temp boxes for nozzles
         private void text_T0_ziel_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -5107,11 +5112,14 @@ namespace MultecPlugin
             }
 
         }
+
+        //check if the bed temperature is set betweeen 0 to 100 degrees
         public static bool IsValidBedTemp(string str)
         {
             return int.TryParse(str, out int i) && i >= 0 && i <= 100;
         }
 
+        //Only allow numbers to be entered in the ziel temp boxes for bed
         private void text_Bed_ziel_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -5121,24 +5129,19 @@ namespace MultecPlugin
 
         }
 
+        //cursor change when mouse enters the On/Off buttons, as they are only picture boxes and not custom buttons
         private void btnT0_OnOff_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
         }
 
+        //cursor change when mouse leaves the On/Off buttons, as they are only picture boxes and not custom buttons
         private void btnT0_OnOff_MouseLeave(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
         }
 
-        private void btnFilAktualise_EnabledChanged_1(object sender, EventArgs e)
-        {
-            if (!btnFilAktualise.Enabled)
-                btnFilAktualise.Image = Properties.Resources.Aktualizieren_g;
-            else
-                btnFilAktualise.Image = Properties.Resources.Aktualizieren;
-        }
-
+        //ParkPosition Plus button click
         private void btnPplus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnPplus, e.X, e.Y))
@@ -5158,6 +5161,7 @@ namespace MultecPlugin
             }
         }
 
+        //ParkPosition minus button click
         private void btnPminus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnPminus, e.X, e.Y))
@@ -5177,6 +5181,7 @@ namespace MultecPlugin
             }
         }
 
+        //ParkPosition send button click
         private void btnParkPositionSend_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnParkPositionSend, e.X, e.Y))
@@ -5190,9 +5195,7 @@ namespace MultecPlugin
             }
         }
 
-        
-
-
+        //Bed Temp Plus button click
         private void btnBedTempPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnBedTempPlus, e.X, e.Y))
@@ -5229,6 +5232,7 @@ namespace MultecPlugin
 
         }
 
+        //Bed Temp minus button click
         private void btnBedTempMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnBedTempMinus, e.X, e.Y))
@@ -5265,6 +5269,7 @@ namespace MultecPlugin
             }
         }
 
+        //T3 Temp Plus button click
         private void btnT3TempPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT3TempPlus, e.X, e.Y))
@@ -5290,8 +5295,6 @@ namespace MultecPlugin
                     }
 
                     text_T3_ziel.Text = temp_Zeil;
-
-
                 }
                 else
                 {
@@ -5301,6 +5304,7 @@ namespace MultecPlugin
             }
         }
 
+        //T3 Temp minus button click
         private void btnT3TempMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT3TempMinus, e.X, e.Y))
@@ -5325,10 +5329,6 @@ namespace MultecPlugin
                         host.Connection.injectManualCommand("M104 S" + temp_Zeil + " T3");
                     }
                     text_T3_ziel.Text = temp_Zeil;
-
-
-
-
                 }
                 else
                 {
@@ -5338,6 +5338,7 @@ namespace MultecPlugin
             }
         }
 
+        //T2 Temp plus button click
         private void btnT2TempPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT2TempPlus, e.X, e.Y))
@@ -5374,6 +5375,7 @@ namespace MultecPlugin
             }
         }
 
+        //T1 Temp plus button click
         private void btnT1TempPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT1TempPlus, e.X, e.Y))
@@ -5410,6 +5412,7 @@ namespace MultecPlugin
             }
         }
 
+        //T0 Temp plus button click
         private void btnT0TempPlus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT0TempPlus, e.X, e.Y))
@@ -5446,6 +5449,7 @@ namespace MultecPlugin
             }
         }
 
+        //T0 Temp minus button click
         private void btnT0TempMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT0TempMinus, e.X, e.Y))
@@ -5483,6 +5487,7 @@ namespace MultecPlugin
             }
         }
 
+        //T1 Temp minus button click
         private void btnT1TempMinus_MouseClick(object sender, MouseEventArgs e)
         {
             if (HitTest(btnT1TempMinus, e.X, e.Y))
@@ -5519,6 +5524,7 @@ namespace MultecPlugin
             }
         }
 
+        //T2 Temp minus button click
         private void btnT2TempMinus_MouseClick(object sender, MouseEventArgs e)
         {
 
@@ -5558,7 +5564,6 @@ namespace MultecPlugin
         }
 
         
-
         private void UpdateNozzleSizeFile()
         {
             using (StreamWriter writer = new StreamWriter(nozzleSizeFilePath))
